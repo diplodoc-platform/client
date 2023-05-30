@@ -1,6 +1,6 @@
 const {resolve} = require('path');
 const {DefinePlugin} = require('webpack');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+// const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 function config({isServer}) {
     return {
@@ -11,12 +11,6 @@ function config({isServer}) {
         externals: isServer ? {
             'react': 'react',
             'react-dom': 'react-dom',
-            // 'react': {
-            //     commonjs: 'react',
-            // },
-            // 'react-dom': {
-            //     commonjs: 'react-dom',
-            // },
         } : {},
         output: {
             path: resolve(__dirname, 'build'),
@@ -35,11 +29,11 @@ function config({isServer}) {
                     BROWSER: !isServer
                 }
             }),
-            new BundleAnalyzerPlugin({
-                analyzerMode: 'static',
-                openAnalyzer: false,
-                reportFilename: (isServer ? 'server-' : 'client-') + 'stats.html',
-            })
+            // new BundleAnalyzerPlugin({
+            //     analyzerMode: 'static',
+            //     openAnalyzer: false,
+            //     reportFilename: (isServer ? 'server-' : 'client-') + 'stats.html',
+            // })
         ],
         module: {
             rules: [
