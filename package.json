@@ -1,0 +1,74 @@
+{
+  "name": "@diplodoc/client",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "node": "./build/app.server.js",
+      "default": "./build/app.client.js"
+    },
+    "./includer": {
+      "node": "./includer/index.js"
+    },
+    "./runtime": {
+      "production": "./runtime/index.min.js",
+      "development": "./runtime/index.js",
+      "default": "./runtime/index.min.js"
+    },
+    "./runtime/styles": {
+      "production": "./runtime/index.min.css",
+      "development": "./runtime/index.css",
+      "default": "./runtime/index.min.css"
+    }
+  },
+  "dependencies": {
+    "@diplodoc/mermaid-extension": "0.0.4",
+    "@diplodoc/openapi-extension": "^1.0.19",
+    "@doc-tools/components": "^2.8.0",
+    "@doc-tools/transform": "^3.0.2",
+    "@gravity-ui/uikit": "^4.14.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "url": "^0.11.0",
+    "webpack-bundle-analyzer": "^4.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-syntax-top-level-await": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.22.4",
+    "@babel/preset-env": "^7.22.4",
+    "@babel/preset-react": "^7.22.3",
+    "@babel/preset-typescript": "^7.21.5",
+    "@babel/runtime": "^7.22.3",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.41.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-security": "^1.7.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "mini-css-extract-plugin": "^2.7.6",
+    "node-sass": "^9.0.0",
+    "prop-types": "^15.8.1",
+    "react-svg-loader": "^3.0.3",
+    "sass-loader": "^13.3.1",
+    "style-loader": "^3.3.3",
+    "typescript": "^5.0.4",
+    "webpack": "^5.84.1",
+    "webpack-cli": "^5.1.1"
+  }
+}

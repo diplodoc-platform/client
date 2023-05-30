@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
+    "pretty": true,
+    "newLine": "lf",
+    "stripInternal": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "target": "es2020",
+    "moduleResolution": "node",
+    "declaration": false,
+    "outDir": "build",
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./src/app/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "types": ["node"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
