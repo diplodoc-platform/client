@@ -2,7 +2,7 @@
   "name": "@diplodoc/client",
   "version": "0.0.5",
   "description": "",
-  "main": "index.js",
+  "main": "build/app.server.js",
   "scripts": {
     "build": "webpack && tsc --emitDeclarationOnly --outDir build",
     "prepublishOnly": "rm -rf build && npm ci && npm run build"
