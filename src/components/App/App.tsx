@@ -91,6 +91,7 @@ export function App(props: DocInnerProps): ReactElement {
         <div className="App Layout__content">
             {data.leading
                 ? <DocLeadingPage {...data} {...pageProps}/>
+                // @ts-ignore
                 : <DocPage {...data} {...pageProps}/>
             }
             <OpenapiSandbox />

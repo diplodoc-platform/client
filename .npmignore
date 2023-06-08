@@ -1,1 +1,10 @@
+.babelrc
+.editorconfig
+.eslintrc
+.gitignore
+.nvmrc
+.npmrc
+
 src
+webpack.config.js
+tsconfig.json

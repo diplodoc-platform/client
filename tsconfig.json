@@ -17,20 +17,11 @@
     "allowJs": true,
     "target": "es2020",
     "moduleResolution": "node",
-    "declaration": false,
+    "declaration": true,
     "outDir": "build",
     "jsx": "react",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./src/app/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src"],
-  "exclude": ["node_modules"],
-  "types": ["node"],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "exclude": ["node_modules"]
 }

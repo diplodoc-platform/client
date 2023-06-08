@@ -4,18 +4,16 @@ const {DefinePlugin} = require('webpack');
 
 function config({isServer}) {
     return {
-        mode: 'development',
+        mode: 'production',
         target: isServer ? 'node' : 'web',
         devtool: 'inline-source-map',
         entry: './src/index.tsx',
-        externals: isServer ? {
-            'react': 'react',
-            'react-dom': 'react-dom',
-        } : {},
         output: {
             path: resolve(__dirname, 'build'),
             filename: isServer ? 'app.server.js' : 'app.client.js',
-            libraryTarget: 'commonjs2'
+            ...(isServer ? {
+                libraryTarget: 'commonjs2'
+            } : {})
         },
         resolve: {
             alias: isServer ? {} : {
@@ -46,7 +44,7 @@ function config({isServer}) {
                     ],
                 }, {
                     test: /\.s?css$/,
-                    use: [
+                    use:  [
                         {
                             loader: 'style-loader',
                             options: {
