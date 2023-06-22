@@ -9,12 +9,14 @@
   },
   "author": "",
   "license": "ISC",
+  "types": "./build/index.d.ts",
   "exports": {
     ".": {
       "node": "./build/app.server.js",
       "types": "./build/index.d.ts",
       "default": "./build/app.client.js"
-    }
+    },
+    "./styles": "./build/app.client.css"
   },
   "dependencies": {
     "@diplodoc/mermaid-extension": "^0.0.5",
@@ -41,6 +43,7 @@
     "@typescript-eslint/parser": "^5.59.8",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.2",
+    "babel-plugin-lodash": "^3.3.4",
     "css-loader": "^6.8.1",
     "eslint": "^8.41.0",
     "eslint-plugin-react": "^7.32.2",
