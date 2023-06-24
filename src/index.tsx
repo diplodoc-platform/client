@@ -2,7 +2,9 @@ import React from 'react';
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { renderToString } from 'react-dom/server';
 
-import { App, DocInnerProps } from './components/App/App';
+import { App, DocInnerProps, DocPageData, DocLeadingPageData } from './components/App/App';
+
+export type { DocInnerProps, DocPageData, DocLeadingPageData };
 
 declare global {
     interface Window { STATIC_CONTENT: boolean; }
