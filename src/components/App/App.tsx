@@ -14,7 +14,7 @@ import { getDocSettings, updateRootClassName, withSavingSetting } from '../../ut
 
 import '../../interceptors/leading-page-links';
 
-import { useMermaid } from '@diplodoc/mermaid-extension/hooks';
+import { MermaidRuntime } from '@diplodoc/mermaid-extension/react';
 import { Runtime as OpenapiSandbox } from '@diplodoc/openapi-extension/runtime';
 import '@diplodoc/openapi-extension/runtime/styles';
 
@@ -77,13 +77,6 @@ export function App(props: DocInnerProps): ReactElement {
         updateRootClassName(theme, isMobileView);
     }, [ theme, isMobileView ]);
 
-    const renderMermaid = useMermaid();
-    useEffect(() => {
-        renderMermaid({
-            theme: theme === Theme.Dark ? 'dark' : 'neutral',
-        });
-    }, [ theme, renderMermaid ]);
-
     return (
         // TODO(vladimirfedin): Replace Layout__content class.
         <div className="App Layout__content">
@@ -93,6 +86,13 @@ export function App(props: DocInnerProps): ReactElement {
                 : <DocPage { ...data } { ...pageProps }/>
             }
             <OpenapiSandbox/>
+            <MermaidRuntime
+                theme={theme === Theme.Dark ? 'dark' : 'neutral'}
+                zoom={{
+                    showMenu: true,
+                    bindKeys: true,
+                }}
+            />
         </div>
     );
 }
