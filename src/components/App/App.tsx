@@ -14,10 +14,11 @@ import { getDocSettings, updateRootClassName, withSavingSetting } from '../../ut
 
 import '../../interceptors/leading-page-links';
 
+import '@doc-tools/transform/dist/js/yfm';
 import { MermaidRuntime } from '@diplodoc/mermaid-extension/react';
 import { Runtime as OpenapiSandbox } from '@diplodoc/openapi-extension/runtime';
-import '@diplodoc/openapi-extension/runtime/styles';
 
+import '@diplodoc/openapi-extension/runtime/styles';
 import '@doc-tools/components/styles/themes.scss';
 import '@doc-tools/components/styles/default.scss';
 import '@doc-tools/components/styles/typography.scss';

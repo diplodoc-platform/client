@@ -11,7 +11,7 @@ function config({isServer}) {
         entry: './src/index.tsx',
         output: {
             path: resolve(__dirname, 'build'),
-            filename: isServer ? 'app.server.js' : 'app.client.js',
+            filename: `app.${isServer ? 'server' : 'client'}.js`,
             ...(isServer ? {
                 libraryTarget: 'commonjs2'
             } : {})
@@ -22,6 +22,7 @@ function config({isServer}) {
             },
             extensions: ['.tsx', '.ts', '.js', '.scss'],
         },
+        externals: isServer ? ['@doc-tools/transform/dist/js/yfm'] : [],
         plugins: [
             new DefinePlugin({
                 'process.env': {
