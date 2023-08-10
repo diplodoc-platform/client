@@ -14,6 +14,7 @@
     ".": {
       "node": "./build/app.server.js",
       "types": "./build/index.d.ts",
+      "style": "./build/app.client.css",
       "default": "./build/app.client.js"
     },
     "./styles": "./build/app.client.css"
@@ -22,7 +23,7 @@
     "@diplodoc/mermaid-extension": "^1.1.1",
     "@diplodoc/openapi-extension": "^1.2.3",
     "@doc-tools/components": "^2.8.2",
-    "@doc-tools/transform": "^3.6.1",
+    "@doc-tools/transform": "^3.8.2",
     "@gravity-ui/uikit": "^4.14.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
