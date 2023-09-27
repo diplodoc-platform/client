@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/client",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "",
   "main": "build/app.server.js",
   "scripts": {
@@ -22,8 +22,8 @@
   "dependencies": {
     "@diplodoc/mermaid-extension": "^1.1.1",
     "@diplodoc/openapi-extension": "^1.2.3",
-    "@doc-tools/components": "^2.8.2",
-    "@doc-tools/transform": "^3.11.0",
+    "@diplodoc/components": "^3.0.3",
+    "@diplodoc/transform": "^4.0.0",
     "@gravity-ui/uikit": "^4.14.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -64,7 +64,6 @@
     "webpack-cli": "^5.1.1"
   },
   "overrides": {
-    "@doc-tools/transform": "^3.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

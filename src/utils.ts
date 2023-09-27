@@ -1,4 +1,4 @@
-import {TextSizes, Theme} from '@doc-tools/components';
+import {TextSizes, Theme} from '@diplodoc/components';
 
 const DEFAULT_USER_SETTINGS = {
     theme: Theme.Light,
