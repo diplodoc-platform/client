@@ -5,7 +5,9 @@
   "main": "build/app.server.js",
   "scripts": {
     "build": "webpack && tsc --emitDeclarationOnly --outDir build",
-    "prepublishOnly": "rm -rf build && npm ci && npm run build"
+    "prepublishOnly": "rm -rf build && npm ci && npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +40,13 @@
     "@babel/preset-react": "^7.22.3",
     "@babel/preset-typescript": "^7.21.5",
     "@babel/runtime": "^7.22.3",
+    "@storybook/addon-essentials": "^7.0.23",
+    "@storybook/addon-interactions": "^7.0.23",
+    "@storybook/addon-links": "^7.0.23",
+    "@storybook/blocks": "^7.0.23",
+    "@storybook/react": "^7.0.23",
+    "@storybook/react-webpack5": "^7.0.23",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
@@ -50,6 +59,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.6",
@@ -57,6 +67,7 @@
     "react-svg-loader": "^3.0.3",
     "sass": "^1.62.1",
     "sass-loader": "^13.3.1",
+    "storybook": "^7.0.23",
     "style-loader": "^3.3.3",
     "typescript": "^5.0.4",
     "webpack": "^5.84.1",
@@ -67,5 +78,10 @@
     "@doc-tools/transform": "^3.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }

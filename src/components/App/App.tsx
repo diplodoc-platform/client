@@ -10,7 +10,7 @@ import {
     TextSizes,
     Theme,
 } from '@doc-tools/components';
-import { getDocSettings, updateRootClassName, withSavingSetting } from '../../utils';
+import { AppSettings, updateRootClassName, withSavingSetting } from '../../utils';
 
 import '../../interceptors/leading-page-links';
 
@@ -27,6 +27,7 @@ import './App.scss';
 
 export interface AppProps {
     lang: Lang;
+    settings: AppSettings,
     router: Router;
 }
 
@@ -39,15 +40,14 @@ export type { DocLeadingPageData, DocPageData };
 const MOBILE_VIEW_WIDTH_BREAKPOINT = 900;
 
 export function App(props: DocInnerProps): ReactElement {
-    const { data, router, lang } = props;
+    const { data, router, lang, settings } = props;
 
-    const docSettings = getDocSettings();
     const [ isMobileView, setIsMobileView ] = useState(typeof document !== 'undefined' && document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT);
-    const [ wideFormat, setWideFormat ] = useState(docSettings.wideFormat);
-    const [ fullScreen, setFullScreen ] = useState(docSettings.fullScreen);
-    const [ showMiniToc, setShowMiniToc ] = useState(docSettings.showMiniToc);
-    const [ theme, setTheme ] = useState(docSettings.theme);
-    const [ textSize, setTextSize ] = useState(docSettings.textSize);
+    const [ wideFormat, setWideFormat ] = useState(settings.wideFormat);
+    const [ fullScreen, setFullScreen ] = useState(settings.fullScreen);
+    const [ showMiniToc, setShowMiniToc ] = useState(settings.showMiniToc);
+    const [ theme, setTheme ] = useState(settings.theme);
+    const [ textSize, setTextSize ] = useState(settings.textSize);
     const pageProps = {
         router,
         lang,
@@ -79,7 +79,6 @@ export function App(props: DocInnerProps): ReactElement {
     }, [ theme, isMobileView ]);
 
     return (
-        // TODO(vladimirfedin): Replace Layout__content class.
         <div className="App Layout__content">
             { data.leading
                 ? <DocLeadingPage { ...data } { ...pageProps }/>

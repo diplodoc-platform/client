@@ -1,6 +1,14 @@
 import {TextSizes, Theme} from '@doc-tools/components';
 
-const DEFAULT_USER_SETTINGS = {
+export type AppSettings = {
+    theme?: Theme;
+    textSize?: string;
+    showMiniToc?: boolean;
+    wideFormat?: boolean;
+    fullScreen?: boolean;
+};
+
+const DEFAULT_USER_SETTINGS: AppSettings = {
     theme: Theme.Light,
     textSize: TextSizes.M,
     showMiniToc: true,
@@ -8,7 +16,7 @@ const DEFAULT_USER_SETTINGS = {
     fullScreen: false,
 };
 
-export function getDocSettings() {
+export function getDocSettings(): AppSettings {
     const {
         theme: defaultTheme,
         textSize: defaultTextSize,

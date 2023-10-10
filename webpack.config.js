@@ -46,7 +46,7 @@ function config({isServer}) {
                     use: ['babel-loader'],
                     include: [
                         resolve(__dirname, 'src'),
-                        require.resolve('@diplodoc/mermaid-extension'),
+                        resolve(__dirname, 'node_modules/@diplodoc'),
                     ],
                 }, {
                     test: /\.s?css$/,

@@ -3,6 +3,7 @@ import { hydrateRoot, createRoot } from 'react-dom/client';
 import { renderToString } from 'react-dom/server';
 
 import { App, DocInnerProps, DocPageData, DocLeadingPageData } from './components/App/App';
+import { getDocSettings } from './utils';
 
 export type { DocInnerProps, DocPageData, DocLeadingPageData };
 
@@ -16,6 +17,8 @@ if (process.env.BROWSER) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const root = document.getElementById('root');
     const props = (window as any).__DATA__ || {};
+
+    props.settings = getDocSettings();
 
     if (!root) {
         throw new Error('Root element not found!');
