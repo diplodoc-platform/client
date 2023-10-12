@@ -7,7 +7,8 @@
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix",
     "build": "webpack && tsc --emitDeclarationOnly --outDir build",
-    "prepublishOnly": "rm -rf build && npm ci && npm run build"
+    "prepublishOnly": "rm -rf build && npm ci && npm run build",
+    "git:head": "git checkout master && git pull"
   },
   "author": "",
   "license": "ISC",
