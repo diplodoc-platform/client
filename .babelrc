@@ -1,13 +1,4 @@
 {
-    "presets": [
-        "@babel/env",
-        "@babel/react",
-        "@babel/typescript"
-    ],
-    "plugins": [
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-transform-runtime",
-        "@babel/plugin-syntax-top-level-await",
-        "babel-plugin-lodash"
-    ]
+    "presets": [["@diplodoc/babel-preset", { "typescript": true }]],
+    "plugins": ["babel-plugin-lodash"]
 }
