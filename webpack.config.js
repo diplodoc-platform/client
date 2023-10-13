@@ -22,7 +22,7 @@ function config({isServer}) {
             },
             extensions: ['.tsx', '.ts', '.js', '.scss'],
         },
-        externals: isServer ? ['@doc-tools/transform/dist/js/yfm'] : [],
+        externals: isServer ? ['@diplodoc/transform/dist/js/yfm'] : [],
         plugins: [
             new DefinePlugin({
                 'process.env': {

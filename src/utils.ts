@@ -1,4 +1,4 @@
-import {TextSizes, Theme} from '@doc-tools/components';
+import {TextSizes, Theme} from '@diplodoc/components';
 
 const DEFAULT_USER_SETTINGS = {
     theme: Theme.Light,
@@ -63,8 +63,8 @@ export function withSavingSetting<T>(settingName: string, onChange: (value: T) =
 }
 
 export function updateRootClassName(theme: Theme, isMobile = false) {
-    const themeClassName = theme === 'light' ? 'yc-root_theme_light' : 'yc-root_theme_dark';
+    const themeClassName = theme === 'light' ? 'g-root_theme_light' : 'g-root_theme_dark';
     const mobileClassName = isMobile ? 'mobile' : '';
 
-    document.body.className = `yc-root ${themeClassName} ${mobileClassName}`;
+    document.body.className = `g-root ${themeClassName} ${mobileClassName}`;
 }

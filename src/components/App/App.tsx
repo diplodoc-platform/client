@@ -9,20 +9,15 @@ import {
     Router,
     TextSizes,
     Theme,
-} from '@doc-tools/components';
+} from '@diplodoc/components';
 import {getDocSettings, updateRootClassName, withSavingSetting} from '../../utils';
 
 import '../../interceptors/leading-page-links';
 
-import '@doc-tools/transform/dist/js/yfm';
+import '@diplodoc/transform/dist/js/yfm';
 import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
-import '@diplodoc/openapi-extension/runtime/styles';
-import '@doc-tools/components/styles/themes.scss';
-import '@doc-tools/components/styles/default.scss';
-import '@doc-tools/components/styles/typography.scss';
-import '@doc-tools/transform/dist/css/yfm.css';
 import './App.scss';
 
 export interface AppProps {

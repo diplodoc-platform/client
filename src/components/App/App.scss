@@ -1,9 +1,16 @@
+@import '@diplodoc/transform/dist/css/yfm.css';
+@import '@diplodoc/components';
+@import '@diplodoc/components/themes/common';
+@import '@diplodoc/openapi-extension/runtime/styles';
+@import '../../styles/default.scss';
+@import '../../styles/typography.scss';
+
 .App {
     margin: 0;
     min-height: 100vh;
 }
 
-.yc-root {
+.g-root {
     --dc-header-height: 0px;
-    --mermaid-zoom-control-color: var(--yc-color-text-primary);
+    --mermaid-zoom-control-color: var(--g-color-text-primary);
 }
