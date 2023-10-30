@@ -1,4 +1,4 @@
-import React, {ReactElement, useCallback, useEffect, useState} from 'react';
+import React, { useEffect, ReactElement } from 'react';
 
 import {
     DocLeadingPage,
@@ -7,10 +7,9 @@ import {
     DocPageData,
     Lang,
     Router,
-    TextSizes,
     Theme,
 } from '@diplodoc/components';
-import {getDocSettings, updateRootClassName, withSavingSetting} from '../../utils';
+import {updateRootClassName} from '../../utils';
 
 import '../../interceptors/leading-page-links';
 
@@ -19,6 +18,8 @@ import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
 import './App.scss';
+import { useSettings } from '../../hooks/useSettings';
+import { useMobile } from '../../hooks/useMobile';
 
 export interface AppProps {
     lang: Lang;
@@ -31,40 +32,37 @@ export type DocInnerProps<Data = DocLeadingPageData | DocPageData> =
 
 export type {DocLeadingPageData, DocPageData};
 
-const MOBILE_VIEW_WIDTH_BREAKPOINT = 900;
 
 export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang} = props;
 
-    const docSettings = getDocSettings();
-    const [isMobileView, setIsMobileView] = useState(typeof document !== 'undefined' && document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT);
-    const [wideFormat, setWideFormat] = useState(docSettings.wideFormat);
-    const [fullScreen, setFullScreen] = useState(docSettings.fullScreen);
-    const [showMiniToc, setShowMiniToc] = useState(docSettings.showMiniToc);
-    const [theme, setTheme] = useState(docSettings.theme);
-    const [textSize, setTextSize] = useState(docSettings.textSize);
+    const settings = useSettings();
+    const mobileView = useMobile();
+
+    const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
+    const fullHeader = !fullScreen && Boolean(navigation);
+    const headerHeight = fullHeader ? 64 : 0;
     const pageProps = {
+        headerHeight,
+        data,
         router,
         lang,
-        headerHeight: 0,
         wideFormat,
-        fullScreen,
         showMiniToc,
         theme,
         textSize,
-        onChangeFullScreen: withSavingSetting<boolean>('fullScreen', setFullScreen),
-        onChangeWideFormat: withSavingSetting<boolean>('wideFormat', setWideFormat),
-        onChangeShowMiniToc: withSavingSetting<boolean>('showMiniToc', setShowMiniToc),
-        onChangeTheme: withSavingSetting<Theme>('theme', setTheme),
-        onChangeTextSize: withSavingSetting<TextSizes>('textSize', setTextSize),
+        fullScreen,
+        onChangeFullScreen,
     };
 
-    const onResizeHandler = useCallback(() => {
-        setIsMobileView(document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT);
-    }, []);
-
     useEffect(() => {
-        window.addEventListener('resize', onResizeHandler);
+        updateRootClassName({
+            theme,
+            mobileView,
+            wideFormat,
+            fullHeader,
+        });
+    }, [theme, mobileView, wideFormat, fullHeader]);
 
         return () => window.removeEventListener('resize', onResizeHandler);
     }, []);

@@ -62,9 +62,23 @@ export function withSavingSetting<T>(settingName: string, onChange: (value: T) =
     };
 }
 
-export function updateRootClassName(theme: Theme, isMobile = false) {
-    const themeClassName = theme === 'light' ? 'g-root_theme_light' : 'g-root_theme_dark';
-    const mobileClassName = isMobile ? 'mobile' : '';
-
-    document.body.className = `g-root ${themeClassName} ${mobileClassName}`;
+export function updateRootClassName({
+    theme,
+    mobileView = false,
+    wideFormat = false,
+    fullHeader = false,
+}: {
+    theme: Theme;
+    mobileView: boolean;
+    wideFormat: boolean;
+    fullHeader: boolean;
+}) {
+    document.body.className = [
+        'g-root',
+        mobileView ? 'mobile' : 'desktop',
+        wideFormat && 'dc-root_wide-format',
+        fullHeader && 'dc-root_full-header',
+        theme === 'light' && 'g-root_theme_light',
+        theme === 'dark' && 'g-root_theme_dark',
+    ].filter(Boolean).join(' ');
 }
