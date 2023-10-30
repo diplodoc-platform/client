@@ -27,6 +27,7 @@ function config({isServer, analyze = false}) {
         resolve: {
             alias: {
                 'react': require.resolve('react'),
+                'react-player': require.resolve('./src/stub/empty-module'),
             },
             extensions: (isServer
                 ? ['.server.tsx', '.server.ts', '.server.js']
