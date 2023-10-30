@@ -6,5 +6,6 @@
 .npmrc
 
 src
+cache
 webpack.config.js
 tsconfig.json
