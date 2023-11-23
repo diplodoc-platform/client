@@ -1,10 +1,13 @@
 .babelrc
 .editorconfig
-.eslintrc
+.eslintrc.js
 .gitignore
 .nvmrc
 .npmrc
+.prettierignore
+.prettierrc
 
 src
+cache
 webpack.config.js
 tsconfig.json
