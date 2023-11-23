@@ -9,26 +9,45 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
 
+.g-root {
     --dc-header-height: 0;
     --dc-subheader-height: 40px;
 
     --dc-error-image-403: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
     --dc-error-image-404: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
     --dc-error-image-500: url('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    --g-scrollbar-width: 6px;
 
-    .g-root {
-        --g-scrollbar-width: 6px;
+    &::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+        height: var(--g-scrollbar-width);
+        background: transparent;
+    }
 
-        &::-webkit-scrollbar,
-        *::-webkit-scrollbar {
-            height: var(--g-scrollbar-width);
-            background: transparent;
+    &::-webkit-scrollbar-track,
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+.pc-navigation {
+    z-index:  101;
+
+    .desktop.dc-root_wide-format & .container-fluid {
+        padding: 20px;
+
+        & .col {
+            padding: 0;
         }
+    }
 
-        &::-webkit-scrollbar-track,
-        *::-webkit-scrollbar-track {
-            background: transparent;
+    .mobile.dc-root_wide-format & .container-fluid {
+        padding: 12px;
+
+        & .col {
+            padding: 0;
         }
     }
 }

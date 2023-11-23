@@ -1,17 +1,26 @@
 const {resolve} = require('path');
 const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
-function config({isServer}) {
+function config({isServer, isDev, analyze = false}) {
+    const mode = isServer ? 'server' : 'client';
+
     return {
-        mode: 'production',
+        mode: isDev ? 'development' : 'production',
         target: isServer ? 'node' : 'web',
         devtool: 'source-map',
-        entry: './src/index.tsx',
+        entry: {
+            app: isServer ? './src/index.server.tsx' : './src/index.tsx',
+        },
+        cache: isDev && {
+            type: 'filesystem',
+            cacheDirectory: resolve(`cache/${mode}`)
+        },
         output: {
-            path: resolve(__dirname, 'build'),
-            filename: `app.${isServer ? 'server' : 'client'}.js`,
+            path: resolve(__dirname, 'build', mode),
+            filename: `[name].js`,
             ...(isServer ? {
                 libraryTarget: 'commonjs2'
             } : {})
@@ -19,24 +28,62 @@ function config({isServer}) {
         resolve: {
             alias: {
                 'react': require.resolve('react'),
+                'react-player': require.resolve('./src/stub/empty-module'),
             },
-            extensions: ['.tsx', '.ts', '.js', '.scss'],
+            fallback: {
+                stream: false,
+                crypto: false,
+            },
+            extensions: (isServer
+                ? ['.server.tsx', '.server.ts', '.server.js']
+                : []
+            ).concat(['.tsx', '.ts', '.js', '.scss']),
         },
-        externals: isServer ? ['@diplodoc/transform/dist/js/yfm'] : [],
+        externals: isServer ? [
+            '@diplodoc/transform/dist/js/yfm'
+        ] : [],
+        optimization: {
+            minimize: !isServer,
+            splitChunks: {
+                chunks: 'async',
+                cacheGroups: {
+                    react: {
+                        test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                        name: 'react',
+                        chunks: 'all',
+                    },
+                    vendor: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendor',
+                        chunks: 'all',
+                    },
+                },
+            }
+        },
         plugins: [
             new DefinePlugin({
                 'process.env': {
                     BROWSER: !isServer
                 }
             }),
-            // new BundleAnalyzerPlugin({
-            //     analyzerMode: 'static',
-            //     openAnalyzer: false,
-            //     reportFilename: (isServer ? 'server-' : 'client-') + 'stats.html',
-            // }),
+            analyze && new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+                reportFilename: `stats.html`,
+            }),
             new MiniCSSExtractPlugin({
-                filename: 'app.client.css',
-                chunkFilename: 'app.client.css',
+                filename: `[name].css`,
+            }),
+            new WebpackManifestPlugin({
+                generate: (seed, files) => {
+                    const name = ({name}) => name;
+                    const endsWith = (tail) => ({name}) => name.endsWith(tail);
+                    const runtimeLast = (a, b) => b.chunk.id - a.chunk.id;
+                    return {
+                        js: files.filter(endsWith('.js')).sort(runtimeLast).map(name),
+                        css: files.filter(endsWith('.css')).sort(runtimeLast).map(name),
+                    };
+                }
             }),
         ].filter(Boolean),
         module: {
@@ -51,7 +98,12 @@ function config({isServer}) {
                 }, {
                     test: /\.s?css$/,
                     use:  [
-                        MiniCSSExtractPlugin.loader,
+                        {
+                            loader: MiniCSSExtractPlugin.loader,
+                            options: {
+                                emit: !isServer
+                            }
+                        },
                         {loader: 'css-loader'},
                         {loader: 'sass-loader'},
                     ],
@@ -65,6 +117,6 @@ function config({isServer}) {
 }
 
 module.exports = [
-    config({ isServer: false }),
-    config({ isServer: true }),
+    config({ isServer: false, isDev: process.env.NODE_ENV === 'development' }),
+    config({ isServer: true, isDev: process.env.NODE_ENV === 'development' }),
 ];
