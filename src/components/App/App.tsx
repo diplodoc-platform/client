@@ -1,5 +1,10 @@
-import React, {ReactElement, useCallback, useEffect, useState} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 
+import {
+    NavigationData,
+    PageConstructor,
+    PageConstructorProvider,
+} from '@gravity-ui/page-constructor';
 import {
     DocLeadingPage,
     DocLeadingPageData,
@@ -7,10 +12,13 @@ import {
     DocPageData,
     Lang,
     Router,
-    TextSizes,
     Theme,
 } from '@diplodoc/components';
-import {getDocSettings, updateRootClassName, withSavingSetting} from '../../utils';
+import {HeaderControls} from '../HeaderControls';
+import {updateRootClassName} from '../../utils';
+import {Layout} from '../Layout';
+import {useSettings} from '../../hooks/useSettings';
+import {useMobile} from '../../hooks/useMobile';
 
 import '../../interceptors/leading-page-links';
 
@@ -25,64 +33,123 @@ export interface AppProps {
     router: Router;
 }
 
-export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {data: Data} & AppProps;
+export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {
+    data: Data;
+} & AppProps;
 
 export type {DocLeadingPageData, DocPageData};
 
-const MOBILE_VIEW_WIDTH_BREAKPOINT = 900;
+function Page(props: DocInnerProps) {
+    const {data, ...pageProps} = props;
+
+    const Page = data.leading ? DocLeadingPage : DocPage;
+
+    return (
+        <Layout>
+            <Layout.Content>
+                {/*@ts-ignore*/}
+                <Page {...data} {...pageProps} />
+            </Layout.Content>
+        </Layout>
+    );
+}
+
+type TocData = DocPageData['toc'] & {
+    navigation?: NavigationData;
+};
 
 export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang} = props;
+    const {navigation} = data.toc as TocData;
 
-    const docSettings = getDocSettings();
-    const [isMobileView, setIsMobileView] = useState(
-        typeof document !== 'undefined' &&
-            document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT,
-    );
-    const [wideFormat, setWideFormat] = useState(docSettings.wideFormat);
-    const [fullScreen, setFullScreen] = useState(docSettings.fullScreen);
-    const [showMiniToc, setShowMiniToc] = useState(docSettings.showMiniToc);
-    const [theme, setTheme] = useState(docSettings.theme);
-    const [textSize, setTextSize] = useState(docSettings.textSize);
+    const settings = useSettings();
+    const mobileView = useMobile();
+
+    const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
+    const fullHeader = !fullScreen && Boolean(navigation);
+    const headerHeight = fullHeader ? 64 : 0;
     const pageProps = {
+        headerHeight,
+        data,
         router,
         lang,
-        headerHeight: 0,
         wideFormat,
-        fullScreen,
         showMiniToc,
         theme,
         textSize,
-        onChangeFullScreen: withSavingSetting<boolean>('fullScreen', setFullScreen),
-        onChangeWideFormat: withSavingSetting<boolean>('wideFormat', setWideFormat),
-        onChangeShowMiniToc: withSavingSetting<boolean>('showMiniToc', setShowMiniToc),
-        onChangeTheme: withSavingSetting<Theme>('theme', setTheme),
-        onChangeTextSize: withSavingSetting<TextSizes>('textSize', setTextSize),
+        fullScreen,
+        onChangeFullScreen,
     };
 
-    const onResizeHandler = useCallback(() => {
-        setIsMobileView(document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT);
-    }, []);
+    const rebase = (item: any) => {
+        if (item.type !== 'link') {
+            return item;
+        }
+
+        return {
+            ...item,
+            url: item.url.replace(/^\/?/, '/'),
+        };
+    };
 
     useEffect(() => {
-        window.addEventListener('resize', onResizeHandler);
+        updateRootClassName({
+            theme,
+            mobileView,
+            wideFormat,
+            fullHeader,
+        });
+    }, [theme, mobileView, wideFormat, fullHeader]);
 
-        return () => window.removeEventListener('resize', onResizeHandler);
-    }, []);
+    if (!navigation) {
+        return (
+            <div className="App">
+                <Page {...pageProps} {...settings} />
+            </div>
+        );
+    }
 
-    useEffect(() => {
-        updateRootClassName(theme, isMobileView);
-    }, [theme, isMobileView]);
+    const {header = {}, logo} = navigation;
+    const {leftItems = [], rightItems = []} = header as NavigationData['header'];
+    const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
     return (
-        // TODO(vladimirfedin): Replace Layout__content class.
-        <div className="App Layout__content">
-            {data.leading ? (
-                <DocLeadingPage {...data} {...pageProps} />
-            ) : (
-                // @ts-ignore
-                <DocPage {...data} {...pageProps} />
-            )}
+        <div className="App">
+            <PageConstructorProvider theme={theme}>
+                <PageConstructor
+                    custom={{
+                        navigation: {
+                            controls: () => (
+                                <HeaderControls {...settings} mobileView={mobileView} />
+                            ),
+                        },
+                        blocks: {
+                            page: () => (
+                                <Page {...pageProps} {...(headerWithControls ? {} : settings)} />
+                            ),
+                        },
+                    }}
+                    content={{
+                        blocks: [
+                            {
+                                type: 'page',
+                            },
+                        ],
+                    }}
+                    navigation={
+                        fullHeader
+                            ? {
+                                  header: {
+                                      withBorder: true,
+                                      leftItems: leftItems.map(rebase),
+                                      rightItems: rightItems.map(rebase),
+                                  },
+                                  logo,
+                              }
+                            : undefined
+                    }
+                />
+            </PageConstructorProvider>
             <OpenapiSandbox />
             <MermaidRuntime
                 theme={theme === Theme.Dark ? 'dark' : 'neutral'}
