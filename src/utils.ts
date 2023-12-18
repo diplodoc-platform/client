@@ -17,8 +17,8 @@ export function getDocSettings() {
         fullScreen: defaultFullScreen,
     } = DEFAULT_USER_SETTINGS;
 
-    const theme = getSetting('theme') as Theme || defaultTheme;
-    const textSize = getSetting('textSize') as TextSizes || defaultTextSize;
+    const theme = (getSetting('theme') as Theme) || defaultTheme;
+    const textSize = (getSetting('textSize') as TextSizes) || defaultTextSize;
     const showMiniToc = getSetting('showMiniToc') || defaultShowMiniToc;
     const wideFormat = getSetting('wideFormat') || defaultWideFormat;
     const fullScreen = getSetting('fullScreen') || defaultFullScreen;

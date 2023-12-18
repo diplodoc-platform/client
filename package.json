@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@diplodoc/components": "^3.5.1",
-    "@diplodoc/mermaid-extension": "^1.2.0",
-    "@diplodoc/openapi-extension": "^1.4.9",
+    "@diplodoc/mermaid-extension": "^1.2.1",
+    "@diplodoc/openapi-extension": "^1.4.10",
     "@diplodoc/transform": "^4.7.2",
     "@gravity-ui/uikit": "^5.25.0",
     "react": "^18.2.0",
@@ -37,9 +37,9 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.22.15",
     "@diplodoc/babel-preset": "^1.0.2",
-    "@diplodoc/eslint-config": "^1.0.3",
+    "@diplodoc/eslint-config": "^2.0.0",
+    "@diplodoc/prettier-config": "^2.0.0",
     "@diplodoc/tsconfig": "^1.0.2",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
@@ -48,10 +48,6 @@
     "babel-loader": "^9.1.2",
     "babel-plugin-lodash": "^3.3.4",
     "css-loader": "^6.8.1",
-    "eslint": "^8.51.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-security": "^1.7.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.6",

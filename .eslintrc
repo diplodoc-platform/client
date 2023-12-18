@@ -1,5 +1,6 @@
 {
-    "extends": ["@diplodoc/eslint-config", "plugin:react/recommended"],
+    "extends": ["@diplodoc/eslint-config"],
+    "root": true,
     "env": {
         "browser": true
     },
@@ -7,5 +8,10 @@
         "react": {
             "version": "detect"
         }
+    },
+    "rules": {
+        "no-implicit-globals": "off",
+        "callback-return": "off",
+        "consistent-return": "off"
     }
 }

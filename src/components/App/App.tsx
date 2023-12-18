@@ -25,9 +25,7 @@ export interface AppProps {
     router: Router;
 }
 
-export type DocInnerProps<Data = DocLeadingPageData | DocPageData> =
-    & { data: Data }
-    & AppProps;
+export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {data: Data} & AppProps;
 
 export type {DocLeadingPageData, DocPageData};
 
@@ -37,7 +35,10 @@ export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang} = props;
 
     const docSettings = getDocSettings();
-    const [isMobileView, setIsMobileView] = useState(typeof document !== 'undefined' && document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT);
+    const [isMobileView, setIsMobileView] = useState(
+        typeof document !== 'undefined' &&
+            document.body.clientWidth <= MOBILE_VIEW_WIDTH_BREAKPOINT,
+    );
     const [wideFormat, setWideFormat] = useState(docSettings.wideFormat);
     const [fullScreen, setFullScreen] = useState(docSettings.fullScreen);
     const [showMiniToc, setShowMiniToc] = useState(docSettings.showMiniToc);
@@ -76,12 +77,13 @@ export function App(props: DocInnerProps): ReactElement {
     return (
         // TODO(vladimirfedin): Replace Layout__content class.
         <div className="App Layout__content">
-            { data.leading
-                ? <DocLeadingPage { ...data } { ...pageProps }/>
+            {data.leading ? (
+                <DocLeadingPage {...data} {...pageProps} />
+            ) : (
                 // @ts-ignore
-                : <DocPage { ...data } { ...pageProps }/>
-            }
-            <OpenapiSandbox/>
+                <DocPage {...data} {...pageProps} />
+            )}
+            <OpenapiSandbox />
             <MermaidRuntime
                 theme={theme === Theme.Dark ? 'dark' : 'neutral'}
                 zoom={{

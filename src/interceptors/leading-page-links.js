@@ -5,12 +5,13 @@
      */
     if (typeof Element !== 'undefined') {
         (function (e) {
-            const matches = e.matches
-                || e.matchesSelector
-                || e.webkitMatchesSelector
-                || e.mozMatchesSelector
-                || e.msMatchesSelector
-                || e.oMatchesSelector;
+            const matches =
+                e.matches ||
+                e.matchesSelector ||
+                e.webkitMatchesSelector ||
+                e.mozMatchesSelector ||
+                e.msMatchesSelector ||
+                e.oMatchesSelector;
 
             if (matches) {
                 e.matches = e.matchesSelector = matches;
@@ -30,7 +31,10 @@
             const href = event.target.href;
             const locationOrigin = window.location.origin;
 
-            if (event.target.matches('.dc-doc-layout__center a') && href.startsWith(locationOrigin)) {
+            if (
+                event.target.matches('.dc-doc-layout__center a') &&
+                href.startsWith(locationOrigin)
+            ) {
                 event.preventDefault();
 
                 const mainFileName = 'index';
