@@ -26,11 +26,11 @@
     "./styles": "./build/app.client.css"
   },
   "dependencies": {
-    "@diplodoc/components": "^3.3.1",
-    "@diplodoc/mermaid-extension": "^1.1.3",
-    "@diplodoc/openapi-extension": "^1.4.0",
-    "@diplodoc/transform": "^4.2.1",
-    "@gravity-ui/uikit": "^5.18.1",
+    "@diplodoc/components": "^3.5.1",
+    "@diplodoc/mermaid-extension": "^1.2.0",
+    "@diplodoc/openapi-extension": "^1.4.9",
+    "@diplodoc/transform": "^4.7.2",
+    "@gravity-ui/uikit": "^5.25.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "url": "^0.11.0"
@@ -63,11 +63,5 @@
     "webpack": "^5.84.1",
     "webpack-bundle-analyzer": "^4.9.0",
     "webpack-cli": "^5.1.1"
-  },
-  "overrides": {
-    "react-sortable-hoc": {
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0"
-    }
   }
 }
