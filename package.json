@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/client",
-  "version": "2.0.0",
+  "version": "2.0.0-beta-1",
   "description": "",
   "main": "./build/server/app.js",
   "scripts": {
@@ -32,7 +32,8 @@
     "./styles": "./build/client/app.css"
   },
   "dependencies": {
-    "@diplodoc/components": "^3.5.1",
+    "@diplodoc/components": "^3.6.0",
+    "@diplodoc/latex-extension": "^1.0.0",
     "@diplodoc/mermaid-extension": "^1.2.1",
     "@diplodoc/openapi-extension": "^1.4.10",
     "@diplodoc/transform": "^4.7.2",
