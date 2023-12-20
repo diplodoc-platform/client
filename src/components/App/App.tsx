@@ -24,6 +24,7 @@ import '../../interceptors/leading-page-links';
 
 import '@diplodoc/transform/dist/js/yfm';
 import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
+import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
 import './App.scss';
@@ -151,6 +152,7 @@ export function App(props: DocInnerProps): ReactElement {
                 />
             </PageConstructorProvider>
             <OpenapiSandbox />
+            <LatexRuntime />
             <MermaidRuntime
                 theme={theme === Theme.Dark ? 'dark' : 'neutral'}
                 zoom={{
