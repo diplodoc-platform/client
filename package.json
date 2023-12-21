@@ -28,7 +28,10 @@
       "types": "./build/index.server.d.ts",
       "default": "./build/server/app.js"
     },
-    "./manifest": "./build/client/manifest.json",
+    "./manifest": {
+      "types": "./manifest.d.ts",
+      "default": "./build/client/manifest.json"
+    },
     "./styles": "./build/client/app.css"
   },
   "dependencies": {
