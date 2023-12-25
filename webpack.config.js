@@ -3,6 +3,7 @@ const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const RtlCssPlugin = require('./rtl-css');
 
 function config({isServer, isDev, analyze = false}) {
     const mode = isServer ? 'server' : 'client';
@@ -89,6 +90,19 @@ function config({isServer, isDev, analyze = false}) {
                         js: files.filter(endsWith('.js')).sort(runtimeLast).map(name),
                         css: files.filter(endsWith('.css')).sort(appLast).map(name),
                     };
+                }
+            }),
+            new RtlCssPlugin({
+                filename: 'app.client.rtl.css',
+                hooks: {
+                    pre:function(root, postcss){
+                        root.nodes.forEach((node) => {
+                            if(node.selector && node.selector.match(/(?:\[dir=(?:"|')?(rtl|ltr|auto)(?:"|')?\]|\:dir\((rtl|ltr|auto)\))/)){
+                                node.nodes.unshift(postcss.comment({text: 'rtl:begin:ignore'}))
+                                node.nodes.push(postcss.comment({text: 'rtl:end:ignore'}))
+                            }
+                        })
+                    }
                 }
             }),
         ].filter(Boolean),

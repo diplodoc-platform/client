@@ -22,6 +22,7 @@
     ".": {
       "types": "./build/index.d.ts",
       "style": "./build/client/app.css",
+      "style-rtl": "./build/app.client.rtl.css",
       "default": "./build/client/app.js"
     },
     "./ssr": {
@@ -60,6 +61,7 @@
     "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.6",
     "react-svg-loader": "^3.0.3",
+    "rtlcss": "^4.1.1",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
