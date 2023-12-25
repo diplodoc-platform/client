@@ -2,6 +2,8 @@ import React, {ReactElement, useEffect} from 'react';
 
 import {
     NavigationData,
+    NavigationDropdownItem,
+    NavigationItemModel,
     PageConstructor,
     PageConstructorProvider,
 } from '@gravity-ui/page-constructor';
@@ -55,6 +57,24 @@ function Page(props: DocInnerProps) {
     );
 }
 
+function isDropdownItem(item: NavigationItemModel): item is NavigationDropdownItem {
+    return Array.isArray((item as NavigationDropdownItem).items);
+}
+
+function rebaseNavItem<T extends NavigationItemModel>(item: T) {
+    const result: T = {...item};
+
+    if (isDropdownItem(item)) {
+        (result as NavigationDropdownItem).items = item.items.map(rebaseNavItem);
+    }
+
+    if (item.url !== undefined) {
+        result.url = item.url.replace(/^\/?/, '/');
+    }
+
+    return result;
+}
+
 type TocData = DocPageData['toc'] & {
     navigation?: NavigationData;
 };
@@ -80,17 +100,6 @@ export function App(props: DocInnerProps): ReactElement {
         textSize,
         fullScreen,
         onChangeFullScreen,
-    };
-
-    const rebase = (item: any) => {
-        if (item.type !== 'link') {
-            return item;
-        }
-
-        return {
-            ...item,
-            url: item.url.replace(/^\/?/, '/'),
-        };
     };
 
     useEffect(() => {
@@ -142,8 +151,8 @@ export function App(props: DocInnerProps): ReactElement {
                             ? {
                                   header: {
                                       withBorder: true,
-                                      leftItems: leftItems.map(rebase),
-                                      rightItems: rightItems.map(rebase),
+                                      leftItems: leftItems.map(rebaseNavItem),
+                                      rightItems: rightItems.map(rebaseNavItem),
                                   },
                                   logo,
                               }
