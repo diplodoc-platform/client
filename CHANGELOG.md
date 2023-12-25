@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/diplodoc-platform/client/compare/v1.2.0...v2.0.0) (2023-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add page-construclor layout
+
+### Features
+
+* Add Latex extension ([7d7465f](https://github.com/diplodoc-platform/client/commit/7d7465f2e6737ef7959c14cfbeea1e23c92c9fa7))
+* Add page-construclor layout ([59140d6](https://github.com/diplodoc-platform/client/commit/59140d6d3f782ddc9d8d43233529d7085a11b34e))
+
+
+### Bug Fixes
+
+* Add manifest typings ([d5ec4cc](https://github.com/diplodoc-platform/client/commit/d5ec4cca187c99c3219a181988a9ab7e9ffcf64f))
+
 ## [1.2.0](https://github.com/diplodoc-platform/client/compare/v1.1.0...v1.2.0) (2023-12-18)
 
 
