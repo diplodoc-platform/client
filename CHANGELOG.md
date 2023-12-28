@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/diplodoc-platform/client/compare/v2.0.0...v2.0.1) (2023-12-28)
+
+
+### Bug Fixes
+
+* Update latex-extension ([fb6024f](https://github.com/diplodoc-platform/client/commit/fb6024fedb53bca431f3642c481f00b8a8959b8f))
+
 ## [2.0.0](https://github.com/diplodoc-platform/client/compare/v1.2.0...v2.0.0) (2023-12-25)
 
 
