@@ -83,7 +83,7 @@ function config({isServer, isDev, analyze = false}) {
                 generate: (seed, files) => {
                     const name = ({name}) => name;
                     const endsWith = (tail) => ({name}) => name.endsWith(tail);
-                    const runtimeLast = (a, b) => b.chunk.id - a.chunk.id;
+                    const runtimeLast = (a, b) => b.chunk?.id - a.chunk?.id;
                     const appLast = (a, b) => a.chunk?.name.includes('app') - b.chunk?.name.includes('app')
 
                     return {
@@ -93,7 +93,7 @@ function config({isServer, isDev, analyze = false}) {
                 }
             }),
             new RtlCssPlugin({
-                filename: 'app.client.rtl.css',
+                filename: '[name].rtl.css',
                 hooks: {
                     pre:function(root, postcss){
                         root.nodes.forEach((node) => {
