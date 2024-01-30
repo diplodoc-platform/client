@@ -22,7 +22,7 @@
     ".": {
       "types": "./build/index.d.ts",
       "style": "./build/client/app.css",
-      "style-rtl": "./build/app.client.rtl.css",
+      "style-rtl": "./build/app.rtl.css",
       "default": "./build/client/app.js"
     },
     "./ssr": {
