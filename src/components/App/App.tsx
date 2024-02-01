@@ -42,6 +42,28 @@ export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {
 
 export type {DocLeadingPageData, DocPageData};
 
+type RuntimeProps = {
+    theme: Theme;
+};
+
+function Runtime(props: RuntimeProps) {
+    const {theme} = props;
+
+    return (
+        <>
+            <OpenapiSandbox />
+            <LatexRuntime />
+            <MermaidRuntime
+                theme={theme === Theme.Dark ? 'dark' : 'neutral'}
+                zoom={{
+                    showMenu: true,
+                    bindKeys: true,
+                }}
+            />
+        </>
+    );
+}
+
 function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
 
@@ -115,6 +137,7 @@ export function App(props: DocInnerProps): ReactElement {
         return (
             <div className="App">
                 <Page {...pageProps} {...settings} />
+                <Runtime theme={theme} />
             </div>
         );
     }
@@ -160,15 +183,7 @@ export function App(props: DocInnerProps): ReactElement {
                     }
                 />
             </PageConstructorProvider>
-            <OpenapiSandbox />
-            <LatexRuntime />
-            <MermaidRuntime
-                theme={theme === Theme.Dark ? 'dark' : 'neutral'}
-                zoom={{
-                    showMenu: true,
-                    bindKeys: true,
-                }}
-            />
+            <Runtime theme={theme} />
         </div>
     );
 }
