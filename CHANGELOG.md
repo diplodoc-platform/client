@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/diplodoc-platform/client/compare/v2.0.1...v2.0.2) (2024-02-01)
+
+
+### Bug Fixes
+
+* add runtime ([0b50b57](https://github.com/diplodoc-platform/client/commit/0b50b5724c59e64f29df3ef8e9eda901577cd01e))
+
 ## [2.0.1](https://github.com/diplodoc-platform/client/compare/v2.0.0...v2.0.1) (2023-12-28)
 
 
