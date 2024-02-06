@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/diplodoc-platform/client/compare/v2.0.2...v2.0.3) (2024-02-06)
+
+
+### Bug Fixes
+
+* Notes interaction ([24c8c9e](https://github.com/diplodoc-platform/client/commit/24c8c9e6f3cc76c334047918dea94b1ce973610a))
+
 ## [2.0.2](https://github.com/diplodoc-platform/client/compare/v2.0.1...v2.0.2) (2024-02-01)
 
 
