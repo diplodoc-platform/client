@@ -1,4 +1,4 @@
-const {resolve} = require('path');
+const {resolve, dirname} = require('path');
 const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
@@ -6,6 +6,7 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 function config({isServer, isDev, analyze = false}) {
     const mode = isServer ? 'server' : 'client';
+    const modules = (pkg) => dirname(require.resolve(pkg + '/package.json'));
 
     return {
         mode: isDev ? 'development' : 'production',
@@ -28,6 +29,8 @@ function config({isServer, isDev, analyze = false}) {
         resolve: {
             alias: {
                 'react': require.resolve('react'),
+                '@doc-tools/transform': modules('@diplodoc/transform'),
+                '~@doc-tools/transform': modules('@diplodoc/transform'),
                 'react-player': require.resolve('./src/stub/empty-module'),
             },
             fallback: {
