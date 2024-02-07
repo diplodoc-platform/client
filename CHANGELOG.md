@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/diplodoc-platform/client/compare/v2.0.3...v2.0.4) (2024-02-07)
+
+
+### Bug Fixes
+
+* Update transform ([25a4de0](https://github.com/diplodoc-platform/client/commit/25a4de079931c2f240168867cea8c49da1f63da6))
+
 ## [2.0.3](https://github.com/diplodoc-platform/client/compare/v2.0.2...v2.0.3) (2024-02-06)
 
 
