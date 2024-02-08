@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/diplodoc-platform/client/compare/v2.0.4...v2.0.5) (2024-02-08)
+
+
+### Bug Fixes
+
+* Update tabs ([0d4632a](https://github.com/diplodoc-platform/client/commit/0d4632a6e640144971a6c9ec70b1edf355b5fe6f))
+
 ## [2.0.4](https://github.com/diplodoc-platform/client/compare/v2.0.3...v2.0.4) (2024-02-07)
 
 
