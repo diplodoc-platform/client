@@ -1,0 +1,18 @@
+@import '@diplodoc/transform/dist/css/yfm.css';
+@import '@diplodoc/components';
+@import '@diplodoc/components/themes/common';
+@import '@diplodoc/openapi-extension/runtime/styles';
+@import '../../styles/default.scss';
+@import '../../styles/typography.scss';
+@import '../../styles/overrides.scss';
+@import '@diplodoc/transform/dist/css/print.css';
+
+.Controls {
+    height: 100%;
+}
+
+.g-root {
+    --dc-header-height: 0px;
+}
+
+

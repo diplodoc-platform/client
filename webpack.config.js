@@ -14,6 +14,7 @@ function config({isServer, isDev, analyze = false}) {
         devtool: 'source-map',
         entry: {
             app: isServer ? './src/index.server.tsx' : './src/index.tsx',
+            print: isServer ? './src/print.server.tsx' : './src/print.tsx',
         },
         cache: isDev && {
             type: 'filesystem',

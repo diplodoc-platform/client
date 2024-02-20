@@ -28,6 +28,10 @@
       "types": "./build/index.server.d.ts",
       "default": "./build/server/app.js"
     },
+    "./print": {
+      "types": "./build/print.server.d.ts",
+      "default": "./build/server/print.js"
+    },
     "./manifest": {
       "types": "./manifest.d.ts",
       "default": "./build/client/manifest.json"
@@ -35,7 +39,7 @@
     "./styles": "./build/client/app.css"
   },
   "dependencies": {
-    "@diplodoc/components": "^3.6.0",
+    "@diplodoc/components": "^3.9.1",
     "@diplodoc/latex-extension": "^1.0.2",
     "@diplodoc/mermaid-extension": "^1.2.1",
     "@diplodoc/openapi-extension": "^1.4.10",
