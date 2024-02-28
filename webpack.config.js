@@ -83,9 +83,11 @@ function config({isServer, isDev, analyze = false}) {
                     const name = ({name}) => name;
                     const endsWith = (tail) => ({name}) => name.endsWith(tail);
                     const runtimeLast = (a, b) => b.chunk.id - a.chunk.id;
+                    const appLast = (a, b) => a.includes('app.') - b.includes('app.')
+
                     return {
                         js: files.filter(endsWith('.js')).sort(runtimeLast).map(name),
-                        css: files.filter(endsWith('.css')).sort(runtimeLast).map(name),
+                        css: files.filter(endsWith('.css')).sort(runtimeLast).map(name).sort(appLast),
                     };
                 }
             }),
