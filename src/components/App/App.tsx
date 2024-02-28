@@ -18,7 +18,7 @@ import {
     Theme,
 } from '@diplodoc/components';
 import {HeaderControls} from '../HeaderControls';
-import {updateRootClassName} from '../../utils';
+import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
 import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
@@ -67,11 +67,12 @@ function Runtime(props: RuntimeProps) {
 
 function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
+    const {lang, theme} = pageProps;
 
     const Page = data.leading ? DocLeadingPage : DocPage;
 
     return (
-        <ThemeProvider theme={pageProps?.theme} direction={pageProps?.direction}>
+        <ThemeProvider theme={theme} direction={getDirection(lang)}>
             <Layout>
                 <Layout.Content>
                     {/*@ts-ignore*/}
