@@ -35,13 +35,13 @@
     "./styles": "./build/client/app.css"
   },
   "dependencies": {
-    "@diplodoc/components": "^3.6.0",
+    "@diplodoc/components": "^3.10.0-beta.1",
     "@diplodoc/latex-extension": "^1.0.2",
     "@diplodoc/mermaid-extension": "^1.2.1",
     "@diplodoc/openapi-extension": "^2.0.0",
     "@diplodoc/transform": "^4.10.3",
     "@gravity-ui/page-constructor": "^4.24.0",
-    "@gravity-ui/uikit": "6.0.0",
+    "@gravity-ui/uikit": "^6.0.0",
     "bem-cn-lite": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -36,6 +36,7 @@ function config({isServer, isDev, analyze = false}) {
             fallback: {
                 stream: false,
                 crypto: false,
+                url: require.resolve("url/"),
             },
             extensions: (isServer
                 ? ['.server.tsx', '.server.ts', '.server.js']

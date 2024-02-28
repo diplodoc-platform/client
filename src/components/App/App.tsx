@@ -7,6 +7,7 @@ import {
     PageConstructor,
     PageConstructorProvider,
 } from '@gravity-ui/page-constructor';
+import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     DocLeadingPage,
     DocLeadingPageData,
@@ -70,12 +71,15 @@ function Page(props: DocInnerProps) {
     const Page = data.leading ? DocLeadingPage : DocPage;
 
     return (
-        <Layout>
-            <Layout.Content>
-                {/*@ts-ignore*/}
-                <Page {...data} {...pageProps} />
-            </Layout.Content>
-        </Layout>
+        <ThemeProvider theme={pageProps?.theme} direction={pageProps?.direction}>
+            <Layout>
+                <Layout.Content>
+                    {/*@ts-ignore*/}
+                    <Page {...data} {...pageProps} />
+                </Layout.Content>
+            </Layout>
+        </ThemeProvider>
+
     );
 }
 
