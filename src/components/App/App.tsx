@@ -80,7 +80,6 @@ function Page(props: DocInnerProps) {
                 </Layout.Content>
             </Layout>
         </ThemeProvider>
-
     );
 }
 
