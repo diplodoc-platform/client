@@ -7,6 +7,7 @@ import {
     PageConstructor,
     PageConstructorProvider,
 } from '@gravity-ui/page-constructor';
+import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     DocLeadingPage,
     DocLeadingPageData,
@@ -17,7 +18,7 @@ import {
     Theme,
 } from '@diplodoc/components';
 import {HeaderControls} from '../HeaderControls';
-import {updateRootClassName} from '../../utils';
+import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
 import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
@@ -66,16 +67,19 @@ function Runtime(props: RuntimeProps) {
 
 function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
+    const {lang, theme} = pageProps;
 
     const Page = data.leading ? DocLeadingPage : DocPage;
 
     return (
-        <Layout>
-            <Layout.Content>
-                {/*@ts-ignore*/}
-                <Page {...data} {...pageProps} />
-            </Layout.Content>
-        </Layout>
+        <ThemeProvider theme={theme} direction={getDirection(lang)}>
+            <Layout>
+                <Layout.Content>
+                    {/*@ts-ignore*/}
+                    <Page {...data} {...pageProps} />
+                </Layout.Content>
+            </Layout>
+        </ThemeProvider>
     );
 }
 

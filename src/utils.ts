@@ -1,4 +1,5 @@
-import {Theme} from '@diplodoc/components';
+import {Lang, Theme} from '@diplodoc/components';
+import {RTL_LANGS, TextDirection} from './constants';
 
 export function strToBoolean(str: string | boolean) {
     if (typeof str === 'boolean') {
@@ -29,4 +30,10 @@ export function updateRootClassName({
     ]
         .filter(Boolean)
         .join(' ');
+}
+
+export function getDirection(lang: Lang): TextDirection {
+    const isRTL = RTL_LANGS.includes(lang);
+
+    return isRTL ? TextDirection.RTL : TextDirection.LTR;
 }
