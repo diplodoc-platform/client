@@ -3,6 +3,7 @@ const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const RtlCssPlugin = require('./rtl-css');
 
 function config({isServer, isDev, analyze = false}) {
     const mode = isServer ? 'server' : 'client';
@@ -82,13 +83,26 @@ function config({isServer, isDev, analyze = false}) {
                 generate: (seed, files) => {
                     const name = ({name}) => name;
                     const endsWith = (tail) => ({name}) => name.endsWith(tail);
-                    const runtimeLast = (a, b) => b.chunk.id - a.chunk.id;
+                    const runtimeLast = (a, b) => b.chunk?.id - a.chunk?.id;
                     const appLast = (a, b) => a.chunk?.name.includes('app') - b.chunk?.name.includes('app')
 
                     return {
                         js: files.filter(endsWith('.js')).sort(runtimeLast).map(name),
                         css: files.filter(endsWith('.css')).sort(appLast).map(name),
                     };
+                }
+            }),
+            new RtlCssPlugin({
+                filename: '[name].rtl.css',
+                hooks: {
+                    pre:function(root, postcss){
+                        root.nodes.forEach((node) => {
+                            if(node.selector && node.selector.match(/(?:\[dir=(?:"|')?(rtl|ltr|auto)(?:"|')?\]|\:dir\((rtl|ltr|auto)\))/)){
+                                node.nodes.unshift(postcss.comment({text: 'rtl:begin:ignore'}))
+                                node.nodes.push(postcss.comment({text: 'rtl:end:ignore'}))
+                            }
+                        })
+                    }
                 }
             }),
         ].filter(Boolean),
