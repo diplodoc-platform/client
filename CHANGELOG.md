@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/diplodoc-platform/client/compare/v2.0.5...v2.1.0) (2024-02-29)
+
+
+### Features
+
+* build RTL css ([#18](https://github.com/diplodoc-platform/client/issues/18)) ([1992e9e](https://github.com/diplodoc-platform/client/commit/1992e9e29bdbb0302e3ad0eb48d9f4d2132434ca))
+* update uikit, components, openapi-extension ([#24](https://github.com/diplodoc-platform/client/issues/24)) ([604a7fd](https://github.com/diplodoc-platform/client/commit/604a7fd4100c6fac332737f139b2099d62ed3c78))
+
 ## [2.0.5](https://github.com/diplodoc-platform/client/compare/v2.0.4...v2.0.5) (2024-02-08)
 
 
