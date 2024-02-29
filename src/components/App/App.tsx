@@ -70,12 +70,12 @@ function Page(props: DocInnerProps) {
     const Page = data.leading ? DocLeadingPage : DocPage;
 
     return (
-            <Layout>
-                <Layout.Content>
-                    {/*@ts-ignore*/}
-                    <Page {...data} {...pageProps} />
-                </Layout.Content>
-            </Layout>
+        <Layout>
+            <Layout.Content>
+                {/*@ts-ignore*/}
+                <Page {...data} {...pageProps} />
+            </Layout.Content>
+        </Layout>
     );
 }
 
@@ -136,12 +136,12 @@ export function App(props: DocInnerProps): ReactElement {
 
     if (!navigation) {
         return (
-                <div className="App">
-                    <ThemeProvider theme={theme} direction={direction}>
-                        <Page {...pageProps} {...settings} />
-                        <Runtime theme={theme} />
-                    </ThemeProvider>
-                </div>
+            <div className="App">
+                <ThemeProvider theme={theme} direction={direction}>
+                    <Page {...pageProps} {...settings} />
+                    <Runtime theme={theme} />
+                </ThemeProvider>
+            </div>
         );
     }
 
@@ -162,7 +162,10 @@ export function App(props: DocInnerProps): ReactElement {
                             },
                             blocks: {
                                 page: () => (
-                                    <Page {...pageProps} {...(headerWithControls ? {} : settings)} />
+                                    <Page
+                                        {...pageProps}
+                                        {...(headerWithControls ? {} : settings)}
+                                    />
                                 ),
                             },
                         }}
@@ -176,13 +179,13 @@ export function App(props: DocInnerProps): ReactElement {
                         navigation={
                             fullHeader
                                 ? {
-                                    header: {
-                                        withBorder: true,
-                                        leftItems: leftItems.map(rebaseNavItem),
-                                        rightItems: rightItems.map(rebaseNavItem),
-                                    },
-                                    logo,
-                                }
+                                      header: {
+                                          withBorder: true,
+                                          leftItems: leftItems.map(rebaseNavItem),
+                                          rightItems: rightItems.map(rebaseNavItem),
+                                      },
+                                      logo,
+                                  }
                                 : undefined
                         }
                     />
