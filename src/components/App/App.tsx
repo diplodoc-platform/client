@@ -67,19 +67,15 @@ function Runtime(props: RuntimeProps) {
 
 function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
-    const {lang, theme} = pageProps;
-
     const Page = data.leading ? DocLeadingPage : DocPage;
 
     return (
-        <ThemeProvider theme={theme} direction={getDirection(lang)}>
             <Layout>
                 <Layout.Content>
                     {/*@ts-ignore*/}
                     <Page {...data} {...pageProps} />
                 </Layout.Content>
             </Layout>
-        </ThemeProvider>
     );
 }
 
@@ -127,6 +123,7 @@ export function App(props: DocInnerProps): ReactElement {
         fullScreen,
         onChangeFullScreen,
     };
+    const direction = getDirection(lang);
 
     useEffect(() => {
         updateRootClassName({
@@ -139,10 +136,12 @@ export function App(props: DocInnerProps): ReactElement {
 
     if (!navigation) {
         return (
-            <div className="App">
-                <Page {...pageProps} {...settings} />
-                <Runtime theme={theme} />
-            </div>
+                <div className="App">
+                    <ThemeProvider theme={theme} direction={direction}>
+                        <Page {...pageProps} {...settings} />
+                        <Runtime theme={theme} />
+                    </ThemeProvider>
+                </div>
         );
     }
 
@@ -152,41 +151,43 @@ export function App(props: DocInnerProps): ReactElement {
 
     return (
         <div className="App">
-            <PageConstructorProvider theme={theme}>
-                <PageConstructor
-                    custom={{
-                        navigation: {
-                            controls: () => (
-                                <HeaderControls {...settings} mobileView={mobileView} />
-                            ),
-                        },
-                        blocks: {
-                            page: () => (
-                                <Page {...pageProps} {...(headerWithControls ? {} : settings)} />
-                            ),
-                        },
-                    }}
-                    content={{
-                        blocks: [
-                            {
-                                type: 'page',
+            <ThemeProvider theme={theme} direction={direction}>
+                <PageConstructorProvider theme={theme}>
+                    <PageConstructor
+                        custom={{
+                            navigation: {
+                                controls: () => (
+                                    <HeaderControls {...settings} mobileView={mobileView} />
+                                ),
                             },
-                        ],
-                    }}
-                    navigation={
-                        fullHeader
-                            ? {
-                                  header: {
-                                      withBorder: true,
-                                      leftItems: leftItems.map(rebaseNavItem),
-                                      rightItems: rightItems.map(rebaseNavItem),
-                                  },
-                                  logo,
-                              }
-                            : undefined
-                    }
-                />
-            </PageConstructorProvider>
+                            blocks: {
+                                page: () => (
+                                    <Page {...pageProps} {...(headerWithControls ? {} : settings)} />
+                                ),
+                            },
+                        }}
+                        content={{
+                            blocks: [
+                                {
+                                    type: 'page',
+                                },
+                            ],
+                        }}
+                        navigation={
+                            fullHeader
+                                ? {
+                                    header: {
+                                        withBorder: true,
+                                        leftItems: leftItems.map(rebaseNavItem),
+                                        rightItems: rightItems.map(rebaseNavItem),
+                                    },
+                                    logo,
+                                }
+                                : undefined
+                        }
+                    />
+                </PageConstructorProvider>
+            </ThemeProvider>
             <Runtime theme={theme} />
         </div>
     );
