@@ -9,14 +9,17 @@ import {
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
-    DocLeadingPage,
+    ConstructorPageData,
     DocLeadingPageData,
-    DocPage,
     DocPageData,
+    DocumentType,
     Lang,
     Router,
     Theme,
+    getPageByType,
+    getPageType
 } from '@diplodoc/components';
+
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
@@ -35,9 +38,10 @@ import './App.scss';
 export interface AppProps {
     lang: Lang;
     router: Router;
+    type: DocumentType;
 }
 
-export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {
+export type DocInnerProps<Data = DocLeadingPageData | DocPageData | ConstructorPageData> = {
     data: Data;
 } & AppProps;
 
@@ -65,9 +69,9 @@ function Runtime(props: RuntimeProps) {
     );
 }
 
-function Page(props: DocInnerProps) {
+export function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
-    const Page = data.leading ? DocLeadingPage : DocPage;
+    const Page = getPageByType(props?.type);
 
     return (
         <Layout>
@@ -111,6 +115,8 @@ export function App(props: DocInnerProps): ReactElement {
     const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
     const fullHeader = !fullScreen && Boolean(navigation);
     const headerHeight = fullHeader ? 64 : 0;
+    const type = getPageType(data);
+
     const pageProps = {
         headerHeight,
         data,
@@ -122,6 +128,7 @@ export function App(props: DocInnerProps): ReactElement {
         textSize,
         fullScreen,
         onChangeFullScreen,
+        type,
     };
     const direction = getDirection(lang);
 
@@ -169,7 +176,7 @@ export function App(props: DocInnerProps): ReactElement {
                                 ),
                             },
                         }}
-                        content={{
+                        content={type === DocumentType.ConstructorPage && 'data' in data && 'fullScreen' in data.data && data.data.fullScreen ? data.data : {
                             blocks: [
                                 {
                                     type: 'page',
