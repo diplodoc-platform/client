@@ -6,10 +6,11 @@ import {
     NavigationItemModel,
     PageConstructor,
     PageConstructorProvider,
+    PageContent,
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
-    ConstructorPageData,
+    DocContentPageData,
     DocLeadingPageData,
     DocPageData,
     DocumentType,
@@ -34,6 +35,7 @@ import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
 import './App.scss';
+import {ConstructorPage} from "../ConstructorPage";
 
 export interface AppProps {
     lang: Lang;
@@ -41,7 +43,11 @@ export interface AppProps {
     type: DocumentType;
 }
 
-export type DocInnerProps<Data = DocLeadingPageData | DocPageData | ConstructorPageData> = {
+export interface PageContentData extends DocContentPageData {
+    data: PageContent & {fullScreen?: boolean};
+}
+
+export type DocInnerProps<Data = DocLeadingPageData | DocPageData | PageContentData> = {
     data: Data;
 } & AppProps;
 
@@ -145,7 +151,9 @@ export function App(props: DocInnerProps): ReactElement {
         return (
             <div className="App">
                 <ThemeProvider theme={theme} direction={direction}>
-                    <Page {...pageProps} {...settings} />
+                    <Page {...pageProps} {...settings} >
+                        {type === DocumentType.PageConstructor && <ConstructorPage data={data as PageContentData} theme={theme} />}
+                    </Page>
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -155,6 +163,7 @@ export function App(props: DocInnerProps): ReactElement {
     const {header = {}, logo} = navigation;
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
+    const fullScreenPC = type === DocumentType.PageConstructor && 'data' in data && 'fullScreen' in data.data && data.data.fullScreen;
 
     return (
         <div className="App">
@@ -172,11 +181,13 @@ export function App(props: DocInnerProps): ReactElement {
                                     <Page
                                         {...pageProps}
                                         {...(headerWithControls ? {} : settings)}
-                                    />
+                                    >
+                                        {type === DocumentType.PageConstructor && 'data' in data && <ConstructorPage data={data as PageContentData} theme={theme} />}
+                                    </Page>
                                 ),
                             },
                         }}
-                        content={type === DocumentType.ConstructorPage && 'data' in data && 'fullScreen' in data.data && data.data.fullScreen ? data.data : {
+                        content={fullScreenPC ? data.data as PageContent : {
                             blocks: [
                                 {
                                     type: 'page',
