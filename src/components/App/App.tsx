@@ -18,7 +18,7 @@ import {
     Router,
     Theme,
     getPageByType,
-    getPageType
+    getPageType,
 } from '@diplodoc/components';
 
 import {HeaderControls} from '../HeaderControls';
@@ -35,7 +35,7 @@ import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
 import './App.scss';
-import {ConstructorPage} from "../ConstructorPage";
+import {ConstructorPage} from '../ConstructorPage';
 
 export interface AppProps {
     lang: Lang;
@@ -151,8 +151,10 @@ export function App(props: DocInnerProps): ReactElement {
         return (
             <div className="App">
                 <ThemeProvider theme={theme} direction={direction}>
-                    <Page {...pageProps} {...settings} >
-                        {type === DocumentType.PageConstructor && <ConstructorPage data={data as PageContentData} theme={theme} />}
+                    <Page {...pageProps} {...settings}>
+                        {type === DocumentType.PageConstructor && (
+                            <ConstructorPage data={data as PageContentData} theme={theme} />
+                        )}
                     </Page>
                     <Runtime theme={theme} />
                 </ThemeProvider>
@@ -163,7 +165,11 @@ export function App(props: DocInnerProps): ReactElement {
     const {header = {}, logo} = navigation;
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
-    const fullScreenPC = type === DocumentType.PageConstructor && 'data' in data && 'fullScreen' in data.data && data.data.fullScreen;
+    const fullScreenPC =
+        type === DocumentType.PageConstructor &&
+        'data' in data &&
+        'fullScreen' in data.data &&
+        data.data.fullScreen;
 
     return (
         <div className="App">
@@ -178,22 +184,29 @@ export function App(props: DocInnerProps): ReactElement {
                             },
                             blocks: {
                                 page: () => (
-                                    <Page
-                                        {...pageProps}
-                                        {...(headerWithControls ? {} : settings)}
-                                    >
-                                        {type === DocumentType.PageConstructor && 'data' in data && <ConstructorPage data={data as PageContentData} theme={theme} />}
+                                    <Page {...pageProps} {...(headerWithControls ? {} : settings)}>
+                                        {type === DocumentType.PageConstructor &&
+                                            'data' in data && (
+                                                <ConstructorPage
+                                                    data={data as PageContentData}
+                                                    theme={theme}
+                                                />
+                                            )}
                                     </Page>
                                 ),
                             },
                         }}
-                        content={fullScreenPC ? data.data as PageContent : {
-                            blocks: [
-                                {
-                                    type: 'page',
-                                },
-                            ],
-                        }}
+                        content={
+                            fullScreenPC
+                                ? (data.data as PageContent)
+                                : {
+                                      blocks: [
+                                          {
+                                              type: 'page',
+                                          },
+                                      ],
+                                  }
+                        }
                         navigation={
                             fullHeader
                                 ? {
