@@ -8,9 +8,9 @@ import {
     Grid,
     Row,
     Theme,
-    getThemedValue
-} from "@gravity-ui/page-constructor";
-import { PageContentData } from '../App/App';
+    getThemedValue,
+} from '@gravity-ui/page-constructor';
+import {PageContentData} from '../App/App';
 
 export type WithChildren<T = {}> = T & {children?: React.ReactNode};
 
@@ -24,7 +24,6 @@ export const ConstructorRow = ({children}: WithChildren<{}>) =>
         </Row>
     ) : null;
 
-
 export function ConstructorPage({data: {data}, theme}: {data: PageContentData; theme: Theme}) {
     const themedBackground = getThemedValue(data?.background, theme);
 
@@ -32,10 +31,7 @@ export function ConstructorPage({data: {data}, theme}: {data: PageContentData; t
         <div className={bPC('')}>
             <div className={bPC('wrapper')}>
                 {data?.blocks && themedBackground && (
-                    <BackgroundMedia
-                        {...themedBackground}
-                        className={bPC('background')}
-                    />
+                    <BackgroundMedia {...themedBackground} className={bPC('background')} />
                 )}
                 <Grid>
                     <ConstructorRow>
@@ -44,5 +40,5 @@ export function ConstructorPage({data: {data}, theme}: {data: PageContentData; t
                 </Grid>
             </div>
         </div>
-   )
+    );
 }
