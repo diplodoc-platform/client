@@ -137,6 +137,11 @@ export function App(props: DocInnerProps): ReactElement {
         type,
     };
     const direction = getDirection(lang);
+    const fullScreenPC =
+        type === DocumentType.PageConstructor &&
+        'data' in data &&
+        'fullScreen' in data.data &&
+        data.data.fullScreen;
 
     useEffect(() => {
         updateRootClassName({
@@ -153,7 +158,31 @@ export function App(props: DocInnerProps): ReactElement {
                 <ThemeProvider theme={theme} direction={direction}>
                     <Page {...pageProps} {...settings}>
                         {type === DocumentType.PageConstructor && (
-                            <ConstructorPage data={data as PageContentData} theme={theme} />
+                            <PageConstructorProvider theme={theme}>
+                                <PageConstructor
+                                    custom={{
+                                        blocks: {
+                                            page: () => (
+                                                <ConstructorPage
+                                                    data={data as PageContentData}
+                                                    theme={theme}
+                                                />
+                                            ),
+                                        },
+                                    }}
+                                    content={
+                                        fullScreenPC
+                                            ? (data.data as PageContent)
+                                            : {
+                                                  blocks: [
+                                                      {
+                                                          type: 'page',
+                                                      },
+                                                  ],
+                                              }
+                                    }
+                                />
+                            </PageConstructorProvider>
                         )}
                     </Page>
                     <Runtime theme={theme} />
@@ -165,11 +194,6 @@ export function App(props: DocInnerProps): ReactElement {
     const {header = {}, logo} = navigation;
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
-    const fullScreenPC =
-        type === DocumentType.PageConstructor &&
-        'data' in data &&
-        'fullScreen' in data.data &&
-        data.data.fullScreen;
 
     return (
         <div className="App">
