@@ -20,7 +20,24 @@ export enum TextDirection {
     LTR = 'ltr',
 }
 
-export const LINK_KEYS_LEADING_CONFIG = ['href']
-export const LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG = ['src','url','href','icon','image','desktop','mobile','tablet','previewImg','image', 'avatar', 'logo', 'light', 'dark']
+export const LINK_KEYS_LEADING_CONFIG = ['href'];
+export const LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG = [
+    'src',
+    'url',
+    'href',
+    'icon',
+    'image',
+    'desktop',
+    'mobile',
+    'tablet',
+    'previewImg',
+    'image',
+    'avatar',
+    'logo',
+    'light',
+    'dark',
+];
 
-export const LINK_KEYS = [...new Set([...LINK_KEYS_LEADING_CONFIG, ...LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG])]
+export const LINK_KEYS = [
+    ...new Set([...LINK_KEYS_LEADING_CONFIG, ...LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG]),
+];
