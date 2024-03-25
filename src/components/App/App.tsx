@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {ReactElement, useCallback, useEffect} from 'react';
 
 import {
     NavigationData,
@@ -16,6 +16,7 @@ import {
     Lang,
     Router,
     Theme,
+    getLangPath,
 } from '@diplodoc/components';
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
@@ -34,6 +35,7 @@ import './App.scss';
 
 export interface AppProps {
     lang: Lang;
+    langs: Lang[];
     router: Router;
 }
 
@@ -102,11 +104,15 @@ type TocData = DocPageData['toc'] & {
 };
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang} = props;
+    const {data, router, lang, langs} = props;
     const {navigation} = data.toc as TocData;
 
     const settings = useSettings();
     const mobileView = useMobile();
+
+    const onChangeLang = useCallback((lang: Lang) => {
+        window.location.replace(getLangPath(router, lang));
+    }, []);
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
     const fullHeader = !fullScreen && Boolean(navigation);
@@ -116,6 +122,7 @@ export function App(props: DocInnerProps): ReactElement {
         data,
         router,
         lang,
+        langs,
         wideFormat,
         showMiniToc,
         theme,
@@ -134,11 +141,17 @@ export function App(props: DocInnerProps): ReactElement {
         });
     }, [theme, mobileView, wideFormat, fullHeader]);
 
+    const pageContext = {
+        ...settings,
+        onChangeLang,
+    }
+console.log("here", router);
+
     if (!navigation) {
         return (
             <div className="App">
                 <ThemeProvider theme={theme} direction={direction}>
-                    <Page {...pageProps} {...settings} />
+                    <Page {...pageProps} {...pageContext} />
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -157,14 +170,14 @@ export function App(props: DocInnerProps): ReactElement {
                         custom={{
                             navigation: {
                                 controls: () => (
-                                    <HeaderControls {...settings} mobileView={mobileView} />
+                                    <HeaderControls {...pageContext} {...pageProps} onChangeLang={onChangeLang} mobileView={mobileView} />
                                 ),
                             },
                             blocks: {
                                 page: () => (
                                     <Page
                                         {...pageProps}
-                                        {...(headerWithControls ? {} : settings)}
+                                        {...(headerWithControls ? {} : pageContext)}
                                     />
                                 ),
                             },
