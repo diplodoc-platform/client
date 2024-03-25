@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es2020",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "lib": ["DOM"],
     "declaration": true,
     "outDir": "build",

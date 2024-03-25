@@ -6,18 +6,22 @@ import {
     NavigationItemModel,
     PageConstructor,
     PageConstructorProvider,
+    PageContent,
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
-    DocLeadingPage,
+    DocContentPageData,
     DocLeadingPageData,
-    DocPage,
     DocPageData,
+    DocumentType,
     Lang,
     Router,
     Theme,
     getLangPath,
+    getPageByType,
+    getPageType,
 } from '@diplodoc/components';
+
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
@@ -32,14 +36,20 @@ import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 
 import './App.scss';
+import {ConstructorPage} from '../ConstructorPage';
 
 export interface AppProps {
     lang: Lang;
     langs: Lang[];
     router: Router;
+    type: DocumentType;
 }
 
-export type DocInnerProps<Data = DocLeadingPageData | DocPageData> = {
+export interface PageContentData extends DocContentPageData {
+    data: PageContent & {fullScreen?: boolean};
+}
+
+export type DocInnerProps<Data = DocLeadingPageData | DocPageData | PageContentData> = {
     data: Data;
 } & AppProps;
 
@@ -67,9 +77,9 @@ function Runtime(props: RuntimeProps) {
     );
 }
 
-function Page(props: DocInnerProps) {
+export function Page(props: DocInnerProps) {
     const {data, ...pageProps} = props;
-    const Page = data.leading ? DocLeadingPage : DocPage;
+    const Page = getPageByType(props?.type);
 
     return (
         <Layout>
@@ -117,6 +127,8 @@ export function App(props: DocInnerProps): ReactElement {
     const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
     const fullHeader = !fullScreen && Boolean(navigation);
     const headerHeight = fullHeader ? 64 : 0;
+    const type = getPageType(data);
+
     const pageProps = {
         headerHeight,
         data,
@@ -129,8 +141,14 @@ export function App(props: DocInnerProps): ReactElement {
         textSize,
         fullScreen,
         onChangeFullScreen,
+        type,
     };
     const direction = getDirection(lang);
+    const fullScreenPC =
+        type === DocumentType.PageConstructor &&
+        'data' in data &&
+        'fullScreen' in data.data &&
+        data.data.fullScreen;
 
     useEffect(() => {
         updateRootClassName({
@@ -145,13 +163,40 @@ export function App(props: DocInnerProps): ReactElement {
         ...settings,
         onChangeLang,
     }
-console.log("here", router);
 
     if (!navigation) {
         return (
             <div className="App">
                 <ThemeProvider theme={theme} direction={direction}>
-                    <Page {...pageProps} {...pageContext} />
+                    <Page {...pageProps} {...pageContext}>
+                        {type === DocumentType.PageConstructor && (
+                            <PageConstructorProvider theme={theme}>
+                                <PageConstructor
+                                    custom={{
+                                        blocks: {
+                                            page: () => (
+                                                <ConstructorPage
+                                                    data={data as PageContentData}
+                                                    theme={theme}
+                                                />
+                                            ),
+                                        },
+                                    }}
+                                    content={
+                                        fullScreenPC
+                                            ? (data.data as PageContent)
+                                            : {
+                                                  blocks: [
+                                                      {
+                                                          type: 'page',
+                                                      },
+                                                  ],
+                                              }
+                                    }
+                                />
+                            </PageConstructorProvider>
+                        )}
+                    </Page>
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -175,20 +220,29 @@ console.log("here", router);
                             },
                             blocks: {
                                 page: () => (
-                                    <Page
-                                        {...pageProps}
-                                        {...(headerWithControls ? {} : pageContext)}
-                                    />
+                                    <Page {...pageProps} {...(headerWithControls ? {} : pageContext)}>
+                                        {type === DocumentType.PageConstructor &&
+                                            'data' in data && (
+                                                <ConstructorPage
+                                                    data={data as PageContentData}
+                                                    theme={theme}
+                                                />
+                                            )}
+                                    </Page>
                                 ),
                             },
                         }}
-                        content={{
-                            blocks: [
-                                {
-                                    type: 'page',
-                                },
-                            ],
-                        }}
+                        content={
+                            fullScreenPC
+                                ? (data.data as PageContent)
+                                : {
+                                      blocks: [
+                                          {
+                                              type: 'page',
+                                          },
+                                      ],
+                                  }
+                        }
                         navigation={
                             fullHeader
                                 ? {

@@ -8,6 +8,20 @@
     margin-top: var(--pc-first-block-indent, 96px);
 }
 
+.pc-Grid {
+    .container-fluid {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+.pc-Grid .pc-Grid {
+    .container-fluid .pc-header-block__container-fluid {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
 .pc-block-base {
     padding: 0 !important;
 }
