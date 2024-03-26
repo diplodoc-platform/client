@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/diplodoc-platform/client/compare/v2.1.1...v2.2.0) (2024-03-26)
+
+
+### Features
+
+* add page-constructor page ([66cbce1](https://github.com/diplodoc-platform/client/commit/66cbce1790ad47eae62f769859d8476336c7ea6a))
+
 ## [2.1.0](https://github.com/diplodoc-platform/client/compare/v2.0.5...v2.1.0) (2024-02-29)
 
 
