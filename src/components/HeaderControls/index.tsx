@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-import {ControlSizes, Controls, ControlsLayout, TextSizes, Theme} from '@diplodoc/components';
+import {ControlSizes, Controls, ControlsLayout, Lang, TextSizes, Theme} from '@diplodoc/components';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeCallback = (value: any) => void;
@@ -16,6 +16,9 @@ type Props = {
     onChangeWideFormat: OnChangeCallback;
     showMiniToc: boolean;
     onChangeShowMiniToc: OnChangeCallback;
+    lang: Lang;
+    langs: Lang[];
+    onChangeLang?: (lang: Lang) => void;
 };
 
 export const HeaderControls = memo<Props>(
@@ -33,6 +36,10 @@ export const HeaderControls = memo<Props>(
 
         showMiniToc,
         onChangeShowMiniToc,
+        
+        lang,
+        langs,
+        onChangeLang,
     }) => {
         return (
             <ControlsLayout
@@ -51,6 +58,9 @@ export const HeaderControls = memo<Props>(
                     onChangeShowMiniToc={onChangeShowMiniToc}
                     textSize={textSize}
                     onChangeTextSize={onChangeTextSize}
+                    lang={lang}
+                    langs={langs}
+                    onChangeLang={onChangeLang}
                 />
             </ControlsLayout>
         );
