@@ -36,7 +36,7 @@ export const HeaderControls = memo<Props>(
 
         showMiniToc,
         onChangeShowMiniToc,
-        
+
         lang,
         langs,
         onChangeLang,

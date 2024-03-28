@@ -162,7 +162,7 @@ export function App(props: DocInnerProps): ReactElement {
     const pageContext = {
         ...settings,
         onChangeLang,
-    }
+    };
 
     if (!navigation) {
         return (
@@ -215,12 +215,20 @@ export function App(props: DocInnerProps): ReactElement {
                         custom={{
                             navigation: {
                                 controls: () => (
-                                    <HeaderControls {...pageContext} {...pageProps} onChangeLang={onChangeLang} mobileView={mobileView} />
+                                    <HeaderControls
+                                        {...pageContext}
+                                        {...pageProps}
+                                        onChangeLang={onChangeLang}
+                                        mobileView={mobileView}
+                                    />
                                 ),
                             },
                             blocks: {
                                 page: () => (
-                                    <Page {...pageProps} {...(headerWithControls ? {} : pageContext)}>
+                                    <Page
+                                        {...pageProps}
+                                        {...(headerWithControls ? {} : pageContext)}
+                                    >
                                         {type === DocumentType.PageConstructor &&
                                             'data' in data && (
                                                 <ConstructorPage
