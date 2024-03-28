@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect} from 'react';
+import React, {ReactElement, useCallback, useEffect} from 'react';
 
 import {
     NavigationData,
@@ -17,6 +17,7 @@ import {
     Lang,
     Router,
     Theme,
+    getLangPath,
     getPageByType,
     getPageType,
 } from '@diplodoc/components';
@@ -39,6 +40,7 @@ import {ConstructorPage} from '../ConstructorPage';
 
 export interface AppProps {
     lang: Lang;
+    langs: Lang[];
     router: Router;
     type: DocumentType;
 }
@@ -112,11 +114,18 @@ type TocData = DocPageData['toc'] & {
 };
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang} = props;
+    const {data, router, lang, langs} = props;
     const {navigation} = data.toc as TocData;
 
     const settings = useSettings();
     const mobileView = useMobile();
+
+    const onChangeLang = useCallback(
+        (lang: Lang) => {
+            window.location.replace(getLangPath(router, lang));
+        },
+        [router],
+    );
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
     const fullHeader = !fullScreen && Boolean(navigation);
@@ -128,6 +137,7 @@ export function App(props: DocInnerProps): ReactElement {
         data,
         router,
         lang,
+        langs,
         wideFormat,
         showMiniToc,
         theme,
@@ -152,11 +162,16 @@ export function App(props: DocInnerProps): ReactElement {
         });
     }, [theme, mobileView, wideFormat, fullHeader]);
 
+    const pageContext = {
+        ...settings,
+        onChangeLang,
+    };
+
     if (!navigation) {
         return (
             <div className="App">
                 <ThemeProvider theme={theme} direction={direction}>
-                    <Page {...pageProps} {...settings}>
+                    <Page {...pageProps} {...pageContext}>
                         {type === DocumentType.PageConstructor && (
                             <PageConstructorProvider theme={theme}>
                                 <PageConstructor
@@ -203,12 +218,20 @@ export function App(props: DocInnerProps): ReactElement {
                         custom={{
                             navigation: {
                                 controls: () => (
-                                    <HeaderControls {...settings} mobileView={mobileView} />
+                                    <HeaderControls
+                                        {...pageContext}
+                                        {...pageProps}
+                                        onChangeLang={onChangeLang}
+                                        mobileView={mobileView}
+                                    />
                                 ),
                             },
                             blocks: {
                                 page: () => (
-                                    <Page {...pageProps} {...(headerWithControls ? {} : settings)}>
+                                    <Page
+                                        {...pageProps}
+                                        {...(headerWithControls ? {} : pageContext)}
+                                    >
                                         {type === DocumentType.PageConstructor &&
                                             'data' in data && (
                                                 <ConstructorPage
