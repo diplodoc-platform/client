@@ -120,9 +120,12 @@ export function App(props: DocInnerProps): ReactElement {
     const settings = useSettings();
     const mobileView = useMobile();
 
-    const onChangeLang = useCallback((lang: Lang) => {
-        window.location.replace(getLangPath(router, lang));
-    }, []);
+    const onChangeLang = useCallback(
+        (lang: Lang) => {
+            window.location.replace(getLangPath(router, lang));
+        },
+        [router],
+    );
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc, onChangeFullScreen} = settings;
     const fullHeader = !fullScreen && Boolean(navigation);
