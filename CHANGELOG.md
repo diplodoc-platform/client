@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/diplodoc-platform/client/compare/v2.3.0...v2.4.0) (2024-04-01)
+
+
+### Features
+
+* add lang html extention ([#37](https://github.com/diplodoc-platform/client/issues/37)) ([5a0aeac](https://github.com/diplodoc-platform/client/commit/5a0aeacf62c668eb519f5c4b0b41f182c0cdb482))
+
 ## [2.3.0](https://github.com/diplodoc-platform/client/compare/v2.2.0...v2.3.0) (2024-04-01)
 
 
