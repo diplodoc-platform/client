@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/diplodoc-platform/client/compare/v2.2.0...v2.3.0) (2024-04-01)
+
+
+### Features
+
+* add language control selector for static build ([b918e47](https://github.com/diplodoc-platform/client/commit/b918e474ef02622d417e2617157de64b0d14655d))
+* add language control selector for static build ([34e2a6e](https://github.com/diplodoc-platform/client/commit/34e2a6e47711d1b50e0b8ac3299485c543bdd1dc))
+
+
+### Bug Fixes
+
+* navigation style margin ([#38](https://github.com/diplodoc-platform/client/issues/38)) ([0cd81dc](https://github.com/diplodoc-platform/client/commit/0cd81dcdaa031430a655a5cc8a600e47f34821b1))
+
 ## [2.2.0](https://github.com/diplodoc-platform/client/compare/v2.1.1...v2.2.0) (2024-03-26)
 
 
