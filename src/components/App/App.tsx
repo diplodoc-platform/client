@@ -122,7 +122,8 @@ export function App(props: DocInnerProps): ReactElement {
 
     const onChangeLang = useCallback(
         (lang: Lang) => {
-            window.location.replace(getLangPath(router, lang));
+            const path = getLangPath(router, lang);
+            window.location.replace(path);
         },
         [router],
     );
