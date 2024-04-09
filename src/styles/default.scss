@@ -32,26 +32,6 @@ body {
     }
 }
 
-.pc-navigation {
-    z-index:  101;
-
-    .desktop.dc-root_wide-format & .container-fluid {
-        padding: 20px;
-
-        & .col {
-            padding: 0;
-        }
-    }
-
-    .mobile.dc-root_wide-format & .container-fluid {
-        padding: 12px;
-
-        & .col {
-            padding: 0;
-        }
-    }
-}
-
 #root {
     min-height: 100vh;
 }

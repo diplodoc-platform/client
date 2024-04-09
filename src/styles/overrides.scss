@@ -1,25 +1,55 @@
-@media only screen and (max-width: 577px) {
+@import './variables';
+
+@media only screen and (max-width: map-get($screenBreakpoints, 'sm')) {
     .pc-block-base.pc-block-base.pc-block-base:first-child {
         margin-top: var(--pc-first-block-mobile-indent, 64px);
     }
 }
 
-.pc-block-base.pc-block-base.pc-block-base:first-child {
-    margin-top: var(--pc-first-block-indent, 96px);
-}
 
-.pc-Grid {
-    .container-fluid {
-        padding-right: 0px;
-        padding-left: 0px;
-    }
-}
-
-.pc-Grid .pc-Grid {
-    .container-fluid .pc-header-block__container-fluid {
+.App.document-mode {
+    .pc-Grid {
         padding-right: 40px;
         padding-left: 40px;
+
+        @media (max-width: map-get($screenBreakpoints, 'md')) {
+            padding-right: 20px;
+            padding-left: 20px;
+
+            max-width: 100%;
+        }
+
+        .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
+
+            max-width: unset;
+        }
     }
+
+    .pc-layout__content > .pc-Grid {
+        padding: 0;
+    }
+
+    .pc-layout__navigation > .container-fluid {
+        max-width: 1440px;
+    }
+
+    .dc-doc-page {
+        @media screen and (max-width: 1440px) {
+            &:not(&_regular-page-width) {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor__docs) {
+    padding: 20px 0 24px;
+}
+
+.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor) {
+    padding: 20px 0 24px;
 }
 
 .pc-block-base {
@@ -63,5 +93,25 @@
     &__item {
         width: 100%;
         transition: width 0.3s;
+    }
+}
+
+.pc-navigation {
+    z-index:  101;
+
+    .desktop.dc-root_wide-format & .container-fluid {
+        padding: 30px;
+
+        & .col {
+            padding: 0;
+        }
+    }
+
+    .mobile.dc-root_wide-format & .container-fluid {
+        padding: 12px;
+
+        & .col {
+            padding: 0;
+        }
     }
 }

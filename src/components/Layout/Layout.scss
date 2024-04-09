@@ -11,17 +11,6 @@
         min-height: calc(100vh - var(--dc-header-height));
     }
 
-    .pc-page-constructor & {
-        &__content {
-            flex: 1 1 auto;
-            margin: 0 -10px;
-
-            .mobile.dc-root_wide-format & {
-                margin: 0px -28px;
-            }
-        }
-    }
-
     &__footer {
         position: relative;
         z-index: 90;

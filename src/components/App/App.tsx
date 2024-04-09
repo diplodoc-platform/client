@@ -153,6 +153,7 @@ export function App(props: DocInnerProps): ReactElement {
         'data' in data &&
         'fullScreen' in data.data &&
         data.data.fullScreen;
+    const appClassName = `App ${fullScreenPC ? 'fullscreen-mode' : 'document-mode'}`;
 
     useEffect(() => {
         updateRootClassName({
@@ -170,7 +171,7 @@ export function App(props: DocInnerProps): ReactElement {
 
     if (!navigation) {
         return (
-            <div className="App">
+            <div className={appClassName}>
                 <ThemeProvider theme={theme} direction={direction}>
                     <Page {...pageProps} {...pageContext}>
                         {type === DocumentType.PageConstructor && (
@@ -193,6 +194,7 @@ export function App(props: DocInnerProps): ReactElement {
                                                   blocks: [
                                                       {
                                                           type: 'page',
+                                                          resetPaddings: true,
                                                       },
                                                   ],
                                               }
@@ -212,7 +214,7 @@ export function App(props: DocInnerProps): ReactElement {
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
     return (
-        <div className="App">
+        <div className={appClassName}>
             <ThemeProvider theme={theme} direction={direction}>
                 <PageConstructorProvider theme={theme}>
                     <PageConstructor
@@ -251,6 +253,7 @@ export function App(props: DocInnerProps): ReactElement {
                                       blocks: [
                                           {
                                               type: 'page',
+                                              resetPaddings: true,
                                           },
                                       ],
                                   }
