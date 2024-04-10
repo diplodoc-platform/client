@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.0](https://github.com/diplodoc-platform/client/compare/v2.4.0...v2.5.0) (2024-04-10)
+
+
+### Features
+
+* configure lang in static client ([#40](https://github.com/diplodoc-platform/client/issues/40)) ([2195b32](https://github.com/diplodoc-platform/client/commit/2195b32d4a36fe330cf222858e56bcf84f185b84))
+
+
+### Bug Fixes
+
+* pc styles for document mode ([#41](https://github.com/diplodoc-platform/client/issues/41)) ([15540fb](https://github.com/diplodoc-platform/client/commit/15540fbea660093b27f78d1c3d171b316571c7c7))
+
 ## [2.4.0](https://github.com/diplodoc-platform/client/compare/v2.3.0...v2.4.0) (2024-04-01)
 
 
