@@ -17,6 +17,7 @@ import {
     Lang,
     Router,
     Theme,
+    configure,
     getLangPath,
     getPageByType,
     getPageType,
@@ -116,6 +117,10 @@ type TocData = DocPageData['toc'] & {
 export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang, langs} = props;
     const {navigation} = data.toc as TocData;
+
+    configure({
+        lang,
+    });
 
     const settings = useSettings();
     const mobileView = useMobile();
