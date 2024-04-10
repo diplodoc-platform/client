@@ -28,7 +28,7 @@ export function ConstructorPage({data: {data}, theme}: {data: PageContentData; t
     const themedBackground = getThemedValue(data?.background, theme);
 
     return (
-        <div className={bPC('')}>
+        <div className={bPC('docs')}>
             <div className={bPC('wrapper')}>
                 {data?.blocks && themedBackground && (
                     <BackgroundMedia {...themedBackground} className={bPC('background')} />
