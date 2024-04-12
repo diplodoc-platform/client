@@ -26,7 +26,7 @@ export function isPageConfig(config: ConfigData): config is ConstructorPageConte
 }
 
 export function preprocess(content: ConfigData, params: PreloadParams, customYfmTransformer) {
-    const lang = params.locale as Lang;
+    const {lang} = params;
 
     if (isPageConfig(content) && content.blocks) {
         return {
