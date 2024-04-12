@@ -41,16 +41,17 @@ export function preprocess(content: ConfigData, params: PreloadParams, customYfm
 function replaceTransformer(config: BlocksConfig, newTransformer: Function): BlocksConfig {
     return Object.keys(config).reduce((newConfig, key) => {
         const subBlockType = key as SubBlockType;
-        newConfig[subBlockType] = config[subBlockType].map(block => {
-            return block.transformer.name === "yfmTransformer" ?
-                { ...block, transformer: newTransformer } : block;
+        newConfig[subBlockType] = config[subBlockType].map((block) => {
+            return block.transformer.name === 'yfmTransformer'
+                ? {...block, transformer: newTransformer}
+                : block;
         });
         return newConfig;
     }, {} as BlocksConfig);
 }
 
 function transformBlocks(blocks: ConstructorBlock[], lang: Lang, customYfmTransformer) {
-    const customConfig = replaceTransformer(config, customYfmTransformer)
+    const customConfig = replaceTransformer(config, customYfmTransformer);
 
     return contentTransformer({
         content: {blocks},

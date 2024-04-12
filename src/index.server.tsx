@@ -3,7 +3,7 @@ import {renderToString} from 'react-dom/server';
 
 import {App, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App/App';
 import {LINK_KEYS, LINK_KEYS_LEADING_CONFIG, LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG} from './constants';
-import {preprocess} from './preprocess'
+import {preprocess} from './preprocess';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData};
 export {LINK_KEYS, LINK_KEYS_LEADING_CONFIG, LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG, preprocess};
