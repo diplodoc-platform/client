@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1](https://github.com/diplodoc-platform/client/compare/v2.6.0...v2.6.1) (2024-04-15)
+
+
+### Bug Fixes
+
+* preprocess types ([#45](https://github.com/diplodoc-platform/client/issues/45)) ([6b21901](https://github.com/diplodoc-platform/client/commit/6b2190124915e6723256b32de39a54ff022bbe45))
+
 ## [2.6.0](https://github.com/diplodoc-platform/client/compare/v2.5.0...v2.6.0) (2024-04-15)
 
 
