@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/diplodoc-platform/client/compare/v2.5.0...v2.6.0) (2024-04-15)
+
+
+### Features
+
+* transform yfm in PC ([#43](https://github.com/diplodoc-platform/client/issues/43)) ([ec8f0d4](https://github.com/diplodoc-platform/client/commit/ec8f0d487c35093419b9cc4608621fc5f3b63f6a))
+
 ## [2.5.0](https://github.com/diplodoc-platform/client/compare/v2.4.0...v2.5.0) (2024-04-10)
 
 
