@@ -103,7 +103,8 @@ function rebaseNavItem<T extends NavigationItemModel>(item: T) {
         (result as NavigationDropdownItem).items = item.items.map(rebaseNavItem);
     }
 
-    if (item.url !== undefined) {
+    // There can be also something like mobile://app.apk
+    if (item.url !== undefined && !item.url.match(/^[^/:]+:\/\//)) {
         result.url = item.url.replace(/^\/?/, '/');
     }
 
