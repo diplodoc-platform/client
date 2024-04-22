@@ -2,8 +2,6 @@ import React, {ReactElement, useCallback, useEffect} from 'react';
 
 import {
     NavigationData,
-    NavigationDropdownItem,
-    NavigationItemModel,
     PageConstructor,
     PageConstructorProvider,
     PageContent,
@@ -90,25 +88,6 @@ export function Page(props: DocInnerProps) {
             </Layout.Content>
         </Layout>
     );
-}
-
-function isDropdownItem(item: NavigationItemModel): item is NavigationDropdownItem {
-    return Array.isArray((item as NavigationDropdownItem).items);
-}
-
-function rebaseNavItem<T extends NavigationItemModel>(item: T) {
-    const result: T = {...item};
-
-    if (isDropdownItem(item)) {
-        (result as NavigationDropdownItem).items = item.items.map(rebaseNavItem);
-    }
-
-    // There can be also something like mobile://app.apk
-    if (item.url !== undefined && !item.url.match(/^[^/:]+:\/\//)) {
-        result.url = item.url.replace(/^\/?/, '/');
-    }
-
-    return result;
 }
 
 type TocData = DocPageData['toc'] & {
@@ -269,8 +248,8 @@ export function App(props: DocInnerProps): ReactElement {
                                 ? {
                                       header: {
                                           withBorder: true,
-                                          leftItems: leftItems.map(rebaseNavItem),
-                                          rightItems: rightItems.map(rebaseNavItem),
+                                          leftItems: leftItems,
+                                          rightItems: rightItems,
                                       },
                                       logo,
                                   }
