@@ -104,7 +104,7 @@ function rebaseNavItem<T extends NavigationItemModel>(item: T) {
     }
 
     // There can be also something like mobile://app.apk
-    if (item.url !== undefined && !item.url.match(/^[^/:]+:\/\//)) {
+    if (item.url !== undefined && !item.url.match(/^[^/:]+:\/\//) && !item.url.startsWith('.')) {
         result.url = item.url.replace(/^\/?/, '/');
     }
 
