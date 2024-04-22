@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.2](https://github.com/diplodoc-platform/client/compare/v2.6.1...v2.6.2) (2024-04-22)
+
+
+### Bug Fixes
+
+* Fix navigation hosted urls ([2e6a06a](https://github.com/diplodoc-platform/client/commit/2e6a06a3cd181b897652e7f27034df01897bf8e0))
+* Remove nav items normalization ([2778728](https://github.com/diplodoc-platform/client/commit/2778728ef5f7cf4767eab4633cc2c2accb1049d0))
+
 ## [2.6.1](https://github.com/diplodoc-platform/client/compare/v2.6.0...v2.6.1) (2024-04-15)
 
 
