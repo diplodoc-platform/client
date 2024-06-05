@@ -25,11 +25,14 @@ export function updateRootClassName({
         mobileView ? 'mobile' : 'desktop',
         wideFormat && 'dc-root_wide-format',
         fullHeader && 'dc-root_full-header',
-        theme === 'light' && 'g-root_theme_light',
-        theme === 'dark' && 'g-root_theme_dark',
     ]
         .filter(Boolean)
         .join(' ');
+
+    document.querySelectorAll('.g-root').forEach((el) => {
+        el.classList.toggle('g-root_theme_light', theme === 'light');
+        el.classList.toggle('g-root_theme_dark', theme === 'dark');
+    });
 }
 
 export function getDirection(lang: Lang): TextDirection {
