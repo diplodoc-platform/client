@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.3](https://github.com/diplodoc-platform/client/compare/v2.6.2...v2.6.3) (2024-07-01)
+
+
+### Bug Fixes
+
+* local theme change ([#49](https://github.com/diplodoc-platform/client/issues/49)) ([0b36d30](https://github.com/diplodoc-platform/client/commit/0b36d306b7b25b5757e63371a073b5f2edceb081))
+* pop-up definition overlaps header ([#51](https://github.com/diplodoc-platform/client/issues/51)) ([1d5fbf6](https://github.com/diplodoc-platform/client/commit/1d5fbf6d9e4c8689fa627e9851ca1973e4369496))
+
 ## [2.6.2](https://github.com/diplodoc-platform/client/compare/v2.6.1...v2.6.2) (2024-04-22)
 
 
