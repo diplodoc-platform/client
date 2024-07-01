@@ -201,62 +201,64 @@ export function App(props: DocInnerProps): ReactElement {
     return (
         <div className={appClassName}>
             <ThemeProvider theme={theme} direction={direction}>
-                <PageConstructorProvider theme={theme}>
-                    <PageConstructor
-                        custom={{
-                            navigation: {
-                                controls: () => (
-                                    <HeaderControls
-                                        {...pageContext}
-                                        {...pageProps}
-                                        onChangeLang={onChangeLang}
-                                        mobileView={mobileView}
-                                    />
-                                ),
-                            },
-                            blocks: {
-                                page: () => (
-                                    <Page
-                                        {...pageProps}
-                                        {...(headerWithControls ? {} : pageContext)}
-                                    >
-                                        {type === DocumentType.PageConstructor &&
-                                            'data' in data && (
-                                                <ConstructorPage
-                                                    data={data as PageContentData}
-                                                    theme={theme}
-                                                />
-                                            )}
-                                    </Page>
-                                ),
-                            },
-                        }}
-                        content={
-                            fullScreenPC
-                                ? (data.data as PageContent)
-                                : {
-                                      blocks: [
-                                          {
-                                              type: 'page',
-                                              resetPaddings: true,
+                <div>
+                    <PageConstructorProvider theme={theme}>
+                        <PageConstructor
+                            custom={{
+                                navigation: {
+                                    controls: () => (
+                                        <HeaderControls
+                                            {...pageContext}
+                                            {...pageProps}
+                                            onChangeLang={onChangeLang}
+                                            mobileView={mobileView}
+                                        />
+                                    ),
+                                },
+                                blocks: {
+                                    page: () => (
+                                        <Page
+                                            {...pageProps}
+                                            {...(headerWithControls ? {} : pageContext)}
+                                        >
+                                            {type === DocumentType.PageConstructor &&
+                                                'data' in data && (
+                                                    <ConstructorPage
+                                                        data={data as PageContentData}
+                                                        theme={theme}
+                                                    />
+                                                )}
+                                        </Page>
+                                    ),
+                                },
+                            }}
+                            content={
+                                fullScreenPC
+                                    ? (data.data as PageContent)
+                                    : {
+                                          blocks: [
+                                              {
+                                                  type: 'page',
+                                                  resetPaddings: true,
+                                              },
+                                          ],
+                                      }
+                            }
+                            navigation={
+                                fullHeader
+                                    ? {
+                                          header: {
+                                              withBorder: true,
+                                              leftItems: leftItems,
+                                              rightItems: rightItems,
                                           },
-                                      ],
-                                  }
-                        }
-                        navigation={
-                            fullHeader
-                                ? {
-                                      header: {
-                                          withBorder: true,
-                                          leftItems: leftItems,
-                                          rightItems: rightItems,
-                                      },
-                                      logo,
-                                  }
-                                : undefined
-                        }
-                    />
-                </PageConstructorProvider>
+                                          logo,
+                                      }
+                                    : undefined
+                            }
+                        />
+                    </PageConstructorProvider>
+                </div>
             </ThemeProvider>
             <Runtime theme={theme} />
         </div>
