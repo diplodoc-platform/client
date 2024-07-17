@@ -39,7 +39,6 @@
     "@diplodoc/latex-extension": "^1.0.2",
     "@diplodoc/mermaid-extension": "^1.2.1",
     "@diplodoc/transform": "^4.10.3",
-    "mermaid": "^7.1.2",
     "url": "^0.11.0"
   },
   "devDependencies": {
