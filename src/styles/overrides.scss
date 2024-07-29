@@ -123,3 +123,23 @@
         }
     }
 }
+
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-toc {
+        height: fit-content !important;
+    }
+
+    body:has(.pc-navigation) .dc-sidebar {
+        --dc-header-height: var(--header-height, 64px);
+    }
+
+    .pc-navigation-item:has(.dc-controls) {
+        display: none;
+    }
+}
+
+.gc-simple-consent.gc-analytics {
+    right: 0;
+    left: unset;
+    z-index: 101;
+}

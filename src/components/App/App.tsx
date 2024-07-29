@@ -8,6 +8,9 @@ import {
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
+    ControlSizes,
+    CustomNavigation,
+    ConsentPopup,
     DocContentPageData,
     DocLeadingPageData,
     DocPageData,
@@ -37,11 +40,19 @@ import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 import './App.scss';
 import {ConstructorPage} from '../ConstructorPage';
 
+export type DocAnalytics = {
+    gtm?: {
+        id?: string;
+        mode?: 'base' | 'notification';
+    };
+};
+
 export interface AppProps {
     lang: Lang;
     langs: Lang[];
     router: Router;
     type: DocumentType;
+    analytics?: DocAnalytics;
 }
 
 export interface PageContentData extends DocContentPageData {
@@ -95,7 +106,7 @@ type TocData = DocPageData['toc'] & {
 };
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs} = props;
+    const {data, router, lang, langs, analytics} = props;
     const {navigation} = data.toc as TocData;
 
     configure({
@@ -188,6 +199,13 @@ export function App(props: DocInnerProps): ReactElement {
                             </PageConstructorProvider>
                         )}
                     </Page>
+                    {analytics && (
+                        <ConsentPopup
+                            router={router}
+                            gtmId={analytics?.gtm?.id || ''}
+                            consentMode={analytics?.gtm?.mode}
+                        />
+                    )}
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -257,6 +275,13 @@ export function App(props: DocInnerProps): ReactElement {
                         }
                     />
                 </PageConstructorProvider>
+                {analytics && (
+                    <ConsentPopup
+                        router={router}
+                        gtmId={analytics?.gtm?.id || ''}
+                        consentMode={analytics?.gtm?.mode}
+                    />
+                )}
             </ThemeProvider>
             <Runtime theme={theme} />
         </div>

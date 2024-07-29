@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.2",
-    "@diplodoc/components": "^4.3.0",
+    "@diplodoc/components": "^4.10.0",
     "@diplodoc/eslint-config": "^2.0.0",
     "@diplodoc/openapi-extension": "^2.1.0",
     "@diplodoc/prettier-config": "^2.0.0",
