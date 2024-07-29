@@ -197,7 +197,11 @@ export function App(props: DocInnerProps): ReactElement {
                             </PageConstructorProvider>
                         )}
                     </Page>
-                    <ConsentPopup router={router} gtmId={analytics?.gtm?.id || ''} consentMode={analytics?.gtm?.mode} />
+                    <ConsentPopup
+                        router={router}
+                        gtmId={analytics?.gtm?.id || ''}
+                        consentMode={analytics?.gtm?.mode}
+                    />
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -267,7 +271,11 @@ export function App(props: DocInnerProps): ReactElement {
                         }
                     />
                 </PageConstructorProvider>
-                <ConsentPopup router={router} gtmId={analytics?.gtm?.id || ''} consentMode={analytics?.gtm?.mode}/>
+                <ConsentPopup
+                    router={router}
+                    gtmId={analytics?.gtm?.id || ''}
+                    consentMode={analytics?.gtm?.mode}
+                />
             </ThemeProvider>
             <Runtime theme={theme} />
         </div>

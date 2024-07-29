@@ -1,7 +1,13 @@
 import React from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 
-import {App, DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App/App';
+import {
+    App,
+    DocAnalytics,
+    DocInnerProps,
+    DocLeadingPageData,
+    DocPageData,
+} from './components/App/App';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};
 
