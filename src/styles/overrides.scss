@@ -65,7 +65,7 @@
 }
 
 .pc-navigation {
-    z-index:  120;
+    z-index:  101;
 
     .desktop .dc-root_wide-format & .container-fluid {
         padding: 0;
@@ -104,15 +104,8 @@
     }
 }
 
-.pc-mobile-navigation {
-    z-index: 119;
-    // top: calc(var(--header-height) + var(--dc-subheader-height));
-}
-
-
-
 .pc-navigation {
-    z-index:  120;
+    z-index:  101;
 
     .desktop.dc-root_wide-format & .container-fluid {
         padding: 30px;
