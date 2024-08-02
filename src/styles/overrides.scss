@@ -6,7 +6,6 @@
     }
 }
 
-
 .App.document-mode {
     .pc-Grid {
         padding-right: 40px;
@@ -60,12 +59,30 @@
     padding: 20px 0 24px;
 }
 
+.dc-root_wide-format .dc-doc-page__main {
+    padding-left: #{$wideFormatHorizontalPadding};
+    padding-right: #{$wideFormatHorizontalPadding};
+}
+
+.dc-root_wide-format .dc-subnavigation {
+    $wideFormatHorizontalPadding: 1px;
+
+    padding-left: #{$wideFormatHorizontalPadding};
+    padding-right: #{$wideFormatHorizontalPadding};
+
+    width: calc(100% - 2 * #{$wideFormatHorizontalPadding});
+}
+
+.dc-root_wide-format .dc-subnavigation_hidden .dc-subnavigation__share-button {
+    margin-right: 8px;
+}
+
 .pc-block-base {
     padding: 0 !important;
 }
 
 .pc-navigation {
-    z-index:  120;
+    z-index: 120;
 
     .desktop .dc-root_wide-format & .container-fluid {
         padding: 0;
@@ -109,7 +126,7 @@
 }
 
 .pc-navigation {
-    z-index:  120;
+    z-index: 120;
 
     .desktop.dc-root_wide-format & .container-fluid {
         padding: 30px;
@@ -127,3 +144,8 @@
         }
     }
 }
+
+// .pc-foldable-block {
+//     margin-top: calc(var(--dc-subnavigation-height, 52px) + 1px);
+//     border-radius: 0;
+// }
