@@ -4,8 +4,6 @@
   "description": "",
   "main": "./build/server/app.js",
   "scripts": {
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "npm run lint -- --fix",
     "build": "NODE_ENV=production webpack && tsc --emitDeclarationOnly --outDir build",
     "build:dev": "NODE_ENV=development webpack",
     "build:watch": "NODE_ENV=development webpack --watch",
@@ -44,9 +42,7 @@
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.2",
     "@diplodoc/components": "^4.10.0",
-    "@diplodoc/eslint-config": "^2.0.0",
     "@diplodoc/openapi-extension": "^2.1.0",
-    "@diplodoc/prettier-config": "^2.0.0",
     "@diplodoc/tsconfig": "^1.0.2",
     "@gravity-ui/page-constructor": "^5.0.1",
     "@gravity-ui/uikit": "^6.1.1",
@@ -55,8 +51,6 @@
     "babel-loader": "^9.1.2",
     "bem-cn-lite": "^4.1.0",
     "css-loader": "^6.8.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^12.5.0",
     "mini-css-extract-plugin": "^2.7.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
