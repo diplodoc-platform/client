@@ -4,11 +4,16 @@
   "description": "",
   "main": "./build/server/app.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack && tsc --emitDeclarationOnly --outDir build",
-    "build:dev": "NODE_ENV=development webpack",
-    "build:watch": "NODE_ENV=development webpack --watch",
+    "build": "NODE_ENV=production npm run _build && tsc --emitDeclarationOnly --outDir build",
+    "build:dev": "NODE_ENV=development npm run _build",
+    "build:watch": "NODE_ENV=development npm run _build -- --watch",
+    "_build": "webpack --config ./webpack/config.js",
     "prepublishOnly": "rm -rf build && npm ci --no-workspaces && npm run build",
-    "test": "exit 0"
+    "test": "exit 0",
+    "lint": "lint update && lint",
+    "lint:fix": "lint update && lint fix",
+    "pre-commit": "lint update && lint-staged",
+    "prepare": "husky || true"
   },
   "author": "",
   "license": "ISC",
@@ -42,6 +47,7 @@
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.2",
     "@diplodoc/components": "^4.10.0",
+    "@diplodoc/lint": "^1.0.3",
     "@diplodoc/openapi-extension": "^2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
     "@gravity-ui/page-constructor": "^5.0.1",

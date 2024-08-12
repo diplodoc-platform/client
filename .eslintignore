@@ -1,12 +1,9 @@
-node_modules
-build
-cache
-
 .idea
 .vscode
 .history
 .env
 .DS_Store
+node_modules
 /lib
 /dist
 /build
