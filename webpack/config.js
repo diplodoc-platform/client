@@ -1,27 +1,29 @@
-const {resolve, dirname} = require('path');
+const {join, resolve} = require('path');
 const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+
 const RtlCssPlugin = require('./rtl-css');
 
 function config({isServer, isDev, analyze = false}) {
     const mode = isServer ? 'server' : 'client';
-    const modules = (pkg) => dirname(require.resolve(pkg + '/package.json'));
+    const root = (...path) => resolve(__dirname, join('..', ...path));
+    const src = (...path) => root(join('src', ...path));
 
     return {
         mode: isDev ? 'development' : 'production',
         target: isServer ? 'node' : 'web',
         devtool: 'source-map',
         entry: {
-            app: isServer ? './src/index.server.tsx' : './src/index.tsx',
+            app: isServer ? src('index.server.tsx') : src('index.tsx'),
         },
         cache: isDev && {
             type: 'filesystem',
-            cacheDirectory: resolve(`cache/${mode}`)
+            cacheDirectory: root(`cache`, mode)
         },
         output: {
-            path: resolve(__dirname, 'build', mode),
+            path: root('build', mode),
             filename: `[name].js`,
             ...(isServer ? {
                 libraryTarget: 'commonjs2'
@@ -30,9 +32,7 @@ function config({isServer, isDev, analyze = false}) {
         resolve: {
             alias: {
                 'react': require.resolve('react'),
-                '@doc-tools/transform': modules('@diplodoc/transform'),
-                '~@doc-tools/transform': modules('@diplodoc/transform'),
-                'react-player': require.resolve('./src/stub/empty-module'),
+                'react-player': require.resolve('../src/stub/empty-module'),
             },
             fallback: {
                 stream: false,
@@ -97,7 +97,7 @@ function config({isServer, isDev, analyze = false}) {
                 hooks: {
                     pre:function(root, postcss){
                         root.nodes.forEach((node) => {
-                            if(node.selector && node.selector.match(/(?:\[dir=(?:"|')?(rtl|ltr|auto)(?:"|')?\]|\:dir\((rtl|ltr|auto)\))/)){
+                            if(node.selector && node.selector.match(/(?:\[dir=(?:"|')?(rtl|ltr|auto)(?:"|')?\]|:dir\((rtl|ltr|auto)\))/)){
                                 node.nodes.unshift(postcss.comment({text: 'rtl:begin:ignore'}))
                                 node.nodes.push(postcss.comment({text: 'rtl:end:ignore'}))
                             }
@@ -112,7 +112,7 @@ function config({isServer, isDev, analyze = false}) {
                     test: /\.[tj]sx?$/,
                     use: ['babel-loader'],
                     include: [
-                        resolve(__dirname, 'src'),
+                        src(),
                         require.resolve('@diplodoc/mermaid-extension'),
                     ],
                 }, {
