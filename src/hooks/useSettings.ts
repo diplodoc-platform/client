@@ -1,7 +1,7 @@
-import {strToBoolean} from '../utils';
 import {useState} from 'react';
-
 import {TextSizes, Theme} from '@diplodoc/components';
+
+import {strToBoolean} from '../utils';
 
 const DEFAULT_USER_SETTINGS = {
     theme: Theme.Light,
