@@ -1,5 +1,4 @@
 import React from 'react';
-
 import block from 'bem-cn-lite';
 import {
     BackgroundMedia,
@@ -10,6 +9,7 @@ import {
     Theme,
     getThemedValue,
 } from '@gravity-ui/page-constructor';
+
 import {PageContentData} from '../App/App';
 
 export type WithChildren<T = {}> = T & {children?: React.ReactNode};

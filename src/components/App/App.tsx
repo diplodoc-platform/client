@@ -1,5 +1,4 @@
 import React, {ReactElement, useCallback, useEffect} from 'react';
-
 import {
     NavigationData,
     PageConstructor,
@@ -27,18 +26,19 @@ import {
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
+import {ConstructorPage} from '../ConstructorPage';
 import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
 
 import '../../interceptors/leading-page-links';
 
-import '@diplodoc/transform/dist/js/yfm';
+
 import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
+import '@diplodoc/transform/dist/js/yfm';
 
 import './App.scss';
-import {ConstructorPage} from '../ConstructorPage';
 
 export type DocAnalytics = {
     gtm?: {

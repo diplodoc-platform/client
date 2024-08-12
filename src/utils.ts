@@ -1,4 +1,5 @@
 import {Lang, Theme} from '@diplodoc/components';
+
 import {RTL_LANGS, TextDirection} from './constants';
 
 export function strToBoolean(str: string | boolean) {
