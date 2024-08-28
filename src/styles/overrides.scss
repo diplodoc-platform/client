@@ -15,7 +15,7 @@
             padding: 0;
         }
 
-        @media (max-width: map-get($screenBreakpoints, 'md')) {
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
             padding-right: 20px;
             padding-left: 20px;
 
@@ -59,22 +59,21 @@
     padding: 20px 0 24px;
 }
 
-.dc-root_wide-format .dc-doc-page__main {
-    padding-left: #{$wideFormatHorizontalPadding};
-    padding-right: #{$wideFormatHorizontalPadding};
-}
+.dc-root_wide-format {
+    & .dc-subnavigation {
+        $wideFormatHorizontalPadding: 8px;
 
-.dc-root_wide-format .dc-subnavigation {
-    $wideFormatHorizontalPadding: 1px;
+        padding-left: 0;
+        padding-right: $wideFormatHorizontalPadding;
+        width: calc(100% - $wideFormatHorizontalPadding);
+    }
 
-    padding-left: #{$wideFormatHorizontalPadding};
-    padding-right: #{$wideFormatHorizontalPadding};
-
-    width: calc(100% - 2 * #{$wideFormatHorizontalPadding});
-}
-
-.dc-root_wide-format .dc-subnavigation_hidden .dc-subnavigation__share-button {
-    margin-right: 8px;
+    & .dc-doc-page__main {
+        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+            padding-left: #{$wideFormatHorizontalPadding};
+            padding-right: #{$wideFormatHorizontalPadding};
+        }
+    }
 }
 
 .pc-block-base {
@@ -145,7 +144,16 @@
     }
 }
 
-// .pc-foldable-block {
-//     margin-top: calc(var(--dc-subnavigation-height, 52px) + 1px);
-//     border-radius: 0;
-// }
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-toc {
+        height: fit-content !important;
+    }
+
+    body:has(.pc-navigation) .dc-sidebar {
+        --dc-header-height: var(--header-height, 64px);
+    }
+
+    .pc-navigation-item:has(.dc-controls) {
+        display: none;
+    }
+}

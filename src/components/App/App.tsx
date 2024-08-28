@@ -8,6 +8,8 @@ import {
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
+    ControlSizes,
+    CustomNavigation,
     DocContentPageData,
     DocLeadingPageData,
     DocPageData,
@@ -20,6 +22,10 @@ import {
     getPageByType,
     getPageType,
 } from '@diplodoc/components';
+import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
+import {LatexRuntime} from '@diplodoc/latex-extension/react';
+import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
+import '@diplodoc/transform/dist/js/yfm';
 
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
@@ -28,14 +34,11 @@ import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
 
 import '../../interceptors/leading-page-links';
-
-import '@diplodoc/transform/dist/js/yfm';
-import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
-import {LatexRuntime} from '@diplodoc/latex-extension/react';
-import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
+import {ConstructorPage} from '../ConstructorPage';
 
 import './App.scss';
-import {ConstructorPage} from '../ConstructorPage';
+
+const HEADER_HEIGHT = 64;
 
 export interface AppProps {
     lang: Lang;
@@ -198,6 +201,13 @@ export function App(props: DocInnerProps): ReactElement {
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
+    const controlSize: ControlSizes = ControlSizes.L;
+    const userSettings = settings;
+    const toc = data.toc;
+
+    const navigationTocData = {toc, router, headerHeight: HEADER_HEIGHT};
+    const mobileControlsData = {controlSize, lang, userSettings};
+
     return (
         <div className={appClassName}>
             <ThemeProvider theme={theme} direction={direction}>
@@ -247,10 +257,20 @@ export function App(props: DocInnerProps): ReactElement {
                             fullHeader
                                 ? {
                                       header: {
-                                          withBorder: true,
-                                          leftItems: leftItems,
-                                          rightItems: rightItems,
+                                          leftItems: [],
                                       },
+                                      renderNavigation: () => (
+                                          <CustomNavigation
+                                              logo={logo}
+                                              data={{
+                                                  withBorder: true,
+                                                  leftItems: leftItems,
+                                                  rightItems: rightItems,
+                                              }}
+                                              navigationTocData={navigationTocData}
+                                              mobileControlsData={mobileControlsData}
+                                          />
+                                      ),
                                       logo,
                                   }
                                 : undefined
