@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.7.0](https://github.com/diplodoc-platform/client/compare/v2.6.2...v2.7.0) (2024-07-29)
+
+
+### Features
+
+* add consent popup support ([#55](https://github.com/diplodoc-platform/client/issues/55)) ([7a7a43a](https://github.com/diplodoc-platform/client/commit/7a7a43af5c90da7d36645365bf00d51a8351b67e))
+
+
+### Bug Fixes
+
+* @diplodoc/components version ([552a407](https://github.com/diplodoc-platform/client/commit/552a4070d292356c91aef6bdd0cdc0159f959411))
+* local theme change ([#49](https://github.com/diplodoc-platform/client/issues/49)) ([0b36d30](https://github.com/diplodoc-platform/client/commit/0b36d306b7b25b5757e63371a073b5f2edceb081))
+* pop-up definition overlaps header ([#51](https://github.com/diplodoc-platform/client/issues/51)) ([1d5fbf6](https://github.com/diplodoc-platform/client/commit/1d5fbf6d9e4c8689fa627e9851ca1973e4369496))
+* SubNavigation appearance  ([#54](https://github.com/diplodoc-platform/client/issues/54)) ([9eb5da8](https://github.com/diplodoc-platform/client/commit/9eb5da8f0e15c12ecf1fd3f2149b9be254c77280))
+* update @diplodoc/components version ([7196407](https://github.com/diplodoc-platform/client/commit/71964078eff0592c682a58849808ad6b59d682df))
+
 ## [2.6.2](https://github.com/diplodoc-platform/client/compare/v2.6.1...v2.6.2) (2024-04-22)
 
 

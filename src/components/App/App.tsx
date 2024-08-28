@@ -1,5 +1,4 @@
 import React, {ReactElement, useCallback, useEffect} from 'react';
-
 import {
     NavigationData,
     PageConstructor,
@@ -8,6 +7,7 @@ import {
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
+    ConsentPopup,
     ControlSizes,
     CustomNavigation,
     DocContentPageData,
@@ -30,21 +30,28 @@ import '@diplodoc/transform/dist/js/yfm';
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
 import {Layout} from '../Layout';
+import {ConstructorPage} from '../ConstructorPage';
 import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
-
 import '../../interceptors/leading-page-links';
-import {ConstructorPage} from '../ConstructorPage';
 
 import './App.scss';
 
 const HEADER_HEIGHT = 64;
+
+export type DocAnalytics = {
+    gtm?: {
+        id?: string;
+        mode?: 'base' | 'notification';
+    };
+};
 
 export interface AppProps {
     lang: Lang;
     langs: Lang[];
     router: Router;
     type: DocumentType;
+    analytics?: DocAnalytics;
 }
 
 export interface PageContentData extends DocContentPageData {
@@ -98,7 +105,7 @@ type TocData = DocPageData['toc'] & {
 };
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs} = props;
+    const {data, router, lang, langs, analytics} = props;
     const {navigation} = data.toc as TocData;
 
     configure({
@@ -191,6 +198,13 @@ export function App(props: DocInnerProps): ReactElement {
                             </PageConstructorProvider>
                         )}
                     </Page>
+                    {analytics && (
+                        <ConsentPopup
+                            router={router}
+                            gtmId={analytics?.gtm?.id || ''}
+                            consentMode={analytics?.gtm?.mode}
+                        />
+                    )}
                     <Runtime theme={theme} />
                 </ThemeProvider>
             </div>
@@ -277,6 +291,13 @@ export function App(props: DocInnerProps): ReactElement {
                         }
                     />
                 </PageConstructorProvider>
+                {analytics && (
+                    <ConsentPopup
+                        router={router}
+                        gtmId={analytics?.gtm?.id || ''}
+                        consentMode={analytics?.gtm?.mode}
+                    />
+                )}
             </ThemeProvider>
             <Runtime theme={theme} />
         </div>

@@ -1,18 +1,8 @@
-process.env.ESLINT_ENV = 'client';
-
 module.exports = {
     root: true,
-    extends: [
-        '@diplodoc/eslint-config',
-    ],
-    settings: {
-        react: {
-            version: 'detect'
-        }
+    extends: require.resolve('@diplodoc/lint/eslint-config'),
+    parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
     },
-    rules: {
-        'no-implicit-globals': 'off',
-        'callback-return': 'off',
-        'consistent-return': 'off'
-    }
 };

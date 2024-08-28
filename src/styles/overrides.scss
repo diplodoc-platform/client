@@ -144,6 +144,12 @@
     }
 }
 
+.gc-simple-consent.gc-analytics {
+    right: 0;
+    left: unset;
+    z-index: 101;
+}
+
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .dc-toc {
         height: fit-content !important;

@@ -9,5 +9,5 @@
 
 src
 cache
-webpack.config.js
+webpack
 tsconfig.json

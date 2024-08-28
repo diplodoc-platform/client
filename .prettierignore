@@ -1,11 +1,11 @@
-# System
 .idea
 .vscode
 .history
-
-# Libs
+.env
+.DS_Store
 node_modules
-
-# Build
-build
-cache
+/lib
+/dist
+/build
+/cache
+/coverage
