@@ -71,10 +71,8 @@
     }
 }
 
-/* stylelint-disable declaration-no-important */
-
 .pc-block-base {
-    padding: 0 !important;
+    padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .pc-navigation {
@@ -131,7 +129,7 @@
 
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .dc-toc {
-        height: fit-content !important;
+        height: fit-content !important; /* stylelint-disable-line declaration-no-important */
     }
 
     body:has(.pc-navigation) .dc-sidebar {
