@@ -51,11 +51,8 @@
     max-width: 1440px;
 }
 
+.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor),
 .dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor__docs) {
-    padding: 20px 0 24px;
-}
-
-.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor) {
     padding: 20px 0 24px;
 }
 
@@ -84,7 +81,7 @@
     z-index: 120;
 
     .desktop .dc-root_wide-format & .container-fluid {
-        padding: 0;
+        padding: 30px;
 
         & .col {
             padding: 0;
@@ -92,7 +89,7 @@
     }
 
     .mobile .dc-root_wide-format & .container-fluid {
-        padding: 12px;
+        padding: 0 8px 0 12px;
 
         & .col {
             padding: 0;
@@ -124,32 +121,13 @@
     z-index: 119;
 }
 
-.pc-navigation {
-    z-index: 120;
-
-    .desktop.dc-root_wide-format & .container-fluid {
-        padding: 30px;
-
-        & .col {
-            padding: 0;
-        }
-    }
-
-    .mobile.dc-root_wide-format & .container-fluid {
-        padding: 12px;
-
-        & .col {
-            padding: 0;
-        }
-    }
-}
-
 .gc-simple-consent.gc-analytics {
     right: 0;
     left: unset;
     z-index: 101;
 }
 
+// md
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .dc-toc {
         height: fit-content !important;
@@ -161,5 +139,9 @@
 
     .pc-navigation-item:has(.dc-controls) {
         display: none;
+    }
+
+    [dir='rtl'] .pc-page-constructor .Layout__content {
+        margin: 0;
     }
 }
