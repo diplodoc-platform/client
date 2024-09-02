@@ -216,7 +216,7 @@ export function App(props: DocInnerProps): ReactElement {
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
     const controlSize: ControlSizes = ControlSizes.L;
-    const userSettings = settings;
+    const userSettings = {...settings, langs, onChangeLang};
     const toc = data.toc;
 
     const navigationTocData = {toc, router, headerHeight: HEADER_HEIGHT};
