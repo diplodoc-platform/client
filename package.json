@@ -51,7 +51,7 @@
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/openapi-extension": "^2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
-    "@gravity-ui/page-constructor": "^5.0.1",
+    "@gravity-ui/page-constructor": "^5.22.0",
     "@gravity-ui/uikit": "^6.1.1",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
