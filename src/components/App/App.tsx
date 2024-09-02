@@ -215,12 +215,10 @@ export function App(props: DocInnerProps): ReactElement {
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
-    const controlSize: ControlSizes = ControlSizes.L;
     const userSettings = {...settings, langs, onChangeLang};
-    const toc = data.toc;
 
-    const navigationTocData = {toc, router, headerHeight: HEADER_HEIGHT};
-    const mobileControlsData = {controlSize, lang, userSettings};
+    const navigationTocData = {toc: data.toc, router, headerHeight: HEADER_HEIGHT};
+    const mobileControlsData = {controlSize: ControlSizes.L, lang, userSettings};
 
     return (
         <div className={appClassName}>
