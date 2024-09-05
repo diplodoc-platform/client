@@ -125,11 +125,19 @@
     z-index: 101;
 }
 
-// md
-
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .dc-toc {
         height: fit-content !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    body:not(:has(.pc-navigation)) .dc-sidebar {
+        top: var(--dc-subnavigation-height, 52px);
+        z-index: 117;
+        height: calc(100% - var(--dc-subnavigation-height, 52px));
+
+        &-navigation__button {
+            margin-right: 0;
+        }
     }
 
     body:has(.pc-navigation) .dc-sidebar {
