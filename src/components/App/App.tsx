@@ -1,6 +1,7 @@
 import React, {ReactElement, useCallback, useEffect} from 'react';
 import {
     NavigationData,
+    NavigationDropdownItem,
     PageConstructor,
     PageConstructorProvider,
     PageContent,
@@ -15,6 +16,7 @@ import {
     DocPageData,
     DocumentType,
     Lang,
+    MobileDropdown,
     Router,
     Theme,
     configure,
@@ -234,6 +236,9 @@ export function App(props: DocInnerProps): ReactElement {
                                         onChangeLang={onChangeLang}
                                         mobileView={mobileView}
                                     />
+                                ),
+                                MobileDropdown: (item: NavigationDropdownItem) => (
+                                    <MobileDropdown item={item} />
                                 ),
                             },
                             blocks: {
