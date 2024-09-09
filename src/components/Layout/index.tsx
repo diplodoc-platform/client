@@ -23,8 +23,13 @@ type LayoutStatics = {
     Footer: FC<PropsWithChildren>;
 };
 
-export const Layout: LayoutStatics & FC<PropsWithChildren<{doc?: boolean}>> = (props) => {
-    const {children, doc} = props;
+type LayoutProps = {
+    doc?: boolean;
+    headerHeight?: number;
+};
+
+export const Layout: LayoutStatics & FC<PropsWithChildren<LayoutProps>> = (props) => {
+    const {children, doc, headerHeight = 0} = props;
     let header, content, footer;
 
     React.Children.forEach(children as ReactElement[], (child: ReactElement) => {
@@ -42,7 +47,7 @@ export const Layout: LayoutStatics & FC<PropsWithChildren<{doc?: boolean}>> = (p
     });
 
     return (
-        <div className={b()}>
+        <div className={b({'full-header': headerHeight > 0})}>
             {header && <div className={b('header')}>{header}</div>}
             <div className={b('body')}>
                 {content && <div className={b('content')}>{content}</div>}

@@ -1,3 +1,5 @@
+export const HEADER_HEIGHT = 64;
+
 export const RTL_LANGS = [
     'ar',
     'arc',

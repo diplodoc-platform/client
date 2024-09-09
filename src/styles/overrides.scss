@@ -109,9 +109,8 @@
         justify-content: end;
     }
 
-    &__item {
-        width: 100%;
-        transition: width 0.3s;
+    &__buttons &__item {
+        display: contents;
     }
 
     &__mobile-navigation-container {
