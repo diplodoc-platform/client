@@ -37,6 +37,11 @@
         }
     }
 
+    &_full-header {
+        --dc-header-height: 64px;
+        --dc-subnavigation-height: 52px;
+    }
+
     @media only screen and (min-width: 1920px) {
         &__body {
             margin-left: calc(100vw - 100%);

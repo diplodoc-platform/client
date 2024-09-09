@@ -4,7 +4,7 @@ import {ControlSizes, Controls, ControlsLayout, Lang, TextSizes, Theme} from '@d
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeCallback = (value: any) => void;
 
-type Props = {
+export type Props = {
     mobileView: boolean;
 
     theme: Theme;
