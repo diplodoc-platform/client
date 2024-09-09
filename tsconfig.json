@@ -2,7 +2,7 @@
   "extends": "@diplodoc/tsconfig",
   "compilerOptions": {
     "target": "es2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "lib": ["DOM"],
     "declaration": true,
