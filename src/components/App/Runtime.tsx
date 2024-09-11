@@ -3,13 +3,10 @@ import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 import {Theme} from '@diplodoc/components';
+import {useTheme} from '@gravity-ui/uikit';
 
-type RuntimeProps = {
-    theme: Theme;
-};
-
-export function Runtime(props: RuntimeProps) {
-    const {theme} = props;
+export function Runtime() {
+    const theme = useTheme();
 
     return (
         <>
