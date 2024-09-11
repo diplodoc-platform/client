@@ -1,4 +1,16 @@
+import {TextSizes, Theme} from '@diplodoc/components';
+
 export const HEADER_HEIGHT = 64;
+
+export const MOBILE_VIEW_WIDTH_BREAKPOINT = 769;
+
+export const DEFAULT_USER_SETTINGS = {
+    theme: Theme.Light,
+    textSize: TextSizes.M,
+    showMiniToc: true,
+    wideFormat: true,
+    fullScreen: false,
+};
 
 export const RTL_LANGS = [
     'ar',

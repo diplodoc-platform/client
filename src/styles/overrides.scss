@@ -6,47 +6,6 @@
     }
 }
 
-.App.document-mode {
-    .pc-Grid {
-        padding-right: 40px;
-        padding-left: 40px;
-
-        &.pc-navigation {
-            padding: 0;
-        }
-
-        @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-            padding-right: 20px;
-            padding-left: 20px;
-
-            max-width: 100%;
-        }
-
-        .container-fluid {
-            padding-right: 0;
-            padding-left: 0;
-
-            max-width: unset;
-        }
-    }
-
-    .pc-layout__content > .pc-Grid {
-        padding: 0;
-    }
-
-    .pc-layout__navigation > .container-fluid {
-        max-width: 1440px;
-    }
-
-    .dc-doc-page {
-        @media screen and (max-width: 1440px) {
-            &:not(&_regular-page-width) {
-                width: 100%;
-            }
-        }
-    }
-}
-
 .pc-Grid.pc-navigation > .container-fluid {
     max-width: 1440px;
 }
@@ -69,6 +28,30 @@
             padding-inline: #{$wideFormatHorizontalPadding};
         }
     }
+
+    &.desktop {
+        .pc-navigation {
+            .container-fluid {
+                padding: 30px;
+
+                & .col {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    &.mobile {
+        .pc-navigation {
+            .container-fluid {
+                padding: 12px;
+
+                & .col {
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
 
 .pc-block-base {
@@ -77,22 +60,6 @@
 
 .pc-navigation {
     z-index: 120;
-
-    .desktop .dc-root_wide-format & .container-fluid {
-        padding: 30px;
-
-        & .col {
-            padding: 0;
-        }
-    }
-
-    .mobile .dc-root_wide-format & .container-fluid {
-        padding: 0 8px 0 12px;
-
-        & .col {
-            padding: 0;
-        }
-    }
 }
 
 .pc-navigation-popup {
@@ -149,5 +116,48 @@
 
     .pc-navigation-item:has(.dc-controls) {
         display: none;
+    }
+}
+
+.dc-root_full-screen {
+    .App {
+        .pc-Grid {
+            padding-right: 40px;
+            padding-left: 40px;
+
+            &.pc-navigation {
+                padding: 0;
+            }
+
+            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+                padding-right: 20px;
+                padding-left: 20px;
+
+                max-width: 100%;
+            }
+
+            .container-fluid {
+                padding-right: 0;
+                padding-left: 0;
+
+                max-width: unset;
+            }
+        }
+
+        .pc-layout__content > .pc-Grid {
+            padding: 0;
+        }
+
+        .pc-layout__navigation > .container-fluid {
+            max-width: 1440px;
+        }
+
+        .dc-doc-page {
+            @media screen and (max-width: 1440px) {
+                &:not(&_regular-page-width) {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
