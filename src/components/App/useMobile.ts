@@ -1,14 +1,12 @@
 import {useCallback, useEffect, useState} from 'react';
 
-const MOBILE_VIEW_WIDTH_BREAKPOINT = 769;
+import {getMobileView} from '../../utils';
 
 export function useMobile() {
-    const [mobileView, setMobileView] = useState<boolean>(
-        typeof document !== 'undefined' && document.body.clientWidth < MOBILE_VIEW_WIDTH_BREAKPOINT,
-    );
+    const [mobileView, setMobileView] = useState<boolean>(getMobileView());
 
     const onResizeHandler = useCallback(() => {
-        setMobileView(document.body.clientWidth < MOBILE_VIEW_WIDTH_BREAKPOINT);
+        setMobileView(getMobileView());
     }, []);
 
     useEffect(onResizeHandler, [onResizeHandler]);
