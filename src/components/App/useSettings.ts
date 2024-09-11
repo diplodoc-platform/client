@@ -1,26 +1,11 @@
-import {useMemo, useState} from 'react';
-import {TextSizes, Theme} from '@diplodoc/components';
+import type {Settings} from '../../utils';
 
-const DEFAULT_USER_SETTINGS = {
-    theme: Theme.Light,
-    textSize: TextSizes.M,
-    showMiniToc: true,
-    wideFormat: true,
-    fullScreen: false,
-};
+import {useMemo, useState} from 'react';
+
+import {getSettings, setSetting} from '../../utils';
 
 const capitalize = <T extends string>(string: T): Capitalize<T> =>
     string.replace(/^./, (ch) => ch.toUpperCase()) as Capitalize<T>;
-
-const toBoolean = (str: string | boolean) => {
-    if (typeof str === 'boolean') {
-        return str;
-    }
-
-    return str ? str === 'true' : false;
-};
-
-export type Settings = typeof DEFAULT_USER_SETTINGS;
 
 export function useSettings() {
     const settings = getSettings();
@@ -45,22 +30,6 @@ export function useSettings() {
     return controls;
 }
 
-function getSettings() {
-    const theme = getSetting('theme');
-    const textSize = getSetting('textSize');
-    const showMiniToc = getSetting('showMiniToc');
-    const wideFormat = getSetting('wideFormat');
-    const fullScreen = getSetting('fullScreen');
-
-    return {
-        theme,
-        textSize,
-        showMiniToc: toBoolean(showMiniToc),
-        wideFormat: toBoolean(wideFormat),
-        fullScreen: toBoolean(fullScreen),
-    };
-}
-
 type State<P extends keyof Settings> = {
     [prop in P]: Settings[P];
 } & {
@@ -79,24 +48,6 @@ function useSetting<P extends keyof Settings>(name: P, settings: Settings): Stat
             }) as State<P>,
         [name, setting, onChangeSetting],
     );
-}
-
-function getSetting<T extends keyof Settings>(name: T): Settings[T] {
-    if (typeof sessionStorage === 'undefined') {
-        return DEFAULT_USER_SETTINGS[name];
-    }
-
-    try {
-        return (sessionStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
-    } catch {
-        return DEFAULT_USER_SETTINGS[name];
-    }
-}
-
-function setSetting<T>(name: string, value: T) {
-    try {
-        sessionStorage.setItem(name, String(value));
-    } catch {}
 }
 
 function withSavingSetting<T>(settingName: string, onChange: (value: T) => void) {

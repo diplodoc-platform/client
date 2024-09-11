@@ -25,6 +25,7 @@ import {useContent} from '../ConstructorPage/useContent';
 import {useNavigation} from '../ConstructorPage/useNavigation';
 import {LangProvider} from '../../hooks/useLang';
 import '../../interceptors/leading-page-links';
+import '../../interceptors/fast-class-applier';
 
 import {Page} from './Page';
 import {Runtime} from './Runtime';
@@ -172,15 +173,12 @@ export function App(props: DocInnerProps): ReactElement {
     const direction = getDirection(lang);
 
     useEffect(() => {
-        updateRootClassName({
-            mobileView,
-            wideFormat,
-        });
-        updateThemeClassName(theme);
-    }, [theme, mobileView, wideFormat]);
+        updateRootClassName({mobileView, wideFormat, fullScreen});
+        updateThemeClassName({theme});
+    }, [theme, mobileView, wideFormat, fullScreen]);
 
     return (
-        <div className="App document-mode">
+        <div className="App">
             <LangProvider value={lang}>
                 <ThemeProvider theme={theme} direction={direction}>
                     {hasNavigation(data) ? (
