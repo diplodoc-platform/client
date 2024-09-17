@@ -6,7 +6,6 @@
     }
 }
 
-
 .App.document-mode {
     .pc-Grid {
         padding-right: 40px;
@@ -52,23 +51,35 @@
     max-width: 1440px;
 }
 
+.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor),
 .dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor__docs) {
     padding: 20px 0 24px;
 }
 
-.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor) {
-    padding: 20px 0 24px;
+.dc-root_wide-format {
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        & .dc-subnavigation {
+            $wideFormatHorizontalPadding: 8px;
+
+            padding-inline: 0 $wideFormatHorizontalPadding;
+            width: calc(100% - $wideFormatHorizontalPadding);
+        }
+
+        & .dc-doc-page__main {
+            padding-inline: #{$wideFormatHorizontalPadding};
+        }
+    }
 }
 
 .pc-block-base {
-    padding: 0 !important;
+    padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 .pc-navigation {
-    z-index:  101;
+    z-index: 120;
 
     .desktop .dc-root_wide-format & .container-fluid {
-        padding: 0;
+        padding: 30px;
 
         & .col {
             padding: 0;
@@ -76,7 +87,7 @@
     }
 
     .mobile .dc-root_wide-format & .container-fluid {
-        padding: 12px;
+        padding: 0 8px 0 12px;
 
         & .col {
             padding: 0;
@@ -101,6 +112,10 @@
     &__item {
         width: 100%;
         transition: width 0.3s;
+    }
+
+    &__mobile-navigation-container {
+        margin-right: 0;
     }
 }
 
@@ -142,4 +157,28 @@
     right: 0;
     left: unset;
     z-index: 101;
+}
+
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-toc {
+        height: fit-content !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    body:not(:has(.pc-navigation)) .dc-sidebar {
+        top: var(--dc-subnavigation-height, 52px);
+        z-index: 117;
+        height: calc(100% - var(--dc-subnavigation-height, 52px));
+
+        &-navigation__button {
+            margin-right: 0;
+        }
+    }
+
+    body:has(.pc-navigation) .dc-sidebar {
+        --dc-header-height: var(--header-height, 64px);
+    }
+
+    .pc-navigation-item:has(.dc-controls) {
+        display: none;
+    }
 }

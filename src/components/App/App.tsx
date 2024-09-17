@@ -1,20 +1,22 @@
 import React, {ReactElement, useCallback, useEffect} from 'react';
 import {
     NavigationData,
+    NavigationDropdownItem,
     PageConstructor,
     PageConstructorProvider,
     PageContent,
 } from '@gravity-ui/page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
+    ConsentPopup,
     ControlSizes,
     CustomNavigation,
-    ConsentPopup,
     DocContentPageData,
     DocLeadingPageData,
     DocPageData,
     DocumentType,
     Lang,
+    MobileDropdown,
     Router,
     Theme,
     configure,
@@ -39,6 +41,8 @@ import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 import '@diplodoc/transform/dist/js/yfm';
 
 import './App.scss';
+
+const HEADER_HEIGHT = 64
 
 export type DocAnalytics = {
     gtm?: {
@@ -216,6 +220,11 @@ export function App(props: DocInnerProps): ReactElement {
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
+    const userSettings = {...settings, langs, onChangeLang};
+
+    const navigationTocData = {toc: data.toc, router, headerHeight: HEADER_HEIGHT};
+    const mobileControlsData = {controlSize: ControlSizes.L, lang, userSettings};
+
     return (
         <div className={appClassName}>
             <ThemeProvider theme={theme} direction={direction}>
@@ -230,6 +239,9 @@ export function App(props: DocInnerProps): ReactElement {
                                         onChangeLang={onChangeLang}
                                         mobileView={mobileView}
                                     />
+                                ),
+                                MobileDropdown: (item: NavigationDropdownItem) => (
+                                    <MobileDropdown item={item} />
                                 ),
                             },
                             blocks: {
