@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/diplodoc-platform/client/compare/v2.7.0...v2.8.0) (2024-09-17)
+
+
+### Features
+
+* new mobile-ui and refactoring gravity-ui/page-constructor navigation  ([#57](https://github.com/diplodoc-platform/client/issues/57)) ([2d3c90b](https://github.com/diplodoc-platform/client/commit/2d3c90b27d938d394633763700ee6bbeb319078e))
+
 ## [2.7.0](https://github.com/diplodoc-platform/client/compare/v2.6.2...v2.7.0) (2024-07-29)
 
 
