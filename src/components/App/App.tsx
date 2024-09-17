@@ -1,6 +1,7 @@
 import React, {ReactElement, useCallback, useEffect} from 'react';
 import {
     NavigationData,
+    NavigationDropdownItem,
     PageConstructor,
     PageConstructorProvider,
     PageContent,
@@ -8,11 +9,14 @@ import {
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
+    ControlSizes,
+    CustomNavigation,
     DocContentPageData,
     DocLeadingPageData,
     DocPageData,
     DocumentType,
     Lang,
+    MobileDropdown,
     Router,
     Theme,
     configure,
@@ -20,10 +24,10 @@ import {
     getPageByType,
     getPageType,
 } from '@diplodoc/components';
-import '@diplodoc/transform/dist/js/yfm';
 import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
+import '@diplodoc/transform/dist/js/yfm';
 
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
@@ -34,6 +38,8 @@ import {useMobile} from '../../hooks/useMobile';
 import '../../interceptors/leading-page-links';
 
 import './App.scss';
+
+const HEADER_HEIGHT = 64;
 
 export type DocAnalytics = {
     gtm?: {
@@ -211,6 +217,11 @@ export function App(props: DocInnerProps): ReactElement {
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
     const headerWithControls = rightItems.some((item: {type: string}) => item.type === 'controls');
 
+    const userSettings = {...settings, langs, onChangeLang};
+
+    const navigationTocData = {toc: data.toc, router, headerHeight: HEADER_HEIGHT};
+    const mobileControlsData = {controlSize: ControlSizes.L, lang, userSettings};
+
     return (
         <div className={appClassName}>
             <ThemeProvider theme={theme} direction={direction}>
@@ -225,6 +236,9 @@ export function App(props: DocInnerProps): ReactElement {
                                         onChangeLang={onChangeLang}
                                         mobileView={mobileView}
                                     />
+                                ),
+                                MobileDropdown: (item: NavigationDropdownItem) => (
+                                    <MobileDropdown item={item} />
                                 ),
                             },
                             blocks: {
@@ -260,10 +274,20 @@ export function App(props: DocInnerProps): ReactElement {
                             fullHeader
                                 ? {
                                       header: {
-                                          withBorder: true,
-                                          leftItems: leftItems,
-                                          rightItems: rightItems,
+                                          leftItems: [],
                                       },
+                                      renderNavigation: () => (
+                                          <CustomNavigation
+                                              logo={logo}
+                                              data={{
+                                                  withBorder: true,
+                                                  leftItems: leftItems,
+                                                  rightItems: rightItems,
+                                              }}
+                                              navigationTocData={navigationTocData}
+                                              mobileControlsData={mobileControlsData}
+                                          />
+                                      ),
                                       logo,
                                   }
                                 : undefined
