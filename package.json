@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.2",
-    "@diplodoc/components": "^4.12.0",
+    "@diplodoc/components": "^4.12.2",
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/openapi-extension": "^2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
