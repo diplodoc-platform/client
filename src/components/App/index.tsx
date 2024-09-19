@@ -1,8 +1,10 @@
 import type {NavigationData, PageContent} from '@gravity-ui/page-constructor';
 import type {ReactElement} from 'react';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
+import type {SearchConfig} from '../Search';
+import type {RouterConfig} from '../Router';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
@@ -11,11 +13,12 @@ import {
     DocLeadingPageData,
     DocPageData,
     Lang,
-    Router,
     configure,
 } from '@diplodoc/components';
 import '@diplodoc/transform/dist/js/yfm';
 
+import {SearchProvider} from '../Search';
+import {RouterProvider} from '../Router';
 import {getDirection, updateRootClassName, updateThemeClassName} from '../../utils';
 import {LangProvider} from '../../hooks/useLang';
 import '../../interceptors/leading-page-links';
@@ -38,7 +41,8 @@ export type DocAnalytics = {
 export interface AppProps {
     lang: Lang;
     langs: Lang[];
-    router: Router;
+    router: RouterConfig;
+    search?: SearchConfig;
     analytics?: DocAnalytics;
 }
 
@@ -63,7 +67,7 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, analytics} = props;
+    const {data, router, lang, search, analytics} = props;
 
     configure({
         lang,
@@ -75,20 +79,26 @@ export function App(props: DocInnerProps): ReactElement {
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc} = settings;
 
-    const page = {
-        router,
+    const page = useMemo(
+        () => ({
+            router,
 
-        theme,
-        textSize,
-        wideFormat,
-        fullScreen,
-        showMiniToc,
-    };
-    const controls: HeaderControlsProps = {
-        ...settings,
-        ...langs,
-        mobileView,
-    };
+            theme,
+            textSize,
+            wideFormat,
+            fullScreen,
+            showMiniToc,
+        }),
+        [router, theme, textSize, wideFormat, fullScreen, showMiniToc],
+    );
+    const controls: HeaderControlsProps = useMemo(
+        () => ({
+            ...settings,
+            ...langs,
+            mobileView,
+        }),
+        [langs, settings, mobileView],
+    );
     const direction = getDirection(lang);
 
     useEffect(() => {
@@ -100,19 +110,23 @@ export function App(props: DocInnerProps): ReactElement {
         <div className="App">
             <ThemeProvider theme={theme} direction={direction}>
                 <LangProvider value={lang}>
-                    {hasNavigation(data) ? (
-                        <RichNavPage data={data} props={page} controls={controls} />
-                    ) : (
-                        <LegacyNavPage data={data} props={page} controls={controls} />
-                    )}
-                    {analytics && (
-                        <ConsentPopup
-                            router={router}
-                            gtmId={analytics?.gtm?.id || ''}
-                            consentMode={analytics?.gtm?.mode}
-                        />
-                    )}
-                    <Runtime />
+                    <RouterProvider value={router}>
+                        <SearchProvider value={search}>
+                            {hasNavigation(data) ? (
+                                <RichNavPage data={data} props={page} controls={controls} />
+                            ) : (
+                                <LegacyNavPage data={data} props={page} controls={controls} />
+                            )}
+                            {analytics && (
+                                <ConsentPopup
+                                    router={router}
+                                    gtmId={analytics?.gtm?.id || ''}
+                                    consentMode={analytics?.gtm?.mode}
+                                />
+                            )}
+                            <Runtime />
+                        </SearchProvider>
+                    </RouterProvider>
                 </LangProvider>
             </ThemeProvider>
         </div>
