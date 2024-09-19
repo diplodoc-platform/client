@@ -28,8 +28,12 @@ type LayoutProps = {
     headerHeight?: number;
 };
 
+const defaults = {
+    doc: false,
+};
+
 export const Layout: LayoutStatics & FC<PropsWithChildren<LayoutProps>> = (props) => {
-    const {children, doc, headerHeight = 0} = props;
+    const {children, doc, headerHeight = 0} = {...defaults, ...props};
     let header, content, footer;
 
     React.Children.forEach(children as ReactElement[], (child: ReactElement) => {
@@ -58,10 +62,6 @@ export const Layout: LayoutStatics & FC<PropsWithChildren<LayoutProps>> = (props
 };
 
 Layout.displayName = 'Layout';
-
-Layout.defaultProps = {
-    doc: false,
-};
 
 Layout.Header = Header;
 Layout.Content = Content;
