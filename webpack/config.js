@@ -6,36 +6,40 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 const RtlCssPlugin = require('./rtl-css');
 
+const EMPTY_MODULE = require.resolve('../src/stub/empty-module');
+
 function config({isServer, isDev, analyze = false}) {
     const mode = isServer ? 'server' : 'client';
     const root = (...path) => resolve(__dirname, join('..', ...path));
     const src = (...path) => root(join('src', ...path));
+    const valuable = (object) =>
+        Object.entries(object)
+            .filter(([, value]) => value)
+            .reduce((acc, [key, value]) => Object.assign(acc, {[key]: value}), {});
 
     return {
         mode: isDev ? 'development' : 'production',
         target: isServer ? 'node' : 'web',
         devtool: 'source-map',
-        entry: {
+        entry: valuable({
             app: isServer ? src('index.server.tsx') : src('index.tsx'),
-        },
+            search: isServer ? null : src('search.tsx'),
+        }),
         cache: isDev && {
             type: 'filesystem',
             cacheDirectory: root(`cache`, mode),
         },
-        output: {
+        output: valuable({
             path: root('build', mode),
             filename: `[name].js`,
-            ...(isServer
-                ? {
-                      libraryTarget: 'commonjs2',
-                  }
-                : {}),
-        },
+            libraryTarget: isServer ? 'commonjs2' : null,
+        }),
         resolve: {
-            alias: {
+            alias: valuable({
                 react: require.resolve('react'),
-                'react-player': require.resolve('../src/stub/empty-module'),
-            },
+                'react-player': EMPTY_MODULE,
+                '@diplodoc/transform/dist/js/yfm': isServer ? null : EMPTY_MODULE,
+            }),
             fallback: {
                 stream: false,
                 crypto: false,
@@ -48,7 +52,6 @@ function config({isServer, isDev, analyze = false}) {
                 '.scss',
             ]),
         },
-        externals: isServer ? ['@diplodoc/transform/dist/js/yfm'] : [],
         optimization: {
             minimize: !isServer,
             splitChunks: {
@@ -56,13 +59,14 @@ function config({isServer, isDev, analyze = false}) {
                 cacheGroups: {
                     react: {
                         test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                        priority: 10,
                         name: 'react',
                         chunks: 'all',
                     },
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
                         name: 'vendor',
-                        chunks: 'all',
+                        chunks: 'initial',
                     },
                 },
             },
@@ -85,18 +89,66 @@ function config({isServer, isDev, analyze = false}) {
             new WebpackManifestPlugin({
                 generate: (seed, files) => {
                     const name = ({name}) => name;
+                    const not =
+                        (actor) =>
+                        (...args) =>
+                            !actor(...args);
+                    const allOf =
+                        (...actors) =>
+                        (...args) =>
+                            actors.every((actor) => actor(...args));
+                    const oneOf =
+                        (...actors) =>
+                        (...args) =>
+                            actors.some((actor) => actor(...args));
+                    const isInitial = ({isInitial}) => isInitial;
                     const endsWith =
                         (tail) =>
                         ({name}) =>
                             name.endsWith(tail);
+                    const byRuntime = (runtime) => (file) => {
+                        if (!file.chunk || !file.chunk.runtime) {
+                            return true;
+                        }
+
+                        if (file.chunk.runtime.size) {
+                            return file.chunk.runtime.has(runtime);
+                        }
+
+                        return file.chunk?.runtime === runtime;
+                    };
                     const runtimeLast = (a, b) => b.chunk?.id - a.chunk?.id;
                     const appLast = (a, b) =>
                         a.chunk?.name.includes('app') - b.chunk?.name.includes('app');
 
-                    return {
-                        js: files.filter(endsWith('.js')).sort(runtimeLast).map(name),
-                        css: files.filter(endsWith('.css')).sort(appLast).map(name),
-                    };
+                    const runtimes = {};
+                    for (const runtime of ['search', 'app']) {
+                        runtimes[runtime] = {
+                            async: files
+                                .filter(
+                                    allOf(
+                                        not(isInitial),
+                                        not(oneOf(endsWith('.rtl.css'), endsWith('.rtl.js'))),
+                                    ),
+                                )
+                                .filter(oneOf(endsWith('.css'), endsWith('.js')))
+                                .map(name),
+                            js: files
+                                .filter(oneOf(isInitial, endsWith('.rtl.js')))
+                                .filter(endsWith('.js'))
+                                .filter(byRuntime(runtime))
+                                .sort(runtimeLast)
+                                .map(name),
+                            css: files
+                                .filter(oneOf(isInitial, endsWith('.rtl.css')))
+                                .filter(endsWith('.css'))
+                                .filter(byRuntime(runtime))
+                                .sort(appLast)
+                                .map(name),
+                        };
+                    }
+
+                    return runtimes;
                 },
             }),
             new RtlCssPlugin({

@@ -71,7 +71,7 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
 
     const CustomSuggest = useCallback(() => <Suggest />, []);
     const CustomControls = useCallback(() => <HeaderControls {...controls} />, [controls]);
-    const navigation = useNavigation(data, CustomControls, CustomSuggest);
+    const navigation = useNavigation(data, controls, CustomControls, CustomSuggest);
 
     const CustomPage = useCallback(
         () => (

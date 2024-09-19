@@ -4,6 +4,11 @@ import {createRoot, hydrateRoot} from 'react-dom/client';
 import {App, DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};
+export type {
+    SearchConfig as ISearchProviderConfig,
+    WorkerConfig as ISearchWorkerConfig,
+    WorkerApi as ISearchWorkerApi,
+} from './components/Search';
 
 declare global {
     interface Window {
