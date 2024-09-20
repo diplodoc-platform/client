@@ -24,6 +24,10 @@ import {
     getPageByType,
     getPageType,
 } from '@diplodoc/components';
+import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
+import {LatexRuntime} from '@diplodoc/latex-extension/react';
+import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
+import '@diplodoc/transform/dist/js/yfm';
 
 import {HeaderControls} from '../HeaderControls';
 import {getDirection, updateRootClassName} from '../../utils';
@@ -33,15 +37,9 @@ import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
 import '../../interceptors/leading-page-links';
 
-
-import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
-import {LatexRuntime} from '@diplodoc/latex-extension/react';
-import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
-import '@diplodoc/transform/dist/js/yfm';
-
 import './App.scss';
 
-const HEADER_HEIGHT = 64
+const HEADER_HEIGHT = 64;
 
 export type DocAnalytics = {
     gtm?: {
@@ -276,10 +274,20 @@ export function App(props: DocInnerProps): ReactElement {
                             fullHeader
                                 ? {
                                       header: {
-                                          withBorder: true,
-                                          leftItems: leftItems,
-                                          rightItems: rightItems,
+                                          leftItems: [],
                                       },
+                                      renderNavigation: () => (
+                                          <CustomNavigation
+                                              logo={logo}
+                                              data={{
+                                                  withBorder: true,
+                                                  leftItems: leftItems,
+                                                  rightItems: rightItems,
+                                              }}
+                                              navigationTocData={navigationTocData}
+                                              mobileControlsData={mobileControlsData}
+                                          />
+                                      ),
                                       logo,
                                   }
                                 : undefined
