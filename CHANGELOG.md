@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.8.1](https://github.com/diplodoc-platform/client/compare/v2.8.0...v2.8.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* Fix build imports linking mode ([e0e4d09](https://github.com/diplodoc-platform/client/commit/e0e4d09b6f47b1174068aa82e7dd36f230af6945))
+* update transform & components ([#62](https://github.com/diplodoc-platform/client/issues/62)) ([caf0047](https://github.com/diplodoc-platform/client/commit/caf00477db5106309be270047607a93b0565da27))
+
 ## [2.8.0](https://github.com/diplodoc-platform/client/compare/v2.7.0...v2.8.0) (2024-09-17)
 
 ### Features
