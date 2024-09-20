@@ -8,7 +8,10 @@
     "declaration": true,
     "outDir": "build",
     "jsx": "react",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@diplodoc/openapi-extension/*": ["./node_modules/@diplodoc/openapi-extension/build/*"]
+    }
   },
   "include": ["src", "./manifest.d.ts"],
   "exclude": ["node_modules"]
