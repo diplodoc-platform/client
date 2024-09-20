@@ -41,12 +41,12 @@
   "dependencies": {
     "@diplodoc/latex-extension": "^1.0.2",
     "@diplodoc/mermaid-extension": "^1.2.1",
-    "@diplodoc/transform": "^4.10.3",
+    "@diplodoc/transform": "^4.31.3",
     "url": "^0.11.0"
   },
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.2",
-    "@diplodoc/components": "^4.12.0",
+    "@diplodoc/components": "^4.12.5",
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/openapi-extension": "^2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
