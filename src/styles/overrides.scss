@@ -151,6 +151,8 @@
     .pc-navigation-item:has(.dc-controls) {
         display: none;
     }
+.pc-mobile-navigation {
+    z-index: 119;
 }
 
 .gc-simple-consent.gc-analytics {

@@ -31,7 +31,6 @@ import {Layout} from '../Layout';
 import {ConstructorPage} from '../ConstructorPage';
 import {useSettings} from '../../hooks/useSettings';
 import {useMobile} from '../../hooks/useMobile';
-
 import '../../interceptors/leading-page-links';
 
 
