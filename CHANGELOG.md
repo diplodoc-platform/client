@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.2](https://github.com/diplodoc-platform/client/compare/v2.8.1...v2.8.2) (2024-09-20)
+
+
+### Bug Fixes
+
+* update openapi 2.3.2 ([#63](https://github.com/diplodoc-platform/client/issues/63)) ([a774070](https://github.com/diplodoc-platform/client/commit/a7740700805e8dd369df683865f05bab13bbc990))
+
 ## [2.8.1](https://github.com/diplodoc-platform/client/compare/v2.8.0...v2.8.1) (2024-09-20)
 
 
