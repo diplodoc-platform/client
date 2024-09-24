@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/diplodoc-platform/client/compare/v3.0.0...v3.0.1) (2024-09-24)
+
+
+### Bug Fixes
+
+* Update components ([9a54523](https://github.com/diplodoc-platform/client/commit/9a54523c39abc8b43328603657e6534338de1d03))
+
 ## [3.0.0](https://github.com/diplodoc-platform/client/compare/v2.6.2...v3.0.0) (2024-09-24)
 
 ### ⚠ BREAKING CHANGES
