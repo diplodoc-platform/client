@@ -10,6 +10,6 @@
     "jsx": "react",
     "baseUrl": "."
   },
-  "include": ["src", "./manifest.d.ts"],
+  "include": ["./src/*", "./manifest.d.ts"],
   "exclude": ["node_modules"]
 }
