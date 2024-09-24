@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.9.0](https://github.com/diplodoc-platform/client/compare/v2.6.2...v2.9.0) (2024-09-24)
+
+
+### chore
+
+* release 2.9.0 ([#67](https://github.com/diplodoc-platform/client/issues/67)) ([72cf276](https://github.com/diplodoc-platform/client/commit/72cf27648afdd9de7af5b8643f929ea1fb306103))
+
+
+### Features
+
+* add consent popup support ([#55](https://github.com/diplodoc-platform/client/issues/55)) ([daac7c9](https://github.com/diplodoc-platform/client/commit/daac7c9b1c39e24d8afdb7a5a181f3e162af089a))
+* Apply root classes as fast as possible ([1f83522](https://github.com/diplodoc-platform/client/commit/1f83522e8d5fcf628051009e1e596b4d21ebdf95))
+* new mobile-ui and refactoring gravity-ui/page-constructor navigation  ([#57](https://github.com/diplodoc-platform/client/issues/57)) ([50b539a](https://github.com/diplodoc-platform/client/commit/50b539a033ab4c4c1d0ed823b92b61bb94a259f7))
+
+
+### Bug Fixes
+
+* Extract PC blocks to isolated modules ([d72cb4a](https://github.com/diplodoc-platform/client/commit/d72cb4a964a10b2f5d1546c81652bd1c27a49522))
+* Fix build imports linking mode ([28752fb](https://github.com/diplodoc-platform/client/commit/28752fb0388f0d54f344d282ba0a4c538eadbd56))
+* Fix layout defaultProps warning ([a2337ba](https://github.com/diplodoc-platform/client/commit/a2337baae9f9e62c877c48ce4c9f30dd99d196ad))
+* local theme change ([#49](https://github.com/diplodoc-platform/client/issues/49)) ([0b36d30](https://github.com/diplodoc-platform/client/commit/0b36d306b7b25b5757e63371a073b5f2edceb081))
+* Refactor App - split on more parts ([1efa047](https://github.com/diplodoc-platform/client/commit/1efa04780ed959b027d4d8de22bfc6fdda59d85d))
+* update openapi 2.3.2 ([#63](https://github.com/diplodoc-platform/client/issues/63)) ([afaa4d4](https://github.com/diplodoc-platform/client/commit/afaa4d4a5b33b2f08c630749fa6e3cc75908e77d))
+* update transform & components ([#62](https://github.com/diplodoc-platform/client/issues/62)) ([f47679e](https://github.com/diplodoc-platform/client/commit/f47679e1388de1a22ab62665d2ac96877e27b6c6))
+
 ## [2.8.2](https://github.com/diplodoc-platform/client/compare/v2.8.1...v2.8.2) (2024-09-20)
 
 
