@@ -10,6 +10,7 @@
     "_build": "webpack --config ./webpack/config.js",
     "prepublishOnly": "rm -rf build && npm ci --no-workspaces && npm run build",
     "test": "exit 0",
+    "typecheck": "tsc --noEmit",
     "lint": "lint update && lint",
     "lint:fix": "lint update && lint fix",
     "pre-commit": "lint update && lint-staged",
