@@ -1,5 +1,5 @@
 import type {ReactNode} from 'react';
-import type {NavigationData} from '@gravity-ui/page-constructor';
+import type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';
 import type {DocBasePageData} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
@@ -8,7 +8,11 @@ import React, {useMemo} from 'react';
 import {ControlSizes, CustomNavigation, MobileDropdown} from '@diplodoc/components';
 
 import {HEADER_HEIGHT} from '../../constants';
-import {useRouter} from '../';
+import {useRouter, useSearch} from '../';
+
+function findItem(right: NavigationItemModel[], left: NavigationItemModel[], type: string) {
+    return right.some((item) => item.type === type) || left.some((item) => item.type === type);
+}
 
 export const useNavigation = (
     data: DocBasePageData<WithNavigation>,
@@ -21,9 +25,15 @@ export const useNavigation = (
     const {header = {}, logo} = navigation;
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
 
-    const withControls = rightItems.some((item: {type: string}) => item.type === 'controls');
+    const withControls = findItem(rightItems, leftItems, 'controls');
+    const withSearch = findItem(rightItems, leftItems, 'search');
 
+    const search = useSearch();
     const router = useRouter();
+
+    if (search && !withSearch) {
+        rightItems.unshift({type: 'search'} as unknown as NavigationItemModel);
+    }
 
     const navigationData = useMemo(
         () => ({

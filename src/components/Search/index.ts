@@ -1,6 +1,6 @@
 import type {SearchConfig, WorkerApi, WorkerConfig} from './types';
 
-import {createContext} from 'react';
+import {createContext, useContext} from 'react';
 
 export type {SearchConfig, WorkerConfig, WorkerApi};
 
@@ -11,3 +11,7 @@ SearchContext.displayName = 'SearchContext';
 export const SearchProvider = SearchContext.Provider;
 
 export {Search} from './Search';
+
+export function useSearch() {
+    return useContext(SearchContext);
+}
