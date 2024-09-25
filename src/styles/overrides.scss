@@ -16,6 +16,10 @@
 }
 
 .dc-root_wide-format {
+    .dc-doc-layout__right:has(.dc-subnavigation:only-child) {
+        display: none;
+    }
+
     @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
         & .dc-subnavigation {
             $wideFormatHorizontalPadding: 8px;
