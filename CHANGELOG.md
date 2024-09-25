@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.3](https://github.com/diplodoc-platform/client/compare/v3.0.2...v3.0.3) (2024-09-25)
+
+
+### Bug Fixes
+
+* Add default suggest position if search is enabled ([93a7dea](https://github.com/diplodoc-platform/client/commit/93a7dea7647d6a917a40a7dce186c35361ea1fa7))
+* hide OverflowScroller elements ([642e180](https://github.com/diplodoc-platform/client/commit/642e180d8ba2e5a8d6d432a2c485fa0c92093d6b))
+
 ## [3.0.2](https://github.com/diplodoc-platform/client/compare/v3.0.1...v3.0.2) (2024-09-24)
 
 
