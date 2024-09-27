@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/diplodoc-platform/client/compare/v3.0.3...v3.0.4) (2024-09-27)
+
+
+### Bug Fixes
+
+* Add worker loading fallback ([c6d8ef8](https://github.com/diplodoc-platform/client/commit/c6d8ef87726597c9d56054ef78cd5d64caedd21e))
+
 ## [3.0.3](https://github.com/diplodoc-platform/client/compare/v3.0.2...v3.0.3) (2024-09-25)
 
 
