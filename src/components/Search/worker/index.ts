@@ -48,7 +48,7 @@ const HANDLERS = {
     async init(config: InitMessage) {
         self.config = config;
 
-        importScripts(self.config.api);
+        importScripts(self.config.base + '/' + self.config.api);
 
         AssertApi(self.api);
 

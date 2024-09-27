@@ -43,10 +43,7 @@ export class SearchProvider implements ISearchProvider {
     // };
 
     private get base() {
-        return window.location.pathname
-            .split('/')
-            .slice(0, -(this.config.depth + 1))
-            .join('/');
+        return window.location.href.split('/').slice(0, -this.config.depth).join('/');
     }
 
     private async request(message: object) {
@@ -54,8 +51,29 @@ export class SearchProvider implements ISearchProvider {
     }
 }
 
+const BAD_ORIGIN_ERROR = /Script at '(.*?)' cannot be accessed from origin/;
+
+async function loadWorker() {
+    try {
+        return new Worker(new URL('../worker/index.ts', import.meta.url));
+    } catch (error) {
+        // @see https://stackoverflow.com/questions/21408510/chrome-cant-load-web-worker
+        if (error instanceof DOMException) {
+            const match = BAD_ORIGIN_ERROR.exec(error.message);
+            if (match) {
+                const url = match[1];
+                const blob = new Blob([`importScripts('${url}');`], {type: 'text/javascript'});
+
+                return new Worker(URL.createObjectURL(blob));
+            }
+        }
+
+        throw error;
+    }
+}
+
 async function initWorker(config: WorkerConfig) {
-    const worker = new Worker(new URL('../worker/index.ts', import.meta.url));
+    const worker = await loadWorker();
 
     await request(worker, {...config, type: 'init'});
 
