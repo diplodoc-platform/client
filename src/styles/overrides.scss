@@ -32,30 +32,6 @@
             padding-inline: #{$wideFormatHorizontalPadding};
         }
     }
-
-    &.desktop {
-        .pc-navigation {
-            .container-fluid {
-                padding: 30px;
-
-                & .col {
-                    padding: 0;
-                }
-            }
-        }
-    }
-
-    &.mobile {
-        .pc-navigation {
-            .container-fluid {
-                padding: 12px;
-
-                & .col {
-                    padding: 0;
-                }
-            }
-        }
-    }
 }
 
 .pc-block-base {
@@ -64,6 +40,22 @@
 
 .pc-navigation {
     z-index: 120;
+
+    & > .container-fluid {
+        .desktop & {
+            padding-right: $desktopHPadding;
+            padding-left: $desktopHPadding;
+        }
+
+        .mobile & {
+            padding-right: $mobileRPadding;
+            padding-left: $mobileLPadding;
+        }
+
+        & .col {
+            padding: 0;
+        }
+    }
 }
 
 .pc-navigation-popup {
@@ -123,7 +115,7 @@
     }
 }
 
-.dc-root_full-screen {
+.dc-root_document-page {
     .App {
         .pc-Grid {
             padding-right: 40px;
@@ -139,6 +131,10 @@
 
                 max-width: 100%;
             }
+        }
+
+        .pc-layout__content > .pc-Grid {
+            padding: 0;
 
             .container-fluid {
                 padding-right: 0;
@@ -146,10 +142,6 @@
 
                 max-width: unset;
             }
-        }
-
-        .pc-layout__content > .pc-Grid {
-            padding: 0;
         }
 
         .pc-layout__navigation > .container-fluid {
