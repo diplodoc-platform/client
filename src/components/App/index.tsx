@@ -19,10 +19,9 @@ import '@diplodoc/transform/dist/js/yfm';
 
 import {SearchProvider} from '../Search';
 import {RouterProvider} from '../Router';
-import {getDirection, updateRootClassName, updateThemeClassName} from '../../utils';
+import {getDirection, getLandingPage, updateRootClassName, updateThemeClassName} from '../../utils';
 import {LangProvider} from '../../hooks/useLang';
 import '../../interceptors/leading-page-links';
-import '../../interceptors/fast-class-applier';
 
 import {LegacyNavPage, RichNavPage} from './Page';
 import {Runtime} from './Runtime';
@@ -100,11 +99,12 @@ export function App(props: DocInnerProps): ReactElement {
         [langs, settings, mobileView],
     );
     const direction = getDirection(lang);
+    const landingPage = getLandingPage(data);
 
     useEffect(() => {
-        updateRootClassName({mobileView, wideFormat, fullScreen});
+        updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
-    }, [theme, mobileView, wideFormat, fullScreen]);
+    }, [theme, mobileView, wideFormat, fullScreen, landingPage]);
 
     return (
         <div className="App">

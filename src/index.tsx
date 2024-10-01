@@ -2,6 +2,7 @@ import React from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 
 import {App, DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
+import {setRootClasses} from './interceptors/fast-class-applier';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};
 export type {
@@ -23,6 +24,8 @@ const props = window.__DATA__;
 if (!root) {
     throw new Error('Root element not found!');
 }
+
+setRootClasses(props);
 
 if (window.STATIC_CONTENT) {
     hydrateRoot(root, <App {...props} />);

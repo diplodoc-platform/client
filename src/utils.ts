@@ -1,4 +1,6 @@
-import {Lang, Theme} from '@diplodoc/components';
+import type {PageData} from './components/App';
+
+import {Lang, Theme, getPageType} from '@diplodoc/components';
 
 import {
     DEFAULT_USER_SETTINGS,
@@ -27,6 +29,7 @@ export function updateRootClassName(states: {
     wideFormat?: boolean;
     fullScreen?: boolean;
     focusSearch?: boolean;
+    landingPage?: boolean;
 }) {
     if (!isBrowser()) {
         return;
@@ -47,6 +50,10 @@ export function updateRootClassName(states: {
                 break;
             case 'fullScreen':
                 toggle('dc-root_full-screen', states[state]);
+                break;
+            case 'landingPage':
+                toggle('dc-root_document-page', !states[state]);
+                toggle('dc-root_landing-page', states[state]);
                 break;
             case 'mobileView':
                 toggle('mobile', states[state]);
@@ -86,6 +93,10 @@ export function getSettings() {
         wideFormat: toBoolean(wideFormat),
         fullScreen: toBoolean(fullScreen),
     };
+}
+
+export function getLandingPage(data: PageData) {
+    return getPageType(data) === 'PAGE_CONSTRUCTOR';
 }
 
 export function getMobileView() {
