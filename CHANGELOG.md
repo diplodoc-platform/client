@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.0](https://github.com/diplodoc-platform/client/compare/v3.0.4...v3.1.0) (2024-10-03)
+
+
+### Features
+
+* Add search for mobile view ([d9ce237](https://github.com/diplodoc-platform/client/commit/d9ce2377e691ccd69f18d53191e4f60679129988))
+
+
+### Bug Fixes
+
+* Fix landing page mode ([4dcefeb](https://github.com/diplodoc-platform/client/commit/4dcefeb90e1f1fc0b18b1b16bea40dd7a0196837))
+* Update sass-loader to remove deprecation warnings ([bd89846](https://github.com/diplodoc-platform/client/commit/bd898464094ce3396948538004e0b4314daa7ce5))
+
 ## [3.0.4](https://github.com/diplodoc-platform/client/compare/v3.0.3...v3.0.4) (2024-09-27)
 
 
