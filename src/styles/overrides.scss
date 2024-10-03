@@ -42,10 +42,8 @@
     z-index: 120;
 
     & > .container-fluid {
-        .desktop & {
-            padding-right: $desktopHPadding;
-            padding-left: $desktopHPadding;
-        }
+        padding-right: $desktopHPadding;
+        padding-left: $desktopHPadding;
 
         .mobile & {
             padding-right: $mobileRPadding;
@@ -154,6 +152,47 @@
                     width: 100%;
                 }
             }
+        }
+    }
+}
+
+.mobile {
+    .pc-navigation {
+        .pc-overflow-scroller {
+            justify-content: flex-end;
+            overflow: visible;
+        }
+    }
+}
+
+.mobile.dc-root_focused-search {
+    .pc-navigation {
+        .pc-desktop-navigation {
+            &__left,
+            &__navigation-container {
+                display: none;
+            }
+
+            &__right {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            &__mobile-navigation-container {
+                padding-right: 0;
+            }
+        }
+
+        .pc-overflow-scroller__wrapper {
+            width: 100%;
+        }
+
+        .pc-navigation-item:has(> .Suggest) {
+            width: 100%;
+        }
+
+        .pc-mobile-menu-button {
+            display: none;
         }
     }
 }
