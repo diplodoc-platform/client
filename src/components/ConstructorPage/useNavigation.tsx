@@ -40,6 +40,7 @@ export const useNavigation = (
             withBorder: true,
             leftItems: leftItems,
             rightItems: rightItems,
+            customMobileHeaderItems: [{type: 'search'} as unknown as NavigationItemModel],
         }),
         [leftItems, rightItems],
     );
