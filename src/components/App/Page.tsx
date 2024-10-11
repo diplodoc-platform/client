@@ -39,8 +39,6 @@ type PageProps<T extends {} = {}> = {
     controls: HeaderControlsProps;
 };
 
-const EMPTY = {};
-
 export function LegacyNavPage({data, props, controls}: PageProps) {
     const {theme} = props;
 
@@ -79,7 +77,7 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
                 data={data}
                 headerHeight={fullScreen ? 0 : 64}
                 {...props}
-                {...(navigation.withControls ? EMPTY : controls)}
+                {...filterControls(controls, navigation.withControls)}
             >
                 <ConstructorPage {...(data as DocContentPageData).data} />
             </Page>
@@ -105,4 +103,24 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
             />
         </PageConstructorProvider>
     );
+}
+
+function filterControls(controls: HeaderControlsProps, skipNavigationControls: boolean) {
+    if (!skipNavigationControls) {
+        return controls;
+    }
+
+    return {
+        ...controls,
+        theme: undefined,
+        onChangeTheme: undefined,
+        textSize: undefined,
+        onChangeTextSize: undefined,
+        wideFormat: undefined,
+        onChangeWideFormat: undefined,
+        showMiniToc: undefined,
+        onChangeShowMiniToc: undefined,
+        langs: undefined,
+        onChangeLang: undefined,
+    };
 }
