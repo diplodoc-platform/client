@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.1.1](https://github.com/diplodoc-platform/client/compare/v3.1.0...v3.1.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* Fix display controls on pages with navigation ([bda4754](https://github.com/diplodoc-platform/client/commit/bda47547e2b08702980af9527b766fdd1a227b17))
+* Fix pages layout for all cases ([c83c201](https://github.com/diplodoc-platform/client/commit/c83c201fd8a41a9cc90f6ed559edda13a5ba548c))
+* Fix tabs runtime execution ([cf9937a](https://github.com/diplodoc-platform/client/commit/cf9937ae5dfd3520b633f5b21d8168ac5e6e1e65))
+* Replace css `.mobile` class with media rule ([7b804f9](https://github.com/diplodoc-platform/client/commit/7b804f9c30e5410d53daa79c675cc0a4883a1767))
+
 ## [3.1.0](https://github.com/diplodoc-platform/client/compare/v3.0.4...v3.1.0) (2024-10-03)
 
 
