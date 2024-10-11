@@ -38,7 +38,6 @@ function config({isServer, isDev, analyze = false}) {
             alias: valuable({
                 react: require.resolve('react'),
                 'react-player': EMPTY_MODULE,
-                '@diplodoc/transform/dist/js/yfm': isServer ? null : EMPTY_MODULE,
             }),
             fallback: {
                 stream: false,
