@@ -6,21 +6,20 @@
     }
 }
 
-.pc-Grid.pc-navigation > .container-fluid {
-    max-width: 1440px;
-}
-
-.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor),
-.dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor__docs) {
-    padding: 20px 0 24px;
-}
-
 .dc-root_wide-format {
     .dc-doc-layout__right:has(.dc-subnavigation:only-child) {
         display: none;
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media screen and (max-width: 1440px) {
+        .dc-doc-page {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-root_wide-format {
         & .dc-subnavigation {
             $wideFormatHorizontalPadding: 8px;
 
@@ -36,6 +35,10 @@
 
 .pc-block-base {
     padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+
+    .dc-doc-page__main &:first-child {
+        margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+    }
 }
 
 .pc-navigation {
@@ -45,19 +48,53 @@
         padding-right: $desktopHPadding;
         padding-left: $desktopHPadding;
 
-        .mobile & {
-            padding-right: $mobileRPadding;
-            padding-left: $mobileLPadding;
-        }
-
         & .col {
             padding: 0;
         }
     }
 }
 
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .pc-navigation {
+        & > .container-fluid {
+            padding-right: $mobileRPadding;
+            padding-left: $mobileLPadding;
+        }
+
+        .pc-overflow-scroller {
+            justify-content: flex-end;
+            overflow: visible;
+        }
+    }
+}
+
 .pc-navigation-popup {
     background: var(--g-color-base-background);
+}
+
+.pc-layout {
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+
+    &__content > .pc-Grid,
+    &__navigation > .container-fluid {
+        padding-right: $desktopHPadding;
+        padding-left: $desktopHPadding;
+        max-width: 1440px;
+    }
+
+    &__content > .pc-Grid {
+        &:has(.dc-doc-page) {
+            .container-fluid {
+                padding-right: 0;
+                padding-left: 0;
+
+                max-width: unset;
+            }
+        }
+    }
 }
 
 .pc-desktop-navigation {
@@ -113,86 +150,46 @@
     }
 }
 
-.dc-root_document-page {
-    .App {
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-root_document-page {
         .pc-Grid {
-            padding-right: 40px;
-            padding-left: 40px;
-
-            &.pc-navigation {
-                padding: 0;
-            }
-
-            @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-                padding-right: 20px;
-                padding-left: 20px;
-
-                max-width: 100%;
-            }
+            padding-right: 20px;
+            padding-left: 20px;
+            max-width: 100%;
         }
+    }
+}
 
-        .pc-layout__content > .pc-Grid {
-            padding: 0;
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-root_focused-search {
+        .pc-navigation {
+            .pc-desktop-navigation {
+                &__left,
+                &__navigation-container {
+                    display: none;
+                }
 
-            .container-fluid {
-                padding-right: 0;
-                padding-left: 0;
+                &__right {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                }
 
-                max-width: unset;
-            }
-        }
-
-        .pc-layout__navigation > .container-fluid {
-            max-width: 1440px;
-        }
-
-        .dc-doc-page {
-            @media screen and (max-width: 1440px) {
-                &:not(&_regular-page-width) {
-                    width: 100%;
+                &__mobile-navigation-container {
+                    padding-right: 0;
                 }
             }
-        }
-    }
-}
 
-.mobile {
-    .pc-navigation {
-        .pc-overflow-scroller {
-            justify-content: flex-end;
-            overflow: visible;
-        }
-    }
-}
+            .pc-overflow-scroller__wrapper {
+                width: 100%;
+            }
 
-.mobile.dc-root_focused-search {
-    .pc-navigation {
-        .pc-desktop-navigation {
-            &__left,
-            &__navigation-container {
+            .pc-navigation-item:has(> .Suggest) {
+                width: 100%;
+            }
+
+            .pc-mobile-menu-button {
                 display: none;
             }
-
-            &__right {
-                flex: 1 1 100%;
-                max-width: 100%;
-            }
-
-            &__mobile-navigation-container {
-                padding-right: 0;
-            }
-        }
-
-        .pc-overflow-scroller__wrapper {
-            width: 100%;
-        }
-
-        .pc-navigation-item:has(> .Suggest) {
-            width: 100%;
-        }
-
-        .pc-mobile-menu-button {
-            display: none;
         }
     }
 }
