@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .Suggest {
     display: flex;
     justify-content: flex-end;
@@ -14,50 +16,19 @@
         min-width: 500px;
     }
 
-    .mobile & {
-        margin-right: 0;
-        min-width: 36px;
-        max-width: 36px;
-    }
-
-    .mobile.dc-root_focused-search & {
-        min-width: 100%;
-        max-width: 100%;
-    }
-
     &__close {
         display: none;
         flex: none;
         margin-left: 16px;
-
-        .mobile.dc-root_focused-search & {
-            display: block;
-        }
     }
 
     &__end {
         display: none;
-
-        .mobile & {
-            display: block;
-        }
     }
 
     &__input {
         & input::placeholder {
             transition: color 0.1s;
-        }
-
-        .mobile:not(.dc-root_focused-search) & {
-            --g-text-input-placeholder-color: rgba(0, 0, 0, 0);
-
-            & input {
-                padding: 0;
-            }
-
-            & > * {
-                border-color: rgba(0, 0, 0, 0);
-            }
         }
     }
 
@@ -66,6 +37,36 @@
             background: var(--g-color-base-neutral-medium);
             padding: 0 3px 1px;
             border-radius: 4px;
+        }
+    }
+
+    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+        margin-right: 0;
+        min-width: 36px;
+        max-width: 36px;
+
+        .dc-root_focused-search & {
+            min-width: 100%;
+            max-width: 100%;
+
+            &__close,
+            &__end {
+                display: block;
+            }
+        }
+
+        &__input {
+            :root:not(.dc-root_focused-search) & {
+                --g-text-input-placeholder-color: rgba(0, 0, 0, 0);
+
+                & input {
+                    padding: 0;
+                }
+
+                & > * {
+                    border-color: rgba(0, 0, 0, 0);
+                }
+            }
         }
     }
 }
