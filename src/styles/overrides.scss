@@ -1,35 +1,8 @@
 @import './variables';
 
-@media only screen and (max-width: map-get($screenBreakpoints, 'sm')) {
-    .pc-block-base.pc-block-base.pc-block-base:first-child {
-        margin-top: var(--pc-first-block-mobile-indent, 64px);
-    }
-}
-
 .dc-root_wide-format {
     .dc-doc-layout__right:has(.dc-subnavigation:only-child) {
         display: none;
-    }
-
-    @media screen and (max-width: 1440px) {
-        .dc-doc-page {
-            width: 100%;
-        }
-    }
-}
-
-@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-    .dc-root_wide-format {
-        & .dc-subnavigation {
-            $wideFormatHorizontalPadding: 8px;
-
-            padding-inline: 0 $wideFormatHorizontalPadding;
-            width: calc(100% - $wideFormatHorizontalPadding);
-        }
-
-        & .dc-doc-page__main {
-            padding-inline: #{$wideFormatHorizontalPadding};
-        }
     }
 }
 
@@ -50,20 +23,6 @@
 
         & .col {
             padding: 0;
-        }
-    }
-}
-
-@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
-    .pc-navigation {
-        & > .container-fluid {
-            padding-right: $mobileRPadding;
-            padding-left: $mobileLPadding;
-        }
-
-        .pc-overflow-scroller {
-            justify-content: flex-end;
-            overflow: visible;
         }
     }
 }
@@ -124,6 +83,54 @@
     right: 0;
     left: unset;
     z-index: 101;
+}
+
+@media (max-width: map-get($screenBreakpoints, 'xxxl') - 1) {
+    .dc-root_wide-format {
+        .dc-doc-page {
+            width: 100%;
+        }
+
+        .dc-doc-layout__toc {
+            padding-left: 0;
+        }
+    }
+
+    .pc-layout {
+        &__content > .pc-Grid,
+        &__navigation > .container-fluid {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .dc-root_wide-format {
+        & .dc-subnavigation {
+            $wideFormatHorizontalPadding: 8px;
+
+            padding-inline: 0 $wideFormatHorizontalPadding;
+            width: calc(100% - $wideFormatHorizontalPadding);
+        }
+
+        & .dc-doc-page__main {
+            padding-inline: #{$wideFormatHorizontalPadding};
+        }
+    }
+}
+
+@media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    .pc-navigation {
+        & > .container-fluid {
+            padding-right: $mobileRPadding;
+            padding-left: $mobileLPadding;
+        }
+
+        .pc-overflow-scroller {
+            justify-content: flex-end;
+            overflow: visible;
+        }
+    }
 }
 
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
@@ -191,5 +198,11 @@
                 display: none;
             }
         }
+    }
+}
+
+@media (max-width: map-get($screenBreakpoints, 'sm')) {
+    .pc-block-base.pc-block-base.pc-block-base:first-child {
+        margin-top: var(--pc-first-block-mobile-indent, 64px);
     }
 }
