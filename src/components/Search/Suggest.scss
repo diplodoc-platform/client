@@ -27,10 +27,6 @@
     }
 
     &__input {
-        --g-text-input-border-color: var(--g-color-line-generic-accent);
-        --g-text-input-border-color-hover: var(--g-color-line-generic-accent-hover);
-        --g-text-input-placeholder-color: var(--g-color-text-hint);
-
         & input::placeholder {
             transition: color 0.1s;
         }
@@ -48,6 +44,11 @@
         margin-right: 0;
         min-width: 36px;
         max-width: 36px;
+
+        &__end {
+            display: block;
+            color: var(--g-color-text-complementary);
+        }
 
         .dc-root_focused-search & {
             min-width: 100%;

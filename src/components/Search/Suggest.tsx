@@ -47,6 +47,7 @@ export function Suggest() {
             endContent={<SearchButton />}
             className={b('input')}
             classNameContainer={b()}
+            classNameClose={b('close')}
             closeButton={true}
         />
     );
