@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.2](https://github.com/diplodoc-platform/client/compare/v3.1.1...v3.1.2) (2024-10-16)
+
+
+### Bug Fixes
+
+* Fix pages layout for wide format ([55c668e](https://github.com/diplodoc-platform/client/commit/55c668e9c8908dcb9c03ba12d1fbfa92e6b28e11))
+* Fix Search close button for mobile ([49393b4](https://github.com/diplodoc-platform/client/commit/49393b4b6aae1440946eaa1bd285c047572d5a20))
+* Fix search input contrast ([4e1d198](https://github.com/diplodoc-platform/client/commit/4e1d198d7cfabc86f6d798b2828f29598ce1c703))
+
 ## [3.1.1](https://github.com/diplodoc-platform/client/compare/v3.1.0...v3.1.1) (2024-10-11)
 
 
