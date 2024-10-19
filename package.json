@@ -40,8 +40,8 @@
     "./styles": "./build/client/app.css"
   },
   "dependencies": {
-    "@diplodoc/latex-extension": "^1.0.2",
-    "@diplodoc/mermaid-extension": "^1.2.1",
+    "@diplodoc/latex-extension": "^1.3.1",
+    "@diplodoc/mermaid-extension": "^1.3.1",
     "@diplodoc/transform": "^4.31.3",
     "@gravity-ui/icons": "^2.11.0",
     "url": "^0.11.0"
