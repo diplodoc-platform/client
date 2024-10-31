@@ -20,10 +20,6 @@
     & > .container-fluid {
         padding-right: $desktopHPadding;
         padding-left: $desktopHPadding;
-
-        & .col {
-            padding: 0;
-        }
     }
 }
 
@@ -34,10 +30,8 @@
 .pc-layout {
     &__content {
         display: flex;
-        align-items: center;
     }
 
-    &__content > .pc-Grid,
     &__navigation > .container-fluid {
         padding-right: $desktopHPadding;
         padding-left: $desktopHPadding;
@@ -46,6 +40,8 @@
 
     &__content > .pc-Grid {
         &:has(.dc-doc-page) {
+            padding: 0;
+
             .container-fluid {
                 padding-right: 0;
                 padding-left: 0;
@@ -90,10 +86,6 @@
         .dc-doc-page {
             width: 100%;
         }
-
-        .dc-doc-layout__toc {
-            padding-left: 0;
-        }
     }
 
     .pc-layout {
@@ -122,8 +114,8 @@
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .pc-navigation {
         & > .container-fluid {
-            padding-right: $mobileRPadding;
-            padding-left: $mobileLPadding;
+            padding-right: 0;
+            padding-left: 0;
         }
 
         .pc-overflow-scroller {
@@ -160,8 +152,6 @@
 @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
     .dc-root_document-page {
         .pc-Grid {
-            padding-right: 20px;
-            padding-left: 20px;
             max-width: 100%;
         }
     }
