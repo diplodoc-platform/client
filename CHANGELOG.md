@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.4](https://github.com/diplodoc-platform/client/compare/v3.1.3...v3.1.4) (2024-10-31)
+
+
+### Bug Fixes
+
+* Fix navigation and layout paddings ([096a325](https://github.com/diplodoc-platform/client/commit/096a3250d6db925f8618f7cfdf93e4aaff02730d))
+* Update babel-preset ([3e6db78](https://github.com/diplodoc-platform/client/commit/3e6db785c18e0f10944afe75d5fd51633ca3426d))
+
 ## [3.1.3](https://github.com/diplodoc-platform/client/compare/v3.1.2...v3.1.3) (2024-10-19)
 
 
