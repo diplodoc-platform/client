@@ -11,6 +11,10 @@ body {
     box-sizing: border-box;
 }
 
+:root {
+    scroll-padding-top: var(--header-height, 0);
+}
+
 .g-root {
     --dc-header-height: 0;
     --dc-subheader-height: 40px;
