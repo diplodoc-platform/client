@@ -39,16 +39,25 @@
     }
 
     &__content > .pc-Grid {
-        &:has(.dc-doc-page) {
-            padding: 0;
+        padding: 0;
 
-            .container-fluid {
-                padding-right: 0;
-                padding-left: 0;
+        .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
 
-                max-width: unset;
-            }
+            max-width: unset;
         }
+
+        .pc-Grid {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+}
+
+.dc-doc-page {
+    &__main:has(&__content > .pc-page-constructor__docs) {
+        padding: 20px 0 24px;
     }
 }
 
