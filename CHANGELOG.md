@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.5](https://github.com/diplodoc-platform/client/compare/v3.1.4...v3.1.5) (2024-11-02)
+
+
+### Bug Fixes
+
+* Fix leading page paddings ([6558a17](https://github.com/diplodoc-platform/client/commit/6558a1775c7a6949e7d161af9ca46344c4e9f5a7))
+* Fix page scroll position ([ff5d65f](https://github.com/diplodoc-platform/client/commit/ff5d65fe03ba4a0d701fc1e8b661891c5837f570))
+
 ## [3.1.4](https://github.com/diplodoc-platform/client/compare/v3.1.3...v3.1.4) (2024-10-31)
 
 
