@@ -77,7 +77,20 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
                 data={data}
                 headerHeight={fullScreen ? 0 : 64}
                 {...props}
-                {...filterControls(controls, navigation.withControls)}
+                {...(navigation.withControls
+                    ? filterControls(controls, [
+                          'theme',
+                          'onChangeTheme',
+                          'textSize',
+                          'onChangeTextSize',
+                          'wideFormat',
+                          'onChangeWideFormat',
+                          'showMiniToc',
+                          'onChangeShowMiniToc',
+                          'langs',
+                          'onChangeLang',
+                      ])
+                    : controls)}
             >
                 <ConstructorPage {...(data as DocContentPageData).data} />
             </Page>
@@ -105,22 +118,15 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
     );
 }
 
-function filterControls(controls: HeaderControlsProps, skipNavigationControls: boolean) {
-    if (!skipNavigationControls) {
-        return controls;
-    }
+function filterControls(controls: HeaderControlsProps, omitProps: string[]) {
+    return Object.keys(controls).reduce(
+        (acc, key) => {
+            if (!omitProps.includes(key)) {
+                acc[key] = controls[key as keyof HeaderControlsProps];
+            }
 
-    return {
-        ...controls,
-        theme: undefined,
-        onChangeTheme: undefined,
-        textSize: undefined,
-        onChangeTextSize: undefined,
-        wideFormat: undefined,
-        onChangeWideFormat: undefined,
-        showMiniToc: undefined,
-        onChangeShowMiniToc: undefined,
-        langs: undefined,
-        onChangeLang: undefined,
-    };
+            return acc;
+        },
+        {} as Record<string, unknown>,
+    ) as Partial<HeaderControlsProps>;
 }
