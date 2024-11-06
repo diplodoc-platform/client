@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.6](https://github.com/diplodoc-platform/client/compare/v3.1.5...v3.1.6) (2024-11-06)
+
+
+### Bug Fixes
+
+* Fix page props filtering ([e03f71e](https://github.com/diplodoc-platform/client/commit/e03f71ea00f0c87a9abf74a68f8c4dc7041f2201))
+
 ## [3.1.5](https://github.com/diplodoc-platform/client/compare/v3.1.4...v3.1.5) (2024-11-02)
 
 
