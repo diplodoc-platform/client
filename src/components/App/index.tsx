@@ -38,8 +38,8 @@ export type DocAnalytics = {
 };
 
 export interface AppProps {
-    lang: Lang;
-    langs: Lang[];
+    lang: `${Lang}` | Lang;
+    langs: (`${Lang}` | Lang)[];
     router: RouterConfig;
     search?: SearchConfig;
     analytics?: DocAnalytics;

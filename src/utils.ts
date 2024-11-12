@@ -63,7 +63,7 @@ export function updateRootClassName(states: {
     });
 }
 
-export function getDirection(lang: Lang): TextDirection {
+export function getDirection(lang: `${Lang}` | Lang): TextDirection {
     const isRTL = RTL_LANGS.includes(lang);
 
     return isRTL ? TextDirection.RTL : TextDirection.LTR;

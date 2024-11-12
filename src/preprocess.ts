@@ -32,7 +32,7 @@ export type NavigationData = PageContent<ConstructorNavigaitonData>;
 export type ConfigData = ConstructorPageContent | NavigationData;
 
 export interface PreloadParams {
-    lang: Lang;
+    lang: `${Lang}` | Lang;
     pageName: string;
     pageReferer?: string;
 }
@@ -87,7 +87,7 @@ function replaceTransformer(config: BlocksConfig, newTransformer: TransformerRaw
 
 function transformBlocks(
     blocks: ConstructorBlock[],
-    lang: Lang,
+    lang: `${Lang}` | Lang,
     customYfmTransformer: TransformerRaw,
 ) {
     const customConfig = replaceTransformer(config, customYfmTransformer);

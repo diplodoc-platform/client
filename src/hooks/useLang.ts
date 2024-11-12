@@ -1,7 +1,7 @@
 import {createContext, useContext} from 'react';
 import {Lang} from '@diplodoc/components';
 
-const LangContext = createContext<Lang>(Lang.En);
+const LangContext = createContext<`${Lang}` | Lang>(Lang.En);
 
 LangContext.displayName = 'Lang';
 

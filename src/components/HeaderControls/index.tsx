@@ -15,9 +15,9 @@ export type Props = {
     onChangeWideFormat: OnChangeCallback;
     showMiniToc: boolean;
     onChangeShowMiniToc: OnChangeCallback;
-    lang: Lang;
-    langs: Lang[];
-    onChangeLang?: (lang: Lang) => void;
+    lang: Lang | `${Lang}`;
+    langs: (Lang | `${Lang}`)[];
+    onChangeLang?: (lang: `${Lang}` | Lang) => void;
 };
 
 export const HeaderControls = memo<Props>(
