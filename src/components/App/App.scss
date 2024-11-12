@@ -1,10 +1,11 @@
-@import '@diplodoc/transform/dist/css/yfm.css';
-@import '@diplodoc/components';
-@import '@diplodoc/components/themes/common';
-@import '@diplodoc/openapi-extension/runtime/styles';
-@import '../../styles/default.scss';
-@import '../../styles/typography.scss';
-@import '../../styles/overrides.scss';
+@use 'sass:meta';
+@use 'pkg:@diplodoc/transform/dist/css/yfm.css';
+@use 'pkg:@diplodoc/components';
+@use 'pkg:@diplodoc/components/themes/common';
+@use 'pkg:@diplodoc/openapi-extension/runtime/styles';
+@use '../../styles/default';
+@use '../../styles/typography';
+@use '../../styles/overrides';
 
 .App {
     margin: 0;

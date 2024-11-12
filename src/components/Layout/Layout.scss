@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use '../../styles/variables';
 
 .Layout {
     &__header {
@@ -10,7 +10,7 @@
     &__body {
         display: flex;
         flex-flow: column;
-        min-height: calc(100vh - var(--dc-header-height, #{$headerHeight}));
+        min-height: calc(100vh - var(--dc-header-height, #{variables.$headerHeight}));
     }
 
     .pc-page-constructor & {

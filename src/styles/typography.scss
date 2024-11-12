@@ -1,5 +1,5 @@
-@import './variables';
-@import './mixins';
+@use 'variables';
+@use 'mixins';
 
 body.g-root {
     font-feature-settings: 'liga', 'kern';
@@ -19,27 +19,27 @@ h6 {
 }
 
 h1 {
-    @include heading1();
+    @include mixins.heading1();
 }
 
 h2 {
-    @include heading2();
+    @include mixins.heading2();
 }
 
 h3 {
-    @include heading3();
+    @include mixins.heading3();
 }
 
 h4 {
-    @include heading4();
+    @include mixins.heading4();
 }
 
 h5 {
-    @include heading5();
+    @include mixins.heading5();
 }
 
 h6 {
-    @include heading6();
+    @include mixins.heading6();
 }
 
 p,
@@ -58,5 +58,5 @@ sup {
 }
 
 a {
-    @include link();
+    @include mixins.link();
 }

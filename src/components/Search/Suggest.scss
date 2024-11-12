@@ -1,4 +1,5 @@
-@import '../../styles/variables';
+@use 'sass:map';
+@use '../../styles/variables';
 
 .Suggest {
     display: flex;
@@ -40,7 +41,7 @@
         }
     }
 
-    @media (max-width: map-get($screenBreakpoints, 'md') - 1) {
+    @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
         margin-right: 0;
         min-width: 36px;
         max-width: 36px;
