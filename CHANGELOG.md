@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.7](https://github.com/diplodoc-platform/client/compare/v3.1.6...v3.1.7) (2024-11-12)
+
+
+### Bug Fixes
+
+* export ConfigData&PreloadParams types ([0456738](https://github.com/diplodoc-platform/client/commit/0456738cf4ff01ed73ec4c23085badbfe0bf62f8))
+
 ## [3.1.6](https://github.com/diplodoc-platform/client/compare/v3.1.5...v3.1.6) (2024-11-06)
 
 
