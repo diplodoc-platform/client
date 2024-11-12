@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.8](https://github.com/diplodoc-platform/client/compare/v3.1.7...v3.1.8) (2024-11-12)
+
+
+### Bug Fixes
+
+* Extend Lang type by string representation ([447ee7b](https://github.com/diplodoc-platform/client/commit/447ee7b9a4d843f87ad222d528406134c62043f1))
+* Fix sass deprecations ([3bd94d3](https://github.com/diplodoc-platform/client/commit/3bd94d355f995a7dd7ca7dc8c5b4b61f486add1d))
+
 ## [3.1.7](https://github.com/diplodoc-platform/client/compare/v3.1.6...v3.1.7) (2024-11-12)
 
 
