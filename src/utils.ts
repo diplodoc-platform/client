@@ -107,13 +107,23 @@ export function getMobileView() {
     return document.body.clientWidth < MOBILE_VIEW_WIDTH_BREAKPOINT;
 }
 
+const LOCAL_STORAGE_SETTINGS = new Set<String>(['theme']);
+
+function shouldUseLocalStorage(name: String): boolean {
+    return LOCAL_STORAGE_SETTINGS.has(name); // check against a predefined list
+}
+
 function getSetting<T extends keyof Settings>(name: T): Settings[T] {
     if (!isBrowser()) {
         return DEFAULT_USER_SETTINGS[name];
     }
 
     try {
-        return (sessionStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
+        if (shouldUseLocalStorage(name as String)) {
+            return (localStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
+        } else {
+            return (sessionStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
+        }
     } catch {
         return DEFAULT_USER_SETTINGS[name];
     }
@@ -125,6 +135,10 @@ export function setSetting<T>(name: string, value: T) {
     }
 
     try {
-        sessionStorage.setItem(name, String(value));
+        if (shouldUseLocalStorage(name)) {
+            localStorage.setItem(name, String(value));
+        } else {
+            sessionStorage.setItem(name, String(value));
+        }
     } catch {}
 }
