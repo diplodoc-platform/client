@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.9](https://github.com/diplodoc-platform/client/compare/v3.1.8...v3.1.9) (2024-12-16)
+
+
+### Bug Fixes
+
+* fixed window top scroll on search input change ([da7d9a6](https://github.com/diplodoc-platform/client/commit/da7d9a60feca161f8565c15df18e33d99aba3c72))
+
 ## [3.1.8](https://github.com/diplodoc-platform/client/compare/v3.1.7...v3.1.8) (2024-11-12)
 
 
