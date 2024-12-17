@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.10](https://github.com/diplodoc-platform/client/compare/v3.1.9...v3.1.10) (2024-12-17)
+
+
+### Bug Fixes
+
+* empty icon fix ([0220768](https://github.com/diplodoc-platform/client/commit/0220768910f9c4bf4d5264655811e80eaa18198a))
+
 ## [3.1.9](https://github.com/diplodoc-platform/client/compare/v3.1.8...v3.1.9) (2024-12-16)
 
 
