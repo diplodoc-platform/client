@@ -57,7 +57,12 @@ export function LegacyNavPage({data, props, controls}: PageProps) {
 
     return (
         <Page data={data} headerHeight={0} {...props} {...controls}>
-            <PageConstructorProvider theme={theme}>
+            <PageConstructorProvider
+                theme={theme}
+                ssrConfig={{
+                    isServer: Boolean(process.env.BROWSER),
+                }}
+            >
                 <PageConstructor custom={custom} content={content.layout} />
             </PageConstructorProvider>
         </Page>
@@ -108,7 +113,12 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
     );
 
     return (
-        <PageConstructorProvider theme={theme}>
+        <PageConstructorProvider
+            theme={theme}
+            ssrConfig={{
+                isServer: Boolean(process.env.BROWSER),
+            }}
+        >
             <PageConstructor
                 custom={custom}
                 content={content.layout}
