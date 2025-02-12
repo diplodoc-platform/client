@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.10](https://github.com/diplodoc-platform/client/compare/v3.1.9...v3.1.10) (2025-02-12)
+
+
+### Bug Fixes
+
+* add ssr config to PageConstructor ([0bfedba](https://github.com/diplodoc-platform/client/commit/0bfedba85d91449464df7794c914ec3dd983e3f0))
+* empty icon fix ([0220768](https://github.com/diplodoc-platform/client/commit/0220768910f9c4bf4d5264655811e80eaa18198a))
+
+
+### Dependency update
+
+* Update core deps ([5382839](https://github.com/diplodoc-platform/client/commit/53828390314cbf4a9c467c6152bfcb268f648945))
+
 ## [3.1.9](https://github.com/diplodoc-platform/client/compare/v3.1.8...v3.1.9) (2024-12-16)
 
 
