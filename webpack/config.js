@@ -36,6 +36,7 @@ function config({isServer, isDev, analyze = false}) {
         }),
         resolve: {
             alias: valuable({
+                'react/jsx-runtime': require.resolve('react/jsx-runtime'),
                 react: require.resolve('react'),
                 'react-player': EMPTY_MODULE,
             }),
