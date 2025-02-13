@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.11](https://github.com/diplodoc-platform/client/compare/v3.1.10...v3.1.11) (2025-02-13)
+
+
+### Bug Fixes
+
+* Fix build for react-hotkeys-hook ([703bf54](https://github.com/diplodoc-platform/client/commit/703bf543868bdb4036f60b593d66ec97f621f8d5))
+
 ## [3.1.10](https://github.com/diplodoc-platform/client/compare/v3.1.9...v3.1.10) (2025-02-12)
 
 
