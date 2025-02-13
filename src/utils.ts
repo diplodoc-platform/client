@@ -115,10 +115,10 @@ function getSetting<T extends keyof Settings>(name: T): Settings[T] {
 
     try {
         if (name === LOCAL_STORAGE_SETTING.theme) {
-            return (sessionStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
+            return (localStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
         }
 
-        return (localStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
+        return (sessionStorage.getItem(name) as Settings[T]) || DEFAULT_USER_SETTINGS[name];
     } catch {
         return DEFAULT_USER_SETTINGS[name];
     }
@@ -131,9 +131,9 @@ export function setSetting<T>(name: string, value: T) {
 
     try {
         if (name === LOCAL_STORAGE_SETTING.theme) {
-            sessionStorage.setItem(name, String(value));
-        } else {
             localStorage.setItem(name, String(value));
+        } else {
+            sessionStorage.setItem(name, String(value));
         }
     } catch {}
 }
