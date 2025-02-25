@@ -87,8 +87,9 @@ export function App(props: DocInnerProps): ReactElement {
             wideFormat,
             fullScreen,
             showMiniToc,
+            isMobile: mobileView,
         }),
-        [router, theme, textSize, wideFormat, fullScreen, showMiniToc],
+        [router, theme, textSize, wideFormat, fullScreen, showMiniToc, mobileView],
     );
     const controls: HeaderControlsProps = useMemo(
         () => ({
