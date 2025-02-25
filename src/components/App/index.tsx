@@ -13,6 +13,7 @@ import {
     DocLeadingPageData,
     DocPageData,
     Lang,
+    SUPPORTED_LANGS,
     configure,
 } from '@diplodoc/components';
 import '@diplodoc/transform/dist/js/yfm';
@@ -67,14 +68,13 @@ function hasNavigation(
 
 export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang, search, analytics} = props;
+    const settings = useSettings();
+    const langData = useLangs(props);
+    const mobileView = useMobile();
 
     configure({
-        lang,
+        lang: Object.keys(SUPPORTED_LANGS).includes(lang) ? lang : Lang.En,
     });
-
-    const settings = useSettings();
-    const langs = useLangs(props);
-    const mobileView = useMobile();
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc} = settings;
 
@@ -93,10 +93,10 @@ export function App(props: DocInnerProps): ReactElement {
     const controls: HeaderControlsProps = useMemo(
         () => ({
             ...settings,
-            ...langs,
+            ...langData,
             mobileView,
         }),
-        [langs, settings, mobileView],
+        [langData, settings, mobileView],
     );
     const direction = getDirection(lang);
     const landingPage = getLandingPage(data);

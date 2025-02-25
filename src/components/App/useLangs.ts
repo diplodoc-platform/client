@@ -5,12 +5,18 @@ import {useCallback, useMemo} from 'react';
 
 export function useLangs({router, lang, langs}: AppProps) {
     const onChangeLang = useCallback(
-        (lang: `${Lang}` | Lang) => {
-            const path = getLangPath(router, lang);
-            window.location.replace(path);
+        (newLang: `${Lang}` | Lang) => {
+            window.location.replace(getLangPath(router, newLang, window.location.href));
         },
         [router],
     );
 
-    return useMemo(() => ({lang, langs, onChangeLang}), [lang, langs, onChangeLang]);
+    return useMemo(
+        () => ({
+            lang,
+            langs,
+            onChangeLang,
+        }),
+        [lang, langs, onChangeLang],
+    );
 }
