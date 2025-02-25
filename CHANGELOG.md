@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.12](https://github.com/diplodoc-platform/client/compare/v3.1.11...v3.1.12) (2025-02-25)
+
+
+### Bug Fixes
+
+* use only supported langs ([#103](https://github.com/diplodoc-platform/client/issues/103)) ([5f2353c](https://github.com/diplodoc-platform/client/commit/5f2353ce921472436f2860e7120d0c8733255ab6))
+
 ## [3.1.11](https://github.com/diplodoc-platform/client/compare/v3.1.10...v3.1.11) (2025-02-13)
 
 
