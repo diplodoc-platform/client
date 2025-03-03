@@ -26,20 +26,20 @@
         }
 
         &__wrapper {
-            @media (min-width: map.get($screenBreakpoints, 'md')) {
+            @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
                 padding: 0 24px;
             }
 
             .pc-logo__icon {
                 max-height: 36px;
 
-                @media (max-width: map.get($screenBreakpoints, 'md')) {
+                @media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
                     max-width: 300px;
                 }
             }
         }
 
-        @media (min-width: map.get($screenBreakpoints, 'md')) {
+        @media (min-width: map.get(variables.$screenBreakpoints, 'md')) {
             &__right {
                 flex: 0 1 auto;
 
@@ -73,7 +73,7 @@
                 padding: 0;
             }
 
-            @media (max-width: map.get($screenBreakpoints, 'md')) {
+            @media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
                 padding-right: 20px;
                 padding-left: 20px;
 
