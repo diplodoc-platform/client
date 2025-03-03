@@ -3,20 +3,6 @@ const {DefinePlugin} = require('webpack');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const threadLoader = require('thread-loader');
-
-threadLoader.warmup(
-    {
-        // pool options, like passed to loader options
-        // must match loader options to boot the correct pool
-    },
-    [
-        // modules to load
-        // can be any module, i. e.
-        'babel-loader',
-        'sass-loader',
-    ],
-);
 
 const RtlCssPlugin = require('./rtl-css');
 
@@ -188,7 +174,7 @@ function config({isServer, isDev, analyze = false}) {
             rules: [
                 {
                     test: /\.[tj]sx?$/,
-                    use: ['thread-loader', 'babel-loader'],
+                    use: ['babel-loader'],
                     include: [src(), require.resolve('@diplodoc/mermaid-extension')],
                 },
                 {
