@@ -1,0 +1,106 @@
+@import 'variables';
+
+.g-root {
+    .pc-block-base {
+        padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+    }
+
+    .pc-navigation-popup {
+        background: var(--g-color-base-background);
+    }
+
+    .pc-desktop-navigation {
+        &__buttons {
+            flex-basis: 100%;
+            justify-content: end;
+        }
+
+        &__item {
+            width: 100%;
+            transition: width 0.3s;
+
+            &:last-of-type {
+                width: fit-content;
+            }
+        }
+
+        &__wrapper {
+            @media (min-width: map-get($gridBreakpoints, 'md')) {
+                padding: 0 24px;
+            }
+
+            .pc-logo__icon {
+                max-height: 36px;
+
+                @media (max-width: map-get($gridBreakpoints, 'md')) {
+                    max-width: 300px;
+                }
+            }
+        }
+
+        @media (min-width: map-get($gridBreakpoints, 'md')) {
+            &__right {
+                flex: 0 1 auto;
+
+                max-width: 100%;
+            }
+        }
+    }
+
+    .pc-Grid.pc-navigation > .container-fluid {
+        max-width: 1440px;
+
+        .col {
+            padding: 0;
+        }
+    }
+
+    .dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor__docs) {
+        padding: 20px 0 24px;
+    }
+
+    .dc-doc-page__main:has(.dc-doc-page__content > .pc-page-constructor) {
+        padding: 20px 0 24px;
+    }
+
+    .document-mode {
+        .pc-Grid {
+            padding-left: 36px;
+            padding-right: 36px;
+
+            &.pc-navigation {
+                padding: 0;
+            }
+
+            @media (max-width: map-get($gridBreakpoints, 'md')) {
+                padding-right: 20px;
+                padding-left: 20px;
+
+                max-width: 100%;
+            }
+
+            .container-fluid {
+                padding-right: 0;
+                padding-left: 0;
+
+                max-width: unset;
+            }
+        }
+
+        .pc-layout__content > .pc-Grid {
+            padding: 0;
+        }
+
+        .pc-layout__navigation > .container-fluid {
+            max-width: 1440px;
+        }
+
+        .dc-doc-page {
+            @media screen and (max-width: 1440px) {
+                &:not(&_regular-page-width) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
