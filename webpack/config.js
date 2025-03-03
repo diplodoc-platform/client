@@ -203,3 +203,5 @@ module.exports = [
     config({isServer: false, isDev: process.env.NODE_ENV === 'development'}),
     config({isServer: true, isDev: process.env.NODE_ENV === 'development'}),
 ];
+
+module.exports.parallelism = 1;
