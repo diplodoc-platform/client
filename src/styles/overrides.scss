@@ -8,8 +8,6 @@
 }
 
 .pc-block-base {
-    padding: 0 !important; /* stylelint-disable-line declaration-no-important */
-
     .dc-doc-page__main &:first-child {
         margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
     }
@@ -24,10 +22,6 @@
     }
 }
 
-.pc-navigation-popup {
-    background: var(--g-color-base-background);
-}
-
 .pc-layout {
     &__content {
         display: flex;
@@ -40,8 +34,6 @@
     }
 
     &__content > .pc-Grid {
-        padding: 0;
-
         .container-fluid {
             padding-right: 0;
             padding-left: 0;
@@ -63,15 +55,6 @@
 }
 
 .pc-desktop-navigation {
-    &__right {
-        flex: 0 1 auto;
-    }
-
-    &__buttons {
-        flex-basis: 100%;
-        justify-content: end;
-    }
-
     &__buttons &__item {
         display: contents;
     }
