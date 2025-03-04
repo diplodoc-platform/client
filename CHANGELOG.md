@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.2.0](https://github.com/diplodoc-platform/client/compare/v3.1.12...v3.2.0) (2025-03-04)
+
+
+### Features
+
+* page-constructor scss overrides ([#109](https://github.com/diplodoc-platform/client/issues/109)) ([996e34e](https://github.com/diplodoc-platform/client/commit/996e34e7d4537f7327e35be77d9afce17f918ff7))
+
+
+### Bug Fixes
+
+* disable img compression in PC ([#108](https://github.com/diplodoc-platform/client/issues/108)) ([5e60c5e](https://github.com/diplodoc-platform/client/commit/5e60c5e518f854131c1103c011b76c5153da13ef))
+* ismobile prop to page to fix share button ([#106](https://github.com/diplodoc-platform/client/issues/106)) ([64f95d5](https://github.com/diplodoc-platform/client/commit/64f95d59cbd18761ef66f0334a97529899d707dc))
+
 ## [3.1.12](https://github.com/diplodoc-platform/client/compare/v3.1.11...v3.1.12) (2025-02-25)
 
 
