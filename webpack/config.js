@@ -203,3 +203,10 @@ module.exports = [
     config({isServer: false, isDev: process.env.NODE_ENV === 'development'}),
     config({isServer: true, isDev: process.env.NODE_ENV === 'development'}),
 ];
+
+/*
+    https://webpack.js.org/configuration/configuration-types/#parallelism
+    1 = parallel compilation for >1 configs (example: server, client)
+    made for twice speed boost
+*/
+module.exports.parallelism = 1;
