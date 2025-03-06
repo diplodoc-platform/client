@@ -2,9 +2,10 @@ import type {PropsWithChildren} from 'react';
 import type {AppProps, PageData} from './index';
 import type {Settings} from '../../utils';
 
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
 import {DocBasePageData, getPageByType, getPageType} from '@diplodoc/components';
+import {useDiplodocTabs} from '@diplodoc/tabs-extension/react';
 
 import {Layout} from '../Layout';
 import {ConstructorPage} from '../ConstructorPage';
@@ -20,6 +21,17 @@ type Props = PropsWithChildren<Partial<AppProps> & {data: PageData; headerHeight
 export function Page({data, ...pageProps}: Props) {
     const type = getPageType(data);
     const Page = getPageByType(type);
+
+    const tabs = useDiplodocTabs();
+    tabs.configure({saveTabsToLocalStorage: true, saveTabsToQueryStateMode: 'page'});
+
+    useEffect(() => {
+        tabs.onPageChanged();
+        tabs.restoreTabs({
+            ...tabs.getTabsFromLocalStorage(),
+            ...tabs.getTabsFromSearchQuery,
+        });
+    }, [tabs]);
 
     return (
         <Layout headerHeight={pageProps.headerHeight}>
