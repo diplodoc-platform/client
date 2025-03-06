@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'variables';
 
-.dc-root_wide-format {
+.dc-root_wide-format:not(.mobile) {
     .dc-doc-layout__right:has(.dc-subnavigation:only-child) {
         display: none;
     }
