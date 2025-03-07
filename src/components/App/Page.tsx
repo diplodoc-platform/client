@@ -29,7 +29,7 @@ export function Page({data, ...pageProps}: Props) {
         tabs.onPageChanged();
         tabs.restoreTabs({
             ...tabs.getTabsFromLocalStorage(),
-            ...tabs.getTabsFromSearchQuery,
+            ...tabs.getTabsFromSearchQuery(),
         });
     }, [tabs]);
 
