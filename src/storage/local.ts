@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 export default {
-    set: (key: string, payload) => {
+    set: (key: string, payload: unknown) => {
         try {
             return localStorage.setItem(key, JSON.stringify(payload));
         } catch (error) {
