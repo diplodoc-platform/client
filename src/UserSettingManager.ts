@@ -7,7 +7,7 @@ export default class UserSettingManager {
 
     constructor(defaultSettings: object, settings: object | null = null) {
         this.defaultSettings = defaultSettings;
-        this.settingsNames = Object.keys(defaultSettings).filter((key) => key !== 'theme') || []; // filtering settingsNames to avoid reading theme from localStorage
+        this.settingsNames = Object.keys(defaultSettings) || [];
         this.settings = settings;
     }
 
@@ -21,6 +21,7 @@ export default class UserSettingManager {
                 this.settings[settingName] = value;
             }
         }
+
         return storage.set(settingName, value);
     }
 
