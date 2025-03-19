@@ -12,7 +12,7 @@ export default {
         try {
             const value = localStorage.getItem(key);
 
-            if (value) {
+            if (value !== null) {
                 return JSON.parse(value);
             }
 
