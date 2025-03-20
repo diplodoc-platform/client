@@ -32,7 +32,7 @@ export function prefillForms() {
             const iframe = iframes[i];
             const src = iframe.getAttribute('src');
 
-            if (src && src.match(FORMS_DOMAIN_RE)) {
+            if (src !== null && src.match(FORMS_DOMAIN_RE)) {
                 forms.push(iframe);
             }
         }
