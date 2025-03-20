@@ -13,7 +13,7 @@ export function prefillForms() {
         const formPageQuery = Object.keys(pageQuery).reduce((acc, key) => {
             if (key.startsWith(FORM_PREFIX)) {
                 const newKey = key.slice(FORM_PREFIX.length);
-                acc[newKey] = pageQuery[key];
+                acc = {...acc, [newKey]: pageQuery[key]};
             }
 
             return acc;

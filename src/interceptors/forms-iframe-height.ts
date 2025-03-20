@@ -1,5 +1,5 @@
 /* eslint-disable no-var */
-function findIframe(frameElement: MessageEventSource | null) {
+function findIframe(frameElement: MessageEventSource | null): HTMLIFrameElement | void {
     var iframeList = document.querySelectorAll('iframe');
 
     for (var i = 0; i < iframeList.length; ++i) {
