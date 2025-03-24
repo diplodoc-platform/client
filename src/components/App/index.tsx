@@ -73,7 +73,7 @@ export function App(props: DocInnerProps): ReactElement {
     const mobileView = useMobile();
 
     configure({
-        lang: Object.keys(SUPPORTED_LANGS).includes(lang) ? lang : Lang.En,
+        lang: SUPPORTED_LANGS.includes(lang) ? lang : Lang.En,
     });
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc} = settings;
