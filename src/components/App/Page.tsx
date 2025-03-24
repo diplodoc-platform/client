@@ -23,9 +23,9 @@ export function Page({data, ...pageProps}: Props) {
     const Page = getPageByType(type);
 
     const tabs = useDiplodocTabs();
-    tabs.configure({saveTabsToLocalStorage: true, saveTabsToQueryStateMode: 'page'});
 
     useEffect(() => {
+        tabs.configure({saveTabsToLocalStorage: true, saveTabsToQueryStateMode: 'page'});
         tabs.onPageChanged();
         tabs.restoreTabs({
             ...tabs.getTabsFromLocalStorage(),
