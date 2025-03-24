@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.2.0](https://github.com/diplodoc-platform/client/compare/v3.1.12...v3.2.0) (2025-03-24)
+
+
+### Features
+
+* add UserSettingManager ([#114](https://github.com/diplodoc-platform/client/issues/114)) ([7da77aa](https://github.com/diplodoc-platform/client/commit/7da77aa93cc68a998750bf6a75982595d7480853))
+* page-constructor scss overrides ([#109](https://github.com/diplodoc-platform/client/issues/109)) ([996e34e](https://github.com/diplodoc-platform/client/commit/996e34e7d4537f7327e35be77d9afce17f918ff7))
+* tabs restore on page mount ([#105](https://github.com/diplodoc-platform/client/issues/105)) ([e9afd79](https://github.com/diplodoc-platform/client/commit/e9afd79a7120d0c0400d9a3b0dc795895745b85d))
+
+
+### Bug Fixes
+
+* disable img compression in PC ([#108](https://github.com/diplodoc-platform/client/issues/108)) ([5e60c5e](https://github.com/diplodoc-platform/client/commit/5e60c5e518f854131c1103c011b76c5153da13ef))
+* ismobile prop to page to fix share button ([#106](https://github.com/diplodoc-platform/client/issues/106)) ([64f95d5](https://github.com/diplodoc-platform/client/commit/64f95d59cbd18761ef66f0334a97529899d707dc))
+* search query ([#112](https://github.com/diplodoc-platform/client/issues/112)) ([389ffa6](https://github.com/diplodoc-platform/client/commit/389ffa61b9969943e41a084c976e9cd3c5881424))
+* subnav not visible [#111](https://github.com/diplodoc-platform/client/issues/111) ([d4efb27](https://github.com/diplodoc-platform/client/commit/d4efb274ac611a45ea8a4363e826d8046b373bb0))
+* SUPPORTED_LANGS is an array ([#116](https://github.com/diplodoc-platform/client/issues/116)) ([73be2a7](https://github.com/diplodoc-platform/client/commit/73be2a732a19c3a7dc607c55b3dd240a525235ad))
+
 ## [3.1.12](https://github.com/diplodoc-platform/client/compare/v3.1.11...v3.1.12) (2025-02-25)
 
 
