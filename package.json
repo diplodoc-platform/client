@@ -46,14 +46,12 @@
     "@gravity-ui/icons": "^2.11.0",
     "url": "^0.11.0"
   },
-  "peerDependencies": {
-    "@diplodoc/tabs-extension": "^3.7.2"
-  },
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.3",
     "@diplodoc/components": "^4.23.2",
     "@diplodoc/lint": "^1.1.1",
     "@diplodoc/openapi-extension": "^2.7.0",
+    "@diplodoc/tabs-extension": "^3.7.2",
     "@diplodoc/tsconfig": "^1.0.2",
     "@gravity-ui/page-constructor": "^5.22.0",
     "@gravity-ui/uikit": "^6.1.1",
