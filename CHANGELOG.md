@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.3.0](https://github.com/diplodoc-platform/client/compare/v3.2.0...v3.3.0) (2025-03-25)
+
+
+### Features
+
+* move to tabs runtime ([#113](https://github.com/diplodoc-platform/client/issues/113)) ([109b887](https://github.com/diplodoc-platform/client/commit/109b887c4247a780b71b7c3d71e0cb6d10f0a0e5))
+* workflow for deps update ([#120](https://github.com/diplodoc-platform/client/issues/120)) ([ae3383b](https://github.com/diplodoc-platform/client/commit/ae3383b51ddab03e497d5c2657e15d293622323a))
+
+
+### Bug Fixes
+
+* dev dep ([9581be4](https://github.com/diplodoc-platform/client/commit/9581be4a4f5c4521b78e8b2420dc5cc3e7405540))
+* package ([d74a089](https://github.com/diplodoc-platform/client/commit/d74a08974be6e9e691245ab5832e664125db930d))
+
 ## [3.2.0](https://github.com/diplodoc-platform/client/compare/v3.1.12...v3.2.0) (2025-03-24)
 
 
