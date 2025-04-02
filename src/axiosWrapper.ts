@@ -7,7 +7,8 @@ import axios, {
     CancelStatic,
     CancelTokenStatic,
 } from 'axios';
-import _ from 'lodash';
+import get from 'lodash/get';
+import set from 'lodash/set';
 
 const getMethods = ['delete', 'get', 'head', 'options'] as const;
 const postMethods = ['post', 'put', 'patch'] as const;
@@ -19,12 +20,12 @@ function getCsrfMetaTag(): HTMLMetaElement | null {
 function setCsrfHeader(config: AxiosRequestConfig) {
     const csrfMetaTag = getCsrfMetaTag();
     if (csrfMetaTag) {
-        _.set(config, "headers['x-csrf-token']", csrfMetaTag?.content);
+        set(config, "headers['x-csrf-token']", csrfMetaTag?.content);
     }
 }
 
 function updateCsrfToken(response: AxiosResponse) {
-    const token = _.get(response, "headers['x-csrf-token']");
+    const token = get(response, "headers['x-csrf-token']");
     if (!token) {
         return;
     }
