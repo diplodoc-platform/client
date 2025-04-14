@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.2](https://github.com/diplodoc-platform/client/compare/v3.3.1...v3.3.2) (2025-04-14)
+
+
+### Bug Fixes
+
+* Fix locale for UpdatedAt block ([9843010](https://github.com/diplodoc-platform/client/commit/98430105357cbb38b198553c5a10eaca765b748d))
+
 ## [3.3.1](https://github.com/diplodoc-platform/client/compare/v3.3.0...v3.3.1) (2025-03-26)
 
 
