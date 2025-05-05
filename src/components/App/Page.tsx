@@ -35,6 +35,7 @@ type PageProps<T extends {} = {}> = {
     data: DocBasePageData<T> & PageData;
     props: {
         router: AppProps['router'];
+        viewerInterface?: Record<string, boolean>;
     } & Settings;
     controls: HeaderControlsProps;
 };
@@ -71,11 +72,17 @@ export function LegacyNavPage({data, props, controls}: PageProps) {
 }
 
 export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) {
-    const {theme, fullScreen} = props;
+    const {theme, fullScreen, viewerInterface} = props;
 
     const CustomSuggest = useCallback(() => <Suggest />, []);
     const CustomControls = useCallback(() => <HeaderControls {...controls} />, [controls]);
-    const navigation = useNavigation(data, controls, CustomControls, CustomSuggest);
+    const navigation = useNavigation(
+        data,
+        controls,
+        CustomControls,
+        CustomSuggest,
+        viewerInterface,
+    );
 
     const CustomPage = useCallback(
         () => (
