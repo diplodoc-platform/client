@@ -12,6 +12,7 @@ import {
     DocContentPageData as DocContentPageDataBase,
     DocLeadingPageData,
     DocPageData,
+    InterfaceProvider,
     Lang,
     SUPPORTED_LANGS,
     configure,
@@ -44,6 +45,7 @@ export interface AppProps {
     router: RouterConfig;
     search?: SearchConfig;
     analytics?: DocAnalytics;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export type WithNavigation = {
@@ -67,7 +69,7 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, search, analytics} = props;
+    const {data, router, lang, search, analytics, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
@@ -83,7 +85,6 @@ export function App(props: DocInnerProps): ReactElement {
     const page = useMemo(
         () => ({
             router,
-
             theme,
             textSize,
             wideFormat,
@@ -115,19 +116,21 @@ export function App(props: DocInnerProps): ReactElement {
                 <LangProvider value={lang}>
                     <RouterProvider value={router}>
                         <SearchProvider value={search}>
-                            {hasNavigation(data) ? (
-                                <RichNavPage data={data} props={page} controls={controls} />
-                            ) : (
-                                <LegacyNavPage data={data} props={page} controls={controls} />
-                            )}
-                            {analytics && (
-                                <ConsentPopup
-                                    router={router}
-                                    gtmId={analytics?.gtm?.id || ''}
-                                    consentMode={analytics?.gtm?.mode}
-                                />
-                            )}
-                            <Runtime />
+                            <InterfaceProvider interface={viewerInterface || {}}>
+                                {hasNavigation(data) ? (
+                                    <RichNavPage data={data} props={page} controls={controls} />
+                                ) : (
+                                    <LegacyNavPage data={data} props={page} controls={controls} />
+                                )}
+                                {analytics && (
+                                    <ConsentPopup
+                                        router={router}
+                                        gtmId={analytics?.gtm?.id || ''}
+                                        consentMode={analytics?.gtm?.mode}
+                                    />
+                                )}
+                                <Runtime />
+                            </InterfaceProvider>
                         </SearchProvider>
                     </RouterProvider>
                 </LangProvider>
