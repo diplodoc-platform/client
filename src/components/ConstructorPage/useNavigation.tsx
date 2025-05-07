@@ -19,6 +19,7 @@ export const useNavigation = (
     controls: HeaderControlsProps,
     CustomControls: () => ReactNode,
     CustomSuggest: () => ReactNode,
+    viewerInterface?: Record<string, boolean>,
 ) => {
     const {toc} = data;
     const {navigation} = toc;
@@ -56,8 +57,9 @@ export const useNavigation = (
         () => ({
             controlSize: ControlSizes.L,
             userSettings: controls,
+            viewerInterface,
         }),
-        [controls],
+        [controls, viewerInterface],
     );
 
     const layout = useMemo(

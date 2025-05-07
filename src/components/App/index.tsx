@@ -44,6 +44,7 @@ export interface AppProps {
     router: RouterConfig;
     search?: SearchConfig;
     analytics?: DocAnalytics;
+    viewerInterface?: Record<string, boolean>;
 }
 
 export type WithNavigation = {
@@ -67,7 +68,7 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, search, analytics} = props;
+    const {data, router, lang, search, analytics, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
@@ -83,7 +84,7 @@ export function App(props: DocInnerProps): ReactElement {
     const page = useMemo(
         () => ({
             router,
-
+            viewerInterface,
             theme,
             textSize,
             wideFormat,
@@ -91,7 +92,7 @@ export function App(props: DocInnerProps): ReactElement {
             showMiniToc,
             isMobile: mobileView,
         }),
-        [router, theme, textSize, wideFormat, fullScreen, showMiniToc, mobileView],
+        [router, theme, textSize, wideFormat, fullScreen, showMiniToc, mobileView, viewerInterface],
     );
     const controls: HeaderControlsProps = useMemo(
         () => ({
