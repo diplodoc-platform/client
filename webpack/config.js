@@ -41,9 +41,12 @@ function config({isServer, isDev, analyze = false}) {
                 'react-player': EMPTY_MODULE,
             }),
             fallback: {
-                stream: false,
+                bufferutil: false,
+                canvas: false,
                 crypto: false,
+                stream: false,
                 url: require.resolve('url/'),
+                'utf-8-validate': false,
             },
             extensions: (isServer ? ['.server.tsx', '.server.ts', '.server.js'] : []).concat([
                 '.tsx',
