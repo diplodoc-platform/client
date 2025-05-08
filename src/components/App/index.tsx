@@ -22,6 +22,8 @@ import {SearchProvider} from '../Search';
 import {RouterProvider} from '../Router';
 import {getDirection, getLandingPage, updateRootClassName, updateThemeClassName} from '../../utils';
 import {LangProvider} from '../../hooks/useLang';
+import {prefillForms} from '../../interceptors/forms-query-params';
+import '../../interceptors/forms-iframe-height';
 import '../../interceptors/leading-page-links';
 
 import {LegacyNavPage, RichNavPage} from './Page';
@@ -107,6 +109,7 @@ export function App(props: DocInnerProps): ReactElement {
     useEffect(() => {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
+        prefillForms();
     }, [theme, mobileView, wideFormat, fullScreen, landingPage]);
 
     return (
