@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.4](https://github.com/diplodoc-platform/client/compare/v3.3.3...v3.3.4) (2025-05-14)
+
+
+### Bug Fixes
+
+* [#1125](https://github.com/diplodoc-platform/client/issues/1125) no logo in toc ([c7ed82f](https://github.com/diplodoc-platform/client/commit/c7ed82fe5cb7b2b4c70dfe008e9ab01cc1f2b99d))
+
 ## [3.3.3](https://github.com/diplodoc-platform/client/compare/v3.3.2...v3.3.3) (2025-04-22)
 
 
