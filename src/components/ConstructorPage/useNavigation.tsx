@@ -67,13 +67,13 @@ export const useNavigation = (
             },
             renderNavigation: () => (
                 <CustomNavigation
-                    logo={{...logo, icon: logo.icon ?? ''}}
+                    logo={{...logo, icon: logo?.icon ?? ''}}
                     data={navigationData}
                     navigationTocData={navigationTocData}
                     mobileControlsData={mobileControlsData}
                 />
             ),
-            logo: {...logo, icon: logo.icon ?? ''},
+            logo: {...logo, icon: logo?.icon ?? ''},
         }),
         [navigationData, navigationTocData, mobileControlsData, logo],
     );
