@@ -1,5 +1,11 @@
 import type {ReactNode} from 'react';
-import type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';
+import type {
+    FooterData,
+    HeaderData,
+    NavigationData,
+    NavigationItemModel,
+    ThemedNavigationLogoData,
+} from '@gravity-ui/page-constructor';
 import type {DocBasePageData} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
@@ -14,6 +20,13 @@ function findItem(right: NavigationItemModel[], left: NavigationItemModel[], typ
     return right.some((item) => item.type === type) || left.some((item) => item.type === type);
 }
 
+type CustomNavigationData = {
+    logo?: ThemedNavigationLogoData;
+    header: HeaderData;
+    footer?: FooterData;
+    renderNavigation?: () => React.ReactNode;
+};
+
 export const useNavigation = (
     data: DocBasePageData<WithNavigation>,
     controls: HeaderControlsProps,
@@ -22,7 +35,7 @@ export const useNavigation = (
 ) => {
     const {toc} = data;
     const {navigation} = toc;
-    const {header = {}, logo} = navigation;
+    const {header = {} as NavigationData['header'], logo}: CustomNavigationData = navigation;
     const {leftItems = [], rightItems = []} = header as NavigationData['header'];
 
     const withControls = findItem(rightItems, leftItems, 'controls');
