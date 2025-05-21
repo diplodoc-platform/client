@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.4.0](https://github.com/diplodoc-platform/client/compare/v3.3.4...v3.4.0) (2025-05-21)
+
+
+### Features
+
+* add @diplodoc/page-constructor-extension ([#135](https://github.com/diplodoc-platform/client/issues/135)) ([f0de65b](https://github.com/diplodoc-platform/client/commit/f0de65b438a38c4ec692c9e3da093449d799e083))
+
+
+### Bug Fixes
+
+* comments ([a549d66](https://github.com/diplodoc-platform/client/commit/a549d665670194f473addee47aa6f6a03e647833))
+* customize logo type ([3104ef1](https://github.com/diplodoc-platform/client/commit/3104ef124494ebabe3c53cad2467ae45598fe941))
+
 ## [3.3.4](https://github.com/diplodoc-platform/client/compare/v3.3.3...v3.3.4) (2025-05-14)
 
 
