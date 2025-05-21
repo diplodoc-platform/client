@@ -5,6 +5,7 @@ import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
 import {Theme} from '@diplodoc/components';
 import {useTheme} from '@gravity-ui/uikit';
 import {TabsRuntime} from '@diplodoc/tabs-extension/react';
+import {PageConstructorRuntime} from '@diplodoc/page-constructor-extension/react';
 
 export function Runtime() {
     const theme = useTheme();
@@ -21,6 +22,7 @@ export function Runtime() {
                 }}
             />
             <TabsRuntime saveTabsToLocalStorage={true} saveTabsToQueryStateMode="page" />
+            <PageConstructorRuntime />
         </>
     );
 }
