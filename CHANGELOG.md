@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.4.1](https://github.com/diplodoc-platform/client/compare/v3.4.0...v3.4.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* use yfm inteface props ([9a7f701](https://github.com/diplodoc-platform/client/commit/9a7f701f827f9473008af97716da14af6fc7ad83))
+
+
+### Dependency update
+
+* bump components ([aaf1b9d](https://github.com/diplodoc-platform/client/commit/aaf1b9dcee9c401abf64f8923cde1fb71037d30e))
+
 ## [3.4.0](https://github.com/diplodoc-platform/client/compare/v3.3.4...v3.4.0) (2025-05-21)
 
 
