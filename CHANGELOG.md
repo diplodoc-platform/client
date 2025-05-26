@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.2](https://github.com/diplodoc-platform/client/compare/v3.4.1...v3.4.2) (2025-05-26)
+
+
+### Bug Fixes
+
+* add search hidden ([27be0cb](https://github.com/diplodoc-platform/client/commit/27be0cbb96aeb681b6d1670bba0d76d4e54b2069))
+
 ## [3.4.1](https://github.com/diplodoc-platform/client/compare/v3.4.0...v3.4.1) (2025-05-23)
 
 
