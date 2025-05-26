@@ -1,7 +1,7 @@
 import type {ISearchProvider, SearchSuggestApi} from '@diplodoc/components';
 
 import React, {useCallback, useRef} from 'react';
-import {SearchSuggest} from '@diplodoc/components';
+import {SearchSuggest, useInterface} from '@diplodoc/components';
 import {Icon} from '@gravity-ui/uikit';
 import {Magnifier} from '@gravity-ui/icons';
 import block from 'bem-cn-lite';
@@ -20,6 +20,7 @@ function SearchButton() {
 export function Suggest() {
     const provider: ISearchProvider | null = useProvider();
     const suggest = useRef<SearchSuggestApi>(null);
+    const isSearchHidden = useInterface('search');
 
     const onFocus = useCallback(() => {
         updateRootClassName({focusSearch: true});
@@ -34,7 +35,7 @@ export function Suggest() {
         }, 100);
     }, []);
 
-    if (!provider) {
+    if (!provider || isSearchHidden) {
         return null;
     }
 
