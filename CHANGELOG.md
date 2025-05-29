@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.4](https://github.com/diplodoc-platform/client/compare/v3.4.3...v3.4.4) (2025-05-29)
+
+
+### Dependency update
+
+* Update @diplodoc/page-constructor-extension to 0.3.1 ([#142](https://github.com/diplodoc-platform/client/issues/142)) ([2fbf0a1](https://github.com/diplodoc-platform/client/commit/2fbf0a1d353c44c7fe806b91f100ba5d3a995e0e))
+
 ## [3.4.3](https://github.com/diplodoc-platform/client/compare/v3.4.2...v3.4.3) (2025-05-27)
 
 
