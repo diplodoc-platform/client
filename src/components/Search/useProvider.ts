@@ -3,7 +3,7 @@ import {useContext, useMemo} from 'react';
 import {RouterContext, SearchContext} from '../index';
 import {useLang} from '../../hooks/useLang';
 
-import {SearchProvider} from './provider';
+import {createProvider} from './provider';
 
 export function useProvider() {
     const lang = useLang();
@@ -15,7 +15,7 @@ export function useProvider() {
             return null;
         }
 
-        return new SearchProvider({
+        return createProvider({
             ...search,
             depth,
             lang,

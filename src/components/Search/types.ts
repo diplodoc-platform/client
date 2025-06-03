@@ -1,22 +1,56 @@
 import {SearchSuggestPageItem} from '@diplodoc/components';
 
+export interface AlgoliaQuerySettings {
+    hitsPerPage?: number;
+    facetFilters?: string[];
+    attributesToRetrieve?: string[];
+    attributesToHighlight?: string[];
+    [key: string]: unknown;
+}
+
 export interface SearchConfig {
     api: string;
     link: string;
     lang: string;
     depth: number;
+    provider?: 'local' | 'algolia';
+
+    appId?: string;
+    indexName?: string;
+    searchKey?: string;
+    querySettings?: AlgoliaQuerySettings;
 }
 
 export interface WorkerConfig {
-    api: string;
+    api?: string;
     base: string;
     mark: string;
+    provider?: 'local' | 'algolia';
+
+    appId?: string;
+    indexName?: string;
+    searchKey?: string;
+    querySettings?: {
+        [key: string]: unknown;
+    };
+}
+
+export interface SearchResultItem {
+    type: 'page';
+    link: string;
+    title: string;
+    section?: string;
+    description: string;
 }
 
 export interface WorkerApi {
     init?(): void | Promise<void>;
-    suggest(query: string, count: number): Promise<SearchSuggestPageItem[]>;
-    search(query: string, count: number, page: number): Promise<SearchSuggestPageItem[]>;
+    suggest(query: string, count: number): Promise<SearchSuggestPageItem[] | SearchResultItem[]>;
+    search(
+        query: string,
+        count: number,
+        page: number,
+    ): Promise<SearchSuggestPageItem[] | SearchResultItem[]>;
 }
 
 export type InitMessage = {
