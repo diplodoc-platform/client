@@ -48,11 +48,19 @@ const HANDLERS = {
     async init(config: InitMessage) {
         self.config = config;
 
-        importScripts(self.config.base + '/' + self.config.api);
+        if (config.provider === 'algolia') {
+            importScripts(new URL('./algolia/index.ts', import.meta.url).toString());
+        } else if (self.config.api) {
+            importScripts(self.config.base + '/' + self.config.api);
+        }
 
         AssertApi(self.api);
 
-        return self.api.init?.();
+        if (self.api.init) {
+            return self.api.init();
+        }
+
+        return;
     },
 
     async suggest({query, count = 10}: SuggestMessage) {

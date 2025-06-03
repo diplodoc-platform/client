@@ -1,9 +1,8 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
-import type {SearchConfig, WorkerConfig} from '../types';
+import type {SearchConfig, WorkerConfig} from '../../types';
 
-export class LocalSearchProvider implements ISearchProvider {
+export class AlgoliaProvider implements ISearchProvider {
     private worker!: Promise<Worker>;
-
     private config: SearchConfig;
 
     constructor(config: SearchConfig) {
@@ -11,43 +10,53 @@ export class LocalSearchProvider implements ISearchProvider {
     }
 
     init = () => {
-        this.worker = initWorker({
+        const workerConfig = {
             ...this.config,
             base: this.base,
             mark: 'Suggest__Item__Marker',
-        });
+        };
+
+        this.worker = initWorker(workerConfig);
     };
 
     async suggest(query: string) {
-        return this.request({
+        const message = {
             type: 'suggest',
             query,
-        }) as Promise<ISearchResult[]>;
+        };
+        const results = (await this.request(message)) as ISearchResult[];
+
+        return results;
     }
 
     async search(query: string) {
-        return this.request({
+        const message = {
             type: 'search',
             query,
-        }) as Promise<ISearchResult[]>;
+        };
+        const results = (await this.request(message)) as ISearchResult[];
+
+        return results;
     }
 
-    // Temporary disable link to search page
-    // TODO: Implement search page
-    link = () => null;
+    link = (query: string) => {
+        const params = query ? `?query=${encodeURIComponent(query)}` : '';
+        const link = `${this.base}/${this.config.link}${params}`;
 
-    // link = (query: string) => {
-    //     const params = query ? `?query=${encodeURIComponent(query)}` : '';
-    //
-    //     return `${this.base}/${this.config.link}${params}`;
-    // };
+        return link;
+    };
 
     private get base() {
-        return window.location.href.split('/').slice(0, -this.config.depth).join('/');
+        const base = window.location.href.split('/').slice(0, -this.config.depth).join('/');
+
+        return base;
     }
 
     private async request(message: object) {
-        return request(await this.worker, message);
+        const worker = await this.worker;
+        const result = await request(worker, message);
+
+        return result;
     }
 }
 
@@ -55,9 +64,8 @@ const BAD_ORIGIN_ERROR = /Script at '(.*?)' cannot be accessed from origin/;
 
 async function loadWorker() {
     try {
-        return new Worker(new URL('../worker/index.ts', import.meta.url));
+        return new Worker(new URL('../../worker/algolia/index.ts', import.meta.url));
     } catch (error) {
-        // @see https://stackoverflow.com/questions/21408510/chrome-cant-load-web-worker
         if (error instanceof DOMException) {
             const match = BAD_ORIGIN_ERROR.exec(error.message);
             if (match) {
@@ -102,23 +110,3 @@ function request(worker: Worker, message: object) {
         worker.postMessage(message, [channel.port2]);
     });
 }
-
-export {AlgoliaProvider} from './algolia/index';
-
-export function createProvider(config: SearchConfig): ISearchProvider | null {
-    if (!config) {
-        return null;
-    }
-
-    const {provider = 'local'} = config;
-
-    if (provider === 'algolia') {
-        const {AlgoliaProvider} = require('./algolia/index');
-
-        return new AlgoliaProvider(config);
-    }
-
-    return new LocalSearchProvider(config);
-}
-
-export const SearchProvider = LocalSearchProvider;
