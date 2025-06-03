@@ -1,6 +1,8 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 import type {SearchConfig, WorkerConfig} from '../types';
 
+import {AlgoliaProvider} from './algolia/index';
+
 export class LocalSearchProvider implements ISearchProvider {
     private worker!: Promise<Worker>;
 
@@ -57,7 +59,6 @@ async function loadWorker() {
     try {
         return new Worker(new URL('../worker/index.ts', import.meta.url));
     } catch (error) {
-        // @see https://stackoverflow.com/questions/21408510/chrome-cant-load-web-worker
         if (error instanceof DOMException) {
             const match = BAD_ORIGIN_ERROR.exec(error.message);
             if (match) {
@@ -103,8 +104,6 @@ function request(worker: Worker, message: object) {
     });
 }
 
-export {AlgoliaProvider} from './algolia/index';
-
 export function createProvider(config: SearchConfig): ISearchProvider | null {
     if (!config) {
         return null;
@@ -113,8 +112,6 @@ export function createProvider(config: SearchConfig): ISearchProvider | null {
     const {provider = 'local'} = config;
 
     if (provider === 'algolia') {
-        const {AlgoliaProvider} = require('./algolia/index');
-
         return new AlgoliaProvider(config);
     }
 

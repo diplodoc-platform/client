@@ -48,9 +48,7 @@ const HANDLERS = {
     async init(config: InitMessage) {
         self.config = config;
 
-        if (config.provider === 'algolia') {
-            importScripts(new URL('./algolia/index.ts', import.meta.url).toString());
-        } else if (self.config.api) {
+        if (self.config.api) {
             importScripts(self.config.base + '/' + self.config.api);
         }
 

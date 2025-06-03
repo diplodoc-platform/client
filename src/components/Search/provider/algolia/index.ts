@@ -64,7 +64,7 @@ const BAD_ORIGIN_ERROR = /Script at '(.*?)' cannot be accessed from origin/;
 
 async function loadWorker() {
     try {
-        return new Worker(new URL('../../worker/algolia/index.ts', import.meta.url));
+        return new Worker(new URL('../../worker/index.ts', import.meta.url));
     } catch (error) {
         if (error instanceof DOMException) {
             const match = BAD_ORIGIN_ERROR.exec(error.message);

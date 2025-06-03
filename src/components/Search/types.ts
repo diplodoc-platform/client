@@ -35,7 +35,6 @@ export interface WorkerConfig {
     };
 }
 
-// Интерфейс для результатов поиска, используемый в воркере
 export interface SearchResultItem {
     type: 'page';
     link: string;
