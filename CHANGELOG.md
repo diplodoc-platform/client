@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.5.0](https://github.com/diplodoc-platform/client/compare/v3.4.6...v3.5.0) (2025-06-03)
+
+
+### Features
+
+* add algolia provider ([#148](https://github.com/diplodoc-platform/client/issues/148)) ([68ab6b9](https://github.com/diplodoc-platform/client/commit/68ab6b9e1891df4afeeb627c9b97667a47517a0b))
+
 ## [3.4.6](https://github.com/diplodoc-platform/client/compare/v3.4.5...v3.4.6) (2025-05-29)
 
 
