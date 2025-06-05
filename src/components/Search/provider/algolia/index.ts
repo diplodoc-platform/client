@@ -1,7 +1,7 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
-import type {SearchConfig, WorkerConfig} from '../../types';
+import type {SearchConfig, SearchProviderExtended, WorkerConfig} from '../../types';
 
-export class AlgoliaProvider implements ISearchProvider {
+export class AlgoliaProvider implements ISearchProvider, SearchProviderExtended {
     private worker!: Promise<Worker>;
     private config: SearchConfig;
 
@@ -20,27 +20,43 @@ export class AlgoliaProvider implements ISearchProvider {
     };
 
     async suggest(query: string) {
+        if (!query || query.trim() === '') {
+            return [];
+        }
+
         const message = {
             type: 'suggest',
             query,
         };
-        const results = (await this.request(message)) as ISearchResult[];
-
-        return results;
+        return (await this.request(message)) as ISearchResult[];
     }
 
-    async search(query: string) {
+    async search(query: string, page = 1, count = 10) {
+        if (!query || query.trim() === '') {
+            return [];
+        }
+
         const message = {
             type: 'search',
             query,
+            page,
+            count,
         };
-        const results = (await this.request(message)) as ISearchResult[];
-
-        return results;
+        return (await this.request(message)) as ISearchResult[];
     }
 
-    link = (query: string) => {
-        const params = query ? `?query=${encodeURIComponent(query)}` : '';
+    link = (query: string, page = 1) => {
+        const searchParams = new URLSearchParams();
+
+        if (query) {
+            searchParams.set('query', query);
+        }
+
+        if (page > 1) {
+            searchParams.set('page', page.toString());
+        }
+
+        const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
         const link = `${this.base}/${this.config.link}${params}`;
 
         return link;
@@ -54,9 +70,7 @@ export class AlgoliaProvider implements ISearchProvider {
 
     private async request(message: object) {
         const worker = await this.worker;
-        const result = await request(worker, message);
-
-        return result;
+        return await request(worker, message);
     }
 }
 
@@ -82,9 +96,7 @@ async function loadWorker() {
 
 async function initWorker(config: WorkerConfig) {
     const worker = await loadWorker();
-
     await request(worker, {...config, type: 'init'});
-
     return worker;
 }
 
@@ -92,19 +104,16 @@ function request(worker: Worker, message: object) {
     const channel = new MessageChannel();
 
     return new Promise((resolve, reject) => {
-        channel.port1.onmessage = (message) => {
-            if (message.data.error) {
-                // eslint-disable-next-line no-console
-                console.error(message.data.error);
-
-                reject(message.data.error);
+        channel.port1.onmessage = (event) => {
+            if (event.data.error) {
+                reject(event.data.error);
             } else {
-                resolve(message.data.result);
+                resolve(event.data.result);
             }
         };
 
-        channel.port1.onmessageerror = (message) => {
-            reject(message.data.error);
+        channel.port1.onmessageerror = (event) => {
+            reject(event);
         };
 
         worker.postMessage(message, [channel.port2]);

@@ -11,20 +11,22 @@ export type {
     WorkerApi as ISearchWorkerApi,
 } from './components/Search';
 
-declare global {
-    interface Window {
-        STATIC_CONTENT: boolean;
-        __DATA__: DocInnerProps;
-    }
-}
-
 const root = document.getElementById('root');
-const props = window.__DATA__;
+const data = window.__DATA__;
 
 if (!root) {
     throw new Error('Root element not found!');
 }
 
+function isDocInnerProps(obj: unknown): obj is DocInnerProps {
+    return Boolean(obj) && typeof obj === 'object' && obj !== null && 'data' in obj;
+}
+
+if (!isDocInnerProps(data)) {
+    throw new Error('Invalid data format for App component');
+}
+
+const props = data as DocInnerProps;
 setRootClasses(props);
 
 if (window.STATIC_CONTENT) {
