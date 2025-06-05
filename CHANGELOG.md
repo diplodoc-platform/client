@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.0](https://github.com/diplodoc-platform/client/compare/v3.5.0...v3.6.0) (2025-06-05)
+
+
+### Features
+
+* add Search page ([#150](https://github.com/diplodoc-platform/client/issues/150)) ([a337e19](https://github.com/diplodoc-platform/client/commit/a337e19c9050a51af0f5ba06d8be75b1228656d8))
+
 ## [3.5.0](https://github.com/diplodoc-platform/client/compare/v3.4.6...v3.5.0) (2025-06-03)
 
 
