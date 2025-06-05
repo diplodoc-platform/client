@@ -52,10 +52,8 @@ const HANDLERS = {
             importScripts(self.config.base + '/' + self.config.api);
         }
 
-        AssertApi(self.api);
-
-        if (self.api.init) {
-            return self.api.init();
+        if (self.api && self.api.init) {
+            return await self.api.init();
         }
 
         return;
@@ -65,14 +63,14 @@ const HANDLERS = {
         AssertConfig(self.config);
         AssertApi(self.api);
 
-        return self.api.suggest(query, count);
+        return await self.api.suggest(query, count);
     },
 
     async search({query, count = 10, page = 1}: SearchMessage) {
         AssertConfig(self.config);
         AssertApi(self.api);
 
-        return self.api.search(query, count, page);
+        return await self.api.search(query, count, page);
     },
 } as const;
 
@@ -83,11 +81,11 @@ self.onmessage = async (message) => {
     const handler = HANDLERS[type as MessageType];
     if (!handler) {
         port.postMessage({error: UNKNOWN_HANDLER});
+        return;
     }
 
     try {
         const result = await handler(message.data);
-
         port.postMessage({result});
     } catch (error) {
         port.postMessage({error});

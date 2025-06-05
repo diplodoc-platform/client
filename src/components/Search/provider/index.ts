@@ -1,9 +1,9 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
-import type {SearchConfig, WorkerConfig} from '../types';
+import type {SearchConfig, SearchProviderExtended, WorkerConfig} from '../types';
 
 import {AlgoliaProvider} from './algolia/index';
 
-export class LocalSearchProvider implements ISearchProvider {
+export class LocalSearchProvider implements ISearchProvider, SearchProviderExtended {
     private worker!: Promise<Worker>;
 
     private config: SearchConfig;
@@ -27,22 +27,30 @@ export class LocalSearchProvider implements ISearchProvider {
         }) as Promise<ISearchResult[]>;
     }
 
-    async search(query: string) {
+    async search(query: string, page = 1, count = 10) {
         return this.request({
             type: 'search',
             query,
+            page,
+            count,
         }) as Promise<ISearchResult[]>;
     }
 
-    // Temporary disable link to search page
-    // TODO: Implement search page
-    link = () => null;
+    link = (query: string, page = 1) => {
+        const searchParams = new URLSearchParams();
 
-    // link = (query: string) => {
-    //     const params = query ? `?query=${encodeURIComponent(query)}` : '';
-    //
-    //     return `${this.base}/${this.config.link}${params}`;
-    // };
+        if (query) {
+            searchParams.set('query', query);
+        }
+
+        if (page > 1) {
+            searchParams.set('page', page.toString());
+        }
+
+        const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
+
+        return `${this.base}/${this.config.link}${params}`;
+    };
 
     private get base() {
         return window.location.href.split('/').slice(0, -this.config.depth).join('/');
@@ -87,9 +95,6 @@ function request(worker: Worker, message: object) {
     return new Promise((resolve, reject) => {
         channel.port1.onmessage = (message) => {
             if (message.data.error) {
-                // eslint-disable-next-line no-console
-                console.error(message.data.error);
-
                 reject(message.data.error);
             } else {
                 resolve(message.data.result);

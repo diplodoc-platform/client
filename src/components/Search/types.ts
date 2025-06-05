@@ -1,4 +1,4 @@
-import {SearchSuggestPageItem} from '@diplodoc/components';
+import {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
 
 export interface AlgoliaQuerySettings {
     hitsPerPage?: number;
@@ -70,6 +70,36 @@ export type SearchMessage = {
     count?: number;
 };
 
+export interface SearchProviderExtended {
+    init(): void;
+    suggest(query: string): Promise<ISearchResult[]>;
+    search(query: string, page?: number, count?: number): Promise<ISearchResult[]>;
+    link(query: string, page?: number): string | null;
+}
+
 export type Message = InitMessage | SuggestMessage | SearchMessage;
 
 export type MessageType = Message['type'];
+
+export interface SearchResultData extends Partial<ISearchResult> {
+    title?: string;
+    url?: string;
+    link?: string;
+    description?: string;
+    content?: string;
+    text?: string;
+    section?: string;
+    hierarchy?: {
+        lvl0?: string;
+        lvl1?: string;
+    };
+}
+
+export interface FormattedSearchResultItem {
+    title: string;
+    url: string;
+    description: string;
+    section: string;
+}
+
+export type FormattedSearchResultData = FormattedSearchResultItem[];
