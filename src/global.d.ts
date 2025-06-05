@@ -1,5 +1,5 @@
-import {DocInnerProps} from '../components/App';
-import {SearchConfig} from '../components/Search/types';
+import {DocInnerProps} from './components/App';
+import {SearchConfig} from './components/Search/types';
 
 declare global {
     interface Window {
