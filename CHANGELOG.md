@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.3](https://github.com/diplodoc-platform/client/compare/v3.6.2...v3.6.3) (2025-06-06)
+
+
+### Bug Fixes
+
+* lunr does not have a full results page ([#157](https://github.com/diplodoc-platform/client/issues/157)) ([5a8c7e0](https://github.com/diplodoc-platform/client/commit/5a8c7e07616ee188c90870533f581f6b3e889483))
+
 ## [3.6.2](https://github.com/diplodoc-platform/client/compare/v3.6.1...v3.6.2) (2025-06-06)
 
 
