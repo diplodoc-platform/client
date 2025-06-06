@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.2](https://github.com/diplodoc-platform/client/compare/v3.6.1...v3.6.2) (2025-06-06)
+
+
+### Bug Fixes
+
+* provider ssr ([#155](https://github.com/diplodoc-platform/client/issues/155)) ([9a6aed0](https://github.com/diplodoc-platform/client/commit/9a6aed0347333b6c30cc10177387c553a1a7d4b0))
+
 ## [3.6.1](https://github.com/diplodoc-platform/client/compare/v3.6.0...v3.6.1) (2025-06-06)
 
 
