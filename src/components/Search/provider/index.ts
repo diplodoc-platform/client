@@ -36,21 +36,7 @@ export class LocalSearchProvider implements ISearchProvider, SearchProviderExten
         }) as Promise<ISearchResult[]>;
     }
 
-    link = (query: string, page = 1) => {
-        const searchParams = new URLSearchParams();
-
-        if (query) {
-            searchParams.set('query', query);
-        }
-
-        if (page > 1) {
-            searchParams.set('page', page.toString());
-        }
-
-        const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
-
-        return `${this.base}/${this.config.link}${params}`;
-    };
+    link = () => null;
 
     private get base() {
         return window.location.href.split('/').slice(0, -this.config.depth).join('/');
