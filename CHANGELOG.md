@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.6.1](https://github.com/diplodoc-platform/client/compare/v3.6.0...v3.6.1) (2025-06-06)
+
+
+### Bug Fixes
+
+* include RTL CSS files only in their relevant runtime based on filename ([#152](https://github.com/diplodoc-platform/client/issues/152)) ([9dea5d1](https://github.com/diplodoc-platform/client/commit/9dea5d1e829ef01b1d007afb7b6059e4a3dcdc58))
+
 ## [3.6.0](https://github.com/diplodoc-platform/client/compare/v3.5.0...v3.6.0) (2025-06-05)
 
 
