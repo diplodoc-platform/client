@@ -91,6 +91,7 @@ function config({isServer, isDev, analyze = false}) {
             }),
             new WebpackManifestPlugin({
                 generate: (seed, files) => {
+                    const pages = ['search', 'app'];
                     const name = ({name}) => name;
                     const not =
                         (actor) =>
@@ -110,6 +111,21 @@ function config({isServer, isDev, analyze = false}) {
                         ({name}) =>
                             name.endsWith(tail);
                     const byRuntime = (runtime) => (file) => {
+                        // For RTL CSS files, determine runtime based on filename
+                        // This ensures that runtime-specific RTL files are only included in their corresponding runtime
+                        // Example: search.rtl.css should only be in "search" runtime, not in "app" runtime
+                        if (file.name && file.name.endsWith('.rtl.css')) {
+                            // Extract base name (without .rtl.css)
+                            const baseName = file.name.replace('.rtl.css', '');
+
+                            // If filename matches one of our page runtimes (app or search),
+                            // include it only in its corresponding runtime
+                            if (pages.includes(baseName)) {
+                                return baseName === runtime;
+                            }
+                        }
+
+                        // Стандартная логика для остальных файлов
                         if (!file.chunk || !file.chunk.runtime) {
                             return true;
                         }
@@ -125,7 +141,7 @@ function config({isServer, isDev, analyze = false}) {
                         a.chunk?.name.includes('app') - b.chunk?.name.includes('app');
 
                     const runtimes = {};
-                    for (const runtime of ['search', 'app']) {
+                    for (const runtime of pages) {
                         runtimes[runtime] = {
                             async: files
                                 .filter(
