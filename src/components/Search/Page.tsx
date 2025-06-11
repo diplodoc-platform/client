@@ -7,7 +7,7 @@ import block from 'bem-cn-lite';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
-import './Search.scss';
+import './Page.scss';
 
 const b = block('Search');
 
@@ -20,25 +20,35 @@ function getUrlParams() {
 }
 
 function setUrlParams(query: string, page: number) {
-    const params = new URLSearchParams();
-    if (query) params.set('query', query);
-    if (page > 1) params.set('page', String(page));
-    window.history.pushState({}, '', `?${params.toString()}`);
+    const url = new URL(window.location.href);
+
+    if (query) {
+        url.searchParams.set('query', query);
+    }
+
+    if (page > 1) {
+        url.searchParams.set('page', String(page));
+    }
+
+    window.history.pushState({}, '', url);
 }
 
 function formatResults(searchResults: SearchResultData[]): FormattedSearchResultData {
-    if (!Array.isArray(searchResults)) return [];
+    if (!Array.isArray(searchResults)) {
+        return [];
+    }
+
     return searchResults.map((result) => ({
-        title: result?.title || result?.hierarchy?.lvl0 || result?.hierarchy?.lvl1 || '',
-        url: result?.url || result?.link || '#',
-        description: result?.description || result?.content || result?.text || '',
-        section: result?.section || result?.hierarchy?.lvl1 || '',
+        title: result?.title || '',
+        url: result?.link || '#',
+        description: result?.description || '',
+        section: result?.section || '',
     }));
 }
 
 const ITEMS_PER_PAGE = 10;
 
-export const Search: React.FC = () => {
+export const Page: React.FC = () => {
     const provider = useProvider();
     const router = useRouter();
 
