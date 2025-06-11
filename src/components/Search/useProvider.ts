@@ -8,7 +8,7 @@ import {createProvider} from './provider';
 
 export function useProvider() {
     const lang = useLang();
-    const {depth = 0} = useContext(RouterContext);
+    const {base = './'} = useContext(RouterContext);
     const search = useContext(SearchContext);
     const [provider, setProvider] = useState<ISearchProvider | null>(null);
 
@@ -19,10 +19,10 @@ export function useProvider() {
 
         return {
             ...search,
-            depth,
+            base,
             lang,
         };
-    }, [lang, depth, search]);
+    }, [lang, base, search]);
 
     useEffect(() => {
         if (config) {

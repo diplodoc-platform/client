@@ -19,6 +19,7 @@ export interface SearchConfig {
     indexName?: string;
     searchKey?: string;
     querySettings?: AlgoliaQuerySettings;
+    base: string;
 }
 
 export interface WorkerConfig {
