@@ -15,7 +15,6 @@ export class LocalSearchProvider implements ISearchProvider, SearchProviderExten
     init = () => {
         this.worker = initWorker({
             ...this.config,
-            base: this.base,
             mark: 'Suggest__Item__Marker',
         });
     };
@@ -37,10 +36,6 @@ export class LocalSearchProvider implements ISearchProvider, SearchProviderExten
     }
 
     link = () => null;
-
-    private get base() {
-        return window.location.href.split('/').slice(0, -this.config.depth).join('/');
-    }
 
     private async request(message: object) {
         return request(await this.worker, message);
