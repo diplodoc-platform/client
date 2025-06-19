@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.6.4](https://github.com/diplodoc-platform/client/compare/v3.6.3...v3.6.4) (2025-06-19)
+
+
+### Bug Fixes
+
+* add prerelease action ([6057683](https://github.com/diplodoc-platform/client/commit/60576836d5dc2a58e13c25ae45b1477689b37bb2))
+* update prerelease action ([0eff8da](https://github.com/diplodoc-platform/client/commit/0eff8dac3a453c3d3dd595fb11307d0702d32d30))
+
 ## [3.6.3](https://github.com/diplodoc-platform/client/compare/v3.6.2...v3.6.3) (2025-06-06)
 
 
