@@ -12,7 +12,6 @@ export class AlgoliaProvider implements ISearchProvider, SearchProviderExtended 
     init = () => {
         const workerConfig = {
             ...this.config,
-            base: this.base,
             mark: 'Suggest__Item__Marker',
         };
 
@@ -57,16 +56,10 @@ export class AlgoliaProvider implements ISearchProvider, SearchProviderExtended 
         }
 
         const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
-        const link = `${this.base}/${this.config.link}${params}`;
+        const link = `${this.config.base}/${this.config.link}${params}`;
 
         return link;
     };
-
-    private get base() {
-        const base = window.location.href.split('/').slice(0, -this.config.depth).join('/');
-
-        return base;
-    }
 
     private async request(message: object) {
         const worker = await this.worker;
