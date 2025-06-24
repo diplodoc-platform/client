@@ -1,10 +1,9 @@
 import type {NavigationData, PageContent} from '@gravity-ui/page-constructor';
-import type {ReactElement} from 'react';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {SearchConfig} from '../Search';
 import type {RouterConfig} from '../Router';
 
-import React, {useEffect, useMemo} from 'react';
+import React, {ReactElement, useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
@@ -14,6 +13,8 @@ import {
     DocPageData,
     InterfaceProvider,
     Lang,
+    RenderBodyHook,
+    RenderBodyHooksContext,
     SUPPORTED_LANGS,
     configure,
 } from '@diplodoc/components';
@@ -30,6 +31,7 @@ import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
 import {useMobile} from './useMobile';
+import {withMdxSsrInit} from './withMdxSsrInit';
 import './App.scss';
 
 export type DocAnalytics = {
@@ -80,6 +82,18 @@ export function App(props: DocInnerProps): ReactElement {
         localeCode: fixedLang,
     });
 
+    const renderHooks = useMemo(() => {
+        const hooks: RenderBodyHook[] = [];
+        const getSsrMdxInitProps =
+            typeof window !== 'undefined' &&
+            'getSsrMdxInitProps' in window &&
+            window.getSsrMdxInitProps;
+        if (typeof getSsrMdxInitProps === 'function') {
+            hooks.push(withMdxSsrInit(getSsrMdxInitProps({dependencies: React})));
+        }
+        return hooks;
+    }, []);
+
     const {theme, textSize, wideFormat, fullScreen, showMiniToc} = settings;
 
     const page = useMemo(
@@ -117,11 +131,17 @@ export function App(props: DocInnerProps): ReactElement {
                     <RouterProvider value={router}>
                         <SearchProvider value={search}>
                             <InterfaceProvider interface={viewerInterface || {}}>
-                                {hasNavigation(data) ? (
-                                    <RichNavPage data={data} props={page} controls={controls} />
-                                ) : (
-                                    <LegacyNavPage data={data} props={page} controls={controls} />
-                                )}
+                                <RenderBodyHooksContext.Provider value={renderHooks}>
+                                    {hasNavigation(data) ? (
+                                        <RichNavPage data={data} props={page} controls={controls} />
+                                    ) : (
+                                        <LegacyNavPage
+                                            data={data}
+                                            props={page}
+                                            controls={controls}
+                                        />
+                                    )}
+                                </RenderBodyHooksContext.Provider>
                                 {analytics && (
                                     <ConsentPopup
                                         router={router}

@@ -193,6 +193,14 @@ function config({isServer, isDev, analyze = false}) {
             rules: [
                 {
                     test: /\.[tj]sx?$/,
+                    include: /@diplodoc[\\/]mdx-extension/,
+                    use: ['babel-loader'],
+                    resolve: {
+                        fullySpecified: false,
+                    },
+                },
+                {
+                    test: /\.[tj]sx?$/,
                     use: ['babel-loader'],
                     include: [src(), require.resolve('@diplodoc/mermaid-extension')],
                 },
