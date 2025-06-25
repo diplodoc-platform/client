@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.7.0](https://github.com/diplodoc-platform/client/compare/v3.6.3...v3.7.0) (2025-06-25)
+
+
+### Features
+
+* **render:** Add mdx support ([#164](https://github.com/diplodoc-platform/client/issues/164)) ([7a78bca](https://github.com/diplodoc-platform/client/commit/7a78bcac5cd2e1452e416af8035d7c6d7e521880))
+
+
+### Bug Fixes
+
+* add prerelease action ([6057683](https://github.com/diplodoc-platform/client/commit/60576836d5dc2a58e13c25ae45b1477689b37bb2))
+* update prerelease action ([0eff8da](https://github.com/diplodoc-platform/client/commit/0eff8dac3a453c3d3dd595fb11307d0702d32d30))
+
 ## [3.6.3](https://github.com/diplodoc-platform/client/compare/v3.6.2...v3.6.3) (2025-06-06)
 
 
