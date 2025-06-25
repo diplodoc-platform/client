@@ -31,7 +31,7 @@ import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
 import {useMobile} from './useMobile';
-import {withMdxSsrInit} from './withMdxSsrInit';
+import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
 export type DocAnalytics = {
@@ -84,12 +84,10 @@ export function App(props: DocInnerProps): ReactElement {
 
     const renderHooks = useMemo(() => {
         const hooks: RenderBodyHook[] = [];
-        const getSsrMdxInitProps =
-            typeof window !== 'undefined' &&
-            'getSsrMdxInitProps' in window &&
-            window.getSsrMdxInitProps;
-        if (typeof getSsrMdxInitProps === 'function') {
-            hooks.push(withMdxSsrInit(getSsrMdxInitProps({dependencies: React})));
+        const getMdxInitProps =
+            typeof window !== 'undefined' && 'getMdxInitProps' in window && window.getMdxInitProps;
+        if (typeof getMdxInitProps === 'function') {
+            hooks.push(withMdxInit(getMdxInitProps({dependencies: React})));
         }
         return hooks;
     }, []);

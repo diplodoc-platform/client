@@ -1,16 +1,16 @@
 import type {RenderBodyHook} from '@diplodoc/components';
 
 import React, {useCallback, useRef} from 'react';
-import {type MdxArtifacts, type UseMdxSsrProps, useMdxSsr} from '@diplodoc/mdx-extension';
+import {type MdxArtifacts, type UseMdxSsrProps, useMdx} from '@diplodoc/mdx-extension/build/esm';
 
 export type WithMdxSsrInitProps = {
     components?: UseMdxSsrProps['components'];
     pureComponents?: UseMdxSsrProps['pureComponents'];
 };
 
-export const withMdxSsrInit = ({components, pureComponents}: WithMdxSsrInitProps) => {
-    const withMdxSsr: RenderBodyHook = (Component) => {
-        return function MdxSsrWrapper(props) {
+export const withMdxInit = ({components, pureComponents}: WithMdxSsrInitProps) => {
+    const withMdx: RenderBodyHook = (Component) => {
+        return function MdxWrapper(props) {
             const {forwardRef, mdxArtifacts, html} = props;
             const refCtr = useRef<HTMLDivElement | null>(null);
             refCtr.current = null;
@@ -23,7 +23,7 @@ export const withMdxSsrInit = ({components, pureComponents}: WithMdxSsrInitProps
                 [forwardRef],
             );
 
-            useMdxSsr({
+            useMdx({
                 refCtr,
                 components,
                 pureComponents,
@@ -31,8 +31,8 @@ export const withMdxSsrInit = ({components, pureComponents}: WithMdxSsrInitProps
                 html,
             });
 
-            return React.createElement(Component, {...props, forwardRef: forwardRefWrap});
+            return React.createElement(Component, {...props, forwardRef: forwardRefWrap, html: ''});
         };
     };
-    return withMdxSsr;
+    return withMdx;
 };
