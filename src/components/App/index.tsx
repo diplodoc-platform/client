@@ -87,7 +87,7 @@ export function App(props: DocInnerProps): ReactElement {
         const getMdxInitProps =
             typeof window !== 'undefined' && 'getMdxInitProps' in window && window.getMdxInitProps;
         if (typeof getMdxInitProps === 'function') {
-            hooks.push(withMdxInit(getMdxInitProps({dependencies: React})));
+            hooks.push(withMdxInit(getMdxInitProps({dependencies: {react: React}})));
         }
         return hooks;
     }, []);
