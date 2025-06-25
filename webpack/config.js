@@ -195,9 +195,7 @@ function config({isServer, isDev, analyze = false}) {
                     test: /\.[tj]sx?$/,
                     include: /@diplodoc[\\/]mdx-extension/,
                     use: ['babel-loader'],
-                    resolve: {
-                        fullySpecified: false,
-                    },
+                    type: 'javascript/auto',
                 },
                 {
                     test: /\.[tj]sx?$/,

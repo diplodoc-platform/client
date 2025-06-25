@@ -1,14 +1,14 @@
 import type {RenderBodyHook} from '@diplodoc/components';
 
 import React, {useCallback, useRef} from 'react';
-import {type MdxArtifacts, type UseMdxSsrProps, useMdx} from '@diplodoc/mdx-extension/build/esm';
+import {type MdxArtifacts, type UseMdxProps, useMdx} from '@diplodoc/mdx-extension';
 
-export type WithMdxSsrInitProps = {
-    components?: UseMdxSsrProps['components'];
-    pureComponents?: UseMdxSsrProps['pureComponents'];
+export type WithMdxInitProps = {
+    components?: UseMdxProps['components'];
+    pureComponents?: UseMdxProps['pureComponents'];
 };
 
-export const withMdxInit = ({components, pureComponents}: WithMdxSsrInitProps) => {
+export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
     const withMdx: RenderBodyHook = (Component) => {
         return function MdxWrapper(props) {
             const {forwardRef, mdxArtifacts, html} = props;
