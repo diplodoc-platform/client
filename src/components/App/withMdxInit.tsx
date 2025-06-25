@@ -1,12 +1,9 @@
 import type {RenderBodyHook} from '@diplodoc/components';
 
 import React, {useCallback, useRef} from 'react';
-import {type MdxArtifacts, type UseMdxProps, useMdx} from '@diplodoc/mdx-extension';
+import {type MdxArtifacts, type UseMdxSsrProps, useMdxSsr} from '@diplodoc/mdx-extension';
 
-export type WithMdxInitProps = {
-    components?: UseMdxProps['components'];
-    pureComponents?: UseMdxProps['pureComponents'];
-};
+export type WithMdxInitProps = Pick<UseMdxSsrProps, 'components' | 'pureComponents'>;
 
 export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
     const withMdx: RenderBodyHook = (Component) => {
@@ -23,7 +20,7 @@ export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
                 [forwardRef],
             );
 
-            useMdx({
+            useMdxSsr({
                 refCtr,
                 components,
                 pureComponents,
@@ -31,7 +28,7 @@ export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
                 html,
             });
 
-            return React.createElement(Component, {...props, forwardRef: forwardRefWrap, html: ''});
+            return React.createElement(Component, {...props, forwardRef: forwardRefWrap});
         };
     };
     return withMdx;
