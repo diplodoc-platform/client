@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.2](https://github.com/diplodoc-platform/client/compare/v3.7.1...v3.7.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* mv mermaid to devDeps ([4930aa0](https://github.com/diplodoc-platform/client/commit/4930aa02ed52df612b9537969beee63933847b60))
+
 ## [3.7.1](https://github.com/diplodoc-platform/client/compare/v3.7.0...v3.7.1) (2025-06-27)
 
 
