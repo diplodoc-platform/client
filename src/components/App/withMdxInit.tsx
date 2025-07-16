@@ -20,7 +20,7 @@ export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
                 [forwardRef],
             );
 
-            useMdxSsr({
+            const node = useMdxSsr({
                 refCtr,
                 components,
                 pureComponents,
@@ -28,7 +28,12 @@ export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
                 html,
             });
 
-            return React.createElement(Component, {...props, forwardRef: forwardRefWrap});
+            return React.createElement(
+                React.Fragment,
+                null,
+                React.createElement(Component, {...props, forwardRef: forwardRefWrap}),
+                node,
+            );
         };
     };
     return withMdx;
