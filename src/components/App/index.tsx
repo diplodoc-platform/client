@@ -2,18 +2,21 @@ import type {NavigationData, PageContent} from '@gravity-ui/page-constructor';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {SearchConfig} from '../Search';
 import type {RouterConfig} from '../Router';
-
-import React, {ReactElement, useEffect, useMemo} from 'react';
-import {ThemeProvider} from '@gravity-ui/uikit';
-import {
-    ConsentPopup,
+import type {ReactElement} from 'react';
+import type {
     DocBasePageData,
     DocContentPageData as DocContentPageDataBase,
     DocLeadingPageData,
     DocPageData,
+    RenderBodyHook,
+} from '@diplodoc/components';
+
+import React, {useEffect, useMemo} from 'react';
+import {ThemeProvider} from '@gravity-ui/uikit';
+import {
+    ConsentPopup,
     InterfaceProvider,
     Lang,
-    RenderBodyHook,
     RenderBodyHooksContext,
     SUPPORTED_LANGS,
     configure,
@@ -22,7 +25,13 @@ import '@diplodoc/transform/dist/js/yfm';
 
 import {SearchProvider} from '../Search';
 import {RouterProvider} from '../Router';
-import {getDirection, getLandingPage, updateRootClassName, updateThemeClassName} from '../../utils';
+import {
+    getDirection,
+    getLandingPage,
+    scrollToHash,
+    updateRootClassName,
+    updateThemeClassName,
+} from '../../utils';
 import {LangProvider} from '../../hooks/useLang';
 import '../../interceptors/leading-page-links';
 
@@ -119,6 +128,7 @@ export function App(props: DocInnerProps): ReactElement {
     useEffect(() => {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
+        scrollToHash();
     }, [theme, mobileView, wideFormat, fullScreen, landingPage]);
 
     return (

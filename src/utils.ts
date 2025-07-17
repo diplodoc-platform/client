@@ -1,6 +1,7 @@
 import type {PageData} from './components/App';
+import type {Lang, Theme} from '@diplodoc/components';
 
-import {Lang, Theme, getPageType} from '@diplodoc/components';
+import {getPageType} from '@diplodoc/components';
 
 import {
     DEFAULT_USER_SETTINGS,
@@ -127,4 +128,16 @@ export function setSetting<T>(name: string, value: T) {
     try {
         sessionStorage.setItem(name, String(value));
     } catch {}
+}
+
+export function scrollToHash() {
+    const hash = window.location.hash.substring(1);
+
+    if (hash) {
+        const element = document.getElementById(hash);
+
+        if (element) {
+            element.scrollIntoView({behavior: 'auto'});
+        }
+    }
 }
