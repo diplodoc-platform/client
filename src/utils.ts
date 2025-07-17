@@ -173,7 +173,9 @@ export function scrollToElement(el: HTMLElement | null) {
         focusActiveTab(el);
     } else {
         // For elements other than headers calculate the offset
-        const [header] = document.getElementsByClassName('Layout__header');
+        const [header] = Array.from(
+            document.getElementsByClassName('Layout__header'),
+        ) as HTMLElement[];
         const headerOffset = header?.clientHeight ?? 0;
         const anchorPosition = el.offsetTop;
         window.scrollTo(0, anchorPosition - headerOffset);
