@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.8.0](https://github.com/diplodoc-platform/client/compare/v3.7.3...v3.8.0) (2025-07-17)
+
+
+### Features
+
+* added a function for scrolling to the hash ([#174](https://github.com/diplodoc-platform/client/issues/174)) ([96c407e](https://github.com/diplodoc-platform/client/commit/96c407e5d9e7df3af35f56880b03a32e0427a196))
+* **mdx:** update mdx extension version ([#172](https://github.com/diplodoc-platform/client/issues/172)) ([b5ef53f](https://github.com/diplodoc-platform/client/commit/b5ef53f9062d905bb5cca93a03ce22f32aab4751))
+
 ## [3.7.3](https://github.com/diplodoc-platform/client/compare/v3.7.2...v3.7.3) (2025-07-11)
 
 
