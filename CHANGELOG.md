@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.8.1](https://github.com/diplodoc-platform/client/compare/v3.8.0...v3.8.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **mdx:** build ([#177](https://github.com/diplodoc-platform/client/issues/177)) ([ac36636](https://github.com/diplodoc-platform/client/commit/ac3663621f27455bfd673f9954a915180623bc88))
+
+
+### Dependency update
+
+* Update @diplodoc/client to 3.7.3 ([#175](https://github.com/diplodoc-platform/client/issues/175)) ([e10e656](https://github.com/diplodoc-platform/client/commit/e10e656dc54e1529e3f0d83560b955e591738ffd))
+
 ## [3.8.0](https://github.com/diplodoc-platform/client/compare/v3.7.3...v3.8.0) (2025-07-17)
 
 
