@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.8.3](https://github.com/diplodoc-platform/client/compare/v3.8.2...v3.8.3) (2025-07-31)
+
+
+### Dependency update
+
+* Update @diplodoc/transform to 4.60.0 ([#181](https://github.com/diplodoc-platform/client/issues/181)) ([e5ff304](https://github.com/diplodoc-platform/client/commit/e5ff304c44a053525b38b6778b4f87090199e611))
+
 ## [3.8.2](https://github.com/diplodoc-platform/client/compare/v3.8.1...v3.8.2) (2025-07-22)
 
 
