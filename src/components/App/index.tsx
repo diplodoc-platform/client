@@ -28,6 +28,7 @@ import {RouterProvider} from '../Router';
 import {
     getDirection,
     getLandingPage,
+    linksHandler,
     scrollToHash,
     updateRootClassName,
     updateThemeClassName,
@@ -57,6 +58,7 @@ export interface AppProps {
     search?: SearchConfig;
     analytics?: DocAnalytics;
     viewerInterface?: Record<string, boolean>;
+    skipHtmlExtension?: boolean;
 }
 
 export type WithNavigation = {
@@ -80,9 +82,10 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, search, analytics, viewerInterface} = props;
+    const {data, router, lang, search, analytics, viewerInterface, skipHtmlExtension} = props;
     const settings = useSettings();
-    const langData = useLangs(props);
+
+    const langData = useLangs(props, skipHtmlExtension);
     const mobileView = useMobile();
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
 
@@ -129,7 +132,8 @@ export function App(props: DocInnerProps): ReactElement {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
         scrollToHash();
-    }, [theme, mobileView, wideFormat, fullScreen, landingPage]);
+        linksHandler(skipHtmlExtension);
+    }, [theme, mobileView, wideFormat, fullScreen, landingPage, skipHtmlExtension]);
 
     return (
         <div className="App">
