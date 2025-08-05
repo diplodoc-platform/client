@@ -191,3 +191,38 @@ export function scrollToHash() {
         scrollToElement(element);
     }
 }
+
+export function linksHandler(skipHtmlExtension?: boolean) {
+    if (isBrowser()) {
+        document.addEventListener('click', (event) => {
+            const target = event.target as Element;
+            const href = (target as HTMLAnchorElement).href;
+
+            const locationOrigin = window.location.origin;
+
+            if (target.matches('.dc-doc-layout__center a') && href.startsWith(locationOrigin)) {
+                event.preventDefault();
+
+                const mainFileName = 'index';
+                const extention = '.html';
+
+                if (!skipHtmlExtension && href.endsWith('/')) {
+                    window.location.href = `${href}${mainFileName}${extention}`;
+
+                    return;
+                }
+
+                // https://../file-name, https://../file-name#fragment
+                const splitedHref = href.split('#');
+
+                if (splitedHref.length > 1 && !splitedHref[0].endsWith(extention)) {
+                    splitedHref[0] += extention;
+                    window.location.href = splitedHref.join('#');
+                    return;
+                }
+
+                window.location.href = href;
+            }
+        });
+    }
+}
