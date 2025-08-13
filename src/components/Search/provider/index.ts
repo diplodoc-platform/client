@@ -2,6 +2,7 @@ import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 import type {SearchConfig, SearchProviderExtended, WorkerConfig} from '../types';
 
 import {AlgoliaProvider} from './algolia/index';
+import {buildSearchLink} from './utils/searchLink';
 
 export class LocalSearchProvider implements ISearchProvider, SearchProviderExtended {
     private worker!: Promise<Worker>;
@@ -36,7 +37,7 @@ export class LocalSearchProvider implements ISearchProvider, SearchProviderExten
         }) as Promise<ISearchResult[]>;
     }
 
-    link = () => null;
+    link = (query: string, page = 1) => buildSearchLink(this.base, this.config, query, page);
 
     private get base() {
         return window.location.href.split('/').slice(0, -this.config.depth).join('/');

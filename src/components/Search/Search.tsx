@@ -1,3 +1,5 @@
+import type {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
+
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SearchPage} from '@diplodoc/components';
 import block from 'bem-cn-lite';
@@ -5,7 +7,6 @@ import block from 'bem-cn-lite';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
-import {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
 import './Search.scss';
 
 const b = block('Search');
@@ -68,12 +69,16 @@ export const Search: React.FC = () => {
                 ITEMS_PER_PAGE,
             );
             const formatted = formatResults(searchResults ?? []);
-            setResults(formatted);
 
-            const isLastPage = formatted.length < ITEMS_PER_PAGE;
-            const totalItems = isLastPage
-                ? (currentPage - 1) * ITEMS_PER_PAGE + formatted.length
-                : currentPage * ITEMS_PER_PAGE + 1;
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = currentPage * ITEMS_PER_PAGE;
+
+            const pageResult = formatted.slice(start, end);
+
+            setResults(pageResult);
+
+            const totalItems = formatted.length;
+
             setTotal(formatted.length > 0 ? totalItems : 0);
         } catch {
             setResults([]);

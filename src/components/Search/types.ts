@@ -1,4 +1,4 @@
-import {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
+import type {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
 
 export interface AlgoliaQuerySettings {
     hitsPerPage?: number;
@@ -8,17 +8,23 @@ export interface AlgoliaQuerySettings {
     [key: string]: unknown;
 }
 
-export interface SearchConfig {
+export interface SearchData {
     api: string;
     link: string;
     lang: string;
-    depth: number;
     provider?: 'local' | 'algolia';
+    confidense?: string;
+    enabled?: boolean;
+    tolerance?: number;
+}
 
+export interface SearchConfig extends SearchData {
+    depth: number;
     appId?: string;
     indexName?: string;
     searchKey?: string;
     querySettings?: AlgoliaQuerySettings;
+    search?: SearchData;
 }
 
 export interface WorkerConfig {

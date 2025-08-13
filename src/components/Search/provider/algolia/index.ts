@@ -1,6 +1,8 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 import type {SearchConfig, SearchProviderExtended, WorkerConfig} from '../../types';
 
+import {buildSearchLink} from '../utils/searchLink';
+
 export class AlgoliaProvider implements ISearchProvider, SearchProviderExtended {
     private worker!: Promise<Worker>;
     private config: SearchConfig;
@@ -45,22 +47,7 @@ export class AlgoliaProvider implements ISearchProvider, SearchProviderExtended 
         return (await this.request(message)) as ISearchResult[];
     }
 
-    link = (query: string, page = 1) => {
-        const searchParams = new URLSearchParams();
-
-        if (query) {
-            searchParams.set('query', query);
-        }
-
-        if (page > 1) {
-            searchParams.set('page', page.toString());
-        }
-
-        const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
-        const link = `${this.base}/${this.config.link}${params}`;
-
-        return link;
-    };
+    link = (query: string, page = 1) => buildSearchLink(this.base, this.config, query, page);
 
     private get base() {
         const base = window.location.href.split('/').slice(0, -this.config.depth).join('/');
