@@ -41,11 +41,11 @@ export const Search: React.FC = () => {
     const provider = useProvider();
     const router = useRouter();
 
-    const [query, setQuery] = useState('');
-    const [page, setPage] = useState(1);
+    const [query, setQuery] = useState<string>('');
+    const [page, setPage] = useState<number>(1);
     const [results, setResults] = useState<FormattedSearchResultData>([]);
-    const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [total, setTotal] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const providerRef = useRef<SearchProviderExtended | null>(null);
 
@@ -56,46 +56,36 @@ export const Search: React.FC = () => {
 
     useEffect(() => {
         const {query: q, page: p} = getUrlParams();
+
         setQuery(q);
         setPage(p);
     }, [router]);
 
-    const performSearch = useCallback(async (searchQuery: string, currentPage: number) => {
-        setLoading(true);
-        try {
-            const searchResults = await providerRef.current?.search(
-                searchQuery,
-                currentPage,
-                ITEMS_PER_PAGE,
-            );
-            const formatted = formatResults(searchResults ?? []);
-
-            const start = (currentPage - 1) * ITEMS_PER_PAGE;
-            const end = currentPage * ITEMS_PER_PAGE;
-
-            const pageResult = formatted.slice(start, end);
-
-            setResults(pageResult);
-
-            const totalItems = formatted.length;
-
-            setTotal(formatted.length > 0 ? totalItems : 0);
-        } catch {
-            setResults([]);
-            setTotal(0);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
     useEffect(() => {
         if (query && providerRef.current) {
-            performSearch(query, page);
+            setLoading(true);
+
+            const page = 1;
+            const maxCount = 100;
+
+            providerRef.current
+                .search(query, page, maxCount)
+                .then((searchResults) => {
+                    const formatted = formatResults(searchResults ?? []);
+
+                    setResults(formatted);
+                    setTotal(formatted.length);
+                })
+                .catch(() => {
+                    setResults([]);
+                    setTotal(0);
+                })
+                .finally(() => setLoading(false));
         } else {
             setResults([]);
             setTotal(0);
         }
-    }, [query, page, provider, performSearch]);
+    }, [query, provider]);
 
     const handlePageChange = useCallback(
         (newPage: number) => {
@@ -111,11 +101,15 @@ export const Search: React.FC = () => {
         setPage(1);
     }, []);
 
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = page * ITEMS_PER_PAGE;
+    const pageResult = results.slice(start, end);
+
     return (
         <div className={b()}>
             <SearchPage
                 query={query}
-                items={results}
+                items={pageResult}
                 page={page}
                 totalItems={total}
                 onPageChange={handlePageChange}
