@@ -1,3 +1,5 @@
+import type {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
+
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SearchPage} from '@diplodoc/components';
 import block from 'bem-cn-lite';
@@ -5,11 +7,9 @@ import block from 'bem-cn-lite';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
-import {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
 import './Search.scss';
 
 const b = block('Search');
-const ITEMS_PER_PAGE = 10;
 
 function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
@@ -36,15 +36,17 @@ function formatResults(searchResults: SearchResultData[]): FormattedSearchResult
     }));
 }
 
+const ITEMS_PER_PAGE = 10;
+
 export const Search: React.FC = () => {
     const provider = useProvider();
     const router = useRouter();
 
-    const [query, setQuery] = useState('');
-    const [page, setPage] = useState(1);
+    const [query, setQuery] = useState<string>('');
+    const [page, setPage] = useState<number>(1);
     const [results, setResults] = useState<FormattedSearchResultData>([]);
-    const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [total, setTotal] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const providerRef = useRef<SearchProviderExtended | null>(null);
 
@@ -55,42 +57,34 @@ export const Search: React.FC = () => {
 
     useEffect(() => {
         const {query: q, page: p} = getUrlParams();
+
         setQuery(q);
         setPage(p);
     }, [router]);
 
-    const performSearch = useCallback(async (searchQuery: string, currentPage: number) => {
-        setLoading(true);
-        try {
-            const searchResults = await providerRef.current?.search(
-                searchQuery,
-                currentPage,
-                ITEMS_PER_PAGE,
-            );
-            const formatted = formatResults(searchResults ?? []);
-            setResults(formatted);
-
-            const isLastPage = formatted.length < ITEMS_PER_PAGE;
-            const totalItems = isLastPage
-                ? (currentPage - 1) * ITEMS_PER_PAGE + formatted.length
-                : currentPage * ITEMS_PER_PAGE + 1;
-            setTotal(formatted.length > 0 ? totalItems : 0);
-        } catch {
-            setResults([]);
-            setTotal(0);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
     useEffect(() => {
         if (query && providerRef.current) {
-            performSearch(query, page);
+            setLoading(true);
+
+            providerRef.current
+                .search(query, page, ITEMS_PER_PAGE)
+                .then((searchResults) => {
+                    const {items, total} = searchResults;
+                    const formatted = formatResults(items ?? []);
+
+                    setResults(formatted);
+                    setTotal(total);
+                })
+                .catch(() => {
+                    setResults([]);
+                    setTotal(0);
+                })
+                .finally(() => setLoading(false));
         } else {
             setResults([]);
             setTotal(0);
         }
-    }, [query, page, provider, performSearch]);
+    }, [query, page, provider]);
 
     const handlePageChange = useCallback(
         (newPage: number) => {

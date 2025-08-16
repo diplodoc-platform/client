@@ -1,10 +1,10 @@
-import type {SearchConfig, WorkerApi, WorkerConfig} from './types';
+import type {SearchConfig, SearchData, WorkerApi, WorkerConfig} from './types';
 
 import {createContext, useContext} from 'react';
 
 export type {SearchConfig, WorkerConfig, WorkerApi};
 
-export const SearchContext = createContext<SearchConfig | null | undefined>(null);
+export const SearchContext = createContext<SearchConfig | SearchData | null | undefined>(null);
 
 SearchContext.displayName = 'SearchContext';
 
