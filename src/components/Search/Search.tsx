@@ -10,7 +10,6 @@ import {useProvider} from './useProvider';
 import './Search.scss';
 
 const b = block('Search');
-const ITEMS_PER_PAGE = 10;
 
 function getUrlParams() {
     const params = new URLSearchParams(window.location.search);
@@ -36,6 +35,8 @@ function formatResults(searchResults: SearchResultData[]): FormattedSearchResult
         section: result?.section || result?.hierarchy?.lvl1 || '',
     }));
 }
+
+const ITEMS_PER_PAGE = 10;
 
 export const Search: React.FC = () => {
     const provider = useProvider();
@@ -65,16 +66,14 @@ export const Search: React.FC = () => {
         if (query && providerRef.current) {
             setLoading(true);
 
-            const page = 1;
-            const maxCount = 100;
-
             providerRef.current
-                .search(query, page, maxCount)
+                .search(query, page, ITEMS_PER_PAGE)
                 .then((searchResults) => {
-                    const formatted = formatResults(searchResults ?? []);
+                    const {items, total} = searchResults;
+                    const formatted = formatResults(items ?? []);
 
                     setResults(formatted);
-                    setTotal(formatted.length);
+                    setTotal(total);
                 })
                 .catch(() => {
                     setResults([]);
@@ -85,7 +84,7 @@ export const Search: React.FC = () => {
             setResults([]);
             setTotal(0);
         }
-    }, [query, provider]);
+    }, [query, page, provider]);
 
     const handlePageChange = useCallback(
         (newPage: number) => {
@@ -101,15 +100,11 @@ export const Search: React.FC = () => {
         setPage(1);
     }, []);
 
-    const start = (page - 1) * ITEMS_PER_PAGE;
-    const end = page * ITEMS_PER_PAGE;
-    const pageResult = results.slice(start, end);
-
     return (
         <div className={b()}>
             <SearchPage
                 query={query}
-                items={pageResult}
+                items={results}
                 page={page}
                 totalItems={total}
                 onPageChange={handlePageChange}
