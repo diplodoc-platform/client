@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.9.0](https://github.com/diplodoc-platform/client/compare/v3.8.3...v3.9.0) (2025-08-18)
+
+
+### Features
+
+* Static search results page ([#187](https://github.com/diplodoc-platform/client/issues/187)) ([db9f506](https://github.com/diplodoc-platform/client/commit/db9f506aeb1742ea126cafae918943c41105076c))
+
+
+### Bug Fixes
+
+* update version actions, node 22 ([464df4f](https://github.com/diplodoc-platform/client/commit/464df4f842a69e4c5dba52c34e26f257b8eddc40))
+
 ## [3.8.3](https://github.com/diplodoc-platform/client/compare/v3.8.2...v3.8.3) (2025-08-04)
 
 
