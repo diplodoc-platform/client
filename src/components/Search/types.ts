@@ -1,4 +1,4 @@
-import {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
+import type {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
 
 export interface AlgoliaQuerySettings {
     hitsPerPage?: number;
@@ -8,17 +8,20 @@ export interface AlgoliaQuerySettings {
     [key: string]: unknown;
 }
 
-export interface SearchConfig {
+export interface SearchData {
     api: string;
     link: string;
     lang: string;
-    depth: number;
     provider?: 'local' | 'algolia';
+}
 
+export interface SearchConfig extends SearchData {
+    depth: number;
     appId?: string;
     indexName?: string;
     searchKey?: string;
     querySettings?: AlgoliaQuerySettings;
+    search?: SearchData;
 }
 
 export interface WorkerConfig {
@@ -50,7 +53,7 @@ export interface WorkerApi {
         query: string,
         count: number,
         page: number,
-    ): Promise<SearchSuggestPageItem[] | SearchResultItem[]>;
+    ): Promise<{items: ISearchResult[]; total: number}>;
 }
 
 export type InitMessage = {
@@ -73,7 +76,11 @@ export type SearchMessage = {
 export interface SearchProviderExtended {
     init(): void;
     suggest(query: string): Promise<ISearchResult[]>;
-    search(query: string, page?: number, count?: number): Promise<ISearchResult[]>;
+    search(
+        query: string,
+        page?: number,
+        count?: number,
+    ): Promise<{items: ISearchResult[]; total: number}>;
     link(query: string, page?: number): string | null;
 }
 
