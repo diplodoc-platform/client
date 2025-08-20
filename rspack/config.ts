@@ -1,6 +1,8 @@
+import type {FileDescriptor} from 'rspack-manifest-plugin';
+
 import {join, resolve} from 'path';
 import {rspack} from '@rspack/core';
-import {FileDescriptor, RspackManifestPlugin} from 'rspack-manifest-plugin';
+import {RspackManifestPlugin} from 'rspack-manifest-plugin';
 import {RsdoctorRspackPlugin} from '@rsdoctor/rspack-plugin';
 import {TsCheckerRspackPlugin} from 'ts-checker-rspack-plugin';
 
@@ -80,12 +82,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                 url: require.resolve('url/'),
                 'utf-8-validate': false,
             },
-            extensions: (isServer ? ['.server.tsx', '.server.ts', '.server.js'] : []).concat([
-                '.tsx',
-                '.ts',
-                '.js',
-                '.scss',
-            ]),
+            extensions: ['.tsx', '.ts', '.js', '.scss'],
         },
         resolveLoader: {
             modules: [resolve(__dirname, './loaders'), 'node_modules'],
@@ -97,40 +94,6 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                     minimizerOptions: {
                         format: {
                             comments: false,
-                        },
-                    },
-                }),
-                new rspack.LightningCssMinimizerRspackPlugin({
-                    minimizerOptions: {
-                        targets: ['defaults', 'not ie <= 11'],
-                        // https://rspack.rs/plugins/rspack/lightning-css-minimizer-rspack-plugin#minimizeroptions
-                        // Docs state: The exclude option is configured with all features by default.
-                        // Somehow this is broken, though.
-                        // By listing everything here we ensure that all syntax downgrades are done via the loader.
-                        exclude: {
-                            nesting: true,
-                            notSelectorList: true,
-                            dirSelector: true,
-                            langSelectorList: true,
-                            isSelector: true,
-                            textDecorationThicknessPercent: true,
-                            mediaIntervalSyntax: true,
-                            mediaRangeSyntax: true,
-                            customMediaQueries: true,
-                            clampFunction: true,
-                            colorFunction: true,
-                            oklabColors: true,
-                            labColors: true,
-                            p3Colors: true,
-                            hexAlphaColors: true,
-                            spaceSeparatedColorNotation: true,
-                            fontFamilySystemUi: true,
-                            doublePositionGradients: true,
-                            vendorPrefixes: true,
-                            logicalProperties: true,
-                            selectors: true,
-                            mediaQueries: true,
-                            color: true,
                         },
                     },
                 }),
@@ -275,7 +238,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                     test: /\.[tj]sx?$/,
                     loader: 'builtin:swc-loader',
                     options: getSwcOptions(isDev),
-                    include: /@diplodoc[\\/]mdx-extension/,
+                    include: [/@diplodoc[\\/]mdx-extension/],
                     resolve: {
                         fullySpecified: false,
                     },
@@ -293,13 +256,18 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                         ? ['noop-loader']
                         : [
                               {
-                                  loader: 'builtin:lightningcss-loader',
+                                  loader: 'postcss-loader',
                                   options: {
-                                      targets: ['defaults', 'not ie <= 11'],
-                                      exclude: {
-                                          logicalProperties: true,
-                                          dirSelector: true,
-                                          langSelectorList: true,
+                                      postcssOptions: {
+                                          plugins: [
+                                              require('postcss-preset-env')({
+                                                  browsers: ['defaults', 'not ie <= 11'],
+                                                  features: {
+                                                      'logical-properties-and-values': false,
+                                                      'dir-pseudo-class': false,
+                                                  },
+                                              }),
+                                          ],
                                       },
                                   },
                               },
@@ -324,11 +292,12 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
     };
 }
 
+const isDev = process.env.NODE_ENV === 'development';
 const analyze = process.env.ANALYZE === 'true';
 
 module.exports = [
-    config({isServer: false, isDev: process.env.NODE_ENV === 'development', analyze}),
-    config({isServer: true, isDev: process.env.NODE_ENV === 'development', analyze}),
+    config({isServer: false, isDev, analyze}),
+    config({isServer: true, isDev, analyze}),
 ];
 
 /*
