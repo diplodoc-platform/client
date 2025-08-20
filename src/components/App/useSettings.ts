@@ -30,11 +30,8 @@ export function useSettings() {
     return controls;
 }
 
-type State<P extends keyof Settings> = {
-    [prop in P]: Settings[P];
-} & {
-    [prop in `onChange${Capitalize<P>}`]: (value: Settings[P]) => void;
-};
+type State<P extends keyof Settings> = Record<P, Settings[P]> &
+    Record<`onChange${Capitalize<P>}`, (value: Settings[P]) => void>;
 
 function useSetting<P extends keyof Settings>(name: P, settings: Settings): State<P> {
     const [setting, setSetting] = useState<Settings[P]>(settings[name]);

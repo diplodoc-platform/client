@@ -86,6 +86,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
         },
         resolveLoader: {
             modules: [resolve(__dirname, './loaders'), 'node_modules'],
+            extensions: ['.ts', '.js'],
         },
         optimization: {
             minimize: !isServer,
