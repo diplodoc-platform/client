@@ -1,19 +1,19 @@
 import type {PropsWithChildren} from 'react';
-import type {AppProps, PageData} from './index';
+import type {AppProps, DocContentPageData, PageData, WithNavigation} from './index';
 import type {Settings} from '../../utils';
+import type {DocBasePageData} from '@diplodoc/components';
+import type {Props as HeaderControlsProps} from '../HeaderControls';
 
 import React, {useCallback, useMemo} from 'react';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
-import {DocBasePageData, getPageByType, getPageType} from '@diplodoc/components';
+import {getPageByType, getPageType} from '@diplodoc/components';
 
 import {Layout} from '../Layout';
 import {ConstructorPage} from '../ConstructorPage';
 import {useContent} from '../ConstructorPage/useContent';
 import {Suggest} from '../Search/Suggest';
-import {HeaderControls, Props as HeaderControlsProps} from '../HeaderControls';
+import {HeaderControls} from '../HeaderControls';
 import {useNavigation} from '../ConstructorPage/useNavigation';
-
-import {DocContentPageData, WithNavigation} from './index';
 
 type Props = PropsWithChildren<Partial<AppProps> & {data: PageData; headerHeight: number}>;
 

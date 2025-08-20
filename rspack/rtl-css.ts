@@ -1,6 +1,7 @@
+import type {Compiler} from '@rspack/core';
+
 import path from 'path';
 import rtlcss from 'rtlcss';
-import {Compiler} from '@rspack/core';
 
 const checkIsCss = (filename: string) => path.extname(filename) === '.css';
 

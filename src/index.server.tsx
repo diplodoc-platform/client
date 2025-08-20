@@ -1,9 +1,12 @@
+import type {DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
+import type {ConfigData, PreloadParams} from './preprocess';
+
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 
-import {App, DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
+import {App} from './components/App';
 import {LINK_KEYS, LINK_KEYS_LEADING_CONFIG, LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG} from './constants';
-import {ConfigData, PreloadParams, preprocess} from './preprocess';
+import {preprocess} from './preprocess';
 
 export type {
     DocInnerProps,

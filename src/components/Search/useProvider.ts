@@ -1,5 +1,6 @@
+import type {ISearchProvider} from '@diplodoc/components';
+
 import {useContext, useEffect, useMemo, useState} from 'react';
-import {ISearchProvider} from '@diplodoc/components';
 
 import {RouterContext, SearchContext} from '../index';
 import {useLang} from '../../hooks/useLang';

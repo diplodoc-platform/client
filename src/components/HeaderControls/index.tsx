@@ -1,5 +1,7 @@
+import type {Lang, TextSizes, Theme} from '@diplodoc/components';
+
 import React, {memo} from 'react';
-import {ControlSizes, Controls, ControlsLayout, Lang, TextSizes, Theme} from '@diplodoc/components';
+import {ControlSizes, Controls, ControlsLayout} from '@diplodoc/components';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OnChangeCallback = (value: any) => void;
