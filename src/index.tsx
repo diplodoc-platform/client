@@ -1,7 +1,9 @@
+import type {DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
+
 import React from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 
-import {App, DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
+import {App} from './components/App';
 import {setRootClasses} from './interceptors/fast-class-applier';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};

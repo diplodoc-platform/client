@@ -1,4 +1,6 @@
-import React, {FC, PropsWithChildren, ReactElement} from 'react';
+import type {FC, PropsWithChildren, ReactElement} from 'react';
+
+import React from 'react';
 import block from 'bem-cn-lite';
 
 import './Layout.scss';

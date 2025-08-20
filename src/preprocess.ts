@@ -1,16 +1,12 @@
-import {
+import type {
     Block,
     ConstructorBlock,
     NavigationData as ConstructorNavigaitonData,
     PageContent as ConstructorPageContentBase,
 } from '@gravity-ui/page-constructor';
-import {
-    BlocksConfig,
-    Parser,
-    TransformerRaw,
-    config,
-    contentTransformer,
-} from '@gravity-ui/page-constructor/server';
+import type {BlocksConfig, Parser, TransformerRaw} from '@gravity-ui/page-constructor/server';
+
+import {config, contentTransformer} from '@gravity-ui/page-constructor/server';
 
 export interface MetaData {
     title: string;
