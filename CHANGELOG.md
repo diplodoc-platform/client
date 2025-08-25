@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.10.0](https://github.com/diplodoc-platform/client/compare/v3.9.0...v3.10.0) (2025-08-25)
+
+
+### Features
+
+* Use hashed assets in client manifest ([b8e0124](https://github.com/diplodoc-platform/client/commit/b8e01246d7dc8fc8d04846ac591280b1e1615e82))
+
+
+### Bug Fixes
+
+* Fix internal types ([d484f03](https://github.com/diplodoc-platform/client/commit/d484f0354d6f9600653ab6549928df551ce8d173))
+* import of search api script file relative to the root ([fb82057](https://github.com/diplodoc-platform/client/commit/fb82057655ff805093525261ad3674b3157e7a96))
+* Remove prod deps ([1b84fe3](https://github.com/diplodoc-platform/client/commit/1b84fe39699eaf0def2fe8e61c54676e47f062b8))
+* Use postcss instead of lightningcss ([4c3e677](https://github.com/diplodoc-platform/client/commit/4c3e67759b695276529502cd1e19ccacf736daa2))
+
 ## [3.9.0](https://github.com/diplodoc-platform/client/compare/v3.8.3...v3.9.0) (2025-08-18)
 
 
