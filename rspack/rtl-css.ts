@@ -1,6 +1,7 @@
 import type {Compiler} from '@rspack/core';
 
-import path from 'path';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
 import rtlcss from 'rtlcss';
 
 const checkIsCss = (filename: string) => path.extname(filename) === '.css';
@@ -60,9 +61,13 @@ export class RtlCssPlugin {
                                         this.options.filename[1],
                                     );
                                 } else {
+                                    const hash = createHash('sha256');
+                                    hash.update(processedAssetSource);
+
                                     interpolatedFilePath = compilation.getPath(
                                         this.options.filename ?? '',
                                         {
+                                            contentHash: hash.digest('hex').slice(0, 16),
                                             chunk,
                                         },
                                     );

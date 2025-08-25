@@ -21,7 +21,6 @@ const getSwcOptions = (isDev: boolean) => ({
             react: {
                 runtime: 'automatic',
                 development: isDev,
-                refresh: isDev,
             },
         },
     },
@@ -63,9 +62,9 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
         output: valuable({
             clean: true,
             path: root('build', mode),
-            filename: `[name].js`,
+            filename: isServer ? `[name].js` : `[name]-[contenthash].js`,
             libraryTarget: isServer ? 'commonjs2' : null,
-            cssFilename: `[name].css`,
+            cssFilename: `[name]-[contenthash].css`,
         }),
         resolve: {
             alias: valuable({
@@ -89,7 +88,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
             extensions: ['.ts', '.js'],
         },
         optimization: {
-            minimize: !isServer,
+            minimize: !isServer && !isDev,
             minimizer: [
                 new rspack.SwcJsMinimizerRspackPlugin({
                     minimizerOptions: {
@@ -127,7 +126,9 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
             new RspackManifestPlugin({
                 generate: (_seed, files) => {
                     const pages = ['search', 'app'];
-                    const name = ({name}: FileDescriptor) => name;
+                    const name = ({path}: FileDescriptor) => {
+                        return path.replace(/^auto\//, '');
+                    };
                     const not =
                         <F extends (...args: [FileDescriptor]) => boolean>(actor: F) =>
                         (...args: [FileDescriptor]) =>
@@ -143,15 +144,15 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                     const isInitial = ({isInitial}: FileDescriptor) => isInitial;
                     const endsWith =
                         (tail: string) =>
-                        ({name}: FileDescriptor) =>
-                            name.endsWith(tail);
+                        ({path}: FileDescriptor) =>
+                            path.endsWith(tail);
                     const byRuntime = (runtime: string) => (file: FileDescriptor) => {
                         // For RTL CSS files, determine runtime based on filename
                         // This ensures that runtime-specific RTL files are only included in their corresponding runtime
                         // Example: search.rtl.css should only be in "search" runtime, not in "app" runtime
-                        if (file.name && file.name.endsWith('.rtl.css')) {
+                        if (file.path && file.path.endsWith('.rtl.css')) {
                             // Extract base name (without .rtl.css)
-                            const baseName = file.name.replace('.rtl.css', '');
+                            const baseName = file.path.replace('.rtl.css', '');
 
                             // If filename matches one of our page runtimes (app or search),
                             // include it only in its corresponding runtime
@@ -184,6 +185,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                     for (const runtime of pages) {
                         runtimes[runtime] = {
                             async: files
+                                .filter(not(endsWith('.map')))
                                 .filter(
                                     allOf(
                                         not(isInitial),
@@ -211,7 +213,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                 },
             }),
             new RtlCssPlugin({
-                filename: '[name].rtl.css',
+                filename: '[name]-[contenthash].rtl.css',
                 hooks: {
                     pre: function (root, postcss) {
                         root.nodes.forEach((node) => {
