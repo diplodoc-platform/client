@@ -49,10 +49,10 @@ const HANDLERS = {
         self.config = config;
 
         if (self.config.api) {
-            if (!self.config.api.startsWith('/')) {
-                importScripts(self.config.base + '/' + self.config.api);
-            } else {
+            if (self.config.api.startsWith('/')) {
                 importScripts(self.config.api);
+            } else {
+                importScripts(self.config.base + '/' + self.config.api);
             }
         }
 

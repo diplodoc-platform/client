@@ -134,7 +134,7 @@ export function App(props: DocInnerProps): ReactElement {
     return (
         <div className="App">
             <ThemeProvider theme={theme} direction={direction}>
-                <LangProvider value={lang}>
+                <LangProvider value={fixedLang}>
                     <RouterProvider value={router}>
                         <SearchProvider value={search}>
                             <InterfaceProvider interface={viewerInterface || {}}>

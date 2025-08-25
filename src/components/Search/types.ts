@@ -1,41 +1,19 @@
 import type {ISearchResult, SearchSuggestPageItem} from '@diplodoc/components';
 
-export interface AlgoliaQuerySettings {
-    hitsPerPage?: number;
-    facetFilters?: string[];
-    attributesToRetrieve?: string[];
-    attributesToHighlight?: string[];
-    [key: string]: unknown;
-}
-
 export interface SearchData {
     api: string;
     link: string;
     lang: string;
-    provider?: 'local' | 'algolia';
 }
 
 export interface SearchConfig extends SearchData {
-    depth: number;
-    appId?: string;
-    indexName?: string;
-    searchKey?: string;
-    querySettings?: AlgoliaQuerySettings;
-    search?: SearchData;
+    base: string;
 }
 
 export interface WorkerConfig {
     api?: string;
     base: string;
     mark: string;
-    provider?: 'local' | 'algolia';
-
-    appId?: string;
-    indexName?: string;
-    searchKey?: string;
-    querySettings?: {
-        [key: string]: unknown;
-    };
 }
 
 export interface SearchResultItem {
@@ -93,13 +71,7 @@ export interface SearchResultData extends Partial<ISearchResult> {
     url?: string;
     link?: string;
     description?: string;
-    content?: string;
-    text?: string;
     section?: string;
-    hierarchy?: {
-        lvl0?: string;
-        lvl1?: string;
-    };
 }
 
 export interface FormattedSearchResultItem {

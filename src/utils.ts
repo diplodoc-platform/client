@@ -96,8 +96,8 @@ export function getSettings() {
     };
 }
 
-export function getLandingPage(data: PageData) {
-    return getPageType(data) === 'PAGE_CONSTRUCTOR';
+export function getLandingPage(data: PageData | undefined) {
+    return data && getPageType(data) === 'PAGE_CONSTRUCTOR';
 }
 
 export function getMobileView() {

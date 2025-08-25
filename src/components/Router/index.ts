@@ -3,12 +3,12 @@ import type {Router} from '@diplodoc/components';
 import {createContext, useContext} from 'react';
 
 export interface RouterConfig extends Router {
-    depth: number;
+    base: string;
 }
 
 export const RouterContext = createContext<RouterConfig>({
     pathname: '/',
-    depth: 0,
+    base: './',
 });
 
 RouterContext.displayName = 'RouterContext';

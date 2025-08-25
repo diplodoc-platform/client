@@ -1,8 +1,6 @@
 import type {ISearchProvider, ISearchResult} from '@diplodoc/components';
 import type {SearchConfig, SearchProviderExtended, WorkerConfig} from '../types';
 
-import {buildSearchLink} from './utils/searchLink';
-
 export class DefaultSearchProvider implements ISearchProvider, SearchProviderExtended {
     private worker!: Promise<Worker>;
 
@@ -15,7 +13,6 @@ export class DefaultSearchProvider implements ISearchProvider, SearchProviderExt
     init = () => {
         this.worker = initWorker({
             ...this.config,
-            base: this.base,
             mark: 'Suggest__Item__Marker',
         });
     };
@@ -36,11 +33,22 @@ export class DefaultSearchProvider implements ISearchProvider, SearchProviderExt
         }) as Promise<{items: ISearchResult[]; total: number}>;
     }
 
-    link = (query: string, page = 1) => buildSearchLink(this.base, this.config, query, page);
+    link = (query: string, page = 1) => {
+        const searchParams = new URLSearchParams();
 
-    private get base() {
-        return window.location.href.split('/').slice(0, -this.config.depth).join('/');
-    }
+        if (query) {
+            searchParams.set('query', query);
+        }
+
+        if (page > 1) {
+            searchParams.set('page', page.toString());
+        }
+
+        const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
+        const link = `${this.config.link}${params}`;
+
+        return link;
+    };
 
     private async request(message: object) {
         return request(await this.worker, message);
