@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.10.1](https://github.com/diplodoc-platform/client/compare/v3.10.0...v3.10.1) (2025-08-27)
+
+
+### Bug Fixes
+
+* Fix autoscrolling to cut elements ([e1d9319](https://github.com/diplodoc-platform/client/commit/e1d9319f87492db12137c2d5a32b581c43e73531))
+
 ## [3.10.0](https://github.com/diplodoc-platform/client/compare/v3.9.0...v3.10.0) (2025-08-25)
 
 
