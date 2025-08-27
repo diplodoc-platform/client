@@ -3,12 +3,8 @@ import type {FormattedSearchResultData, SearchProviderExtended, SearchResultData
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SearchPage} from '@diplodoc/components';
 import block from 'bem-cn-lite';
-import {ThemeProvider} from '@gravity-ui/uikit';
 
 import {useRouter} from '../Router';
-import {useSettings} from '../App/useSettings';
-import {useLang} from '../../hooks/useLang';
-import {getDirection} from '../../utils';
 
 import {useProvider} from './useProvider';
 import './Search.scss';
@@ -45,11 +41,6 @@ const ITEMS_PER_PAGE = 10;
 export const Search: React.FC = () => {
     const provider = useProvider();
     const router = useRouter();
-    const settings = useSettings();
-    const lang = useLang();
-    const direction = getDirection(lang);
-
-    const {theme} = settings;
 
     const [query, setQuery] = useState<string>('');
     const [page, setPage] = useState<number>(1);
@@ -111,17 +102,15 @@ export const Search: React.FC = () => {
 
     return (
         <div className={b()}>
-            <ThemeProvider theme={theme} direction={direction}>
-                <SearchPage
-                    query={query}
-                    items={results}
-                    page={page}
-                    totalItems={total}
-                    onPageChange={handlePageChange}
-                    onSubmit={handleQueryChange}
-                    loading={loading}
-                />
-            </ThemeProvider>
+            <SearchPage
+                query={query}
+                items={results}
+                page={page}
+                totalItems={total}
+                onPageChange={handlePageChange}
+                onSubmit={handleQueryChange}
+                loading={loading}
+            />
         </div>
     );
 };

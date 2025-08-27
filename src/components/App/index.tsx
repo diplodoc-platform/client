@@ -23,7 +23,7 @@ import {
 } from '@diplodoc/components';
 import '@diplodoc/transform/dist/js/yfm';
 
-import {SearchProvider} from '../Search';
+import {SearchProvider} from '../Search/useSearch';
 import {RouterProvider} from '../Router';
 import {
     getDirection,
