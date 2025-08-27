@@ -2,11 +2,12 @@ import type {SearchConfig} from './components/Search';
 
 import React from 'react';
 import {createRoot} from 'react-dom/client';
+import {Lang, configure as configureDocs} from '@diplodoc/components';
 import {configure as configureUikit} from '@gravity-ui/uikit';
-import {configure as configureDocs} from '@diplodoc/components';
 
 import {Search, SearchProvider} from './components/Search';
 import {RouterProvider} from './components/Router';
+import {LangProvider} from './hooks/useLang';
 
 const root = document.getElementById('root');
 
@@ -20,7 +21,7 @@ const windowData = window.__DATA__ as SearchConfig;
 const searchConfig = windowData || {};
 const searchData = windowData.search;
 
-const lang = searchData?.lang;
+const lang = (searchData?.lang as Lang) || Lang.En;
 
 configureUikit({lang});
 configureDocs({lang});
@@ -33,9 +34,11 @@ const routerConfig = {
 };
 
 createRoot(root).render(
-    <RouterProvider value={routerConfig}>
-        <SearchProvider value={searchData}>
-            <Search />
-        </SearchProvider>
-    </RouterProvider>,
+    <LangProvider value={lang}>
+        <RouterProvider value={routerConfig}>
+            <SearchProvider value={searchData}>
+                <Search />
+            </SearchProvider>
+        </RouterProvider>
+    </LangProvider>,
 );
