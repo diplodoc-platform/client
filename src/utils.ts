@@ -182,6 +182,12 @@ export function scrollToElement(el: HTMLElement | null) {
     }
 }
 
+export function getLangPath(lang: string, href: string) {
+    const path = href.replace(/^https?:\/\/[^/]+/, '').replace(/^\/[a-z]{2}\//, '/');
+
+    return `${lang}${path}`;
+}
+
 export function scrollToHash() {
     const hash = window.location.hash.substring(1);
 
