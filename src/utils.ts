@@ -130,29 +130,12 @@ export function setSetting<T>(name: string, value: T) {
     } catch {}
 }
 
+export function isDetailsTag(el: HTMLElement): el is HTMLDetailsElement {
+    return el?.tagName.toLowerCase() === 'details';
+}
+
 export function isHeaderTag(el: HTMLElement) {
-    if (!el) return false;
-
     return ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].indexOf(el.tagName) !== -1;
-}
-
-export function isCutTag(el: HTMLElement) {
-    if (!el) return false;
-
-    return el.matches('.yfm-cut');
-}
-
-export function focusActiveTab(cutNode: HTMLElement) {
-    cutNode.classList.toggle('open');
-    cutNode.setAttribute('open', 'true');
-    cutNode.classList.add('cut-highlight');
-
-    cutNode.scrollIntoView(true);
-    window.scrollBy(0, -100);
-
-    setTimeout(() => {
-        cutNode.classList.remove('cut-highlight');
-    }, 1_000);
 }
 
 /**
@@ -162,32 +145,58 @@ export function focusActiveTab(cutNode: HTMLElement) {
  * @param {HTMLElement} el
  */
 
-export function scrollToElement(el: HTMLElement | null) {
-    if (!el) return;
+export function scrollToElement(el: HTMLElement, offset = 200) {
+    if (isInViewport(el)) {
+        return;
+    }
 
     if (isHeaderTag(el)) {
         // Header already includes the offset in css
         // That puts it where we want it when it's scrolled to
         el.scrollIntoView();
-    } else if (isCutTag(el)) {
-        focusActiveTab(el);
     } else {
-        // For elements other than headers calculate the offset
-        const [header] = Array.from(
-            document.getElementsByClassName('Layout__header'),
-        ) as HTMLElement[];
-        const headerOffset = header?.clientHeight ?? 0;
-        const anchorPosition = el.offsetTop;
-        window.scrollTo(0, anchorPosition - headerOffset);
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+        });
     }
+}
+
+function isInViewport(el: HTMLElement) {
+    const rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
 }
 
 export function scrollToHash() {
     const hash = window.location.hash.substring(1);
 
-    if (hash) {
-        const element = document.getElementById(hash);
-
-        scrollToElement(element);
+    if (!hash) {
+        return;
     }
+
+    const element = document.getElementById(hash);
+
+    if (!element) {
+        return;
+    }
+
+    let node = element?.parentElement;
+    while (node) {
+        if (isDetailsTag(node)) {
+            node.open = true;
+        }
+        node = node.parentElement;
+    }
+
+    element.focus();
+
+    setTimeout(() => {
+        scrollToElement(element);
+    }, 10);
 }
