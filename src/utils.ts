@@ -164,6 +164,12 @@ export function scrollToElement(el: HTMLElement, offset = 200) {
     }
 }
 
+export function getLangPath(lang: string, href: string) {
+    const path = href.replace(/^https?:\/\/[^/]+/, '').replace(/^\/[a-z]{2}\//, '/');
+
+    return `${lang}${path}`;
+}
+
 function isInViewport(el: HTMLElement) {
     const rect = el.getBoundingClientRect();
 
