@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.10.2](https://github.com/diplodoc-platform/client/compare/v3.10.1...v3.10.2) (2025-08-28)
+
+
+### Bug Fixes
+
+* Fix cut hash navigation ([b23f4f1](https://github.com/diplodoc-platform/client/commit/b23f4f1ad0e8ceee7a5637f750d3ae395d33c672))
+
 ## [3.10.1](https://github.com/diplodoc-platform/client/compare/v3.10.0...v3.10.1) (2025-08-27)
 
 
