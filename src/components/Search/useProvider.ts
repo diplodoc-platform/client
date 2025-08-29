@@ -1,16 +1,16 @@
 import type {ISearchProvider} from '@diplodoc/components';
 
-import {useContext, useEffect, useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
-import {RouterContext, SearchContext} from '../index';
+import {useRouter, useSearch} from '../index';
 import {useLang} from '../../hooks/useLang';
 
 import {createProvider} from './provider';
 
 export function useProvider() {
     const lang = useLang();
-    const {depth = 0} = useContext(RouterContext);
-    const search = useContext(SearchContext);
+    const {base = './'} = useRouter();
+    const search = useSearch();
     const [provider, setProvider] = useState<ISearchProvider | null>(null);
 
     const config = useMemo(() => {
@@ -20,10 +20,10 @@ export function useProvider() {
 
         return {
             ...search,
-            depth,
+            base,
             lang,
         };
-    }, [lang, depth, search]);
+    }, [lang, base, search]);
 
     useEffect(() => {
         if (config) {
