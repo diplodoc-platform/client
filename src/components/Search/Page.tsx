@@ -7,7 +7,7 @@ import block from 'bem-cn-lite';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
-import './Search.scss';
+import './Page.scss';
 
 const b = block('Search');
 
@@ -38,7 +38,7 @@ function formatResults(searchResults: SearchResultData[]): FormattedSearchResult
 
 const ITEMS_PER_PAGE = 10;
 
-export const Search: React.FC = () => {
+export const Page: React.FC = () => {
     const provider = useProvider();
     const router = useRouter();
 
