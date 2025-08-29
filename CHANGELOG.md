@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.10.3](https://github.com/diplodoc-platform/client/compare/v3.10.2...v3.10.3) (2025-08-29)
+
+
+### Bug Fixes
+
+* fixed useLangs and interceptors ([#189](https://github.com/diplodoc-platform/client/issues/189)) ([e88436e](https://github.com/diplodoc-platform/client/commit/e88436ed9f8347efa00f8d9f0650d1e29ca0d4ad))
+
+
+### Dependency update
+
+* Update @diplodoc/components to 4.34.1 ([#194](https://github.com/diplodoc-platform/client/issues/194)) ([f367e25](https://github.com/diplodoc-platform/client/commit/f367e2518a1bceb7f352aeb27fe4fe8b6f9f64c4))
+
 ## [3.10.2](https://github.com/diplodoc-platform/client/compare/v3.10.1...v3.10.2) (2025-08-28)
 
 
