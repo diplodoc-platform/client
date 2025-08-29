@@ -3,7 +3,7 @@ import type {SearchConfig} from './components/Search';
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 
-import {SearchPage} from './components/Search';
+import {Search} from './components/Search';
 
 const root = document.getElementById('root');
 
@@ -22,4 +22,4 @@ const props = {
     url,
 };
 
-createRoot(root).render(<SearchPage {...props} />);
+createRoot(root).render(<Search {...props} />);
