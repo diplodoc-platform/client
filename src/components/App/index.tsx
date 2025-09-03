@@ -91,6 +91,11 @@ export function App(props: DocInnerProps): ReactElement {
         localeCode: fixedLang,
     });
 
+    const availableLangs = useMemo(
+        () => ('meta' in data && data.meta?.availableLangs) || [lang],
+        [data, lang],
+    );
+
     const renderHooks = useMemo(() => {
         const hooks: RenderBodyHook[] = [];
         const getMdxInitProps = global && 'getMdxInitProps' in global && global.getMdxInitProps;
@@ -119,8 +124,9 @@ export function App(props: DocInnerProps): ReactElement {
             ...settings,
             ...langData,
             mobileView,
+            availableLangs,
         }),
-        [langData, settings, mobileView],
+        [langData, settings, mobileView, availableLangs],
     );
     const direction = getDirection(lang);
     const landingPage = getLandingPage(data);

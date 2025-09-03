@@ -20,6 +20,7 @@ export type Props = {
     lang: Lang | `${Lang}`;
     langs: (Lang | `${Lang}`)[];
     onChangeLang?: (lang: `${Lang}` | Lang) => void;
+    availableLangs?: (`${Lang}` | Lang)[];
 };
 
 export const HeaderControls = memo<Props>(
@@ -41,6 +42,8 @@ export const HeaderControls = memo<Props>(
         lang,
         langs,
         onChangeLang,
+
+        availableLangs,
     }) => {
         return (
             <ControlsLayout
@@ -62,6 +65,7 @@ export const HeaderControls = memo<Props>(
                     lang={lang}
                     langs={langs}
                     onChangeLang={onChangeLang}
+                    availableLangs={availableLangs}
                 />
             </ControlsLayout>
         );
