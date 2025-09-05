@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.11.0](https://github.com/diplodoc-platform/client/compare/v3.10.3...v3.11.0) (2025-09-05)
+
+
+### Features
+
+* adding theme provider in search page ([#191](https://github.com/diplodoc-platform/client/issues/191)) ([08486e7](https://github.com/diplodoc-platform/client/commit/08486e73c52dcd9cef1452cbdb8c339e1e890b17))
+
+
+### Dependency update
+
+* Update @diplodoc/components to 4.34.2 ([#197](https://github.com/diplodoc-platform/client/issues/197)) ([b80b972](https://github.com/diplodoc-platform/client/commit/b80b9725fdea91d999a3491a56e4593f3c1379bc))
+
 ## [3.10.3](https://github.com/diplodoc-platform/client/compare/v3.10.2...v3.10.3) (2025-08-29)
 
 
