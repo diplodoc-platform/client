@@ -40,6 +40,7 @@ import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
 import {useMobile} from './useMobile';
+import {useAvailableLangs} from './useAvailableLangs';
 import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
@@ -84,17 +85,13 @@ export function App(props: DocInnerProps): ReactElement {
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
+    const availableLangs = useAvailableLangs(data) as (`${Lang}` | Lang)[];
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
 
     configure({
         lang: fixedLang,
         localeCode: fixedLang,
     });
-
-    const availableLangs = useMemo(
-        () => ('meta' in data && data.meta?.availableLangs) || [lang],
-        [data, lang],
-    );
 
     const renderHooks = useMemo(() => {
         const hooks: RenderBodyHook[] = [];
