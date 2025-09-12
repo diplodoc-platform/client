@@ -4,7 +4,6 @@ import type {SearchConfig} from '../Search';
 import type {RouterConfig} from '../Router';
 import type {ReactElement} from 'react';
 import type {
-    DocBasePageData,
     DocContentPageData as DocContentPageDataBase,
     DocLeadingPageData,
     DocPageData,
@@ -35,7 +34,7 @@ import {
 import {LangProvider} from '../../hooks/useLang';
 import '../../interceptors/leading-page-links';
 
-import {LegacyNavPage, RichNavPage} from './Page';
+import {Page} from './Page';
 import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
@@ -61,7 +60,7 @@ export interface AppProps {
 }
 
 export type WithNavigation = {
-    navigation: NavigationData;
+    navigation?: NavigationData;
 };
 
 export type DocContentPageData = DocContentPageDataBase<PageContent>;
@@ -73,12 +72,6 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 } & AppProps;
 
 export type {DocLeadingPageData, DocPageData};
-
-function hasNavigation(
-    data: DocBasePageData<Partial<WithNavigation>>,
-): data is DocBasePageData<WithNavigation> {
-    return Boolean(data.toc.navigation);
-}
 
 export function App(props: DocInnerProps): ReactElement {
     const {data, router, lang, langs, search, analytics, viewerInterface} = props;
@@ -142,15 +135,7 @@ export function App(props: DocInnerProps): ReactElement {
                         <SearchProvider value={search}>
                             <InterfaceProvider interface={viewerInterface || {}}>
                                 <RenderBodyHooksContext.Provider value={renderHooks}>
-                                    {hasNavigation(data) ? (
-                                        <RichNavPage data={data} props={page} controls={controls} />
-                                    ) : (
-                                        <LegacyNavPage
-                                            data={data}
-                                            props={page}
-                                            controls={controls}
-                                        />
-                                    )}
+                                    <Page data={data} props={page} controls={controls} />
                                 </RenderBodyHooksContext.Provider>
                                 {analytics && (
                                     <ConsentPopup

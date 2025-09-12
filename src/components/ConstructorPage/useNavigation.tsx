@@ -18,6 +18,11 @@ type NavigationDataWithOptionalLogo = Omit<NavigationData, 'logo'> & {
     logo?: NavigationData['logo'];
 };
 
+const EmptyNavigation = {} as NavigationData;
+const EmptyHeader = {} as NavigationData['header'];
+const EmptyLeftItems = [] as NavigationItemModel[];
+const EmptyRightItems = [] as NavigationItemModel[];
+
 export const useNavigation = (
     data: DocBasePageData<WithNavigation>,
     controls: HeaderControlsProps,
@@ -26,10 +31,10 @@ export const useNavigation = (
     viewerInterface?: Record<string, boolean>,
 ) => {
     const {toc} = data;
-    const {navigation} = toc;
-    const {header = {} as NavigationData['header'], logo}: NavigationDataWithOptionalLogo =
-        navigation;
-    const {leftItems = [], rightItems = []} = header as NavigationData['header'];
+    const navigation = toc.navigation || EmptyNavigation;
+    const {header = EmptyHeader, logo} = navigation as NavigationDataWithOptionalLogo;
+    const {leftItems = EmptyLeftItems, rightItems = EmptyRightItems} =
+        header as NavigationData['header'];
 
     const withControls = findItem(rightItems, leftItems, 'controls');
     const withSearch = findItem(rightItems, leftItems, 'search');
@@ -68,21 +73,24 @@ export const useNavigation = (
     );
 
     const layout = useMemo(
-        () => ({
-            header: {
-                leftItems: [],
-            },
-            renderNavigation: () => (
-                <CustomNavigation
-                    logo={{...logo, icon: logo?.icon ?? ''}}
-                    data={navigationData}
-                    navigationTocData={navigationTocData}
-                    mobileControlsData={mobileControlsData}
-                />
-            ),
-            logo: {...logo, icon: logo?.icon ?? ''},
-        }),
-        [navigationData, navigationTocData, mobileControlsData, logo],
+        () =>
+            EmptyNavigation === navigation
+                ? undefined
+                : {
+                      header: {
+                          leftItems: [],
+                      },
+                      renderNavigation: () => (
+                          <CustomNavigation
+                              logo={{...logo, icon: logo?.icon ?? ''}}
+                              data={navigationData}
+                              navigationTocData={navigationTocData}
+                              mobileControlsData={mobileControlsData}
+                          />
+                      ),
+                      logo: {...logo, icon: logo?.icon ?? ''},
+                  },
+        [navigationData, navigationTocData, mobileControlsData, logo, navigation],
     );
 
     const config = useMemo(

@@ -1,5 +1,4 @@
-import type {PropsWithChildren} from 'react';
-import type {AppProps, DocContentPageData, PageData, WithNavigation} from './index';
+import type {AppProps, DocContentPageData, PageData} from './index';
 import type {Settings} from '../../utils';
 import type {DocBasePageData} from '@diplodoc/components';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
@@ -15,22 +14,6 @@ import {Suggest} from '../Search/Suggest';
 import {HeaderControls} from '../HeaderControls';
 import {useNavigation} from '../ConstructorPage/useNavigation';
 
-type Props = PropsWithChildren<Partial<AppProps> & {data: PageData; headerHeight: number}>;
-
-export function Page({data, ...pageProps}: Props) {
-    const type = getPageType(data);
-    const Page = getPageByType(type);
-
-    return (
-        <Layout headerHeight={pageProps.headerHeight}>
-            <Layout.Content>
-                {/*@ts-ignore*/}
-                <Page {...data} {...pageProps} />
-            </Layout.Content>
-        </Layout>
-    );
-}
-
 type PageProps<T extends {} = {}> = {
     data: DocBasePageData<T> & PageData;
     props: {
@@ -39,39 +22,10 @@ type PageProps<T extends {} = {}> = {
     controls: HeaderControlsProps;
 };
 
-export function LegacyNavPage({data, props, controls}: PageProps) {
-    const {theme} = props;
-
-    const CustomPage = useCallback(
-        () => <ConstructorPage {...(data as DocContentPageData).data} />,
-        [data],
-    );
-    const content = useContent(data as DocContentPageData, CustomPage);
-
-    const custom = useMemo(
-        () => ({
-            blocks: content.custom,
-        }),
-        [content],
-    );
-
-    return (
-        <Page data={data} headerHeight={0} {...props} {...controls}>
-            <PageConstructorProvider
-                theme={theme}
-                projectSettings={{disableCompress: true}}
-                ssrConfig={{
-                    isServer: Boolean(process.env.BROWSER),
-                }}
-            >
-                <PageConstructor custom={custom} content={content.layout} />
-            </PageConstructorProvider>
-        </Page>
-    );
-}
-
-export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) {
+export function Page({data, props, controls}: PageProps) {
     const {theme, fullScreen} = props;
+    const type = getPageType(data);
+    const Page = getPageByType(type);
 
     const CustomSuggest = useCallback(() => <Suggest />, []);
     const CustomControls = useCallback(() => <HeaderControls {...controls} />, [controls]);
@@ -79,29 +33,33 @@ export function RichNavPage({data, props, controls}: PageProps<WithNavigation>) 
 
     const CustomPage = useCallback(
         () => (
-            <Page
-                data={data}
-                headerHeight={fullScreen ? 0 : 64}
-                {...props}
-                {...(navigation.withControls
-                    ? filterControls(controls, [
-                          'theme',
-                          'onChangeTheme',
-                          'textSize',
-                          'onChangeTextSize',
-                          'wideFormat',
-                          'onChangeWideFormat',
-                          'showMiniToc',
-                          'onChangeShowMiniToc',
-                          'langs',
-                          'onChangeLang',
-                      ])
-                    : controls)}
-            >
-                <ConstructorPage {...(data as DocContentPageData).data} />
-            </Page>
+            <Layout headerHeight={fullScreen || !navigation.layout ? 0 : 64}>
+                <Layout.Content>
+                    {/*@ts-ignore*/}
+                    <Page
+                        {...data}
+                        {...props}
+                        {...(navigation.withControls
+                            ? filterControls(controls, [
+                                  'theme',
+                                  'onChangeTheme',
+                                  'textSize',
+                                  'onChangeTextSize',
+                                  'wideFormat',
+                                  'onChangeWideFormat',
+                                  'showMiniToc',
+                                  'onChangeShowMiniToc',
+                                  'langs',
+                                  'onChangeLang',
+                              ])
+                            : controls)}
+                    >
+                        <ConstructorPage {...(data as DocContentPageData).data} />
+                    </Page>
+                </Layout.Content>
+            </Layout>
         ),
-        [data, navigation, props, controls, fullScreen],
+        [data, navigation, props, controls, fullScreen, Page],
     );
     const content = useContent(data as DocContentPageData, CustomPage);
 
