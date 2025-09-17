@@ -81,11 +81,11 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, search, analytics, viewerInterface} = props;
+    const {data, router, lang, langs, search, analytics, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
-    const availableLangs = useAvailableLangs(data) as (`${Lang}` | Lang)[];
+    const availableLangs = useAvailableLangs(data, langs) as (`${Lang}` | Lang)[];
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
 
     configure({

@@ -43,7 +43,7 @@ export const HeaderControls = memo<Props>(
         langs,
         onChangeLang,
 
-        availableLangs,
+        availableLangs = [],
     }) => {
         return (
             <ControlsLayout
