@@ -1,6 +1,6 @@
 import type {PageData} from './index';
-import type {Lang} from '@diplodoc/components';
 
+import {type Lang, isExternalHref} from '@diplodoc/components';
 import {useMemo} from 'react';
 
 export function useAvailableLangs(data: PageData, langs: (`${Lang}` | Lang)[]) {
@@ -9,28 +9,34 @@ export function useAvailableLangs(data: PageData, langs: (`${Lang}` | Lang)[]) {
             return [];
         }
 
-        const canonical = data.meta.canonical;
+        const {canonical, alternate = []} = data.meta;
 
         if (!canonical) {
             return [];
         }
 
-        const alternate = data.meta.alternate || [];
+        const langsSet = new Set<Lang>();
 
-        const [canonicalLang, ...canonicalRest] = canonical.split('/');
-        const canonicalPath = canonicalRest.join('/');
+        const [canonicalLang] = canonical.split('/');
 
-        const availableLangs = [canonicalLang];
+        if (langs.includes(canonicalLang as Lang)) {
+            langsSet.add(canonicalLang as Lang);
+        }
 
         for (const alt of alternate) {
-            const [altLang, ...altRest] = alt.split('/');
-            const altPath = altRest.join('/');
+            const href = alt.href;
 
-            if (altPath === canonicalPath && langs.includes(altLang as Lang)) {
-                availableLangs.push(altLang);
+            if (!href || isExternalHref(href)) {
+                continue;
+            }
+
+            const [altLang] = href.split('/');
+
+            if (langs.includes(altLang as Lang)) {
+                langsSet.add(altLang as Lang);
             }
         }
 
-        return Array.from(new Set(availableLangs));
+        return Array.from(langsSet);
     }, [data, langs]);
 }
