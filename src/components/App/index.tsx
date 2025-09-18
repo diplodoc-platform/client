@@ -40,6 +40,7 @@ import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
 import {useMobile} from './useMobile';
+import {useAvailableLangs} from './useAvailableLangs';
 import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
@@ -80,10 +81,11 @@ function hasNavigation(
 }
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, search, analytics, viewerInterface} = props;
+    const {data, router, lang, langs, search, analytics, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
+    const availableLangs = useAvailableLangs(data, langs) as (`${Lang}` | Lang)[];
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
 
     configure({
@@ -119,8 +121,9 @@ export function App(props: DocInnerProps): ReactElement {
             ...settings,
             ...langData,
             mobileView,
+            availableLangs,
         }),
-        [langData, settings, mobileView],
+        [langData, settings, mobileView, availableLangs],
     );
     const direction = getDirection(lang);
     const landingPage = getLandingPage(data);
