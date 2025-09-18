@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.12.0](https://github.com/diplodoc-platform/client/compare/v3.11.0...v3.12.0) (2025-09-18)
+
+
+### Features
+
+* added availableLangs ([#195](https://github.com/diplodoc-platform/client/issues/195)) ([7022cc3](https://github.com/diplodoc-platform/client/commit/7022cc39b06ce0fd70e074fdf94eef76d0e072dc))
+
 ## [3.11.0](https://github.com/diplodoc-platform/client/compare/v3.10.3...v3.11.0) (2025-09-05)
 
 
