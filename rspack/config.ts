@@ -55,7 +55,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
             app: isServer ? src('index.server.tsx') : src('index.tsx'),
             search: isServer ? null : src('search.tsx'),
         }),
-        cache: isDev && {
+        cache: {
             type: 'filesystem',
             cacheDirectory: root(`cache`, mode),
         },
