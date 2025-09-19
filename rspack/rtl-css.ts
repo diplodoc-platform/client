@@ -7,7 +7,7 @@ import rtlcss from 'rtlcss';
 const checkIsCss = (filename: string) => path.extname(filename) === '.css';
 
 type Options = {
-    filename?: string | string[];
+    filename?: string;
     options?: rtlcss.ConfigOptions;
     plugins?: rtlcss.Plugin[];
     hooks?: rtlcss.HookOptions;
@@ -49,29 +49,16 @@ export class RtlCssPlugin {
                                     this.options.hooks,
                                 );
 
-                                let interpolatedFilePath;
+                                const hash = createHash('sha256');
+                                hash.update(processedAssetSource);
 
-                                if (Array.isArray(this.options.filename)) {
-                                    if (this.options.filename.length !== 2) {
-                                        throw Error('You should pass two elements and array');
-                                    }
-                                    // also allow save current file destination
-                                    interpolatedFilePath = filename.replace(
-                                        this.options.filename[0],
-                                        this.options.filename[1],
-                                    );
-                                } else {
-                                    const hash = createHash('sha256');
-                                    hash.update(processedAssetSource);
-
-                                    interpolatedFilePath = compilation.getPath(
-                                        this.options.filename ?? '',
-                                        {
-                                            contentHash: hash.digest('hex').slice(0, 16),
-                                            chunk,
-                                        },
-                                    );
-                                }
+                                const interpolatedFilePath = compilation.getPath(
+                                    this.options.filename ?? '',
+                                    {
+                                        contentHash: hash.digest('hex').slice(0, 16),
+                                        chunk,
+                                    },
+                                );
 
                                 compilation.emitAsset(
                                     interpolatedFilePath,
