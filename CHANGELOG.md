@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/diplodoc-platform/client/compare/v3.12.0...v4.0.0) (2025-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove legacy page  layout
+
+### Features
+
+* Remove legacy page  layout ([ab02c97](https://github.com/diplodoc-platform/client/commit/ab02c97027a26b509f3da87ed3b2861de09bc1cf))
+
 ## [3.12.0](https://github.com/diplodoc-platform/client/compare/v3.11.0...v3.12.0) (2025-09-18)
 
 
