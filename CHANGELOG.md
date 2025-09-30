@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/diplodoc-platform/client/compare/v3.12.0...v4.0.0) (2025-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove legacy page  layout
+
+### Features
+
+* Remove legacy page  layout ([ab02c97](https://github.com/diplodoc-platform/client/commit/ab02c97027a26b509f3da87ed3b2861de09bc1cf))
+
+
+### Dependency update
+
+* Update @diplodoc/components to 4.36.0 ([#200](https://github.com/diplodoc-platform/client/issues/200)) ([917b9e0](https://github.com/diplodoc-platform/client/commit/917b9e0ef636f004bc97fb45673106fc8b77e19a))
+* Update @diplodoc/components to 4.36.1 ([#201](https://github.com/diplodoc-platform/client/issues/201)) ([00c84a6](https://github.com/diplodoc-platform/client/commit/00c84a6f4166570fd4669e4a74e3f2ef837a5ba3))
+* Update @diplodoc/components to 4.37.1 ([#202](https://github.com/diplodoc-platform/client/issues/202)) ([288fd56](https://github.com/diplodoc-platform/client/commit/288fd565d8a0bcac46c819a2a47b919e871f7a84))
+
 ## [3.12.0](https://github.com/diplodoc-platform/client/compare/v3.11.0...v3.12.0) (2025-09-18)
 
 
