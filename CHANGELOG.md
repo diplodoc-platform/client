@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/diplodoc-platform/client/compare/v4.0.0...v4.0.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* fixed getLangPath ([#203](https://github.com/diplodoc-platform/client/issues/203)) ([e108823](https://github.com/diplodoc-platform/client/commit/e10882335e1f0d68748d7d6f436433641dd320fe))
+
 ## [4.0.0](https://github.com/diplodoc-platform/client/compare/v3.12.0...v4.0.0) (2025-09-30)
 
 
