@@ -165,9 +165,23 @@ export function scrollToElement(el: HTMLElement, offset = 200) {
 }
 
 export function getLangPath(lang: string, href: string) {
-    const path = href.replace(/^https?:\/\/[^/]+/, '').replace(/^\/[a-z]{2}\//, '/');
+    let path;
 
-    return `${lang}${path}`;
+    const isLocal = href.match(/^file:\/\/\/(.*)$/);
+
+    if (isLocal) {
+        path = '/' + isLocal[1];
+    } else {
+        path = href.replace(/^https?:\/\/[^/]+/, '');
+    }
+
+    const newPath = path.replace(/\/[a-z]{2}\//, `/${lang}/`);
+
+    if (isLocal) {
+        return 'file://' + newPath;
+    }
+
+    return newPath;
 }
 
 function isInViewport(el: HTMLElement) {
