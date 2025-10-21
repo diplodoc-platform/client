@@ -43,6 +43,7 @@ import {useLangs} from './useLangs';
 import {useSettings} from './useSettings';
 import {useMobile} from './useMobile';
 import {useAvailableLangs} from './useAvailableLangs';
+import {useNeuroExpert} from './useNeuroExpert';
 import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
@@ -80,12 +81,23 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 export type {DocLeadingPageData, DocPageData};
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs, search, analytics, viewerInterface, neuroExpert} = props;
+    const {
+        data,
+        router,
+        lang,
+        langs,
+        search,
+        analytics,
+        viewerInterface,
+        neuroExpert: baseNeuroExpert,
+    } = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
     const availableLangs = useAvailableLangs(data, langs) as (`${Lang}` | Lang)[];
+    const neuroExpert = useNeuroExpert(data, baseNeuroExpert);
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
+
     const parentId = neuroExpert?.parentId;
 
     configure({
