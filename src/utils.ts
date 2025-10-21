@@ -1,5 +1,5 @@
 import type {PageData} from './components/App';
-import type {Lang, Theme} from '@diplodoc/components';
+import type {Lang, NeuroExpert, NeuroExpertSettings, Theme} from '@diplodoc/components';
 
 import {getPageType} from '@diplodoc/components';
 
@@ -219,4 +219,51 @@ export function scrollToHash() {
     setTimeout(() => {
         scrollToElement(element);
     }, 10);
+}
+
+export function getNeuroExpertSettings(
+    lang: string,
+    neuroExpert: NeuroExpert,
+): NeuroExpertSettings | undefined {
+    const projectId =
+        neuroExpert?.projectId?.[lang] ?? neuroExpert?.projectId?.default ?? undefined;
+
+    if (!projectId || projectId === 'none') {
+        return undefined;
+    }
+
+    const settings = {
+        projectId,
+        hasOutsideClick: neuroExpert.hasOutsideClick ?? true,
+        isInternal: false,
+        parentId: neuroExpert.parentId ?? null,
+    };
+
+    return settings;
+}
+
+export function renderNEWidget(lang: `${Lang}` | Lang, neuroExpert?: NeuroExpert) {
+    if (!neuroExpert || neuroExpert.disabled) {
+        return;
+    }
+
+    const neScriptUrl =
+        'https://yastatic.net/s3/distribution/stardust/neuroexpert-widget/production/neuroexpert-widget.js';
+    const settings = getNeuroExpertSettings(lang, neuroExpert);
+
+    if (!settings) {
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = neScriptUrl;
+
+    script.onload = () => {
+        if (typeof window['initNeuroexpert'] === 'function') {
+            window['initNeuroexpert'](settings);
+        }
+    };
+
+    document.body.appendChild(script);
 }
