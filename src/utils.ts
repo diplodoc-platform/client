@@ -221,6 +221,8 @@ export function scrollToHash() {
     }, 10);
 }
 
+export const NEURO_EXPERT_PARENT_ID = 'neuro-expert-widget';
+
 export function getNeuroExpertSettings(
     lang: string,
     neuroExpert: NeuroExpert,
@@ -237,7 +239,7 @@ export function getNeuroExpertSettings(
         projectId,
         hasOutsideClick: neuroExpert.hasOutsideClick ?? true,
         isInternal,
-        parentId: neuroExpert.parentId ?? null,
+        parentId: neuroExpert.parentId ?? NEURO_EXPERT_PARENT_ID,
     };
 
     return settings;
@@ -245,10 +247,12 @@ export function getNeuroExpertSettings(
 
 export function renderNeuroExpertWidget(
     lang: `${Lang}` | Lang,
+    setParentId: (e: string | null) => void,
     neuroExpert?: NeuroExpert,
     isInternal = false,
 ) {
     if (!neuroExpert || neuroExpert.disabled) {
+        setParentId(null);
         return;
     }
 
@@ -257,8 +261,11 @@ export function renderNeuroExpertWidget(
     const settings = getNeuroExpertSettings(lang, neuroExpert, isInternal);
 
     if (!settings) {
+        setParentId(null);
         return;
     }
+
+    setParentId(settings.parentId);
 
     const script = document.createElement('script');
     script.type = 'module';

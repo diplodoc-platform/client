@@ -11,7 +11,7 @@ import type {
     RenderBodyHook,
 } from '@diplodoc/components';
 
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
@@ -20,6 +20,7 @@ import {
     NeuroExpertWidget,
     RenderBodyHooksContext,
     SUPPORTED_LANGS,
+    Widgets,
     configure,
 } from '@diplodoc/components';
 import '@diplodoc/transform/dist/js/yfm';
@@ -87,7 +88,7 @@ export function App(props: DocInnerProps): ReactElement {
     const availableLangs = useAvailableLangs(data, langs) as (`${Lang}` | Lang)[];
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
 
-    const parentId = neuroExpert?.parentId;
+    const [parentId, setParentId] = useState<string | null>();
 
     configure({
         lang: fixedLang,
@@ -132,7 +133,7 @@ export function App(props: DocInnerProps): ReactElement {
     useEffect(() => {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
-        renderNeuroExpertWidget(lang, neuroExpert);
+        renderNeuroExpertWidget(lang, setParentId, neuroExpert);
         scrollToHash();
     }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang, neuroExpert]);
 
@@ -153,7 +154,9 @@ export function App(props: DocInnerProps): ReactElement {
                                         consentMode={analytics?.gtm?.mode}
                                     />
                                 )}
-                                {parentId && <NeuroExpertWidget parentId={parentId} />}
+                                <Widgets>
+                                    {parentId && <NeuroExpertWidget parentId={parentId} />}
+                                </Widgets>
                                 <Runtime />
                             </InterfaceProvider>
                         </SearchProvider>
