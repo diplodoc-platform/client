@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/diplodoc-platform/client/compare/v4.0.2...v4.1.0) (2025-10-22)
+
+
+### Features
+
+* added neuro-expert ([#207](https://github.com/diplodoc-platform/client/issues/207)) ([b6fa2a9](https://github.com/diplodoc-platform/client/commit/b6fa2a969bb8c6ea9e4ab92c2b66d30c76a32f45))
+
+
+### Dependency update
+
+* Update @diplodoc/components to 4.38.0 ([#208](https://github.com/diplodoc-platform/client/issues/208)) ([5abfa80](https://github.com/diplodoc-platform/client/commit/5abfa801b0cdc595ba49718b6fb1d071201ec912))
+
 ## [4.0.2](https://github.com/diplodoc-platform/client/compare/v4.0.1...v4.0.2) (2025-10-17)
 
 
