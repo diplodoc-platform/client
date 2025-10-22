@@ -243,7 +243,7 @@ export function getNeuroExpertSettings(
     return settings;
 }
 
-export function renderNEWidget(
+export function renderNeuroExpertWidget(
     lang: `${Lang}` | Lang,
     neuroExpert?: NeuroExpert,
     isInternal = false,
