@@ -224,6 +224,7 @@ export function scrollToHash() {
 export function getNeuroExpertSettings(
     lang: string,
     neuroExpert: NeuroExpert,
+    isInternal: boolean,
 ): NeuroExpertSettings | undefined {
     const projectId =
         neuroExpert?.projectId?.[lang] ?? neuroExpert?.projectId?.default ?? undefined;
@@ -235,21 +236,25 @@ export function getNeuroExpertSettings(
     const settings = {
         projectId,
         hasOutsideClick: neuroExpert.hasOutsideClick ?? true,
-        isInternal: false,
+        isInternal,
         parentId: neuroExpert.parentId ?? null,
     };
 
     return settings;
 }
 
-export function renderNEWidget(lang: `${Lang}` | Lang, neuroExpert?: NeuroExpert) {
+export function renderNEWidget(
+    lang: `${Lang}` | Lang,
+    neuroExpert?: NeuroExpert,
+    isInternal = false,
+) {
     if (!neuroExpert || neuroExpert.disabled) {
         return;
     }
 
     const neScriptUrl =
         'https://yastatic.net/s3/distribution/stardust/neuroexpert-widget/production/neuroexpert-widget.js';
-    const settings = getNeuroExpertSettings(lang, neuroExpert);
+    const settings = getNeuroExpertSettings(lang, neuroExpert, isInternal);
 
     if (!settings) {
         return;
