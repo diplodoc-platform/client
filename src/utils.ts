@@ -1,5 +1,5 @@
 import type {PageData} from './components/App';
-import type {Lang, NeuroExpert, NeuroExpertSettings, Theme} from '@diplodoc/components';
+import type {Lang, Theme} from '@diplodoc/components';
 
 import {getPageType} from '@diplodoc/components';
 
@@ -219,63 +219,4 @@ export function scrollToHash() {
     setTimeout(() => {
         scrollToElement(element);
     }, 10);
-}
-
-export const NEURO_EXPERT_PARENT_ID = 'neuro-expert-widget';
-
-export function getNeuroExpertSettings(
-    lang: string,
-    neuroExpert: NeuroExpert,
-    isInternal: boolean,
-): NeuroExpertSettings | undefined {
-    const projectId =
-        neuroExpert?.projectId?.[lang] ?? neuroExpert?.projectId?.default ?? undefined;
-
-    if (!projectId || projectId === 'none') {
-        return undefined;
-    }
-
-    const settings = {
-        projectId,
-        hasOutsideClick: neuroExpert.hasOutsideClick ?? true,
-        isInternal,
-        parentId: neuroExpert.parentId ?? NEURO_EXPERT_PARENT_ID,
-    };
-
-    return settings;
-}
-
-export function renderNeuroExpertWidget(
-    lang: `${Lang}` | Lang,
-    setParentId: (e: string | null) => void,
-    neuroExpert?: NeuroExpert,
-    isInternal = false,
-) {
-    if (!neuroExpert || neuroExpert.disabled) {
-        setParentId(null);
-        return;
-    }
-
-    const neScriptUrl =
-        'https://yastatic.net/s3/distribution/stardust/neuroexpert-widget/production/neuroexpert-widget.js';
-    const settings = getNeuroExpertSettings(lang, neuroExpert, isInternal);
-
-    if (!settings) {
-        setParentId(null);
-        return;
-    }
-
-    setParentId(settings.parentId);
-
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = neScriptUrl;
-
-    script.onload = () => {
-        if (typeof window['initNeuroexpert'] === 'function') {
-            window['initNeuroexpert'](settings);
-        }
-    };
-
-    document.body.appendChild(script);
 }

@@ -7,17 +7,15 @@ import type {
     DocContentPageData as DocContentPageDataBase,
     DocLeadingPageData,
     DocPageData,
-    NeuroExpert,
     RenderBodyHook,
 } from '@diplodoc/components';
 
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
     InterfaceProvider,
     Lang,
-    NeuroExpertWidget,
     RenderBodyHooksContext,
     SUPPORTED_LANGS,
     Widgets,
@@ -30,7 +28,6 @@ import {RouterProvider} from '../Router';
 import {
     getDirection,
     getLandingPage,
-    renderNeuroExpertWidget,
     scrollToHash,
     updateRootClassName,
     updateThemeClassName,
@@ -47,8 +44,6 @@ import {useAvailableLangs} from './useAvailableLangs';
 import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
-export type {NeuroExpert};
-
 export type DocAnalytics = {
     gtm?: {
         id?: string;
@@ -63,7 +58,6 @@ export interface AppProps {
     search?: SearchConfig;
     analytics?: DocAnalytics;
     viewerInterface?: Record<string, boolean>;
-    neuroExpert?: NeuroExpert;
 }
 
 export type WithNavigation = {
@@ -81,14 +75,12 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 export type {DocLeadingPageData, DocPageData};
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs, search, analytics, viewerInterface, neuroExpert} = props;
+    const {data, router, lang, langs, search, analytics, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
     const availableLangs = useAvailableLangs(data, langs) as (`${Lang}` | Lang)[];
     const fixedLang = SUPPORTED_LANGS.includes(lang) ? lang : Lang.En;
-
-    const [parentId, setParentId] = useState<string | null>();
 
     configure({
         lang: fixedLang,
@@ -133,9 +125,8 @@ export function App(props: DocInnerProps): ReactElement {
     useEffect(() => {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
-        renderNeuroExpertWidget(lang, setParentId, neuroExpert);
         scrollToHash();
-    }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang, neuroExpert]);
+    }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang]);
 
     return (
         <div className="App">
@@ -154,9 +145,7 @@ export function App(props: DocInnerProps): ReactElement {
                                         consentMode={analytics?.gtm?.mode}
                                     />
                                 )}
-                                <Widgets>
-                                    {parentId && <NeuroExpertWidget parentId={parentId} />}
-                                </Widgets>
+                                <Widgets />
                                 <Runtime />
                             </InterfaceProvider>
                         </SearchProvider>
