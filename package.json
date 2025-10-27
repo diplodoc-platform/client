@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@diplodoc/babel-preset": "^1.0.3",
-    "@diplodoc/components": "^4.38.1",
+    "@diplodoc/components": "^4.38.2",
     "@diplodoc/latex-extension": "^1.3.4",
     "@diplodoc/lint": "^1.3.3",
     "@diplodoc/mdx-extension": "^1.6.2",
