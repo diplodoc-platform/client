@@ -1,10 +1,4 @@
-import type {
-    DocAnalytics,
-    DocInnerProps,
-    DocLeadingPageData,
-    DocPageData,
-    NeuroExpert,
-} from './components/App';
+import type {DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
 
 import React from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
@@ -12,7 +6,7 @@ import {createRoot, hydrateRoot} from 'react-dom/client';
 import {App} from './components/App';
 import {setRootClasses} from './interceptors/fast-class-applier';
 
-export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics, NeuroExpert};
+export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};
 export type {
     SearchConfig as ISearchProviderConfig,
     WorkerConfig as ISearchWorkerConfig,
