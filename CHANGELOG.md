@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.1](https://github.com/diplodoc-platform/client/compare/v4.1.0...v4.1.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* fixed NeuroExpert logic ([#212](https://github.com/diplodoc-platform/client/issues/212)) ([8b9da10](https://github.com/diplodoc-platform/client/commit/8b9da10305ff27c7a5c1e332a9cde751eb5d4242))
+
+
+### Dependency update
+
+* Update @diplodoc/components to 4.38.1 ([#210](https://github.com/diplodoc-platform/client/issues/210)) ([a1afe86](https://github.com/diplodoc-platform/client/commit/a1afe86a325666d68f4498bf871501426b7db5f1))
+* Update @diplodoc/components to 4.38.2 ([#213](https://github.com/diplodoc-platform/client/issues/213)) ([3308ece](https://github.com/diplodoc-platform/client/commit/3308ece49e403714e6c6dbcbec250e2343430543))
+
 ## [4.1.0](https://github.com/diplodoc-platform/client/compare/v4.0.2...v4.1.0) (2025-10-22)
 
 
