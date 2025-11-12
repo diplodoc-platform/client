@@ -184,6 +184,20 @@ export function getLangPath(lang: string, href: string) {
     return newPath;
 }
 
+export function getDomainPath(lang: string, domain: string, href: string) {
+    const newPath = href.replace(/([a-zA-Z0-9-]+\.[a-zA-Z0-9-]+)(?=[/:?#]|$)/, (match) => {
+        const dotPos = match.lastIndexOf('.');
+
+        if (dotPos === -1) {
+            return match;
+        }
+
+        return match.slice(0, dotPos + 1) + domain;
+    });
+
+    return getLangPath(lang, newPath);
+}
+
 function isInViewport(el: HTMLElement) {
     const rect = el.getBoundingClientRect();
 
