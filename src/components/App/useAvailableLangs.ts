@@ -1,5 +1,5 @@
 import type {PageData} from './index';
-import type {ExtendedLang, type Lang} from '@diplodoc/components';
+import type {ExtendedLang, Lang} from '@diplodoc/components';
 
 import {isExternalHref} from '@diplodoc/components';
 import {useMemo} from 'react';
