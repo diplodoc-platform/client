@@ -184,7 +184,7 @@ export function getLangPath(lang: string, href: string) {
     return newPath;
 }
 
-export function getDomainPath(lang: string, domain: string, href: string) {
+export function getDomainPath(lang: string, tld: string, href: string) {
     const newPath = href.replace(/([a-zA-Z0-9-]+\.[a-zA-Z0-9-]+)(?=[/:?#]|$)/, (match) => {
         const dotPos = match.lastIndexOf('.');
 
@@ -192,7 +192,7 @@ export function getDomainPath(lang: string, domain: string, href: string) {
             return match;
         }
 
-        return match.slice(0, dotPos + 1) + domain;
+        return match.slice(0, dotPos + 1) + tld;
     });
 
     return getLangPath(lang, newPath);

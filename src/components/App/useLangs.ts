@@ -7,7 +7,7 @@ import {getDomainPath, getLangPath} from '../../utils';
 
 export function useLangs({lang, langs}: AppProps) {
     const onChangeLang = useCallback((newLang: `${Lang}` | Lang, options?: LangOptions) => {
-        const {domain, href} = options || {};
+        const {tld, href} = options || {};
 
         if (href) {
             window.location.href = href;
@@ -17,8 +17,8 @@ export function useLangs({lang, langs}: AppProps) {
 
         const url = window.location.href;
 
-        if (domain) {
-            window.location.replace(getDomainPath(newLang, domain, url));
+        if (tld) {
+            window.location.replace(getDomainPath(newLang, tld, url));
         } else {
             window.location.replace(getLangPath(newLang, url));
         }
