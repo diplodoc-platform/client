@@ -1,4 +1,4 @@
-import type {AvailableLangs, Lang, TextSizes, Theme} from '@diplodoc/components';
+import type {AvailableLangs, Lang, LangOptions, TextSizes, Theme} from '@diplodoc/components';
 
 import React, {memo} from 'react';
 import {ControlSizes, Controls, ControlsLayout} from '@diplodoc/components';
@@ -19,7 +19,7 @@ export type Props = {
     onChangeShowMiniToc: OnChangeCallback;
     lang: Lang | `${Lang}`;
     langs: (Lang | `${Lang}`)[];
-    onChangeLang?: (lang: `${Lang}` | Lang) => void;
+    onChangeLang?: (lang: `${Lang}` | Lang, options?: LangOptions) => void;
     availableLangs?: AvailableLangs;
 };
 
