@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/diplodoc-platform/client/compare/v4.1.4...v4.2.0) (2025-11-19)
+
+
+### Features
+
+* added options to change the language ([#217](https://github.com/diplodoc-platform/client/issues/217)) ([2eb39f5](https://github.com/diplodoc-platform/client/commit/2eb39f5deca87b6daf04ec445cde8b724e3d463a))
+
 ## [4.1.4](https://github.com/diplodoc-platform/client/compare/v4.1.3...v4.1.4) (2025-11-19)
 
 
