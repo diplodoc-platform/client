@@ -24,7 +24,7 @@
   "license": "ISC",
   "engines": {
     "node": ">=22",
-    "npm": ">=9.*"
+    "npm": ">=11.5.1"
   },
   "exports": {
     ".": {
