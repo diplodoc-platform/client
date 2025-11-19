@@ -1,9 +1,16 @@
 import type {PageData} from './index';
+import type {ExtendedLang, Lang} from '@diplodoc/components';
 
-import {type Lang, isExternalHref} from '@diplodoc/components';
+import {isExternalHref} from '@diplodoc/components';
 import {useMemo} from 'react';
 
-export function useAvailableLangs(data: PageData, langs: (`${Lang}` | Lang)[]) {
+export type Langs = (`${Lang}` | Lang | ExtendedLang)[];
+
+export function hasLang(l: string, langs: Langs): boolean {
+    return langs.some((cfg) => (typeof cfg === 'string' ? cfg === l : cfg.lang === l));
+}
+
+export function useAvailableLangs(data: PageData, langs: Langs) {
     return useMemo(() => {
         if (!('meta' in data)) {
             return [];
@@ -19,7 +26,7 @@ export function useAvailableLangs(data: PageData, langs: (`${Lang}` | Lang)[]) {
 
         const [canonicalLang] = canonical.split('/');
 
-        if (langs.includes(canonicalLang as Lang)) {
+        if (hasLang(canonicalLang, langs)) {
             langsSet.add(canonicalLang as Lang);
         }
 
@@ -32,7 +39,7 @@ export function useAvailableLangs(data: PageData, langs: (`${Lang}` | Lang)[]) {
 
             const [altLang] = href.split('/');
 
-            if (langs.includes(altLang as Lang)) {
+            if (hasLang(altLang, langs)) {
                 langsSet.add(altLang as Lang);
             }
         }
