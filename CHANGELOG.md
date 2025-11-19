@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.3](https://github.com/diplodoc-platform/client/compare/v4.1.2...v4.1.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* fixed npm version ([#221](https://github.com/diplodoc-platform/client/issues/221)) ([5a0eb62](https://github.com/diplodoc-platform/client/commit/5a0eb62594bb8256466842d29fb4f3c84991a5a2))
+
 ## [4.1.2](https://github.com/diplodoc-platform/client/compare/v4.1.1...v4.1.2) (2025-11-05)
 
 
