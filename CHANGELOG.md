@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/diplodoc-platform/client/compare/v4.2.0...v5.0.0) (2025-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* updated @gravity-ui packages ([#228](https://github.com/diplodoc-platform/client/issues/228))
+
+### Features
+
+* updated [@gravity-ui](https://github.com/gravity-ui) packages ([#228](https://github.com/diplodoc-platform/client/issues/228)) ([689607e](https://github.com/diplodoc-platform/client/commit/689607eb5134d87ffcb93cb2fdd1115b0a6a2ab5))
+
 ## [4.2.0](https://github.com/diplodoc-platform/client/compare/v4.1.4...v4.2.0) (2025-11-19)
 
 
