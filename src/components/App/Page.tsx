@@ -18,7 +18,9 @@ type PageProps<T extends {} = {}> = {
     data: DocBasePageData<T> & PageData;
     props: {
         router: AppProps['router'];
-    } & Settings;
+    } & Settings & {
+        feedbackUrl?: string;
+    };
     controls: HeaderControlsProps;
 };
 

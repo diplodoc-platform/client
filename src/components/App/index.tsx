@@ -8,6 +8,7 @@ import type {
     DocLeadingPageData,
     DocPageData,
     RenderBodyHook,
+    FeedbackSendData,
 } from '@diplodoc/components';
 
 import React, {useEffect, useMemo} from 'react';
@@ -58,6 +59,8 @@ export interface AppProps {
     search?: SearchConfig;
     analytics?: DocAnalytics;
     viewerInterface?: Record<string, boolean>;
+    feedbackUrl?: string;
+    onSendFeedback?: (data: FeedbackSendData) => void;
 }
 
 export type WithNavigation = {
@@ -75,7 +78,7 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 export type {DocLeadingPageData, DocPageData};
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs, search, analytics, viewerInterface} = props;
+    const {data, router, lang, langs, search, analytics, viewerInterface, feedbackUrl} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
@@ -106,9 +109,10 @@ export function App(props: DocInnerProps): ReactElement {
             wideFormat,
             fullScreen,
             showMiniToc,
+            feedbackUrl,
             isMobile: mobileView,
         }),
-        [router, theme, textSize, wideFormat, fullScreen, showMiniToc, mobileView],
+        [router, theme, textSize, wideFormat, fullScreen, showMiniToc, mobileView, feedbackUrl],
     );
     const controls: HeaderControlsProps = useMemo(
         () => ({
