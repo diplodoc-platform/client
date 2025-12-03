@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/diplodoc-platform/client/compare/v5.0.0...v5.1.0) (2025-12-03)
+
+
+### Features
+
+* allow enable feedback ([#231](https://github.com/diplodoc-platform/client/issues/231)) ([54c8c9f](https://github.com/diplodoc-platform/client/commit/54c8c9fdaa3e8b89a18e5e380438ad35b6ff1c6d))
+
 ## [5.0.0](https://github.com/diplodoc-platform/client/compare/v4.2.0...v5.0.0) (2025-11-27)
 
 
