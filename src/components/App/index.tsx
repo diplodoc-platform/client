@@ -7,11 +7,10 @@ import type {
     DocContentPageData as DocContentPageDataBase,
     DocLeadingPageData,
     DocPageData,
-    FeedbackSendData,
     RenderBodyHook,
 } from '@diplodoc/components';
 
-import React, {useCallback, useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
@@ -34,6 +33,7 @@ import {
     updateThemeClassName,
 } from '../../utils';
 import {LangProvider} from '../../hooks/useLang';
+import {useFeedback} from '../../hooks/useFeedback';
 import '../../interceptors/leading-page-links';
 
 import {Page} from './Page';
@@ -102,28 +102,7 @@ export function App(props: DocInnerProps): ReactElement {
     const feedbackValue = viewerInterface?.feedback;
     const feedbackUrl = typeof feedbackValue === 'string' ? feedbackValue : undefined;
 
-    const onSendFeedback = useCallback(
-        (data: FeedbackSendData) => {
-            if (!feedbackUrl) {
-                return;
-            }
-            fetch(feedbackUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...data,
-                    page: router.pathname,
-                    timestamp: new Date().toISOString(),
-                }),
-            }).catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error('Failed to send feedback:', error);
-            });
-        },
-        [feedbackUrl, router.pathname],
-    );
+    const onSendFeedback = useFeedback({feedbackUrl, router});
 
     const page = useMemo(
         () => ({
