@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/diplodoc-platform/client/compare/v5.1.1...v5.2.0) (2025-12-03)
+
+
+### Features
+
+* add feedback.url config option ([#233](https://github.com/diplodoc-platform/client/issues/233)) ([1682ad2](https://github.com/diplodoc-platform/client/commit/1682ad2f48c6b69975bebc98dc1a86b512c2c69c))
+
 ## [5.1.1](https://github.com/diplodoc-platform/client/compare/v5.1.0...v5.1.1) (2025-12-03)
 
 
