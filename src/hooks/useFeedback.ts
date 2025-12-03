@@ -6,9 +6,10 @@ import {useCallback} from 'react';
 interface UseFeedbackOptions {
     feedbackUrl?: string;
     router: RouterConfig;
+    viewerInterface?: Record<string, boolean>;
 }
 
-export function useFeedback({feedbackUrl, router}: UseFeedbackOptions) {
+export function useFeedback({feedbackUrl, router, viewerInterface}: UseFeedbackOptions) {
     const onSendFeedback = useCallback(
         (data: FeedbackSendData) => {
             if (!feedbackUrl) {
@@ -33,5 +34,6 @@ export function useFeedback({feedbackUrl, router}: UseFeedbackOptions) {
         [feedbackUrl, router.pathname],
     );
 
-    return feedbackUrl ? onSendFeedback : undefined;
+    const isFeedbackEnabled = viewerInterface?.feedback !== false;
+    return feedbackUrl && isFeedbackEnabled ? onSendFeedback : undefined;
 }

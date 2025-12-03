@@ -52,12 +52,17 @@ export type DocAnalytics = {
     };
 };
 
+export type FeedbackConfig = {
+    url?: string;
+};
+
 export interface AppProps {
     lang: `${Lang}` | Lang;
     langs: (`${Lang}` | Lang)[];
     router: RouterConfig;
     search?: SearchConfig;
     analytics?: DocAnalytics;
+    feedback?: FeedbackConfig;
     viewerInterface?: Record<string, boolean>;
 }
 
@@ -76,7 +81,7 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 export type {DocLeadingPageData, DocPageData};
 
 export function App(props: DocInnerProps): ReactElement {
-    const {data, router, lang, langs, search, analytics, viewerInterface} = props;
+    const {data, router, lang, langs, search, analytics, feedback, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
@@ -99,10 +104,11 @@ export function App(props: DocInnerProps): ReactElement {
 
     const {theme, textSize, wideFormat, fullScreen, showMiniToc} = settings;
 
-    const feedbackValue = viewerInterface?.feedback;
-    const feedbackUrl = typeof feedbackValue === 'string' ? feedbackValue : undefined;
-
-    const onSendFeedback = useFeedback({feedbackUrl, router});
+    const onSendFeedback = useFeedback({
+        feedbackUrl: feedback?.url,
+        router,
+        viewerInterface,
+    });
 
     const page = useMemo(
         () => ({
