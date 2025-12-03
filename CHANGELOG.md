@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/diplodoc-platform/client/compare/v5.1.0...v5.1.1) (2025-12-03)
+
+
+### Dependency update
+
+* Update openapi-extension ([1ea24cf](https://github.com/diplodoc-platform/client/commit/1ea24cf1e09ee3e294806c79fa128eceb8382570))
+
 ## [5.1.0](https://github.com/diplodoc-platform/client/compare/v5.0.0...v5.1.0) (2025-12-03)
 
 
