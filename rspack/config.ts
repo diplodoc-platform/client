@@ -277,8 +277,9 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                               {
                                   loader: 'sass-loader',
                                   options: {
-                                      // Use sass (Dart Sass) instead of sass-embedded
-                                      // sass-embedded requires native binaries and fails in pure JS mode
+                                      // Use modern-compiler API for better performance with compiler reuse
+                                      // Works with sass (Dart Sass) - no need for sass-embedded native binaries
+                                      api: 'modern-compiler',
                                       implementation: require('sass'),
                                   },
                               },
