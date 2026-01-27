@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/diplodoc-platform/client/compare/v5.2.0...v5.2.1) (2026-01-27)
+
+
+### Dependency update
+
+* Update @diplodoc/components to 5.2.1 ([#238](https://github.com/diplodoc-platform/client/issues/238)) ([201ae11](https://github.com/diplodoc-platform/client/commit/201ae111ad4fb7a32b8f0d5cca193c2114946f84))
+
 ## [5.2.0](https://github.com/diplodoc-platform/client/compare/v5.1.1...v5.2.0) (2025-12-03)
 
 
