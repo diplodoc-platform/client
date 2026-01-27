@@ -210,11 +210,17 @@ function isInViewport(el: HTMLElement) {
 export function scrollToHash() {
     const hash = window.location.hash.substring(1);
 
+    // eslint-disable-next-line no-console
+    console.log({hash});
+
     if (!hash) {
         return;
     }
 
     const element = document.getElementById(hash);
+
+    // eslint-disable-next-line no-console
+    console.log({element});
 
     if (!element) {
         return;
@@ -231,6 +237,8 @@ export function scrollToHash() {
     element.focus();
 
     setTimeout(() => {
+        // eslint-disable-next-line no-console
+        console.log('scroll');
         scrollToElement(element);
     }, 10);
 }

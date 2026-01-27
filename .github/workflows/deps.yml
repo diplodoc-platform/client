@@ -47,6 +47,6 @@ jobs:
           git push -f origin :ci/update-deps/${{ inputs.package }}-$VERSION || true
           git checkout -b ci/update-deps/${{ inputs.package }}-$VERSION
           git add package.json package-lock.json
-          git commit -m "deps: Update ${{ inputs.package }} to $VERSION"
+          git commit -m "fix(deps): Update ${{ inputs.package }} to $VERSION" --no-verify
           git push -u origin ci/update-deps/${{ inputs.package }}-$VERSION
           gh pr create -f
