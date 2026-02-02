@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.2.1](https://github.com/diplodoc-platform/client/compare/v5.2.0...v5.2.1) (2026-02-02)
+
+
+### Bug Fixes
+
+* **client:** use sass instead of sass-embedded in sass-loader ([e3cb86a](https://github.com/diplodoc-platform/client/commit/e3cb86a6e837bec2ce4549c49423dba01bc39ced))
+* **deps:** Update @diplodoc/transform to 4.68.1 ([#242](https://github.com/diplodoc-platform/client/issues/242)) ([bd7dcc8](https://github.com/diplodoc-platform/client/commit/bd7dcc8bd108bc2ef6018c47f1a89a7eb2fcb3f0))
+
+
+### Performance Improvements
+
+* **client:** enable modern-compiler API in sass-loader ([b7b3468](https://github.com/diplodoc-platform/client/commit/b7b3468558078195c64a7a13a8bfcd3d69c03b28))
+
 ## [5.2.1](https://github.com/diplodoc-platform/client/compare/v5.2.0...v5.2.1) (2026-01-27)
 
 
