@@ -51,7 +51,7 @@
     "@diplodoc/mdx-extension": "^1.6.2",
     "@diplodoc/mermaid-extension": "^1.3.3",
     "@diplodoc/openapi-extension": "^5.0.0",
-    "@diplodoc/page-constructor-extension": "^0.12.1",
+    "@diplodoc/page-constructor-extension": "^0.13.0",
     "@diplodoc/tabs-extension": "^3.7.2",
     "@diplodoc/transform": "^4.60.2",
     "@diplodoc/tsconfig": "^1.0.2",
