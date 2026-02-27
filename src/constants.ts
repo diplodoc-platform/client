@@ -4,6 +4,10 @@ export const HEADER_HEIGHT = 64;
 
 export const MOBILE_VIEW_WIDTH_BREAKPOINT = 769;
 
+export const LOCAL_STORAGE_SETTING = {
+    theme: 'theme',
+} as const;
+
 export const DEFAULT_USER_SETTINGS = {
     theme: Theme.Light,
     textSize: TextSizes.M,
