@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.5](https://github.com/diplodoc-platform/client/compare/v5.2.4...v5.2.5) (2026-02-27)
+
+
+### Bug Fixes
+
+* fixed search bar ([#256](https://github.com/diplodoc-platform/client/issues/256)) ([e30f233](https://github.com/diplodoc-platform/client/commit/e30f2332ab9aa8b0539e53e80a77efcdeaad9e80))
+
 ## [5.2.4](https://github.com/diplodoc-platform/client/compare/v5.2.3...v5.2.4) (2026-02-27)
 
 
