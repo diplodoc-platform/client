@@ -2,17 +2,18 @@ import type {AppProps, DocContentPageData, PageData} from './index';
 import type {Settings} from '../../utils';
 import type {DocBasePageData} from '@diplodoc/components';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
+import type {PageContextProps} from './PageContext';
 
 import React, {useCallback, useMemo} from 'react';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
-import {getPageByType, getPageType} from '@diplodoc/components';
 
-import {Layout} from '../Layout';
-import {ConstructorPage} from '../ConstructorPage';
 import {useContent} from '../ConstructorPage/useContent';
 import {Suggest} from '../Search/Suggest';
 import {HeaderControls} from '../HeaderControls';
 import {useNavigation} from '../ConstructorPage/useNavigation';
+
+import {PageProvider} from './PageContext';
+import {CustomPage} from './CustomPage';
 
 type PageProps<T extends {} = {}> = {
     data: DocBasePageData<T> & PageData;
@@ -24,67 +25,58 @@ type PageProps<T extends {} = {}> = {
 
 export function Page({data, props, controls}: PageProps) {
     const {theme, fullScreen} = props;
-    const type = getPageType(data);
-    const Page = getPageByType(type);
 
-    const CustomSuggest = useCallback(() => <Suggest />, []);
     const CustomControls = useCallback(() => <HeaderControls {...controls} />, [controls]);
-    const navigation = useNavigation(data, controls, CustomControls, CustomSuggest);
 
-    const CustomPage = useCallback(
-        () => (
-            <Layout headerHeight={fullScreen || !navigation.layout ? 0 : 64}>
-                <Layout.Content>
-                    {/*@ts-ignore*/}
-                    <Page
-                        {...data}
-                        {...props}
-                        {...(navigation.withControls
-                            ? filterControls(controls, [
-                                  'theme',
-                                  'onChangeTheme',
-                                  'textSize',
-                                  'onChangeTextSize',
-                                  'wideFormat',
-                                  'onChangeWideFormat',
-                                  'showMiniToc',
-                                  'onChangeShowMiniToc',
-                                  'langs',
-                                  'onChangeLang',
-                              ])
-                            : controls)}
-                    >
-                        <ConstructorPage {...(data as DocContentPageData).data} />
-                    </Page>
-                </Layout.Content>
-            </Layout>
-        ),
-        [data, navigation, props, controls, fullScreen, Page],
-    );
+    const navigation = useNavigation(data, controls, CustomControls, Suggest);
     const content = useContent(data as DocContentPageData, CustomPage);
+    const headerControls = useMemo(() => {
+        if (navigation.withControls) {
+            return filterControls(controls, [
+                'theme',
+                'onChangeTheme',
+                'textSize',
+                'onChangeTextSize',
+                'wideFormat',
+                'onChangeWideFormat',
+                'showMiniToc',
+                'onChangeShowMiniToc',
+                'langs',
+                'onChangeLang',
+            ]);
+        }
 
-    const custom = useMemo(
-        () => ({
+        return controls;
+    }, [navigation.withControls, controls]);
+    const custom = useMemo(() => {
+        return {
             navigation: navigation.custom,
             blocks: content.custom,
-        }),
-        [navigation, content],
-    );
+        };
+    }, [navigation, content]);
+    const hasLayout = Boolean(navigation.layout);
+    const pageContext = useMemo<PageContextProps>(() => {
+        const pageProps = {...props, ...headerControls};
+
+        return {data, props: pageProps, hasLayout};
+    }, [data, hasLayout, headerControls, props]);
 
     return (
-        <PageConstructorProvider
-            theme={theme}
-            projectSettings={{disableCompress: true}}
-            ssrConfig={{
-                isServer: Boolean(process.env.BROWSER),
-            }}
-        >
-            <PageConstructor
-                custom={custom}
-                content={content.layout}
-                navigation={fullScreen ? undefined : navigation.layout}
-            />
-        </PageConstructorProvider>
+        <PageProvider value={pageContext}>
+            <PageConstructorProvider
+                theme={theme}
+                projectSettings={{disableCompress: true}}
+                ssrConfig={{
+                    isServer: Boolean(process.env.BROWSER),
+                }}
+            >
+                <PageConstructor
+                    custom={custom}
+                    content={content.layout}
+                    navigation={fullScreen ? undefined : navigation.layout}
+                />
+            </PageConstructorProvider>
+        </PageProvider>
     );
 }
 
