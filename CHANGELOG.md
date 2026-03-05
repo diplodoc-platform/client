@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.7](https://github.com/diplodoc-platform/client/compare/v5.2.6...v5.2.7) (2026-03-05)
+
+
+### Bug Fixes
+
+* fixed unmount pages after changing settings ([dfabbb2](https://github.com/diplodoc-platform/client/commit/dfabbb2b4799905e5db8a613de48de3299fb059b))
+
 ## [5.2.6](https://github.com/diplodoc-platform/client/compare/v5.2.5...v5.2.6) (2026-03-02)
 
 
