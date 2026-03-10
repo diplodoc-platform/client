@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.8](https://github.com/diplodoc-platform/client/compare/v5.2.7...v5.2.8) (2026-03-10)
+
+
+### Bug Fixes
+
+* update uikit to a bug-free version ([#264](https://github.com/diplodoc-platform/client/issues/264)) ([2c44415](https://github.com/diplodoc-platform/client/commit/2c444151fb1e589b43f0d8e15f49a76ae9dd0dae))
+
 ## [5.2.7](https://github.com/diplodoc-platform/client/compare/v5.2.6...v5.2.7) (2026-03-05)
 
 
