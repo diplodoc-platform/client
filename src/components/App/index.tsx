@@ -139,6 +139,11 @@ export function App(props: DocInnerProps): ReactElement {
         updateRootClassName({mobileView, wideFormat, fullScreen, landingPage});
         updateThemeClassName({theme});
         scrollToHash();
+
+        // Apply wide mode after render for static builds
+        if (typeof window !== 'undefined' && window.patchAfterRender) {
+            window.patchAfterRender();
+        }
     }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang]);
 
     return (
