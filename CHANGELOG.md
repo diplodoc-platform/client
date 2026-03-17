@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.2.9](https://github.com/diplodoc-platform/client/compare/v5.2.8...v5.2.9) (2026-03-17)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/page-constructor-extension to 0.13.2 ([#268](https://github.com/diplodoc-platform/client/issues/268)) ([09459a1](https://github.com/diplodoc-platform/client/commit/09459a18636d0a3f4a18e611da445376657d8e14))
+* **deps:** update transform ([901f6f7](https://github.com/diplodoc-platform/client/commit/901f6f7ae6a643abc80ca1dee8f8be4035112184))
+* table wide not worked ([3db1a0c](https://github.com/diplodoc-platform/client/commit/3db1a0c868ace859ba87ec88ac2a256b2666831c))
+
 ## [5.2.8](https://github.com/diplodoc-platform/client/compare/v5.2.7...v5.2.8) (2026-03-10)
 
 
