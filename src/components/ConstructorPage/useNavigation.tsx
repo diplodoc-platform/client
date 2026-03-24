@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ComponentType, ReactNode} from 'react';
 import type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';
 import type {DocBasePageData} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
@@ -26,7 +26,7 @@ const EmptyRightItems = [] as NavigationItemModel[];
 export const useNavigation = (
     data: DocBasePageData<WithNavigation>,
     controls: HeaderControlsProps,
-    CustomControls: () => ReactNode,
+    CustomControls: ComponentType<{}>,
     CustomSuggest: () => ReactNode,
     viewerInterface?: Record<string, boolean>,
 ) => {

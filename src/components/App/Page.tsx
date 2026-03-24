@@ -4,16 +4,16 @@ import type {DocBasePageData} from '@diplodoc/components';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {PageContextProps} from './PageContext';
 
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
 
 import {useContent} from '../ConstructorPage/useContent';
 import {Suggest} from '../Search/Suggest';
-import {HeaderControls} from '../HeaderControls';
 import {useNavigation} from '../ConstructorPage/useNavigation';
 
 import {PageProvider} from './PageContext';
 import {CustomPage} from './CustomPage';
+import {CustomControls} from './CustomControls';
 
 type PageProps<T extends {} = {}> = {
     data: DocBasePageData<T> & PageData;
@@ -25,8 +25,6 @@ type PageProps<T extends {} = {}> = {
 
 export function Page({data, props, controls}: PageProps) {
     const {theme, fullScreen} = props;
-
-    const CustomControls = useCallback(() => <HeaderControls {...controls} />, [controls]);
 
     const navigation = useNavigation(data, controls, CustomControls, Suggest);
     const content = useContent(data as DocContentPageData, CustomPage);
