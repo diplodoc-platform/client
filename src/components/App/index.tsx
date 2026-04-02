@@ -36,6 +36,7 @@ import {LangProvider} from '../../hooks/useLang';
 import {useFeedback} from '../../hooks/useFeedback';
 import '../../interceptors/leading-page-links';
 
+import {HeaderControlsProvider} from './CustomControls';
 import {Page} from './Page';
 import {Runtime} from './Runtime';
 import {useLangs} from './useLangs';
@@ -154,7 +155,9 @@ export function App(props: DocInnerProps): ReactElement {
                         <SearchProvider value={search}>
                             <InterfaceProvider interface={viewerInterface || {}}>
                                 <RenderBodyHooksContext.Provider value={renderHooks}>
-                                    <Page data={data} props={page} controls={controls} />
+                                    <HeaderControlsProvider value={controls}>
+                                        <Page data={data} props={page} controls={controls} />
+                                    </HeaderControlsProvider>
                                 </RenderBodyHooksContext.Provider>
                                 {analytics && (
                                     <ConsentPopup
