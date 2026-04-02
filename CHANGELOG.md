@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.2.14](https://github.com/diplodoc-platform/client/compare/v5.2.13...v5.2.14) (2026-04-02)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.73.1, dev:@diplodoc/components@5.3.2 ([#288](https://github.com/diplodoc-platform/client/issues/288)) ([7a5362a](https://github.com/diplodoc-platform/client/commit/7a5362a525d11db3517df853952279bed31e3876))
+* prevent custom controls unmounting on settings change ([#279](https://github.com/diplodoc-platform/client/issues/279)) ([95b3cef](https://github.com/diplodoc-platform/client/commit/95b3cef88c99057e389d9632cb4a696df25c4ba1))
+
 ## [5.2.13](https://github.com/diplodoc-platform/client/compare/v5.2.12...v5.2.13) (2026-04-01)
 
 
