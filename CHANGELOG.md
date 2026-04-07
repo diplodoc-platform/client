@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.15](https://github.com/diplodoc-platform/client/compare/v5.2.14...v5.2.15) (2026-04-07)
+
+
+### Bug Fixes
+
+* added dark theme to neuro expert button ([f79f8e9](https://github.com/diplodoc-platform/client/commit/f79f8e9de8a2bfd3a8a55bfe8426bb5dbc89662d))
+
 ## [5.2.14](https://github.com/diplodoc-platform/client/compare/v5.2.13...v5.2.14) (2026-04-02)
 
 
