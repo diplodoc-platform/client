@@ -9,6 +9,7 @@ import type {
     DocPageData,
     RenderBodyHook,
 } from '@diplodoc/components';
+import type {AnalyticsConfig, UserAnalyticsConfig} from '../../types';
 
 import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
@@ -36,6 +37,7 @@ import {LangProvider} from '../../hooks/useLang';
 import {useFeedback} from '../../hooks/useFeedback';
 import '../../interceptors/leading-page-links';
 
+import {withAnalyticsProvider} from './withAnalyticsProvider';
 import {HeaderControlsProvider} from './CustomControls';
 import {Page} from './Page';
 import {Runtime} from './Runtime';
@@ -46,12 +48,7 @@ import {useAvailableLangs} from './useAvailableLangs';
 import {withMdxInit} from './withMdxInit';
 import './App.scss';
 
-export type DocAnalytics = {
-    gtm?: {
-        id?: string;
-        mode?: 'base' | 'notification';
-    };
-};
+export type DocAnalytics = UserAnalyticsConfig;
 
 export type FeedbackConfig = {
     url?: string;
@@ -62,7 +59,7 @@ export interface AppProps {
     langs: (`${Lang}` | Lang)[];
     router: RouterConfig;
     search?: SearchConfig;
-    analytics?: DocAnalytics;
+    analytics?: AnalyticsConfig;
     feedback?: FeedbackConfig;
     viewerInterface?: Record<string, boolean>;
 }
@@ -81,7 +78,7 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 
 export type {DocLeadingPageData, DocPageData};
 
-export function App(props: DocInnerProps): ReactElement {
+function AppBase(props: DocInnerProps): ReactElement {
     const {data, router, lang, langs, search, analytics, feedback, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
@@ -159,11 +156,11 @@ export function App(props: DocInnerProps): ReactElement {
                                         <Page data={data} props={page} controls={controls} />
                                     </HeaderControlsProvider>
                                 </RenderBodyHooksContext.Provider>
-                                {analytics && (
+                                {analytics?.gtm && (
                                     <ConsentPopup
                                         router={router}
-                                        gtmId={analytics?.gtm?.id || ''}
-                                        consentMode={analytics?.gtm?.mode}
+                                        gtmId={analytics.gtm.id}
+                                        consentMode={analytics.gtm.mode}
                                     />
                                 )}
                                 <Widgets />
@@ -176,3 +173,5 @@ export function App(props: DocInnerProps): ReactElement {
         </div>
     );
 }
+
+export const App = withAnalyticsProvider(AppBase);

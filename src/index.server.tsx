@@ -7,6 +7,7 @@ import {renderToString} from 'react-dom/server';
 import {App} from './components/App';
 import {LINK_KEYS, LINK_KEYS_LEADING_CONFIG, LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG} from './constants';
 import {preprocess} from './preprocess';
+import {createAnalyticsProps} from './utils';
 
 export type {
     DocInnerProps,
@@ -23,4 +24,10 @@ export type {
 } from './components/Search';
 export {LINK_KEYS, LINK_KEYS_LEADING_CONFIG, LINK_KEYS_PAGE_CONSTRUCTOR_CONFIG, preprocess};
 
-export const render = (props: DocInnerProps) => renderToString(<App {...props} />);
+export const render = (props: DocInnerProps) => {
+    const {analyticsConfig, analyticsService} = createAnalyticsProps(props.analytics);
+
+    return renderToString(
+        <App {...props} analytics={analyticsConfig} analyticsService={analyticsService} />,
+    );
+};
