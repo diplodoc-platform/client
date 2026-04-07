@@ -1,8 +1,10 @@
 import type {AppProps, DocContentPageData, PageData} from './index';
 import type {Settings} from '../../utils';
 import type {DocBasePageData} from '@diplodoc/components';
+import {useAnalytics} from '@diplodoc/components';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {PageContextProps} from './PageContext';
+import type {AnalyticsContextProps} from '@gravity-ui/page-constructor';
 
 import React, {useMemo} from 'react';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
@@ -26,6 +28,7 @@ type PageProps<T extends {} = {}> = {
 export function Page({data, props, controls}: PageProps) {
     const {theme, fullScreen} = props;
 
+    const analytics = useAnalytics();
     const navigation = useNavigation(data, controls, CustomControls, Suggest);
     const content = useContent(data as DocContentPageData, CustomPage);
     const headerControls = useMemo(() => {
@@ -46,6 +49,24 @@ export function Page({data, props, controls}: PageProps) {
 
         return controls;
     }, [navigation.withControls, controls]);
+
+    const pageConstructorAnalytics: AnalyticsContextProps | undefined = React.useMemo(
+        () =>
+            analytics
+                ? {
+                      sendEvents: (events) => {
+                          events.forEach((event) => {
+                              analytics.track(event.name, undefined, {
+                                  includeKeys: event.counters?.include,
+                                  excludeKeys: event.counters?.exclude,
+                              });
+                          });
+                      },
+                  }
+                : undefined,
+        [analytics],
+    );
+
     const custom = useMemo(() => {
         return {
             navigation: navigation.custom,
@@ -67,6 +88,7 @@ export function Page({data, props, controls}: PageProps) {
                 ssrConfig={{
                     isServer: Boolean(process.env.BROWSER),
                 }}
+                analytics={pageConstructorAnalytics}
             >
                 <PageConstructor
                     custom={custom}
