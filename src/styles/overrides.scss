@@ -74,6 +74,10 @@
     z-index: 101;
 }
 
+.g-root_theme_dark #neuro-expert-widget .toggle-button {
+    background-color: variables.$colorBgDark;
+}
+
 @media (max-width: map.get(variables.$screenBreakpoints, 'xxxl') - 1) {
     .dc-root_wide-format {
         .dc-doc-page {
