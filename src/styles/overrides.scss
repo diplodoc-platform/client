@@ -1,3 +1,5 @@
+/* stylelint-disable declaration-no-important */
+
 @use 'sass:map';
 @use 'variables';
 
@@ -9,7 +11,7 @@
 
 .pc-block-base {
     .dc-doc-page__main &:first-child {
-        margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+        margin-top: 0 !important;
     }
 }
 
@@ -74,7 +76,7 @@
     z-index: 101;
 }
 
-.g-root_theme_dark #neuro-expert-widget .toggle-button {
+.g-root_theme_dark .dc-neuro-expert-widget .toggle-button {
     background-color: variables.$colorBgDark;
 }
 
@@ -90,6 +92,22 @@
         &__navigation > .container-fluid {
             max-width: 100%;
         }
+    }
+}
+
+@media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
+    .dc-neuro-expert-widget .container {
+        padding: 12px !important;
+    }
+
+    .dc-neuro-expert-widget .toggle-button {
+        width: 3em !important;
+        overflow: hidden !important;
+    }
+
+    .dc-neuro-expert-widget .toggle-button .logo-wrapper {
+        flex-shrink: 0;
+        pointer-events: none;
     }
 }
 
@@ -124,7 +142,7 @@
 
 @media (max-width: map.get(variables.$screenBreakpoints, 'md') - 1) {
     .dc-toc {
-        height: fit-content !important; /* stylelint-disable-line declaration-no-important */
+        height: fit-content !important;
     }
 
     body:not(:has(.pc-navigation)) .dc-sidebar {
