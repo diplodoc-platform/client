@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.17](https://github.com/diplodoc-platform/client/compare/v5.2.16...v5.2.17) (2026-04-08)
+
+
+### Bug Fixes
+
+* fixed release ([#295](https://github.com/diplodoc-platform/client/issues/295)) ([9d72fcb](https://github.com/diplodoc-platform/client/commit/9d72fcb65f4c306bfbd7f9567728750d287859e5))
+
 ## [5.2.16](https://github.com/diplodoc-platform/client/compare/v5.2.15...v5.2.16) (2026-04-08)
 
 
