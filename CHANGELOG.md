@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.16](https://github.com/diplodoc-platform/client/compare/v5.2.15...v5.2.16) (2026-04-08)
+
+
+### Bug Fixes
+
+* neuroexpert widget has been made adaptive ([#293](https://github.com/diplodoc-platform/client/issues/293)) ([49190ff](https://github.com/diplodoc-platform/client/commit/49190ff60bdab952d27f8ea40485a3ad2fe651ae))
+
 ## [5.2.15](https://github.com/diplodoc-platform/client/compare/v5.2.14...v5.2.15) (2026-04-07)
 
 
