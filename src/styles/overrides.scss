@@ -96,16 +96,16 @@
 }
 
 @media (max-width: map.get(variables.$screenBreakpoints, 'md')) {
-    .dc-neuro-expert-widget .container {
-        padding: 12px !important;
+    .g-root .dc-neuro-expert-widget .container {
+        padding: 12px;
     }
 
-    .dc-neuro-expert-widget .toggle-button {
-        width: 3em !important;
-        overflow: hidden !important;
+    .g-root .dc-neuro-expert-widget .toggle-button {
+        width: 3em;
+        overflow: hidden;
     }
 
-    .dc-neuro-expert-widget .toggle-button .logo-wrapper {
+    .g-root .dc-neuro-expert-widget .toggle-button .logo-wrapper {
         flex-shrink: 0;
         pointer-events: none;
     }
