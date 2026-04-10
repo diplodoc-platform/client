@@ -62,6 +62,7 @@ export interface AppProps {
     analytics?: AnalyticsConfig;
     feedback?: FeedbackConfig;
     viewerInterface?: Record<string, boolean>;
+    data: PageData;
 }
 
 export type WithNavigation = {
@@ -74,11 +75,12 @@ export type PageData = DocPageData | DocLeadingPageData | DocContentPageData;
 
 export type DocInnerProps<Data extends PageData = PageData> = {
     data: Data;
-} & AppProps;
+    analytics?: DocAnalytics;
+} & Omit<AppProps, 'analytics'>;
 
 export type {DocLeadingPageData, DocPageData};
 
-function AppBase(props: DocInnerProps): ReactElement {
+function AppBase(props: AppProps): ReactElement {
     const {data, router, lang, langs, search, analytics, feedback, viewerInterface} = props;
     const settings = useSettings();
     const langData = useLangs(props);
