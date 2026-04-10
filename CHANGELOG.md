@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.3.0](https://github.com/diplodoc-platform/client/compare/v5.2.17...v5.3.0) (2026-04-10)
+
+
+### Features
+
+* **analytics:** setup analytics service ([#292](https://github.com/diplodoc-platform/client/issues/292)) ([68ed060](https://github.com/diplodoc-platform/client/commit/68ed0605f9416037d669effff341b2bc9b5e4d5d))
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/components@5.4.0 ([#297](https://github.com/diplodoc-platform/client/issues/297)) ([f10f61a](https://github.com/diplodoc-platform/client/commit/f10f61aff2951d53ecb749a15084b90b3fe4eb71))
+
 ## [5.2.17](https://github.com/diplodoc-platform/client/compare/v5.2.16...v5.2.17) (2026-04-08)
 
 
