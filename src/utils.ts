@@ -1,7 +1,8 @@
 import type {PageData} from './components/App';
 import type {Lang, Theme} from '@diplodoc/components';
+import type {AnalyticsConfig, UserAnalyticsConfig} from './types';
 
-import {getPageType} from '@diplodoc/components';
+import {Analytics, YandexMetrikaAdapter, getPageType} from '@diplodoc/components';
 
 import {
     DEFAULT_USER_SETTINGS,
@@ -241,4 +242,51 @@ export function scrollToHash() {
         console.log('scroll');
         scrollToElement(element);
     }, 10);
+}
+
+function normalizeAnalyticsConfig(rawConfig?: UserAnalyticsConfig): AnalyticsConfig {
+    const config: AnalyticsConfig = {
+        metrika: [],
+    };
+
+    if (!rawConfig || typeof rawConfig !== 'object') {
+        return config;
+    }
+
+    if ('gtm' in rawConfig && rawConfig.gtm && typeof rawConfig.gtm === 'object') {
+        if (typeof rawConfig.gtm.id === 'string') {
+            config.gtm = {
+                id: rawConfig.gtm.id,
+                mode: rawConfig.gtm.mode === 'notification' ? 'notification' : 'base',
+            };
+        }
+    }
+
+    if ('metrika' in rawConfig && Array.isArray(rawConfig.metrika)) {
+        for (const metrika of rawConfig.metrika) {
+            if (!metrika || typeof metrika !== 'object' || !metrika.id) {
+                continue;
+            }
+
+            config.metrika.push({
+                id: metrika.id,
+                params: metrika.params || {},
+            });
+        }
+    }
+
+    return config;
+}
+
+export function createAnalyticsProps(config?: UserAnalyticsConfig) {
+    const analyticsConfig = normalizeAnalyticsConfig(config);
+    const adapters = analyticsConfig.metrika.map((config) => {
+        return new YandexMetrikaAdapter(config);
+    });
+    const analyticsService = new Analytics({adapters});
+
+    return {
+        analyticsConfig,
+        analyticsService,
+    };
 }

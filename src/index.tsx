@@ -5,6 +5,7 @@ import {createRoot, hydrateRoot} from 'react-dom/client';
 
 import {App} from './components/App';
 import {setRootClasses} from './interceptors/fast-class-applier';
+import {createAnalyticsProps} from './utils';
 
 export type {DocInnerProps, DocPageData, DocLeadingPageData, DocAnalytics};
 export type {
@@ -29,10 +30,16 @@ if (!isDocInnerProps(data)) {
 }
 
 const props = data as DocInnerProps;
+const {analyticsConfig, analyticsService} = createAnalyticsProps(props.analytics);
+
+analyticsService.init();
+
 setRootClasses(props);
 
+const app = <App {...props} analytics={analyticsConfig} analyticsService={analyticsService} />;
+
 if (window.STATIC_CONTENT) {
-    hydrateRoot(root, <App {...props} />);
+    hydrateRoot(root, app);
 } else {
-    createRoot(root).render(<App {...props} />);
+    createRoot(root).render(app);
 }
