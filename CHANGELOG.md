@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.1](https://github.com/diplodoc-platform/client/compare/v5.3.0...v5.3.1) (2026-04-10)
+
+
+### Bug Fixes
+
+* set correct type for app component ([#299](https://github.com/diplodoc-platform/client/issues/299)) ([1683446](https://github.com/diplodoc-platform/client/commit/1683446e5033de8f7d177032f2dff31a2e45e036))
+
 ## [5.3.0](https://github.com/diplodoc-platform/client/compare/v5.2.17...v5.3.0) (2026-04-10)
 
 
