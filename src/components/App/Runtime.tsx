@@ -22,7 +22,7 @@ export function Runtime() {
                 }}
             />
             <TabsRuntime saveTabsToLocalStorage={true} saveTabsToQueryStateMode="page" />
-            <PageConstructorRuntime />
+            <PageConstructorRuntime theme={theme} />
         </>
     );
 }
