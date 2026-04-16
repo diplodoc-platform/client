@@ -88,7 +88,7 @@ export type Message = InitMessage | SuggestMessage | SearchMessage;
 
 export type MessageType = Message['type'];
 
-export interface SearchResultData extends Partial<ISearchResult> {
+export type SearchResultData = Partial<ISearchResult> & {
     title?: string;
     url?: string;
     link?: string;
@@ -100,7 +100,7 @@ export interface SearchResultData extends Partial<ISearchResult> {
         lvl0?: string;
         lvl1?: string;
     };
-}
+};
 
 export interface FormattedSearchResultItem {
     title: string;
