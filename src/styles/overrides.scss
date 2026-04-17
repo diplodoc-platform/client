@@ -57,6 +57,10 @@
 }
 
 .pc-desktop-navigation {
+    &__buttons {
+        gap: 20px;
+    }
+
     &__buttons &__item {
         display: contents;
     }
