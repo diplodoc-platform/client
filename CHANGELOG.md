@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.1](https://github.com/diplodoc-platform/client/compare/v5.4.0...v5.4.1) (2026-04-17)
+
+
+### Bug Fixes
+
+* set correct gap for navigation buttons ([#309](https://github.com/diplodoc-platform/client/issues/309)) ([49a3282](https://github.com/diplodoc-platform/client/commit/49a3282ca074c7580c84a7b3d9643cf5c14c5fc1))
+
 ## [5.4.0](https://github.com/diplodoc-platform/client/compare/v5.3.1...v5.4.0) (2026-04-17)
 
 
