@@ -5,7 +5,12 @@ import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 
 import React, {useMemo} from 'react';
-import {ControlSizes, CustomNavigation, MobileDropdown} from '@diplodoc/components';
+import {
+    ControlSizes,
+    CustomNavigation,
+    MobileDropdown,
+    NavigationLabel,
+} from '@diplodoc/components';
 
 import {HEADER_HEIGHT} from '../../constants';
 import {useRouter, useSearch} from '../';
@@ -99,6 +104,7 @@ export const useNavigation = (
                 search: CustomSuggest,
                 controls: CustomControls,
                 MobileDropdown: MobileDropdown,
+                label: NavigationLabel,
             },
             layout,
             withControls,
