@@ -46,6 +46,12 @@
         min-width: 36px;
         max-width: 36px;
 
+        &__with-ai {
+            .g-text-input__additional-content_placement_start {
+                display: none;
+            }
+        }
+
         &__end {
             display: block;
             color: var(--g-color-text-complementary);
@@ -54,6 +60,13 @@
         .dc-root_focused-search & {
             min-width: 100%;
             max-width: 100%;
+
+            &__with-ai {
+                .g-text-input__additional-content_placement_start {
+                    display: flex;
+                    margin-right: 8px;
+                }
+            }
 
             &__close,
             &__end {

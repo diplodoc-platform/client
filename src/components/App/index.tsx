@@ -26,6 +26,7 @@ import '@diplodoc/transform/dist/js/yfm';
 
 import {SearchProvider} from '../Search';
 import {RouterProvider} from '../Router';
+import {NeuroExpertProvider} from '../NeuroExpert';
 import {
     getDirection,
     getLandingPage,
@@ -62,6 +63,9 @@ export interface AppProps {
     analytics?: AnalyticsConfig;
     feedback?: FeedbackConfig;
     viewerInterface?: Record<string, boolean>;
+    neuroExpert?: {
+        projectId?: string;
+    };
     data: PageData;
 }
 
@@ -81,7 +85,8 @@ export type DocInnerProps<Data extends PageData = PageData> = {
 export type {DocLeadingPageData, DocPageData};
 
 function AppBase(props: AppProps): ReactElement {
-    const {data, router, lang, langs, search, analytics, feedback, viewerInterface} = props;
+    const {data, router, lang, langs, search, analytics, feedback, viewerInterface, neuroExpert} =
+        props;
     const settings = useSettings();
     const langData = useLangs(props);
     const mobileView = useMobile();
@@ -152,22 +157,24 @@ function AppBase(props: AppProps): ReactElement {
                 <LangProvider value={lang}>
                     <RouterProvider value={router}>
                         <SearchProvider value={search}>
-                            <InterfaceProvider interface={viewerInterface || {}}>
-                                <RenderBodyHooksContext.Provider value={renderHooks}>
-                                    <HeaderControlsProvider value={controls}>
-                                        <Page data={data} props={page} controls={controls} />
-                                    </HeaderControlsProvider>
-                                </RenderBodyHooksContext.Provider>
-                                {analytics?.gtm && (
-                                    <ConsentPopup
-                                        router={router}
-                                        gtmId={analytics.gtm.id}
-                                        consentMode={analytics.gtm.mode}
-                                    />
-                                )}
-                                <Widgets />
-                                <Runtime />
-                            </InterfaceProvider>
+                            <NeuroExpertProvider value={neuroExpert}>
+                                <InterfaceProvider interface={viewerInterface || {}}>
+                                    <RenderBodyHooksContext.Provider value={renderHooks}>
+                                        <HeaderControlsProvider value={controls}>
+                                            <Page data={data} props={page} controls={controls} />
+                                        </HeaderControlsProvider>
+                                    </RenderBodyHooksContext.Provider>
+                                    {analytics?.gtm && (
+                                        <ConsentPopup
+                                            router={router}
+                                            gtmId={analytics.gtm.id}
+                                            consentMode={analytics.gtm.mode}
+                                        />
+                                    )}
+                                    <Widgets />
+                                    <Runtime />
+                                </InterfaceProvider>
+                            </NeuroExpertProvider>
                         </SearchProvider>
                     </RouterProvider>
                 </LangProvider>
