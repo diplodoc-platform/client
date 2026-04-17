@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/diplodoc-platform/client/compare/v5.4.1...v5.5.0) (2026-04-17)
+
+
+### Features
+
+* added neuroExpert in search ([#307](https://github.com/diplodoc-platform/client/issues/307)) ([e1ee5c2](https://github.com/diplodoc-platform/client/commit/e1ee5c2e95ad293523e27c08f0c8ebd07ff0c578))
+
 ## [5.4.1](https://github.com/diplodoc-platform/client/compare/v5.4.0...v5.4.1) (2026-04-17)
 
 
