@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.4.0](https://github.com/diplodoc-platform/client/compare/v5.3.1...v5.4.0) (2026-04-17)
+
+
+### Features
+
+* add support label in header ([22f6c32](https://github.com/diplodoc-platform/client/commit/22f6c32067be1fb4d6a7858be6435d692790cef2))
+
+
+### Bug Fixes
+
+* forward theme prop to page constructor runtime ([#302](https://github.com/diplodoc-platform/client/issues/302)) ([aad3d00](https://github.com/diplodoc-platform/client/commit/aad3d00c0528d9967c5743cd2df1444774b0dcf9))
+* update type for search result data ([7c0835a](https://github.com/diplodoc-platform/client/commit/7c0835abbbb3e1e207463300b4ce6363867dfe76))
+
 ## [5.3.1](https://github.com/diplodoc-platform/client/compare/v5.3.0...v5.3.1) (2026-04-10)
 
 
