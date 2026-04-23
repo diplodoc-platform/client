@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.2](https://github.com/diplodoc-platform/client/compare/v5.5.1...v5.5.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/components to 5.7.2 ([8d64c4f](https://github.com/diplodoc-platform/client/commit/8d64c4fecc60978849bd296209dd6b252c3002d8))
+
 ## [5.5.1](https://github.com/diplodoc-platform/client/compare/v5.5.0...v5.5.1) (2026-04-21)
 
 
