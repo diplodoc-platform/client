@@ -1,12 +1,12 @@
 import type {AppProps, DocContentPageData, PageData} from './index';
 import type {Settings} from '../../utils';
 import type {DocBasePageData} from '@diplodoc/components';
-import {useAnalytics} from '@diplodoc/components';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {PageContextProps} from './PageContext';
 import type {AnalyticsContextProps} from '@gravity-ui/page-constructor';
 
 import React, {useMemo} from 'react';
+import {useAnalytics} from '@diplodoc/components';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
 
 import {useContent} from '../ConstructorPage/useContent';
