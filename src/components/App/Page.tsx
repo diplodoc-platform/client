@@ -55,10 +55,10 @@ export function Page({data, props, controls}: PageProps) {
             analytics
                 ? {
                       sendEvents: (events) => {
-                          events.forEach((event) => {
-                              analytics.track(event.name, undefined, {
-                                  includeKeys: event.counters?.include,
-                                  excludeKeys: event.counters?.exclude,
+                          events.forEach(({name, counters, ...params}) => {
+                              analytics.track(name, params, {
+                                  includeKeys: counters?.include,
+                                  excludeKeys: counters?.exclude,
                               });
                           });
                       },
