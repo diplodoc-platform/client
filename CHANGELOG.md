@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.0](https://github.com/diplodoc-platform/client/compare/v5.5.4...v5.6.0) (2026-05-08)
+
+
+### Features
+
+* add analytics to page constructor provider ([#301](https://github.com/diplodoc-platform/client/issues/301)) ([9829317](https://github.com/diplodoc-platform/client/commit/9829317312fbbfccbf64e8e20df8973348c98769))
+
 ## [5.5.4](https://github.com/diplodoc-platform/client/compare/v5.5.3...v5.5.4) (2026-05-01)
 
 
