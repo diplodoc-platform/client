@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.0](https://github.com/diplodoc-platform/client/compare/v5.6.1...v5.7.0) (2026-05-18)
+
+
+### Features
+
+* use custom dropdown to support multi columns ([#329](https://github.com/diplodoc-platform/client/issues/329)) ([31a345d](https://github.com/diplodoc-platform/client/commit/31a345d36ce88f3a9fc23dc179659c1d509dfe0a))
+
 ## [5.6.1](https://github.com/diplodoc-platform/client/compare/v5.6.0...v5.6.1) (2026-05-14)
 
 
