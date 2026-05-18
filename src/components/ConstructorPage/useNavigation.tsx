@@ -9,6 +9,7 @@ import {
     ControlSizes,
     CustomNavigation,
     MobileDropdown,
+    NavigationDropdown,
     NavigationLabel,
 } from '@diplodoc/components';
 
@@ -105,6 +106,7 @@ export const useNavigation = (
                 controls: CustomControls,
                 MobileDropdown: MobileDropdown,
                 label: NavigationLabel,
+                dropdown: NavigationDropdown,
             },
             layout,
             withControls,
