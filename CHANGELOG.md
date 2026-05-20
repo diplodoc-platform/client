@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.1](https://github.com/diplodoc-platform/client/compare/v5.7.0...v5.7.1) (2026-05-20)
+
+
+### Bug Fixes
+
+* disable elastic scroll behavior ([#331](https://github.com/diplodoc-platform/client/issues/331)) ([bf9b05b](https://github.com/diplodoc-platform/client/commit/bf9b05b10eeb89de77dabc8cf91d317fff72dea4))
+
 ## [5.7.0](https://github.com/diplodoc-platform/client/compare/v5.6.1...v5.7.0) (2026-05-18)
 
 
