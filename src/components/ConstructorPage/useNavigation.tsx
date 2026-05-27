@@ -36,7 +36,7 @@ export const useNavigation = (
     CustomSuggest: () => ReactNode,
     viewerInterface?: Record<string, boolean>,
 ): {
-    custom: Record<string, ComponentType<unknown> | (() => ReactNode)>;
+    custom: Record<string, ComponentType<any> | (() => ReactNode)>;
     layout?: {
         header: {leftItems: NavigationItemModel[]};
         renderNavigation: () => ReactNode;
