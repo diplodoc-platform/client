@@ -35,7 +35,15 @@ export const useNavigation = (
     CustomControls: ComponentType<{}>,
     CustomSuggest: () => ReactNode,
     viewerInterface?: Record<string, boolean>,
-) => {
+): {
+    custom: Record<string, ComponentType<any> | (() => ReactNode)>;
+    layout?: {
+        header: {leftItems: NavigationItemModel[]};
+        renderNavigation: () => ReactNode;
+        logo: NavigationData['logo'];
+    };
+    withControls: boolean;
+} => {
     const {toc} = data;
     const navigation = toc.navigation || EmptyNavigation;
     const {header = EmptyHeader, logo} = navigation as NavigationDataWithOptionalLogo;
