@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.7.3](https://github.com/diplodoc-platform/client/compare/v5.7.2...v5.7.3) (2026-05-27)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/components@5.9.2 ([#339](https://github.com/diplodoc-platform/client/issues/339)) ([5712906](https://github.com/diplodoc-platform/client/commit/571290623b7bae5989921063727748d58d92854b))
+* **deps:** Update @diplodoc/page-constructor-extension@0.13.4 ([#337](https://github.com/diplodoc-platform/client/issues/337)) ([5d988f1](https://github.com/diplodoc-platform/client/commit/5d988f1c07f873c480488efe2bcfd6a9dd4721f7))
+* updated pc ([#340](https://github.com/diplodoc-platform/client/issues/340)) ([cb34a66](https://github.com/diplodoc-platform/client/commit/cb34a66aa7db85f4733b58218cc0b2b7f9cb08c6))
+
 ## [5.7.2](https://github.com/diplodoc-platform/client/compare/v5.7.1...v5.7.2) (2026-05-25)
 
 
