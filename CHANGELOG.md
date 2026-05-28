@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.4](https://github.com/diplodoc-platform/client/compare/v5.7.3...v5.7.4) (2026-05-28)
+
+
+### Bug Fixes
+
+* **deps:** updated node to 24 ([#342](https://github.com/diplodoc-platform/client/issues/342)) ([7da41c1](https://github.com/diplodoc-platform/client/commit/7da41c10f36587fd10bb846166be7fdd9cb8d065))
+
 ## [5.7.3](https://github.com/diplodoc-platform/client/compare/v5.7.2...v5.7.3) (2026-05-27)
 
 
