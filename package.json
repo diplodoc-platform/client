@@ -23,7 +23,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=22",
+    "node": ">=24",
     "npm": ">=11.5.1"
   },
   "exports": {
