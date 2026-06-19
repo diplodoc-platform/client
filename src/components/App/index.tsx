@@ -15,6 +15,7 @@ import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
     ConsentPopup,
+    Gallery,
     InterfaceProvider,
     Lang,
     RenderBodyHooksContext,
@@ -173,6 +174,7 @@ function AppBase(props: AppProps): ReactElement {
                                     )}
                                     <Widgets />
                                     <Runtime />
+                                    <Gallery />
                                 </InterfaceProvider>
                             </NeuroExpertProvider>
                         </SearchProvider>
