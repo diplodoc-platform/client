@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.7.13](https://github.com/diplodoc-platform/client/compare/v5.7.12...v5.7.13) (2026-06-19)
+
+
+### Bug Fixes
+
+* add Gallery ([b7f1d2b](https://github.com/diplodoc-platform/client/commit/b7f1d2bdebaf41c22b42133657965b1245e3cc7c))
+* **deps:** Update dev:@diplodoc/components@5.11.0 ([#368](https://github.com/diplodoc-platform/client/issues/368)) ([c15d312](https://github.com/diplodoc-platform/client/commit/c15d3127917a7fadb936fe27ffbed6a65ae2c8ea))
+
 ## [5.7.12](https://github.com/diplodoc-platform/client/compare/v5.7.11...v5.7.12) (2026-06-19)
 
 
