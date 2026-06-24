@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/client",
-  "version": "5.7.13",
+  "version": "5.7.14",
   "description": "",
   "main": "./build/server/app.js",
   "repository": {
