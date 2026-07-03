@@ -1,4 +1,0 @@
-{
-    "presets": [["@diplodoc/babel-preset", { "typescript": true }]],
-    "plugins": []
-}

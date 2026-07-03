@@ -1,5 +1,5 @@
 {
-  "extends": "@diplodoc/tsconfig",
+  "extends": "@diplodoc/infra/tsconfig.json",
   "compilerOptions": {
     "target": "es2020",
     "moduleResolution": "bundler",

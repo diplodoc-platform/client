@@ -1,4 +1,4 @@
 {
-  "extends": "@diplodoc/tsconfig",
+  "extends": "@diplodoc/infra/tsconfig.json",
   "include": ["**/*.ts"]
 }
