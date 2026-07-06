@@ -70,6 +70,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
             alias: valuable({
                 'react/jsx-runtime': require.resolve('react/jsx-runtime'),
                 react: require.resolve('react'),
+                '@gravity-ui/page-constructor': require.resolve('@gravity-ui/page-constructor'),
                 'react-player': EMPTY_MODULE,
                 'highlight.js': EMPTY_MODULE,
             }),
