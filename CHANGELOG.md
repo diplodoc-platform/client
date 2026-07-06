@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.0](https://github.com/diplodoc-platform/client/compare/v5.7.14...v5.8.0) (2026-07-06)
+
+
+### Features
+
+* tabs expand if the anchor leads to content inside ([#377](https://github.com/diplodoc-platform/client/issues/377)) ([7e2c477](https://github.com/diplodoc-platform/client/commit/7e2c4773b07c5234c8489b96caed9d90035d03ae))
+
 ## [5.7.14](https://github.com/diplodoc-platform/client/compare/v5.7.13...v5.7.14) (2026-06-24)
 
 
