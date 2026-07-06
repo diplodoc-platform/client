@@ -209,64 +209,19 @@ function isInViewport(el: HTMLElement) {
 }
 
 function activateTabPanel(panel: HTMLElement): void {
-    const tabsRoot = panel.closest('[data-diplodoc-variant]') as HTMLElement | null;
-
-    if (!tabsRoot) {
-        return;
-    }
-
-    const variant = tabsRoot.dataset.diplodocVariant;
-    const group = tabsRoot.dataset.diplodocGroup;
-
-    if (!group || !variant) {
-        return;
-    }
-
-    const panels = Array.from(tabsRoot.children).filter((child) =>
-        child.classList.contains('yfm-tab-panel'),
-    );
-    const panelIndex = panels.indexOf(panel);
-
-    if (panelIndex < 0) {
-        return;
-    }
-
     const controller = (globalThis as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
-        | {selectTab: (tab: {group: string; key: string; variant: string}) => void}
+        | {selectTabById: (id: string) => void}
         | undefined;
 
-    if (!controller || typeof controller.selectTab !== 'function') {
+    if (!controller || typeof controller.selectTabById !== 'function') {
         return;
     }
 
-    let key: string | undefined;
+    const tabId = panel.getAttribute('aria-labelledby');
 
-    if (variant === 'regular') {
-        const tabList = tabsRoot.querySelector('.yfm-tab-list');
-        const tabs = tabList ? Array.from(tabList.querySelectorAll('.yfm-tab')) : [];
-        key = (tabs[panelIndex] as HTMLElement | undefined)?.dataset.diplodocKey;
-    } else if (variant === 'dropdown') {
-        const menu = tabsRoot.children.item(1);
-        const menuItem = menu?.children.item(panelIndex) as HTMLElement | undefined;
-
-        key = menuItem?.dataset.diplodocKey;
-    } else if (variant === 'accordion') {
-        const title = tabsRoot.children.item(panelIndex * 2) as HTMLElement | undefined;
-
-        key = title?.dataset.diplodocKey;
-    } else if (variant === 'radio') {
-        const radioTitles = Array.from(
-            tabsRoot.querySelectorAll('.yfm-vertical-tab'),
-        ) as HTMLElement[];
-
-        key = radioTitles[panelIndex]?.dataset.diplodocKey;
+    if (tabId) {
+        controller.selectTabById(tabId);
     }
-
-    if (!key) {
-        return;
-    }
-
-    controller.selectTab({group, key, variant});
 }
 
 export function scrollToHash() {
