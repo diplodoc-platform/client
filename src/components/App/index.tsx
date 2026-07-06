@@ -153,9 +153,9 @@ function AppBase(props: AppProps): ReactElement {
     }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang]);
 
     useEffect(() => {
-        window.addEventListener('hashchange', scrollToHash);
+        globalThis.addEventListener('hashchange', scrollToHash);
 
-        return () => window.removeEventListener('hashchange', scrollToHash);
+        return () => globalThis.removeEventListener('hashchange', scrollToHash);
     }, []);
 
     return (

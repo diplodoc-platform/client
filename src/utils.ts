@@ -231,7 +231,7 @@ function activateTabPanel(panel: HTMLElement): void {
         return;
     }
 
-    const controller = (window as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
+    const controller = (globalThis as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
         | {selectTab: (tab: {group: string; key: string; variant: string}) => void}
         | undefined;
 
