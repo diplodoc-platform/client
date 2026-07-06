@@ -152,6 +152,12 @@ function AppBase(props: AppProps): ReactElement {
         }
     }, [theme, mobileView, wideFormat, fullScreen, landingPage, lang]);
 
+    useEffect(() => {
+        window.addEventListener('hashchange', scrollToHash);
+
+        return () => window.removeEventListener('hashchange', scrollToHash);
+    }, []);
+
     return (
         <div className="App">
             <ThemeProvider theme={theme} direction={direction}>

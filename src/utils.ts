@@ -208,11 +208,69 @@ function isInViewport(el: HTMLElement) {
     );
 }
 
+function activateTabPanel(panel: HTMLElement): void {
+    const tabsRoot = panel.closest('[data-diplodoc-variant]') as HTMLElement | null;
+
+    if (!tabsRoot) {
+        return;
+    }
+
+    const variant = tabsRoot.dataset.diplodocVariant;
+    const group = tabsRoot.dataset.diplodocGroup;
+
+    if (!group || !variant) {
+        return;
+    }
+
+    const panels = Array.from(tabsRoot.children).filter((child) =>
+        child.classList.contains('yfm-tab-panel'),
+    );
+    const panelIndex = panels.indexOf(panel);
+
+    if (panelIndex < 0) {
+        return;
+    }
+
+    const controller = (window as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
+        | {selectTab: (tab: {group: string; key: string; variant: string}) => void}
+        | undefined;
+
+    if (!controller || typeof controller.selectTab !== 'function') {
+        return;
+    }
+
+    let key: string | undefined;
+
+    if (variant === 'regular') {
+        const tabList = tabsRoot.querySelector('.yfm-tab-list');
+        const tabs = tabList ? Array.from(tabList.querySelectorAll('.yfm-tab')) : [];
+        key = (tabs[panelIndex] as HTMLElement | undefined)?.dataset.diplodocKey;
+    } else if (variant === 'dropdown') {
+        const menu = tabsRoot.children.item(1);
+        const menuItem = menu?.children.item(panelIndex) as HTMLElement | undefined;
+
+        key = menuItem?.dataset.diplodocKey;
+    } else if (variant === 'accordion') {
+        const title = tabsRoot.children.item(panelIndex * 2) as HTMLElement | undefined;
+
+        key = title?.dataset.diplodocKey;
+    } else if (variant === 'radio') {
+        const radioTitles = Array.from(
+            tabsRoot.querySelectorAll('.yfm-vertical-tab'),
+        ) as HTMLElement[];
+
+        key = radioTitles[panelIndex]?.dataset.diplodocKey;
+    }
+
+    if (!key) {
+        return;
+    }
+
+    controller.selectTab({group, key, variant});
+}
+
 export function scrollToHash() {
     const hash = window.location.hash.substring(1);
-
-    // eslint-disable-next-line no-console
-    console.log({hash});
 
     if (!hash) {
         return;
@@ -220,26 +278,27 @@ export function scrollToHash() {
 
     const element = document.getElementById(hash);
 
-    // eslint-disable-next-line no-console
-    console.log({element});
-
     if (!element) {
         return;
     }
 
     let node = element?.parentElement;
+
     while (node) {
         if (isDetailsTag(node)) {
             node.open = true;
         }
+
+        if (node.classList.contains('yfm-tab-panel') && !node.classList.contains('active')) {
+            activateTabPanel(node);
+        }
+
         node = node.parentElement;
     }
 
     element.focus();
 
     setTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.log('scroll');
         scrollToElement(element);
     }, 10);
 }
