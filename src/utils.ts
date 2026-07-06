@@ -208,11 +208,24 @@ function isInViewport(el: HTMLElement) {
     );
 }
 
+function activateTabPanel(panel: HTMLElement): void {
+    const controller = (globalThis as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
+        | {selectTabById: (id: string) => void}
+        | undefined;
+
+    if (!controller || typeof controller.selectTabById !== 'function') {
+        return;
+    }
+
+    const tabId = panel.getAttribute('aria-labelledby');
+
+    if (tabId) {
+        controller.selectTabById(tabId);
+    }
+}
+
 export function scrollToHash() {
     const hash = window.location.hash.substring(1);
-
-    // eslint-disable-next-line no-console
-    console.log({hash});
 
     if (!hash) {
         return;
@@ -220,26 +233,27 @@ export function scrollToHash() {
 
     const element = document.getElementById(hash);
 
-    // eslint-disable-next-line no-console
-    console.log({element});
-
     if (!element) {
         return;
     }
 
     let node = element?.parentElement;
+
     while (node) {
         if (isDetailsTag(node)) {
             node.open = true;
         }
+
+        if (node.classList.contains('yfm-tab-panel') && !node.classList.contains('active')) {
+            activateTabPanel(node);
+        }
+
         node = node.parentElement;
     }
 
     element.focus();
 
     setTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.log('scroll');
         scrollToElement(element);
     }, 10);
 }
