@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.0](https://github.com/diplodoc-platform/client/compare/v5.8.1...v5.9.0) (2026-07-14)
+
+
+### Features
+
+* added footer ([#383](https://github.com/diplodoc-platform/client/issues/383)) ([8c524e4](https://github.com/diplodoc-platform/client/commit/8c524e4e7efe33295068840593dd87a69aa7add3))
+
 ## [5.8.1](https://github.com/diplodoc-platform/client/compare/v5.8.0...v5.8.1) (2026-07-14)
 
 
