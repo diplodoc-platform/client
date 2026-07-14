@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@diplodoc/components": "^5.15.0",
-    "@diplodoc/infra": "2.2.0",
+    "@diplodoc/infra": "2.2.1",
     "@diplodoc/latex-extension": "^1.3.4",
     "@diplodoc/mdx-extension": "^1.6.2",
     "@diplodoc/mermaid-extension": "^2.1.2",
