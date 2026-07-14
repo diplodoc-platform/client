@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.8.1](https://github.com/diplodoc-platform/client/compare/v5.8.0...v5.8.1) (2026-07-14)
+
+
+### Bug Fixes
+
+* add cursor pointer to gallery images ([3c0707d](https://github.com/diplodoc-platform/client/commit/3c0707de18ff2e35f61c161e74cf15574b818e5a))
+* **deps:** Update dev:@diplodoc/mermaid-extension@2.2.0 ([#382](https://github.com/diplodoc-platform/client/issues/382)) ([8ec91b4](https://github.com/diplodoc-platform/client/commit/8ec91b49cee59dc2f4ccb069f5c3e3db308ea0cf))
+
 ## [5.8.0](https://github.com/diplodoc-platform/client/compare/v5.7.14...v5.8.0) (2026-07-06)
 
 
