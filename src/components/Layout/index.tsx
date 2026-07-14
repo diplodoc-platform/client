@@ -39,6 +39,10 @@ export const Layout: LayoutStatics & FC<PropsWithChildren<LayoutProps>> = (props
     let header, content, footer;
 
     React.Children.forEach(children as ReactElement[], (child: ReactElement) => {
+        if (!child) {
+            return;
+        }
+
         switch (child.type) {
             case Header:
                 header = child.props.children;
