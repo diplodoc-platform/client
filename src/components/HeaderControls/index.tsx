@@ -1,6 +1,6 @@
 import type {AvailableLangs, Lang, LangOptions, TextSizes, Theme} from '@diplodoc/components';
 
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {ControlSizes, Controls, ControlsLayout} from '@diplodoc/components';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

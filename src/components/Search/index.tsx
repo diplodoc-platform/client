@@ -1,7 +1,7 @@
 import type {ReactElement} from 'react';
 import type {SearchConfig, SearchData, WorkerApi, WorkerConfig} from './types';
 
-import React, {createContext, useContext, useEffect} from 'react';
+import {createContext, useContext, useEffect} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {Lang, SUPPORTED_LANGS, configure} from '@diplodoc/components';
 

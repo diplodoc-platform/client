@@ -1,6 +1,8 @@
+// eslint-disable-next-line import/order
+import './react-compat';
+
 import type {DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
 
-import React from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 
 import {App} from './components/App';

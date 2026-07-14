@@ -1,7 +1,6 @@
 import type {ComponentType} from 'react';
 import type {Analytics} from '@diplodoc/components';
 
-import React from 'react';
 import {AnalyticsProvider} from '@diplodoc/components';
 
 export function withAnalyticsProvider<T extends {}>(Component: ComponentType<T>) {

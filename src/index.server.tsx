@@ -1,7 +1,6 @@
 import type {DocAnalytics, DocInnerProps, DocLeadingPageData, DocPageData} from './components/App';
 import type {ConfigData, PreloadParams} from './preprocess';
 
-import React from 'react';
 import {renderToString} from 'react-dom/server';
 
 import {App} from './components/App';

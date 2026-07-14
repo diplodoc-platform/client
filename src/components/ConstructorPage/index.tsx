@@ -1,7 +1,6 @@
 import type {PropsWithChildren} from 'react';
 import type {PageContent} from '@gravity-ui/page-constructor';
 
-import React from 'react';
 import block from 'bem-cn-lite';
 import {
     BackgroundMedia,

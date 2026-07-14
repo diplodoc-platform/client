@@ -1,6 +1,6 @@
-import type {FC, PropsWithChildren, ReactElement} from 'react';
+import type {FC, PropsWithChildren} from 'react';
 
-import React from 'react';
+import {Children, isValidElement} from 'react';
 import block from 'bem-cn-lite';
 
 import './Layout.scss';
@@ -38,8 +38,8 @@ export const Layout: LayoutStatics & FC<PropsWithChildren<LayoutProps>> = (props
     const {children, doc, headerHeight = 0} = {...defaults, ...props};
     let header, content, footer;
 
-    React.Children.forEach(children as ReactElement[], (child: ReactElement) => {
-        if (!child) {
+    Children.forEach(children, (child) => {
+        if (!isValidElement<PropsWithChildren>(child)) {
             return;
         }
 

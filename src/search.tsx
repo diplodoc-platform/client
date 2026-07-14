@@ -1,6 +1,5 @@
 import type {SearchConfig} from './components/Search';
 
-import React from 'react';
 import {createRoot} from 'react-dom/client';
 
 import {Search} from './components/Search';

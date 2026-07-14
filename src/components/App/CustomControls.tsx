@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 
-import React, {createContext, useContext} from 'react';
+import {createContext, useContext} from 'react';
 
 import {HeaderControls} from '../HeaderControls';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import {MermaidRuntime} from '@diplodoc/mermaid-extension/react';
 import {LatexRuntime} from '@diplodoc/latex-extension/react';
 import {Runtime as OpenapiSandbox} from '@diplodoc/openapi-extension/runtime';
