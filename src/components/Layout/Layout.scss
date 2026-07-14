@@ -27,6 +27,25 @@
         flex: 0 0 auto;
     }
 
+    .desktop:not(.dc-root_full-screen) & {
+        &__footer {
+            box-sizing: border-box;
+            padding-left: calc(
+                max(0px, (100% - #{variables.$pageWidthRegular}) / 2) + #{variables.$tocColumnWidth}
+            );
+            margin-bottom: 1px;
+        }
+    }
+
+    .desktop.dc-root_wide-format:not(.dc-root_full-screen) & {
+        &__footer {
+            padding-left: calc(
+                max(0px, (100% - #{variables.$pageWidthWide}) / 2) + #{variables.$tocColumnWidth}
+            );
+            margin-bottom: 1px;
+        }
+    }
+
     .mobile & {
         &__footer {
             margin-top: 70px;

@@ -1,9 +1,10 @@
 import type {FC} from 'react';
+import type {CustomFooterProps} from '@diplodoc/components';
 import type {CustomPageProps} from './PageContext';
 import type {DocContentPageData} from './index';
 
 import React from 'react';
-import {getPageByType, getPageType} from '@diplodoc/components';
+import {CustomFooter, getPageByType, getPageType} from '@diplodoc/components';
 
 import {Layout} from '../Layout';
 import {ConstructorPage} from '../ConstructorPage';
@@ -16,6 +17,8 @@ export const CustomPage = () => {
     const PageComponent = getPageByType(type) as FC<CustomPageProps>;
     const headerHeight = props.fullScreen || !hasLayout ? 0 : 64;
     const pageProps = {...data, ...props};
+    const navigation = (data.toc as {navigation?: {footer?: CustomFooterProps}}).navigation;
+    const footer = navigation?.footer;
 
     return (
         <Layout key="layout" headerHeight={headerHeight}>
@@ -24,6 +27,11 @@ export const CustomPage = () => {
                     <ConstructorPage {...(data as DocContentPageData).data} />
                 </PageComponent>
             </Layout.Content>
+            {footer && !props.fullScreen && (
+                <Layout.Footer>
+                    <CustomFooter {...footer} />
+                </Layout.Footer>
+            )}
         </Layout>
     );
 };
