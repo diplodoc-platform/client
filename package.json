@@ -53,7 +53,7 @@
     "@diplodoc/openapi-extension": "^5.2.1",
     "@diplodoc/page-constructor-extension": "^0.13.8",
     "@diplodoc/tabs-extension": "^3.10.2",
-    "@diplodoc/transform": "^4.76.3",
+    "@diplodoc/transform": "^4.77.1",
     "@gravity-ui/icons": "^2.11.0",
     "@gravity-ui/page-constructor": "^8.11.0",
     "@gravity-ui/uikit": "^7.31.1",
