@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.2](https://github.com/diplodoc-platform/client/compare/v5.9.1...v5.9.2) (2026-07-20)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/transform@4.77.1 ([b4717c8](https://github.com/diplodoc-platform/client/commit/b4717c8ba9073acf2f9ae90c39666ea3a82b7c9c))
+
 ## [5.9.1](https://github.com/diplodoc-platform/client/compare/v5.9.0...v5.9.1) (2026-07-20)
 
 
