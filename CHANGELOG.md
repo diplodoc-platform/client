@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.4](https://github.com/diplodoc-platform/client/compare/v5.9.3...v5.9.4) (2026-07-23)
+
+
+### Bug Fixes
+
+* changed cursor to zoom-in for img and svg ([64fcbda](https://github.com/diplodoc-platform/client/commit/64fcbdaf73c134e6daafc9b9bcd01bf0c3255c59))
+
 ## [5.9.3](https://github.com/diplodoc-platform/client/compare/v5.9.2...v5.9.3) (2026-07-23)
 
 
