@@ -1,6 +1,6 @@
 import type {RenderBodyHook} from '@diplodoc/components';
 
-import React, {useCallback, useRef} from 'react';
+import {Fragment, useCallback, useRef} from 'react';
 import {type MdxArtifacts, type UseMdxSsrProps, useMdxSsr} from '@diplodoc/mdx-extension';
 
 export type WithMdxInitProps = Pick<UseMdxSsrProps, 'components' | 'pureComponents'>;
@@ -28,11 +28,11 @@ export const withMdxInit = ({components, pureComponents}: WithMdxInitProps) => {
                 html,
             });
 
-            return React.createElement(
-                React.Fragment,
-                null,
-                React.createElement(Component, {...props, forwardRef: forwardRefWrap}),
-                node,
+            return (
+                <Fragment>
+                    <Component {...props} forwardRef={forwardRefWrap} />
+                    {node}
+                </Fragment>
             );
         };
     };

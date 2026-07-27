@@ -3,7 +3,6 @@ import type {CustomFooterProps} from '@diplodoc/components';
 import type {CustomPageProps} from './PageContext';
 import type {DocContentPageData} from './index';
 
-import React from 'react';
 import {CustomFooter, getPageByType, getPageType} from '@diplodoc/components';
 
 import {Layout} from '../Layout';

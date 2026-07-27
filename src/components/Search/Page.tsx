@@ -1,6 +1,6 @@
 import type {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {type FC, useCallback, useEffect, useRef, useState} from 'react';
 import {SearchPage} from '@diplodoc/components';
 import block from 'bem-cn-lite';
 
@@ -21,13 +21,23 @@ function getUrlParams() {
 
 function setUrlParams(query: string, page: number) {
     const params = new URLSearchParams();
-    if (query) params.set('query', query);
-    if (page > 1) params.set('page', String(page));
+
+    if (query) {
+        params.set('query', query);
+    }
+
+    if (page > 1) {
+        params.set('page', String(page));
+    }
+
     window.history.pushState({}, '', `?${params.toString()}`);
 }
 
 function formatResults(searchResults: SearchResultData[]): FormattedSearchResultData {
-    if (!Array.isArray(searchResults)) return [];
+    if (!Array.isArray(searchResults)) {
+        return [];
+    }
+
     return searchResults.map((result) => ({
         title: result?.title || result?.hierarchy?.lvl0 || result?.hierarchy?.lvl1 || '',
         url: result?.url || result?.link || '#',
@@ -38,7 +48,7 @@ function formatResults(searchResults: SearchResultData[]): FormattedSearchResult
 
 const ITEMS_PER_PAGE = 10;
 
-export const Page: React.FC = () => {
+export const Page: FC = () => {
     const provider = useProvider();
     const router = useRouter();
 

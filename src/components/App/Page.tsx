@@ -5,7 +5,7 @@ import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {PageContextProps} from './PageContext';
 import type {AnalyticsContextProps} from '@gravity-ui/page-constructor';
 
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {useAnalytics} from '@diplodoc/components';
 import {PageConstructor, PageConstructorProvider} from '@gravity-ui/page-constructor';
 
@@ -50,7 +50,7 @@ export function Page({data, props, controls}: PageProps) {
         return controls;
     }, [navigation.withControls, controls]);
 
-    const pageConstructorAnalytics: AnalyticsContextProps | undefined = React.useMemo(
+    const pageConstructorAnalytics: AnalyticsContextProps | undefined = useMemo(
         () =>
             analytics
                 ? {

@@ -4,7 +4,7 @@ import type {DocBasePageData} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {
     ControlSizes,
     CustomNavigation,

@@ -1,6 +1,6 @@
 import type {ISearchProvider, SearchSuggestApi} from '@diplodoc/components';
 
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import {useCallback, useMemo, useRef, useState} from 'react';
 import {AiIcon, NeuroExpertModal, SearchSuggest, useInterface} from '@diplodoc/components';
 import {Icon} from '@gravity-ui/uikit';
 import {Magnifier} from '@gravity-ui/icons';
