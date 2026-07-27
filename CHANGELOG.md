@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.10.0](https://github.com/diplodoc-platform/client/compare/v5.9.3...v5.10.0) (2026-07-27)
+
+
+### Features
+
+* update react version ([#400](https://github.com/diplodoc-platform/client/issues/400)) ([a525f28](https://github.com/diplodoc-platform/client/commit/a525f28e38fbbd933501edc0e59da8e5ce095868))
+
+
+### Bug Fixes
+
+* changed cursor to zoom-in for img and svg ([64fcbda](https://github.com/diplodoc-platform/client/commit/64fcbdaf73c134e6daafc9b9bcd01bf0c3255c59))
+* **deps:** Update @diplodoc/components@5.16.3 ([a41677a](https://github.com/diplodoc-platform/client/commit/a41677a4b506c6dbfb7673fc4c718122414e749b))
+
 ## [5.9.3](https://github.com/diplodoc-platform/client/compare/v5.9.2...v5.9.3) (2026-07-23)
 
 
