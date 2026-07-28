@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.10.1](https://github.com/diplodoc-platform/client/compare/v5.10.0...v5.10.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/components@5.17.3, dev:@diplodoc/tabs-extension@3.10.5, dev:@diplodoc/transform@4.77.7 ([#406](https://github.com/diplodoc-platform/client/issues/406)) ([bdd25e1](https://github.com/diplodoc-platform/client/commit/bdd25e14263a3e4d9116e4db01b2bc794df8e76c))
+* missing JSX.Element in react-compat shim ([#402](https://github.com/diplodoc-platform/client/issues/402)) ([3853780](https://github.com/diplodoc-platform/client/commit/3853780d058b49e07872ef915b9bb73179cfd903))
+
 ## [5.10.0](https://github.com/diplodoc-platform/client/compare/v5.9.3...v5.10.0) (2026-07-27)
 
 
