@@ -6,9 +6,9 @@ export interface SearchParams {
 
 function decodeTag(tag: string): string {
     try {
-        return decodeURIComponent(tag.replace(/\+/g, ' '));
+        return decodeURIComponent(tag.replaceAll('+', ' '));
     } catch {
-        return tag.replace(/\+/g, ' ');
+        return tag.replaceAll('+', ' ');
     }
 }
 
