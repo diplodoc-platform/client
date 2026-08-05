@@ -1,12 +1,16 @@
 import type {SearchConfig} from '../../types';
 
-export function buildSearchLink(base: string, config: SearchConfig, query?: string, page = 1) {
-    const searchParams = new URLSearchParams();
+import {buildSearchParams} from '../../searchParams';
 
-    if (query) searchParams.set('query', query);
-    if (page > 1) searchParams.set('page', page.toString());
-
-    const params = searchParams.toString() ? `?${searchParams.toString()}` : '';
+export function buildSearchLink(
+    base: string,
+    config: SearchConfig,
+    query?: string,
+    page = 1,
+    tags: string[] = [],
+) {
+    const searchParams = buildSearchParams(query || '', page, tags);
+    const params = searchParams ? `?${searchParams}` : '';
     const link = `${base}/${config.link}${params}`;
 
     return link;

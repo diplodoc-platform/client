@@ -27,16 +27,18 @@ export class DefaultSearchProvider implements ISearchProvider, SearchProviderExt
         }) as Promise<ISearchResult[]>;
     }
 
-    async search(query: string, page = 1, count = 10) {
+    async search(query: string, page = 1, count = 10, tags: string[] = []) {
         return this.request({
             type: 'search',
             query,
             page,
             count,
+            tags,
         }) as Promise<{items: ISearchResult[]; total: number}>;
     }
 
-    link = (query: string, page = 1) => buildSearchLink(this.base, this.config, query, page);
+    link = (query: string, page = 1, tags: string[] = []) =>
+        buildSearchLink(this.base, this.config, query, page, tags);
 
     private get base() {
         return window.location.href.split('/').slice(0, -this.config.depth).join('/');
