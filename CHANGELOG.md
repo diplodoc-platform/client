@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.11.0](https://github.com/diplodoc-platform/client/compare/v5.10.3...v5.11.0) (2026-08-06)
+
+
+### Features
+
+* added page tags ([#417](https://github.com/diplodoc-platform/client/issues/417)) ([282d250](https://github.com/diplodoc-platform/client/commit/282d25003759e50b6465362c10a5d17b0974bd74))
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/components@5.17.5 ([dd84f0e](https://github.com/diplodoc-platform/client/commit/dd84f0e3dc45787f2a1a1c1c66fd9859d052c427))
+* **deps:** Update @diplodoc/components@5.17.6 ([cd478f3](https://github.com/diplodoc-platform/client/commit/cd478f3d86dcf881ab1a943b1d7ed80b87b6545b))
+
 ## [5.10.3](https://github.com/diplodoc-platform/client/compare/v5.10.2...v5.10.3) (2026-08-04)
 
 
