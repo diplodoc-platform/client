@@ -50,7 +50,7 @@
     "@diplodoc/latex-extension": "^2.0.2",
     "@diplodoc/mdx-extension": "^1.6.2",
     "@diplodoc/mermaid-extension": "^2.2.2",
-    "@diplodoc/openapi-extension": "^5.2.3",
+    "@diplodoc/openapi-extension": "^5.2.4",
     "@diplodoc/page-constructor-extension": "^0.13.11",
     "@diplodoc/tabs-extension": "^3.10.5",
     "@diplodoc/transform": "^4.77.8",
