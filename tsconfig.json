@@ -8,7 +8,8 @@
     "declaration": true,
     "outDir": "build",
     "jsx": "react-jsx",
-    "baseUrl": "."
+    "types": ["node"],
+    "rootDir": "./src"
   },
   "include": ["./src/*", "./manifest.d.ts"],
   "exclude": ["node_modules"]
