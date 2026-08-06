@@ -1,36 +1,23 @@
 import type {FormattedSearchResultData, SearchProviderExtended, SearchResultData} from './types';
 
-import {type FC, useCallback, useEffect, useRef, useState} from 'react';
-import {SearchPage} from '@diplodoc/components';
+import {type FC, useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {SearchPage, TagsFilter} from '@diplodoc/components';
 import block from 'bem-cn-lite';
 
+import {useSearch} from '../index';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
+import {buildSearchParams, parseSearchParams} from './searchParams';
 import './Page.scss';
 
 const b = block('Search');
 
-function getUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        query: params.get('query') || '',
-        page: Number(params.get('page')) || 1,
-    };
-}
+function setUrlParams(query: string, page: number, tags: string[]) {
+    const params = buildSearchParams(query, page, tags);
+    const url = params ? `?${params}` : window.location.pathname;
 
-function setUrlParams(query: string, page: number) {
-    const params = new URLSearchParams();
-
-    if (query) {
-        params.set('query', query);
-    }
-
-    if (page > 1) {
-        params.set('page', String(page));
-    }
-
-    window.history.pushState({}, '', `?${params.toString()}`);
+    window.history.pushState({}, '', url);
 }
 
 function formatResults(searchResults: SearchResultData[]): FormattedSearchResultData {
@@ -51,8 +38,10 @@ const ITEMS_PER_PAGE = 10;
 export const Page: FC = () => {
     const provider = useProvider();
     const router = useRouter();
+    const search = useSearch();
 
     const [query, setQuery] = useState<string>('');
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [page, setPage] = useState<number>(1);
     const [results, setResults] = useState<FormattedSearchResultData>([]);
     const [total, setTotal] = useState<number>(0);
@@ -66,19 +55,27 @@ export const Page: FC = () => {
     }, [provider]);
 
     useEffect(() => {
-        const {query: q, page: p} = getUrlParams();
+        const {query: q, page: p, tags} = parseSearchParams(window.location.search);
 
         setQuery(q);
         setPage(p);
+        setSelectedTags(tags);
     }, [router]);
 
     useEffect(() => {
-        if (query && providerRef.current) {
+        let cancelled = false;
+        const hasRequest = Boolean(query.trim() || selectedTags.length);
+
+        if (hasRequest && providerRef.current) {
             setLoading(true);
 
             providerRef.current
-                .search(query, page, ITEMS_PER_PAGE)
+                .search(query, page, ITEMS_PER_PAGE, selectedTags)
                 .then((searchResults) => {
+                    if (cancelled) {
+                        return;
+                    }
+
                     const {items, total} = searchResults;
                     const formatted = formatResults(items ?? []);
 
@@ -86,29 +83,57 @@ export const Page: FC = () => {
                     setTotal(total);
                 })
                 .catch(() => {
+                    if (cancelled) {
+                        return;
+                    }
+
                     setResults([]);
                     setTotal(0);
                 })
-                .finally(() => setLoading(false));
+                .finally(() => {
+                    if (!cancelled) {
+                        setLoading(false);
+                    }
+                });
         } else {
             setResults([]);
             setTotal(0);
+            setLoading(false);
         }
-    }, [query, page, provider]);
+
+        return () => {
+            cancelled = true;
+        };
+    }, [query, page, provider, selectedTags]);
 
     const handlePageChange = useCallback(
         (newPage: number) => {
-            setUrlParams(query, newPage);
+            setUrlParams(query, newPage, selectedTags);
             setPage(newPage);
+        },
+        [query, selectedTags],
+    );
+
+    const handleQueryChange = useCallback(
+        (newQuery: string) => {
+            setUrlParams(newQuery, 1, selectedTags);
+            setQuery(newQuery);
+            setPage(1);
+        },
+        [selectedTags],
+    );
+
+    const handleTagsChange = useCallback(
+        (tags: string[]) => {
+            setUrlParams(query, 1, tags);
+            setSelectedTags(tags);
+            setPage(1);
         },
         [query],
     );
 
-    const handleQueryChange = useCallback((newQuery: string) => {
-        setUrlParams(newQuery, 1);
-        setQuery(newQuery);
-        setPage(1);
-    }, []);
+    const availableTags = useMemo(() => [...new Set(search?.tags || [])], [search?.tags]);
+    const hasRequest = Boolean(query.trim() || selectedTags.length);
 
     return (
         <div className={b()}>
@@ -120,6 +145,16 @@ export const Page: FC = () => {
                 onPageChange={handlePageChange}
                 onSubmit={handleQueryChange}
                 loading={loading}
+                hasRequest={hasRequest}
+                filters={
+                    availableTags.length ? (
+                        <TagsFilter
+                            tags={availableTags}
+                            selectedTags={selectedTags}
+                            onChange={handleTagsChange}
+                        />
+                    ) : null
+                }
             />
         </div>
     );

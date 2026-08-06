@@ -70,11 +70,11 @@ const HANDLERS = {
         return await self.api.suggest(query, count);
     },
 
-    async search({query, count = 10, page = 1}: SearchMessage) {
+    async search({query, count = 10, page = 1, tags = []}: SearchMessage) {
         AssertConfig(self.config);
         AssertApi(self.api);
 
-        return await self.api.search(query, count, page);
+        return await self.api.search(query, count, page, tags);
     },
 } as const;
 

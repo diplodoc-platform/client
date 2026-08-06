@@ -13,6 +13,7 @@ export interface SearchData {
     link: string;
     lang: string;
     provider?: 'local' | 'algolia';
+    tags?: string[];
 }
 
 export interface SearchConfig extends SearchData {
@@ -53,6 +54,7 @@ export interface WorkerApi {
         query: string,
         count: number,
         page: number,
+        tags?: string[],
     ): Promise<{items: ISearchResult[]; total: number}>;
 }
 
@@ -71,6 +73,7 @@ export type SearchMessage = {
     query: string;
     page?: number;
     count?: number;
+    tags?: string[];
 };
 
 export interface SearchProviderExtended {
@@ -80,8 +83,9 @@ export interface SearchProviderExtended {
         query: string,
         page?: number,
         count?: number,
+        tags?: string[],
     ): Promise<{items: ISearchResult[]; total: number}>;
-    link(query: string, page?: number): string | null;
+    link(query: string, page?: number, tags?: string[]): string | null;
 }
 
 export type Message = InitMessage | SuggestMessage | SearchMessage;
