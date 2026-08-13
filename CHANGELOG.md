@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.11.5](https://github.com/diplodoc-platform/client/compare/v5.11.4...v5.11.5) (2026-08-13)
+
+
+### Bug Fixes
+
+* fixed tags ([#426](https://github.com/diplodoc-platform/client/issues/426)) ([74913a1](https://github.com/diplodoc-platform/client/commit/74913a17809a57eb2dc02540b9514df48c1ad2d7))
+
 ## [5.11.4](https://github.com/diplodoc-platform/client/compare/v5.11.3...v5.11.4) (2026-08-12)
 
 
