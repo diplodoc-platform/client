@@ -132,7 +132,10 @@ export const Page: FC = () => {
         [query],
     );
 
-    const availableTags = useMemo(() => [...new Set(search?.tags || [])], [search?.tags]);
+    const availableTags = useMemo(
+        () => [...new Set((search?.tags || []).filter((tag) => !tag.startsWith('_')))],
+        [search?.tags],
+    );
     const hasRequest = Boolean(query.trim() || selectedTags.length);
 
     return (
