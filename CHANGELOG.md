@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.11.9](https://github.com/diplodoc-platform/client/compare/v5.11.8...v5.11.9) (2026-08-20)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/mermaid-extension@2.2.3 ([f4270d9](https://github.com/diplodoc-platform/client/commit/f4270d9f9df985bd424f8d842f58f21419089798))
+
 ## [5.11.8](https://github.com/diplodoc-platform/client/compare/v5.11.7...v5.11.8) (2026-08-14)
 
 
