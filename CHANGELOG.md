@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.11.10](https://github.com/diplodoc-platform/client/compare/v5.11.9...v5.11.10) (2026-08-26)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/page-constructor-extension@0.13.13 ([636427d](https://github.com/diplodoc-platform/client/commit/636427d7e7ca53f2a396ab17f122411ec1391db1))
+
 ## [5.11.9](https://github.com/diplodoc-platform/client/compare/v5.11.8...v5.11.9) (2026-08-20)
 
 
