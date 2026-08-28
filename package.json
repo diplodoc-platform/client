@@ -52,7 +52,7 @@
     "@diplodoc/mermaid-extension": "^2.2.3",
     "@diplodoc/openapi-extension": "^5.2.4",
     "@diplodoc/page-constructor-extension": "^0.13.14",
-    "@diplodoc/tabs-extension": "^3.10.6",
+    "@diplodoc/tabs-extension": "^3.10.7",
     "@diplodoc/transform": "^4.77.15",
     "@gravity-ui/icons": "^2.11.0",
     "@gravity-ui/page-constructor": "^8.11.0",
