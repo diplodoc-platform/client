@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.11.12](https://github.com/diplodoc-platform/client/compare/v5.11.11...v5.11.12) (2026-08-28)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/tabs-extension@3.10.7 ([#442](https://github.com/diplodoc-platform/client/issues/442)) ([65be4ad](https://github.com/diplodoc-platform/client/commit/65be4ad6b1f1f96f6a1a949bce6adbabfa3f66a9))
+
 ## [5.11.11](https://github.com/diplodoc-platform/client/compare/v5.11.10...v5.11.11) (2026-08-27)
 
 
