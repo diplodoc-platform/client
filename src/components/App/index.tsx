@@ -14,6 +14,7 @@ import type {AnalyticsConfig, UserAnalyticsConfig} from '../../types';
 import React, {useEffect, useMemo} from 'react';
 import {ThemeProvider} from '@gravity-ui/uikit';
 import {
+    BackToTop,
     ConsentPopup,
     Gallery,
     InterfaceProvider,
@@ -178,6 +179,7 @@ function AppBase(props: AppProps): ReactElement {
                                             consentMode={analytics.gtm.mode}
                                         />
                                     )}
+                                    <BackToTop isMobile={mobileView} />
                                     <Widgets />
                                     <Runtime />
                                     <Gallery />
