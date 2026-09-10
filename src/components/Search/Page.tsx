@@ -45,6 +45,7 @@ export const Page: FC = () => {
     const [page, setPage] = useState<number>(1);
     const [results, setResults] = useState<FormattedSearchResultData>([]);
     const [total, setTotal] = useState<number>(0);
+    const [tagCounts, setTagCounts] = useState<Record<string, number>>();
     const [loading, setLoading] = useState<boolean>(false);
 
     const providerRef = useRef<SearchProviderExtended | null>(null);
@@ -64,10 +65,10 @@ export const Page: FC = () => {
 
     useEffect(() => {
         let cancelled = false;
-        const hasRequest = Boolean(query.trim() || selectedTags.length);
 
-        if (hasRequest && providerRef.current) {
+        if (providerRef.current) {
             setLoading(true);
+            setTagCounts(undefined);
 
             providerRef.current
                 .search(query, page, ITEMS_PER_PAGE, selectedTags)
@@ -76,11 +77,12 @@ export const Page: FC = () => {
                         return;
                     }
 
-                    const {items, total} = searchResults;
+                    const {items, total, tagCounts} = searchResults;
                     const formatted = formatResults(items ?? []);
 
                     setResults(formatted);
                     setTotal(total);
+                    setTagCounts(tagCounts);
                 })
                 .catch(() => {
                     if (cancelled) {
@@ -149,11 +151,14 @@ export const Page: FC = () => {
                 onSubmit={handleQueryChange}
                 loading={loading}
                 hasRequest={hasRequest}
+                selectedTags={selectedTags}
+                onResetFilters={() => handleTagsChange([])}
                 filters={
-                    availableTags.length ? (
+                    availableTags.length || selectedTags.length ? (
                         <TagsFilter
                             tags={availableTags}
                             selectedTags={selectedTags}
+                            tagCounts={tagCounts}
                             onChange={handleTagsChange}
                         />
                     ) : null

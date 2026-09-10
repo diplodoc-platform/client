@@ -55,7 +55,7 @@ export interface WorkerApi {
         count: number,
         page: number,
         tags?: string[],
-    ): Promise<{items: ISearchResult[]; total: number}>;
+    ): Promise<{items: ISearchResult[]; total: number; tagCounts?: Record<string, number>}>;
 }
 
 export type InitMessage = {
@@ -84,7 +84,7 @@ export interface SearchProviderExtended {
         page?: number,
         count?: number,
         tags?: string[],
-    ): Promise<{items: ISearchResult[]; total: number}>;
+    ): Promise<{items: ISearchResult[]; total: number; tagCounts?: Record<string, number>}>;
     link(query: string, page?: number, tags?: string[]): string | null;
 }
 
