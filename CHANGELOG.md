@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.12.2](https://github.com/diplodoc-platform/client/compare/v5.12.1...v5.12.2) (2026-09-10)
+
+
+### Bug Fixes
+
+* wire search tag result counts ([#452](https://github.com/diplodoc-platform/client/issues/452)) ([bd82378](https://github.com/diplodoc-platform/client/commit/bd823788d54f82e04f5ade6cd0b4dc54f273442a))
+
 ## [5.12.1](https://github.com/diplodoc-platform/client/compare/v5.12.0...v5.12.1) (2026-09-07)
 
 
