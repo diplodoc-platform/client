@@ -34,7 +34,7 @@ export class DefaultSearchProvider implements ISearchProvider, SearchProviderExt
             page,
             count,
             tags,
-        }) as Promise<{items: ISearchResult[]; total: number}>;
+        }) as Promise<{items: ISearchResult[]; total: number; tagCounts?: Record<string, number>}>;
     }
 
     link = (query: string, page = 1, tags: string[] = []) =>
