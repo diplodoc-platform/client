@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.13.0](https://github.com/diplodoc-platform/client/compare/v5.12.2...v5.13.0) (2026-09-14)
+
+
+### Features
+
+* update @gravity-ui/page-constructor to 8.21.1 ([#451](https://github.com/diplodoc-platform/client/issues/451)) ([2a3cfdf](https://github.com/diplodoc-platform/client/commit/2a3cfdf6ad190e99863e3330757c0bf513c87894))
+
 ## [5.12.2](https://github.com/diplodoc-platform/client/compare/v5.12.1...v5.12.2) (2026-09-10)
 
 
