@@ -8,6 +8,7 @@ import type {
     DocLeadingPageData,
     DocPageData,
     RenderBodyHook,
+    ViewerInterface,
 } from '@diplodoc/components';
 import type {AnalyticsConfig, UserAnalyticsConfig} from '../../types';
 
@@ -64,7 +65,7 @@ export interface AppProps {
     search?: SearchConfig;
     analytics?: AnalyticsConfig;
     feedback?: FeedbackConfig;
-    viewerInterface?: Record<string, boolean>;
+    viewerInterface?: ViewerInterface;
     neuroExpert?: {
         projectId?: string;
     };

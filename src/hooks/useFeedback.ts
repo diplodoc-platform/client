@@ -1,4 +1,4 @@
-import type {FeedbackSendData} from '@diplodoc/components';
+import type {FeedbackSendData, ViewerInterface} from '@diplodoc/components';
 import type {RouterConfig} from '../components/Router';
 
 import {useCallback} from 'react';
@@ -6,7 +6,7 @@ import {useCallback} from 'react';
 interface UseFeedbackOptions {
     feedbackUrl?: string;
     router: RouterConfig;
-    viewerInterface?: Record<string, boolean>;
+    viewerInterface?: ViewerInterface;
 }
 
 export function useFeedback({feedbackUrl, router, viewerInterface}: UseFeedbackOptions) {
