@@ -1,6 +1,6 @@
 import type {ComponentType, ReactNode} from 'react';
 import type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';
-import type {DocBasePageData} from '@diplodoc/components';
+import type {DocBasePageData, ViewerInterface} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 
@@ -34,7 +34,7 @@ export const useNavigation = (
     controls: HeaderControlsProps,
     CustomControls: ComponentType<{}>,
     CustomSuggest: () => ReactNode,
-    viewerInterface?: Record<string, boolean>,
+    viewerInterface?: ViewerInterface,
 ): {
     custom: Record<string, ComponentType<any> | (() => ReactNode)>;
     layout?: {
