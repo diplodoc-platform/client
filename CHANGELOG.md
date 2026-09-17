@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.0](https://github.com/diplodoc-platform/client/compare/v5.13.2...v5.14.0) (2026-09-17)
+
+
+### Features
+
+* accept Markdown actions interface mode ([5551f5f](https://github.com/diplodoc-platform/client/commit/5551f5f5f7e22f1075521c760a5f2f34461258c9))
+
 ## [5.13.2](https://github.com/diplodoc-platform/client/compare/v5.13.1...v5.13.2) (2026-09-15)
 
 
