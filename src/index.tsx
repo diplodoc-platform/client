@@ -32,6 +32,15 @@ if (!isDocInnerProps(data)) {
 }
 
 const props = data as DocInnerProps;
+
+if (window.STATIC_CONTENT && props.data.leading !== true) {
+    const html = root.querySelector<HTMLElement>('[data-html-id="main"]')?.innerHTML;
+
+    if (html !== undefined) {
+        props.data.html = html;
+    }
+}
+
 const {analyticsConfig, analyticsService} = createAnalyticsProps(props.analytics);
 
 analyticsService.init();
