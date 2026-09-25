@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.3](https://github.com/diplodoc-platform/client/compare/v5.14.2...v5.14.3) (2026-09-25)
+
+
+### Bug Fixes
+
+* restore static HTML from rendered page ([161e128](https://github.com/diplodoc-platform/client/commit/161e128df1ad62e2865696e3546a567f9dff7483))
+
 ## [5.14.2](https://github.com/diplodoc-platform/client/compare/v5.14.1...v5.14.2) (2026-09-25)
 
 
