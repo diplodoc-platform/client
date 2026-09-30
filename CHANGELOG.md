@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.5](https://github.com/diplodoc-platform/client/compare/v5.14.4...v5.14.5) (2026-09-30)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.78.2, dev:@diplodoc/openapi-extension@5.2.6 ([#472](https://github.com/diplodoc-platform/client/issues/472)) ([cca822b](https://github.com/diplodoc-platform/client/commit/cca822b208edfddfe15e1a4274232cc92d07e125))
+
 ## [5.14.4](https://github.com/diplodoc-platform/client/compare/v5.14.3...v5.14.4) (2026-09-30)
 
 
