@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.6](https://github.com/diplodoc-platform/client/compare/v5.14.5...v5.14.6) (2026-09-30)
+
+
+### Bug Fixes
+
+* **deps:** Update dev:@diplodoc/transform@4.78.3 ([#474](https://github.com/diplodoc-platform/client/issues/474)) ([4bbaba3](https://github.com/diplodoc-platform/client/commit/4bbaba3222b3868fcabdb89da5ebb531ccf703e7))
+
 ## [5.14.5](https://github.com/diplodoc-platform/client/compare/v5.14.4...v5.14.5) (2026-09-30)
 
 
