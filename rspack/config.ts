@@ -9,6 +9,7 @@ import {TsCheckerRspackPlugin} from 'ts-checker-rspack-plugin';
 import {RtlCssPlugin} from './rtl-css';
 
 const EMPTY_MODULE = require.resolve('../src/stub/empty-module');
+const {resolvePageConstructor} = require('../scripts/shared-runtime.cjs');
 
 const getSwcOptions = (isDev: boolean) => ({
     jsc: {
@@ -71,6 +72,7 @@ function config({isServer, isDev, analyze = false}: ConfigFactoryOptions) {
                 'react/jsx-runtime': require.resolve('react/jsx-runtime'),
                 react: require.resolve('react'),
                 '@gravity-ui/uikit$': require.resolve('@gravity-ui/uikit'),
+                '@gravity-ui/page-constructor$': resolvePageConstructor(),
                 'react-player': EMPTY_MODULE,
                 'highlight.js': EMPTY_MODULE,
             }),
