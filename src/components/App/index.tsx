@@ -1,4 +1,5 @@
-import type {NavigationData, PageContent} from '@gravity-ui/page-constructor';
+import type {PageContent} from '@gravity-ui/page-constructor';
+import type {NavigationData} from '../ConstructorPage/navigationTypes';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
 import type {SearchConfig} from '../Search';
 import type {RouterConfig} from '../Router';
