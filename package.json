@@ -13,7 +13,7 @@
     "build:watch": "NODE_ENV=development npm run _build -- --watch",
     "_build": "rspack --config ./rspack/config.ts",
     "prepublishOnly": "rm -rf build && npm ci --no-workspaces && npm run build",
-    "test": "node --test test/navigation-types.test.cjs",
+    "test": "node --test test/navigation-types.test.cjs test/shared-runtime.test.cjs",
     "typecheck": "tsc -p . --noEmit",
     "lint": "lint",
     "lint:fix": "lint fix",
