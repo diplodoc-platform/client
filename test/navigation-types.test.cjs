@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const {readFileSync} = require('node:fs');
-const {join} = require('node:path');
+const {join, win32} = require('node:path');
 const {test} = require('node:test');
 const ts = require('typescript');
 
@@ -26,22 +26,25 @@ export interface NavigationData {
 `;
 }
 
-function compile(legacy = false) {
-    const consumer = join(fixtureRoot, 'consumer.ts');
-    const components = join(fixtureRoot, 'components.d.ts');
-    const pageConstructor = join(fixtureRoot, 'page-constructor.d.ts');
-    const files = new Map([
-        [components, declarations('componentsReact')],
-        [pageConstructor, declarations('clientReact')],
+function compile(legacy = false, windowsPaths = false) {
+    const fixturePath = (name) =>
+        windowsPaths ? win32.join('C:\\navigation-type-fixture', name) : join(fixtureRoot, name);
+    const consumer = fixturePath('consumer.ts');
+    const components = fixturePath('components.d.ts');
+    const pageConstructor = fixturePath('page-constructor.d.ts');
+    const files = new Map(
         [
-            contractPath,
-            legacy
-                ? "export type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';"
-                : readFileSync(contractPath, 'utf8'),
-        ],
-        [
-            consumer,
-            `
+            [components, declarations('componentsReact')],
+            [pageConstructor, declarations('clientReact')],
+            [
+                contractPath,
+                legacy
+                    ? "export type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';"
+                    : readFileSync(contractPath, 'utf8'),
+            ],
+            [
+                consumer,
+                `
 import type {CustomNavigationProps} from '@diplodoc/components';
 import type {NavigationData as RootNavigationData} from '@gravity-ui/page-constructor';
 import type {NavigationData, NavigationItemModel} from './navigationTypes';
@@ -58,8 +61,9 @@ const wrongTree: CustomNavigationProps['data'] = rootNavigation.header;
 // @ts-expect-error Component URL validation must not become any or unknown.
 const invalidItem: NavigationItemModel = {type: 'link', url: 42};
 `,
-        ],
-    ]);
+            ],
+        ].map(([file, contents]) => [ts.normalizePath(file), contents]),
+    );
     const options = {
         strict: true,
         skipLibCheck: false,
@@ -71,10 +75,12 @@ const invalidItem: NavigationItemModel = {type: 'link', url: 42};
     };
     const host = ts.createCompilerHost(options);
     const originalSourceFile = host.getSourceFile.bind(host);
-    host.getSourceFile = (file, languageVersion, ...args) =>
-        files.has(file)
-            ? ts.createSourceFile(file, files.get(file), languageVersion, true)
+    host.getSourceFile = (file, languageVersion, ...args) => {
+        const normalized = ts.normalizePath(file);
+        return files.has(normalized)
+            ? ts.createSourceFile(normalized, files.get(normalized), languageVersion, true)
             : originalSourceFile(file, languageVersion, ...args);
+    };
     const modules = {
         '@diplodoc/components': components,
         '@gravity-ui/page-constructor': pageConstructor,
@@ -106,4 +112,9 @@ test('the legacy independent page-constructor types reproduce the assignment fai
         ),
     );
     assert.ok(!diagnostics.some((item) => item.code === 2307), 'No missing-module false positive');
+});
+
+test('virtual compiler files use TypeScript-normalized Windows paths', () => {
+    assert.equal(compile(false, true).length, 0);
+    assert.ok(compile(true, true).some((item) => item.code === 2322));
 });
