@@ -61,3 +61,33 @@ test('flat installations keep the shared hoisted constructor', () => {
         fs.rmSync(root, {recursive: true, force: true});
     }
 });
+
+test('the shared constructor retains its ESM layout CSS imports', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'client-constructor-styles-'));
+    try {
+        const components = path.join(root, 'node_modules/@diplodoc/components');
+        const entry = packageAt(components, '@diplodoc/components', '5.24.1');
+        const constructor = path.join(components, 'node_modules/@gravity-ui/page-constructor');
+        const cjs = packageAt(constructor, '@gravity-ui/page-constructor', '8.23.1');
+        fs.writeFileSync(
+            path.join(constructor, 'package.json'),
+            JSON.stringify({
+                name: '@gravity-ui/page-constructor',
+                version: '8.23.1',
+                main: 'index.js',
+                module: './browser.js',
+            }),
+        );
+        fs.writeFileSync(
+            path.join(constructor, 'browser.js'),
+            'import "./layout.css"; throw new Error("Resolution must not execute package code");',
+        );
+        const browser = fs.realpathSync(path.join(constructor, 'browser.js'));
+        assert.equal(resolvePageConstructor(entry), browser);
+        assert.notEqual(resolvePageConstructor(entry), cjs);
+        fs.unlinkSync(browser);
+        assert.throws(() => resolvePageConstructor(entry), {code: 'ENOENT'});
+    } finally {
+        fs.rmSync(root, {recursive: true, force: true});
+    }
+});
