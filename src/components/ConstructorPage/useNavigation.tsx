@@ -1,8 +1,8 @@
 import type {ComponentType, ReactNode} from 'react';
-import type {NavigationData, NavigationItemModel} from '@gravity-ui/page-constructor';
 import type {DocBasePageData, ViewerInterface} from '@diplodoc/components';
 import type {WithNavigation} from '../App';
 import type {Props as HeaderControlsProps} from '../HeaderControls';
+import type {NavigationData, NavigationItemModel} from './navigationTypes';
 
 import {useMemo} from 'react';
 import {
@@ -36,9 +36,16 @@ export const useNavigation = (
     CustomSuggest: () => ReactNode,
     viewerInterface?: ViewerInterface,
 ): {
-    custom: Record<string, ComponentType<any> | (() => ReactNode)>;
+    custom: {
+        search: typeof CustomSuggest;
+        controls: typeof CustomControls;
+        MobileDropdown: typeof MobileDropdown;
+        label: typeof NavigationLabel;
+        dropdown: typeof NavigationDropdown;
+    };
     layout?: {
-        header: {leftItems: NavigationItemModel[]};
+        // PageConstructor gets an empty header; CustomNavigation renders the real items.
+        header: {leftItems: never[]};
         renderNavigation: () => ReactNode;
         logo: NavigationData['logo'];
     };
