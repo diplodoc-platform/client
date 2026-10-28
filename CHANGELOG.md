@@ -1,10 +1,11 @@
 # Changelog
 
-## [5.14.9](https://github.com/diplodoc-platform/client/compare/v5.14.8...v5.14.9) (2026-10-26)
+## [5.14.9](https://github.com/diplodoc-platform/client/compare/v5.14.8...v5.14.9) (2026-10-28)
 
 
 ### Bug Fixes
 
+* **deps:** Update dev:@diplodoc/transform@4.78.11 ([5b18ce0](https://github.com/diplodoc-platform/client/commit/5b18ce0a0d90924232cd794265864c86f3454cbb))
 * derive navigation types from component contracts ([24563ed](https://github.com/diplodoc-platform/client/commit/24563ed4df6c6aa19df5508fd62afcba24ef79a3))
 * preserve constructor styles in the shared runtime ([db7d41b](https://github.com/diplodoc-platform/client/commit/db7d41b1ab8db599c1e57ab21c17b7bdbad508a7))
 * share the components navigation runtime context ([32108ce](https://github.com/diplodoc-platform/client/commit/32108ce80b1df2d5d2ccf698ce6f6a9af33d12fb))
