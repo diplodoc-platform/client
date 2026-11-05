@@ -46,6 +46,16 @@ export function buildSearchParams(query: string, page = 1, tags: string[] = []):
     return params.join('&');
 }
 
+export function buildSearchUrl(
+    pathname: string,
+    query: string,
+    page = 1,
+    tags: string[] = [],
+): string {
+    const params = buildSearchParams(query, page, tags);
+    return params ? `${pathname}?${params}` : pathname;
+}
+
 export function parseSearchParams(search: string): SearchParams {
     const params = new URLSearchParams(search);
     const rawTags = search
