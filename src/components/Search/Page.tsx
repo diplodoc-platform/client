@@ -8,14 +8,13 @@ import {useSearch} from '../index';
 import {useRouter} from '../Router';
 
 import {useProvider} from './useProvider';
-import {buildSearchParams, parseSearchParams} from './searchParams';
+import {buildSearchUrl, parseSearchParams} from './searchParams';
 import './Page.scss';
 
 const b = block('Search');
 
 function setUrlParams(query: string, page: number, tags: string[]) {
-    const params = buildSearchParams(query, page, tags);
-    const url = params ? `?${params}` : window.location.pathname;
+    const url = buildSearchUrl(window.location.pathname, query, page, tags);
 
     window.history.pushState({}, '', url);
 }
