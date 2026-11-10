@@ -58,7 +58,7 @@
     "@gravity-ui/page-constructor": "^8.21.1",
     "@gravity-ui/uikit": "^7.31.1",
     "@rsdoctor/rspack-plugin": "^1.1.8",
-    "@rspack/cli": "^1.4.8",
+    "@rspack/cli": "^2.2.8",
     "@rspack/core": "^1.4.8",
     "@swc/helpers": "^0.5.17",
     "@types/react": "^19.2.17",
