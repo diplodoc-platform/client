@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.10](https://github.com/diplodoc-platform/client/compare/v5.14.9...v5.14.10) (2026-11-10)
+
+
+### Bug Fixes
+
+* **search:** preserve results page path during pagination ([ffc9815](https://github.com/diplodoc-platform/client/commit/ffc9815cb500fbf0c744818d8d95f23e27c24482))
+
 ## [5.14.9](https://github.com/diplodoc-platform/client/compare/v5.14.8...v5.14.9) (2026-10-28)
 
 
