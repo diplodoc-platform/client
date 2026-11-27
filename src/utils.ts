@@ -209,9 +209,11 @@ function isInViewport(el: HTMLElement) {
 }
 
 function activateTabPanel(panel: HTMLElement): void {
-    const controller = (globalThis as Record<symbol, unknown>)[Symbol.for('diplodocTabs')] as
-        | {selectTabById: (id: string) => void}
-        | undefined;
+    const registry = globalThis as Record<
+        symbol,
+        {selectTabById: (id: string) => void} | undefined
+    >;
+    const controller = registry[Symbol.for('diplodocTabs')];
 
     if (!controller || typeof controller.selectTabById !== 'function') {
         return;

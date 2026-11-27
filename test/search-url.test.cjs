@@ -32,3 +32,8 @@ test('clearing a query keeps the search page path and removes stale parameters',
         '/product/v1/_search/en/index.html',
     );
 });
+
+test('tag parsing decodes spaces and preserves malformed percent escapes', () => {
+    const {tags} = context.exports.parseSearchParams('?tags=a+b+c,c%2Bd,broken%ZZ+tag');
+    assert.deepEqual(Array.from(tags), ['a b c', 'c+d', 'broken%zz tag']);
+});
