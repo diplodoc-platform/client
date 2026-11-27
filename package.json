@@ -61,15 +61,16 @@
     "@rspack/cli": "^1.4.8",
     "@rspack/core": "^1.4.8",
     "@swc/helpers": "^0.5.17",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
     "@types/rtlcss": "^3.5.4",
     "bem-cn-lite": "^4.1.0",
     "markdown-it": "^15.0.3",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.6.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-is": "^18.3.1",
     "react-svg-loader": "^3.0.0",
     "rspack-manifest-plugin": "^5.0.3",
     "rtlcss": "^4.1.1",
@@ -78,11 +79,5 @@
     "ts-checker-rspack-plugin": "^1.1.4",
     "typescript": "6.0.3",
     "url": "^0.11.4"
-  },
-  "overrides": {
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.2.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
   }
 }
