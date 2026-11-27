@@ -79,5 +79,13 @@
     "ts-checker-rspack-plugin": "^1.1.4",
     "typescript": "6.0.3",
     "url": "^0.11.4"
+  },
+  "overrides": {
+    "i18next": {
+      "typescript": "$typescript"
+    },
+    "react-i18next": {
+      "typescript": "$typescript"
+    }
   }
 }
