@@ -45,30 +45,32 @@
     "./styles": "./build/client/app.css"
   },
   "devDependencies": {
-    "@diplodoc/components": "^5.24.2",
+    "@diplodoc/components": ">=6.0.0 <7.0.0",
     "@diplodoc/infra": "2.4.0",
-    "@diplodoc/latex-extension": "^2.0.2",
+    "@diplodoc/latex-extension": "^3.0.0",
     "@diplodoc/mdx-extension": "^1.6.2",
-    "@diplodoc/mermaid-extension": "^2.2.3",
-    "@diplodoc/openapi-extension": "^5.2.7",
-    "@diplodoc/page-constructor-extension": "^0.13.17",
-    "@diplodoc/tabs-extension": "^3.10.7",
-    "@diplodoc/transform": "^4.78.12",
+    "@diplodoc/mermaid-extension": "^3.0.0",
+    "@diplodoc/openapi-extension": ">=7.0.0 <8.0.0",
+    "@diplodoc/page-constructor-extension": ">=1.0.0 <2.0.0",
+    "@diplodoc/tabs-extension": "^4.0.0",
+    "@diplodoc/transform": "^5.0.0",
     "@gravity-ui/icons": "^2.11.0",
-    "@gravity-ui/page-constructor": "^8.21.1",
-    "@gravity-ui/uikit": "^7.31.1",
+    "@gravity-ui/page-constructor": "^9.0.0",
+    "@gravity-ui/uikit": "^8.0.0",
     "@rsdoctor/rspack-plugin": "^1.1.8",
     "@rspack/cli": "^1.4.8",
     "@rspack/core": "^1.4.8",
     "@swc/helpers": "^0.5.17",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
     "@types/rtlcss": "^3.5.4",
     "bem-cn-lite": "^4.1.0",
+    "markdown-it": "^15.0.3",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.6.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-is": "^18.3.1",
     "react-svg-loader": "^3.0.0",
     "rspack-manifest-plugin": "^5.0.3",
     "rtlcss": "^4.1.1",
@@ -79,9 +81,11 @@
     "url": "^0.11.4"
   },
   "overrides": {
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.2.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "i18next": {
+      "typescript": "$typescript"
+    },
+    "react-i18next": {
+      "typescript": "$typescript"
+    }
   }
 }

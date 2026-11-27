@@ -7,10 +7,12 @@ export interface SearchParams {
 const MAX_TAG_LENGTH = 32;
 
 function decodeTag(tag: string): string {
+    const value = tag.replace(/\+/g, ' ');
+
     try {
-        return decodeURIComponent(tag.replaceAll('+', ' '));
+        return decodeURIComponent(value);
     } catch {
-        return tag.replaceAll('+', ' ');
+        return value;
     }
 }
 

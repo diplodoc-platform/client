@@ -2,7 +2,7 @@ import type {ReactElement} from 'react';
 import type {SearchConfig, SearchData, WorkerApi, WorkerConfig} from './types';
 
 import {createContext, useContext, useEffect} from 'react';
-import {ThemeProvider} from '@gravity-ui/uikit';
+import {Provider} from '@gravity-ui/uikit';
 import {Lang, SUPPORTED_LANGS, configure} from '@diplodoc/components';
 
 import {RouterProvider} from '../Router';
@@ -54,7 +54,7 @@ export function Search(props: SearchProps): ReactElement {
     }, [theme, mobileView, wideFormat]);
 
     return (
-        <ThemeProvider theme={theme} direction={direction}>
+        <Provider theme={theme} direction={direction}>
             <LangProvider value={fixedLang}>
                 <RouterProvider value={routerConfig}>
                     <SearchProvider value={searchData}>
@@ -62,7 +62,7 @@ export function Search(props: SearchProps): ReactElement {
                     </SearchProvider>
                 </RouterProvider>
             </LangProvider>
-        </ThemeProvider>
+        </Provider>
     );
 }
 

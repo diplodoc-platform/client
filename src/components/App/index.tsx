@@ -14,7 +14,7 @@ import type {
 import type {AnalyticsConfig, UserAnalyticsConfig} from '../../types';
 
 import React, {useEffect, useMemo} from 'react';
-import {ThemeProvider} from '@gravity-ui/uikit';
+import {Provider} from '@gravity-ui/uikit';
 import {
     BackToTop,
     ConsentPopup,
@@ -163,7 +163,7 @@ function AppBase(props: AppProps): ReactElement {
 
     return (
         <div className="App">
-            <ThemeProvider theme={theme} direction={direction}>
+            <Provider theme={theme} direction={direction}>
                 <LangProvider value={lang}>
                     <RouterProvider value={router}>
                         <SearchProvider value={search}>
@@ -190,7 +190,7 @@ function AppBase(props: AppProps): ReactElement {
                         </SearchProvider>
                     </RouterProvider>
                 </LangProvider>
-            </ThemeProvider>
+            </Provider>
         </div>
     );
 }
